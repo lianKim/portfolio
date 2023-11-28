@@ -13,6 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/ivl3ywl.css" />
+      </head>
       <body>{children}</body>
     </html>
   )
