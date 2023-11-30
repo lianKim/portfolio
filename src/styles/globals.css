@@ -15,7 +15,7 @@
   --font-micro: 1.2rem;
   --font-tiny: 1.4rem;
   --font-small: 1.6rem;
-  --font-regular: 2rem;
+  --font-regular: 1.8rem;
   --font-large: 2.8rem;
   /* Font Weight */
   --weight-thin: 100;
@@ -27,11 +27,11 @@
   --weight-bold: 700;
   /* Letter Spacing */
   --letter-spacing-eng: normal;
-  --letter-spacing-kor: -0.03em;
+  --letter-spacing-kor: -0.025em;
   --line-height-narrow: 1.3em;
   --line-height-regular: 1.5em;
   /* Margin & Padding */
-  --grid-columain-gap: 20px;
+  --grid-column-gap: 20px;
 }
 
 html {
@@ -50,7 +50,7 @@ input,
 textarea {
   font-family: var(--font-serif), var(--font-sans-serif), var(--font-korean);
   font-size: var(--font-regular);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-light);
   letter-spacing: var(--letter-spacing-eng);
   color: var(--color-black);
 }
@@ -61,26 +61,23 @@ body {
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: keep-all;
-}
-
-/* Grid */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(1fr, 12);
-  grid-template-areas: 'hd hd . main main main main main main main main .';
-  gap: 20px;
-  margin: 0 20px;
   line-height: var(--line-height-narrow);
 }
 
 .main {
-  grid-area: main;
+  padding: 20px;
 }
 
 /* 한글 Font */
-.font-korean {
+.font-kor {
   font-family: var(--font-korean);
-  font-size: 0.9em;
+  font-size: 0.8em;
   letter-spacing: var(--letter-spacing-kor);
-  line-height: var(--line-height-narrow);
+  line-height: var(--line-height-regular);
+}
+
+/* Sans-Serif */
+.font-sans-serif {
+  font-family: var(--font-sans-serif);
+  line-height: var(--line-height-regular);
 }

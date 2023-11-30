@@ -7,19 +7,19 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles['grid-container']}>
         <h1 className={styles.logo}>
-          <Link href="/">{`Lian Kim\n+82(0)1090011250\n5ffcut@gmail.com`}</Link>
+          <Link href="/">Lian Kim</Link>
         </h1>
         <nav className={styles.nav}>
           <ol>
-            <li className={styles.active}>
+            <li className={styles['nav-item']}>
               <Link href="/about">About</Link>
             </li>
-            <li>
+            <li className={`${styles['nav-item']} ${styles.active}`}>
               <Link href="/work">Work</Link>
             </li>
           </ol>
         </nav>
-        <div className={styles.update}>{`Last Updated (23.11.24)`}</div>
+        <p className={styles['date-updated']}>{`Last Updated (23.11.24)`}</p>
       </div>
     </header>
   )

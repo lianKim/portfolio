@@ -1,23 +1,15 @@
 .header {
-  grid-area: hd;
-  width: 100%;
-  height: 100vh;
   position: sticky;
   top: 0;
   left: 0;
+  padding: 20px;
 }
 
 .grid-container {
-  height: 100vh;
-  padding: 20px 0;
   display: grid;
-  grid-template-rows: 1fr 1fr 6fr;
-  grid-template-areas:
-    'logo'
-    'nav'
-    '.';
-  gap: 20px;
-  position: relative;
+  gap: var(--grid-column-gap);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 'logo logo . nav nav nav nav nav nav . date date';
 }
 
 .logo {
@@ -26,14 +18,19 @@
 
 .nav {
   grid-area: nav;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 20px;
   color: var(--color-gray);
 }
 
-.active {
+.nav-item.active {
   color: var(--color-black);
 }
 
-.update {
-  position: absolute;
-  bottom: 20px;
+.date-updated {
+  grid-area: date;
+  text-align: right;
 }
