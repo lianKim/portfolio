@@ -1,0 +1,68 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: '. . item item item item item item item item item item';
+  gap: var(--grid-column-gap);
+  margin-top: 12vh;
+}
+
+.works {
+  width: 100%;
+  grid-area: item;
+  line-height: var(--line-height-narrow);
+}
+
+.work-item {
+  margin-bottom: 10vh;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-areas: 'num content content content content content content content content content';
+  gap: var(--grid-column-gap);
+}
+
+.order {
+  grid-area: num;
+  text-align: right;
+}
+
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: minmax(300px, 4fr) 1fr 2fr 3fr 3fr;
+  grid-template-areas: 'img date name desc skill';
+  gap: 1.5em;
+}
+
+.preview-image {
+  grid-area: img;
+  margin-right: 1em;
+}
+
+.preview-image > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.duration {
+  grid-area: date;
+  color: var(--color-gray);
+}
+
+.title {
+  grid-area: name;
+  line-height: var(--line-height-narrow);
+}
+
+.description {
+  grid-area: desc;
+  position: relative;
+  top: 0.15em;
+}
+
+.skill-stack {
+  grid-area: skill;
+  color: var(--color-gray);
+  font-size: var(--font-small);
+  line-height: var(--line-height-narrow);
+}

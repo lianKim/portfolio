@@ -77,7 +77,7 @@ body {
 }
 
 /* Sans-Serif */
-.font-sans-serif {
+.font-sans {
   font-family: var(--font-sans-serif);
   line-height: var(--line-height-regular);
 }
