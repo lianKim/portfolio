@@ -1,14 +1,5 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: '. . item item item item item item item item . .';
-  gap: var(--grid-column-gap);
-  margin-top: 12vh;
-}
-
 .works {
   width: 100%;
-  grid-area: item;
   line-height: var(--line-height-narrow);
 }
 

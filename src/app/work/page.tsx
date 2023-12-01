@@ -59,6 +59,8 @@ export default function Work() {
     <section className={styles['grid-container']}>
       <ol className={styles.works}>
         {tempData.map((data) => {
+    <section className="section">
+      <ol className={`${styles.works} container`}>
           const { order, imgSrc, duration, title, description, skillList } =
             data
           return (

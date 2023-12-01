@@ -6,7 +6,7 @@
   --color-white: #f5f5f5;
   --color-black: #111111;
   --color-gray: #acacac;
-  --color-light-gray: #cccccc;
+  --color-light-gray: #dddddd;
   /* Font Family */
   --font-korean: 'Spoqa Han Sans Neo';
   --font-serif: 'freight-text-pro';
@@ -66,6 +66,18 @@ body {
 
 .main {
   padding: 20px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: '. . item item item item item item item item . .';
+  gap: var(--grid-column-gap);
+  margin-top: 12vh;
+}
+
+.section > .container {
+  grid-area: item;
 }
 
 /* 한글 Font */
