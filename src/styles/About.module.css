@@ -1,0 +1,40 @@
+/* Skill */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas: 'title content content content content content content content';
+  gap: var(--grid-column-gap);
+  margin-bottom: 60px;
+}
+
+.sub-title {
+  grid-area: title;
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+.skill {
+  grid-area: content;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.skill-item {
+  width: 68px;
+}
+
+.skill-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* background-color: var(--color-light-gray); */
+}
+
+.skill-name {
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-small);
+  line-height: 1.2em;
+}
