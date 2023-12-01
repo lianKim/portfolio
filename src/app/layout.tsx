@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import Header from '@/components/header/Header'
 
 export const metadata: Metadata = {
   title: 'Lian Kim | Portfolio',
@@ -13,7 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/ivl3ywl.css" />
+      </head>
+      <body>
+        <div className="grid-container">
+          <Header />
+          <main className="main">{children}</main>
+        </div>
+      </body>
     </html>
   )
 }

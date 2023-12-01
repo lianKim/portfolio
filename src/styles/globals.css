@@ -1,1 +1,95 @@
-/* global style */
+@import 'reset.css';
+@import 'fonts.css';
+
+:root {
+  /* Color */
+  --color-white: #f5f5f5;
+  --color-black: #111111;
+  --color-gray: #acacac;
+  --color-light-gray: #dddddd;
+  /* Font Family */
+  --font-korean: 'Spoqa Han Sans Neo';
+  --font-serif: 'freight-text-pro';
+  --font-sans-serif: 'halyard-display';
+  /* Font Size */
+  --font-micro: 1rem;
+  --font-tiny: 1.2rem;
+  --font-small: 1.4rem;
+  --font-regular: 1.6rem;
+  --font-medium: 1.8rem;
+  --font-large: 2rem;
+  /* Font Weight */
+  --weight-thin: 100;
+  --weight-x-light: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semi-bold: 600;
+  --weight-bold: 700;
+  /* Letter Spacing */
+  --letter-spacing-eng: normal;
+  --letter-spacing-kor: -0.025em;
+  --line-height-narrow: 1.3em;
+  --line-height-regular: 1.5em;
+  /* Margin & Padding */
+  --grid-column-gap: 20px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--font-serif), var(--font-sans-serif), var(--font-korean);
+  font-size: var(--font-regular);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--letter-spacing-eng);
+  color: var(--color-black);
+}
+
+body {
+  background-color: var(--color-white);
+  width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  line-height: var(--line-height-narrow);
+}
+
+.main {
+  padding: 20px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: '. . item item item item item item item item . .';
+  gap: var(--grid-column-gap);
+  margin-top: 12vh;
+}
+
+.section > .container {
+  grid-area: item;
+}
+
+/* 한글 Font */
+.font-kor {
+  font-family: var(--font-korean);
+  font-size: 0.9em;
+  letter-spacing: var(--letter-spacing-kor);
+  font-weight: var(--weight-regular);
+}
+
+/* Sans-Serif */
+.font-sans {
+  font-family: var(--font-sans-serif);
+}
