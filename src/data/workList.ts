@@ -1,6 +1,6 @@
-import ArffyPreview from '@public/static/images/work/arffy/preview_arffy.png'
-import GokkanPreview from '@public/static/images/work/gokkan/preview_gokkan.png'
-import OndePreview from '@public/static/images/work/onde/preview_onde.png'
+import ArffyPreview from '@images/work/arffy/preview_arffy.png'
+import GokkanPreview from '@images/work/gokkan/preview_gokkan.png'
+import OndePreview from '@images/work/onde/preview_onde.png'
 import { StaticImageData } from 'next/image'
 
 type WorkItemType = {
