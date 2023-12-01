@@ -12,7 +12,7 @@ export default function Skill() {
   return (
     <div className={styles['grid-container']}>
       <h3 className={styles['sub-title']}>{`(Skill)`}</h3>
-      <ul className={styles.skill}>
+      <ul className={`${styles.content} ${styles.skill}`}>
         {SKILL_LIST.map((skill) => (
           <SkillItem key={skill.name} name={skill.name} imgSrc={skill.image} />
         ))}
