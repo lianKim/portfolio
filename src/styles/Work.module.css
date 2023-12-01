@@ -1,10 +1,13 @@
 .works {
   width: 100%;
   line-height: var(--line-height-narrow);
+  margin-bottom: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
 }
 
 .work-item {
-  margin-bottom: 10vh;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-areas: 'num content content content content content content content';
@@ -13,13 +16,13 @@
 
 .order {
   grid-area: num;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .content {
   grid-area: content;
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr 3fr minmax(250px, 4fr);
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr minmax(250px, 2fr);
   grid-template-areas: 'date name desc skill img';
   gap: 1.5em;
 }
@@ -49,6 +52,7 @@
   grid-area: desc;
   position: relative;
   top: 0.16em;
+  font-size: 0.82em;
 }
 
 .skill-stack {
