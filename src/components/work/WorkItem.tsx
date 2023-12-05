@@ -3,6 +3,7 @@ import React from 'react'
 import styles from '@/styles/Work.module.css'
 import Image from 'next/image'
 import ThumbnailDefault from '@images/work/thumbnail_default.png'
+import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
 
 interface WorkItemProps {
   data: WorkItemData
@@ -43,8 +44,8 @@ interface WorkItemData {
 
 export default React.memo(function WorkItem({ data }: WorkItemProps) {
   const { Order, Period, Name, Description, Tags, Thumbnail } = data
-  const startDate = Period?.date?.start || 'unknown'
-  const endDate = Period?.date?.end || 'unknown'
+  const startDate = Period?.date?.start || ''
+  const endDate = Period?.date?.end || ''
   const order = Order?.number || 'unknown'
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
   const description = Description?.rich_text?.at(0)?.plain_text || 'no content'
@@ -54,17 +55,19 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
   return (
     <li className={styles['work-item']}>
       {/* 작업 순서 (역순) */}
-      <div className={styles.order}>{`(${order})`}</div>
+      <div className={styles.order}>{`(${makeNumberToTwoLetter(order)})`}</div>
       <div className={styles.content}>
         {/* 작업 기간 */}
-        <div className={styles.period}>{`${startDate} - ${endDate}`}</div>
+        <div className={styles.period}>
+          {getPeriodOfWork(startDate, endDate)}
+        </div>
         {/* 이름 */}
         <div className={`${styles['title']} font-sans`}>{title}</div>
         {/* 설명 */}
         <div className={`${styles.description} font-kor`}>{description}</div>
         {/* 기술 스택 */}
         <div className={`${styles['skill-stack']} font-sans`}>
-          {skillList.join(' / ')}
+          {skillList.join(' / ') || 'unknown'}
         </div>
         {/* 썸네일 */}
         <div className={styles['preview-image']}>
