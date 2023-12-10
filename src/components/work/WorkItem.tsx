@@ -7,7 +7,6 @@ import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
 
 interface WorkItemProps {
   data: WorkItemData
-  pageId: string
 }
 
 interface WorkItemData {
@@ -28,7 +27,7 @@ interface WorkItemData {
   Description?: {
     rich_text: { plain_text: string }[]
   }
-  Tags?: {
+  Stack?: {
     multi_select: {
       name: string
     }[]
@@ -43,13 +42,13 @@ interface WorkItemData {
 }
 
 export default React.memo(function WorkItem({ data }: WorkItemProps) {
-  const { Order, Period, Name, Description, Tags, Thumbnail } = data
+  const { Order, Period, Name, Description, Stack, Thumbnail } = data
   const startDate = Period?.date?.start || ''
   const endDate = Period?.date?.end || ''
   const order = Order?.number || 'unknown'
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
   const description = Description?.rich_text?.at(0)?.plain_text || 'no content'
-  const skillList = Tags?.multi_select?.map((tag) => tag.name || '') || []
+  const skillList = Stack?.multi_select?.map((tag) => tag.name || '') || []
   const thumbnail = Thumbnail?.files?.at(0)?.file?.url || ThumbnailDefault
 
   return (

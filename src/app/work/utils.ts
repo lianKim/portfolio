@@ -4,8 +4,6 @@
  * @returns {string} 두 자리 수
  */
 export const makeNumberToTwoLetter = (number: number | string): string => {
-  console.log(typeof number)
-
   if (typeof number === 'string') {
     return number
   }
