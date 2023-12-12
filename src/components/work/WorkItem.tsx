@@ -4,41 +4,10 @@ import styles from '@/styles/Work.module.css'
 import Image from 'next/image'
 import ThumbnailDefault from '@images/work/thumbnail_default.png'
 import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
+import { WorkItemData } from '@/types/workList'
 
 interface WorkItemProps {
   data: WorkItemData
-}
-
-interface WorkItemData {
-  Order?: {
-    number: number
-  }
-  Period?: {
-    date: {
-      start: string
-      end: string
-    }
-  }
-  Name?: {
-    title: {
-      plain_text: string
-    }[]
-  }
-  Description?: {
-    rich_text: { plain_text: string }[]
-  }
-  Stack?: {
-    multi_select: {
-      name: string
-    }[]
-  }
-  Thumbnail?: {
-    files: {
-      file: {
-        url: string
-      }
-    }[]
-  }
 }
 
 export default React.memo(function WorkItem({ data }: WorkItemProps) {
@@ -76,6 +45,7 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
             width={400}
             height={220}
             priority
+            style={{ width: '100%', height: 'auto' }}
           />
         </div>
       </div>

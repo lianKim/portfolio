@@ -12,6 +12,7 @@
 .container {
   width: 100%;
   height: calc((100vh - 12vh - 20px));
+  overflow: hidden;
   padding: 20px;
   background-color: var(--color-light-gray);
   border: 1px solid var(--color-black);
