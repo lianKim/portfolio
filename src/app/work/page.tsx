@@ -1,25 +1,31 @@
 import WorkItem from '@/components/work/WorkItem'
 import React from 'react'
 import styles from '@/styles/Work.module.css'
-import { WORK_LIST } from '@/data/workList'
+import { getWorkList } from './api'
+import Link from 'next/link'
 
-export default function Work() {
+export default async function Work() {
+  const workList = await getWorkList()
+
   return (
     <section className="section">
       <ol className={`${styles.works} container`}>
-        {WORK_LIST.map((data) => {
-          const { order, imgSrc, duration, title, description, skillList } =
-            data
+        {workList.map((work) => {
+          if (!('properties' in work)) {
+            throw new Error('No Properties Error')
+          }
+
+          const { properties, id } = work as any
+
           return (
-            <WorkItem
-              key={order}
-              order={order}
-              imgSrc={imgSrc}
-              duration={duration}
-              title={title}
-              description={description}
-              skillList={skillList}
-            />
+            <Link
+              href={`/work/${id}`}
+              as={`/work/${id}`}
+              scroll={false}
+              key={properties.Order.number}
+            >
+              <WorkItem data={properties} />
+            </Link>
           )
         })}
       </ol>
