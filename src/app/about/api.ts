@@ -21,6 +21,18 @@ export const getContactList = async () => {
   }
 }
 
+export const getSkillList = async () => {
+  try {
+    const response = await notion.databases.query({
+      database_id: SKILL_DB_ID,
+    })
+
+    return response?.results
+  } catch (error) {
+    throw new Error('Failed to get skill list')
+  }
+}
+
 export const getEducationList = async () => {
   try {
     const response = await notion.databases.query({
