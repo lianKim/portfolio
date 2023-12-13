@@ -8,13 +8,13 @@ interface ContactProps {
 }
 
 export default function Contact({ data }: ContactProps) {
-  console.log(data)
-
   const [mobile, email, ...links] = useMemo(
     () =>
-      data.map((item: any) => {
+      data.map((item: ContactItemData) => {
         const title = item.properties?.Option.title?.at(0)?.plain_text
-        const { content, link } = item.properties?.Value.rich_text?.at(0)?.text
+        const content = item.properties?.Value.rich_text?.at(0)?.text?.content
+        const link = item.properties?.Value.rich_text?.at(0)?.text?.link
+
         return { option: title, value: content, link: link?.url }
       }),
     [data],
