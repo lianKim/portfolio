@@ -37,6 +37,12 @@ export const getEducationList = async () => {
   try {
     const response = await notion.databases.query({
       database_id: EDUCATION_DB_ID,
+      sorts: [
+        {
+          property: 'Period',
+          direction: 'descending',
+        },
+      ],
     })
 
     return response?.results
