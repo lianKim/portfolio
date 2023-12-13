@@ -20,3 +20,15 @@ export const getContactList = async () => {
     throw new Error('Failed to get contact list')
   }
 }
+
+export const getEducationList = async () => {
+  try {
+    const response = await notion.databases.query({
+      database_id: EDUCATION_DB_ID,
+    })
+
+    return response?.results
+  } catch (error) {
+    throw new Error('Failed to get education list')
+  }
+}
