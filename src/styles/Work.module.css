@@ -1,0 +1,61 @@
+.works {
+  width: 100%;
+  line-height: var(--line-height-narrow);
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas: 'num content content content content content content content';
+  gap: var(--grid-column-gap);
+}
+
+.order {
+  grid-area: num;
+  /* text-align: right; */
+}
+
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr minmax(250px, 2fr);
+  grid-template-areas: 'date name desc skill img';
+  gap: 1.5em;
+}
+
+.preview-image {
+  grid-area: img;
+  margin-right: 1em;
+}
+
+.preview-image > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.period {
+  grid-area: date;
+  color: var(--color-gray);
+}
+
+.title {
+  grid-area: name;
+  line-height: var(--line-height-narrow);
+}
+
+.description {
+  grid-area: desc;
+  position: relative;
+  top: 0.16em;
+  font-size: 0.82em;
+}
+
+.skill-stack {
+  grid-area: skill;
+  color: var(--color-gray);
+  font-size: var(--font-small);
+}

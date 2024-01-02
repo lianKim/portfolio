@@ -1,0 +1,38 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background-color: var(--color-white);
+  z-index: 10;
+}
+
+.grid-container {
+  display: grid;
+  gap: var(--grid-column-gap);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 'logo logo . nav nav nav nav nav nav . date date';
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 20px;
+  color: var(--color-gray);
+}
+
+.nav-item.active {
+  color: var(--color-black);
+}
+
+.date-updated {
+  grid-area: date;
+  text-align: right;
+}
