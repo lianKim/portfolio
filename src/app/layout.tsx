@@ -21,7 +21,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       <body>
         <div className="grid-container">
           <Header />
-          <main className="main">{children}</main>
+          {children}
           {modal}
         </div>
       </body>

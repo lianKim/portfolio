@@ -3,7 +3,10 @@
   grid-template-columns: repeat(8, 1fr);
   grid-template-areas: 'title content content content content content content content';
   gap: var(--grid-column-gap);
-  margin-bottom: 160px;
+}
+
+.grid-container + .grid-container {
+  margin-top: 160px;
 }
 
 .sub-title {
