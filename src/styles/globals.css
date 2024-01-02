@@ -69,6 +69,7 @@ body {
 
 .main {
   padding: 20px;
+  margin: 100px 0;
 }
 
 .section {
@@ -76,7 +77,10 @@ body {
   grid-template-columns: repeat(12, 1fr);
   grid-template-areas: '. . item item item item item item item item . .';
   gap: var(--grid-column-gap);
-  margin-top: 12vh;
+}
+
+.section + .section {
+  margin-top: 160px;
 }
 
 .section > .container {
