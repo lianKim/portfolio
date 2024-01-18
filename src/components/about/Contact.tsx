@@ -22,7 +22,7 @@ export default function Contact({ data }: ContactProps) {
 
   return (
     <div className={styles['grid-container']}>
-      <h3 className={styles['sub-title']}>{`(Contact)`}</h3>
+      <h3 className="sub-title">Contact</h3>
       <ul className={`${styles.content} ${styles.contact}`}>
         {/* name */}
         <li key="name">
@@ -34,7 +34,7 @@ export default function Contact({ data }: ContactProps) {
           <div className={`${styles['contact-type']} font-sans`}>Mobile</div>
           <a
             href={`tel:${mobile.value}`}
-            className={`${styles['contact-value']} font-kor`}
+            className={`${styles['contact-value']}`}
           >
             {mobile.value}
           </a>
@@ -44,7 +44,7 @@ export default function Contact({ data }: ContactProps) {
           <div className={`${styles['contact-type']} font-sans`}>Email</div>
           <a
             href={`mailto:${email.value}`}
-            className={`${styles['contact-value']} font-kor`}
+            className={`${styles['contact-value']}`}
           >
             {email.value}
           </a>

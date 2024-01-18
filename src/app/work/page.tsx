@@ -9,6 +9,7 @@ export default async function Work() {
 
   return (
     <section className="section">
+      <h3 className="sub-title">Work</h3>
       <ol className={`${styles.works} container`}>
         {workList.map((work) => {
           if (!('properties' in work)) {

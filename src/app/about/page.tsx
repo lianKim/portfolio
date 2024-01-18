@@ -15,7 +15,6 @@ export default async function About() {
   return (
     <section className="section">
       <div className="container">
-        <Contact data={contactList as ContactItemData[]} />
         <Skill data={skillList as SkillItemData[]} />
         <Education data={educationList as EducationItemData[]} />
       </div>
