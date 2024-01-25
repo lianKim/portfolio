@@ -22,7 +22,6 @@ interface BlockProps<T> {
   children?: React.ReactNode
 }
 
-// heading1 다음의 배열이 넘어옴
 export default function BlockContainer({
   data,
   children,

@@ -3,15 +3,23 @@ import React, { useState } from 'react'
 import styles from '@/styles/Work.module.css'
 import Image from 'next/image'
 import ThumbnailDefault from '@images/work/thumbnail_default.png'
-import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
 import { WorkItemData } from '@/types/workList'
+import WorkDetail from './detail/WorkDetail'
+import Modal from '../modal/Modal'
+import {
+  getPeriodOfWork,
+  makeNumberToTwoLetter,
+} from '@/lib/utils/handleString'
 
 interface WorkItemProps {
   data: WorkItemData
+  pageId: string
 }
 
-export default React.memo(function WorkItem({ data }: WorkItemProps) {
+export default React.memo(function WorkItem({ data, pageId }: WorkItemProps) {
   const [hovered, setHovered] = useState(false)
+  const [clicked, setClicked] = useState(false)
+
   const { Order, Period, Name, Description, Stack, Thumbnail } = data
   const startDate = Period?.date?.start || ''
   const endDate = Period?.date?.end || ''
@@ -29,12 +37,28 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
     setHovered(false)
   }
 
+  const handleModalOpen = () => {
+    setClicked(true)
+  }
+
+  const handleModalClose = () => {
+    setClicked(false)
+  }
+
   return (
     <li
       className={styles['work-item']}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onClick={handleModalOpen}
     >
+      {/* Modal */}
+      {clicked && (
+        <Modal onClose={handleModalClose}>
+          <WorkDetail pageId={pageId} />
+        </Modal>
+      )}
+
       {/* 작업 순서 (역순) */}
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
 

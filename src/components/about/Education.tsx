@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { EducationItemData } from '@/types/education'
-import { getPeriodOfWork } from '@/app/work/utils'
+import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 interface EducationProps {
   data: EducationItemData[]

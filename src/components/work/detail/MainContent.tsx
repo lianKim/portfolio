@@ -1,8 +1,8 @@
 'use client'
-import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
 import { PagePropertiesData } from '@/types/workDetail'
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
+import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 interface MainContentProps {
   properties: PagePropertiesData
