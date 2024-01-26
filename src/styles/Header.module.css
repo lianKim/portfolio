@@ -11,7 +11,7 @@
   display: grid;
   gap: var(--grid-column-gap);
   grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: 'logo logo . nav nav nav nav nav nav . date date';
+  grid-template-areas: 'logo logo nav nav . . . . . . contact contact';
 }
 
 .logo {
@@ -23,8 +23,9 @@
 }
 
 .nav-item {
-  display: inline-block;
-  margin-right: 20px;
+  /* display: inline-block;
+  margin-right: 20px; */
+  display: block;
   color: var(--color-gray);
 }
 
@@ -32,7 +33,9 @@
   color: var(--color-black);
 }
 
-.date-updated {
-  grid-area: date;
+.contact-list {
+  grid-area: contact;
   text-align: right;
+  display: flex;
+  flex-direction: column;
 }

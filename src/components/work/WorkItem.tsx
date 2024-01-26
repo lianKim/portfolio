@@ -1,16 +1,25 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/Work.module.css'
 import Image from 'next/image'
 import ThumbnailDefault from '@images/work/thumbnail_default.png'
-import { getPeriodOfWork, makeNumberToTwoLetter } from '@/app/work/utils'
 import { WorkItemData } from '@/types/workList'
+import WorkDetail from './detail/WorkDetail'
+import Modal from '../modal/Modal'
+import {
+  getPeriodOfWork,
+  makeNumberToTwoLetter,
+} from '@/lib/utils/handleString'
 
 interface WorkItemProps {
   data: WorkItemData
+  pageId: string
 }
 
-export default React.memo(function WorkItem({ data }: WorkItemProps) {
+export default React.memo(function WorkItem({ data, pageId }: WorkItemProps) {
+  const [hovered, setHovered] = useState(false)
+  const [clicked, setClicked] = useState(false)
+
   const { Order, Period, Name, Description, Stack, Thumbnail } = data
   const startDate = Period?.date?.start || ''
   const endDate = Period?.date?.end || ''
@@ -20,24 +29,41 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
   const skillList = Stack?.multi_select?.map((tag) => tag.name || '') || []
   const thumbnail = Thumbnail?.files?.at(0)?.file?.url || ThumbnailDefault
 
+  const handleMouseOver = () => {
+    setHovered(true)
+  }
+
+  const handleMouseOut = () => {
+    setHovered(false)
+  }
+
+  const handleModalOpen = () => {
+    setClicked(true)
+  }
+
+  const handleModalClose = () => {
+    setClicked(false)
+  }
+
   return (
-    <li className={styles['work-item']}>
+    <li
+      className={styles['work-item']}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onClick={handleModalOpen}
+    >
+      {/* Modal */}
+      {clicked && (
+        <Modal onClose={handleModalClose}>
+          <WorkDetail pageId={pageId} />
+        </Modal>
+      )}
+
       {/* 작업 순서 (역순) */}
-      <div className={styles.order}>{`(${makeNumberToTwoLetter(order)})`}</div>
-      <div className={styles.content}>
-        {/* 작업 기간 */}
-        <div className={styles.period}>
-          {getPeriodOfWork(startDate, endDate)}
-        </div>
-        {/* 이름 */}
-        <div className={`${styles['title']} font-sans`}>{title}</div>
-        {/* 설명 */}
-        <div className={`${styles.description} font-kor`}>{description}</div>
-        {/* 기술 스택 */}
-        <div className={`${styles['skill-stack']} font-sans`}>
-          {skillList.join(' / ') || 'unknown'}
-        </div>
-        {/* 썸네일 */}
+      <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
+
+      {/* 썸네일 */}
+      {hovered && thumbnail && (
         <div className={styles['preview-image']}>
           <Image
             src={thumbnail}
@@ -48,6 +74,20 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
             style={{ width: '100%', height: 'auto' }}
           />
         </div>
+      )}
+
+      <div className={styles.content}>
+        {/* 이름 */}
+        <div className={`${styles['title']}`}>{title}</div>
+
+        {/* 작업 기간 */}
+        <div className={styles.period}>
+          {getPeriodOfWork(startDate, endDate)}
+        </div>
+        {/* 설명 */}
+        <div className="font-kor">{description}</div>
+        {/* 기술 스택 */}
+        <div className={styles['skills']}>{skillList.join('  |  ')}</div>
       </div>
     </li>
   )

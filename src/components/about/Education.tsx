@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { EducationItemData } from '@/types/education'
-import { getPeriodOfWork } from '@/app/work/utils'
+import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 interface EducationProps {
   data: EducationItemData[]
@@ -16,6 +16,7 @@ export default function Education({ data }: EducationProps) {
         const startDate = item.properties?.Period.date?.start || ''
         const endDate = item.properties?.Period.date?.end
         const period = getPeriodOfWork(startDate, endDate)
+
         return { title, period }
       }),
     [data],
@@ -23,7 +24,7 @@ export default function Education({ data }: EducationProps) {
 
   return (
     <div className={styles['grid-container']}>
-      <h3 className={styles['sub-title']}>{`(Education)`}</h3>
+      <h3 className="sub-title">Education</h3>
       <ol className={`${styles.content} ${styles.education}`}>
         {educationList.map((education) => (
           <li className={styles['education-item']} key={education.period}>

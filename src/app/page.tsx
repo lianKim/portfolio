@@ -1,5 +1,5 @@
-import About from './about/page'
-import Work from './work/page'
+import About from '@/components/about/About'
+import Work from '@/components/work/Work'
 
 export default function Home() {
   return (

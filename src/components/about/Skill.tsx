@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from '@/styles/About.module.css'
 import Image from 'next/image'
 import { SkillItemData } from '@/types/skill'
@@ -29,7 +29,7 @@ export default function Skill({ data }: SkillProps) {
 
   return (
     <div className={styles['grid-container']}>
-      <h3 className={styles['sub-title']}>{`(Skill)`}</h3>
+      <h3 className="sub-title">Skill</h3>
       <ul className={`${styles.content} ${styles.skill}`}>
         {skillList.map((skill) => (
           <SkillItem
@@ -44,20 +44,39 @@ export default function Skill({ data }: SkillProps) {
 }
 
 function SkillItem({ name, imgSrc }: SkillItemProps) {
-  if (!name || !imgSrc) return
+  const [hovered, setHovered] = useState(false)
+
+  const handleMouseOver = () => {
+    setHovered(true)
+  }
+
+  const handleMouseOut = () => {
+    setHovered(false)
+  }
+
+  if (!name) return
 
   return (
-    <li className={styles['skill-item']}>
-      <Image
-        className={styles['skill-icon']}
-        src={imgSrc}
-        alt={`${name} icon`}
-        width={100}
-        height={100}
-        priority
-        style={{ width: '100%', height: 'auto' }}
-      />
-      <h4 className={`${styles['skill-name']} font-sans`}>{name}</h4>
+    <li
+      className={`${styles['skill-item']}`}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onClick={handleMouseOut}
+    >
+      <h4>{name}</h4>
+      {hovered && imgSrc && (
+        <div className={styles['skill-logo-container']}>
+          <Image
+            className={styles['skill-logo']}
+            src={imgSrc}
+            alt={`${name} icon`}
+            width={100}
+            height={100}
+            priority
+            style={{ width: '100%', height: 'auto' }}
+          />
+        </div>
+      )}
     </li>
   )
 }
