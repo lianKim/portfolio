@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from '@/styles/Landing.module.css'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, useTexture, Html } from '@react-three/drei'

@@ -1,6 +1,3 @@
-// import About from '@/components/about/About'
-// import BusinessCardAnimation from '@/components/landing/BusinessCardAnimation'
-// import Work from '@/components/work/Work'
 import dynamic from 'next/dynamic'
 
 const About = dynamic(async () => await import('@/components/about/About'), {
