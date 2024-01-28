@@ -6,29 +6,26 @@ import { OrbitControls, useTexture, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function BusinessCardAnimation() {
-  const [size, setSize] = useState({
-    width: window.innerWidth - 40,
-    height: window.innerHeight - 20,
-  })
+  const containerRef = useRef<HTMLDivElement>(null)
 
   // resize
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const resizeHandler = () => {
-      setSize({
-        width: window.innerWidth - 40,
-        height: window.innerHeight - 20,
-      })
+      if (!containerRef?.current) return
+
+      containerRef.current.style.width = window.innerWidth - 40 + 'px'
+      containerRef.current.style.height = window.innerHeight - 20 + 'px'
     }
+
     window.addEventListener('resize', resizeHandler)
 
     return () => window.removeEventListener('resize', resizeHandler)
   }, [])
 
   return (
-    <div
-      className={styles['canvas-container']}
-      style={{ width: size.width, height: size.height }}
-    >
+    <div className={styles['canvas-container']} ref={containerRef}>
       <Canvas
         camera={{
           position: [0, 0, 8],
