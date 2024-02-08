@@ -13,10 +13,10 @@ const BusinessCardAnimation = dynamic(
 
 export default function Home() {
   return (
-    <main className="main">
+    <>
       <BusinessCardAnimation />
       <About />
       <Work />
-    </main>
+    </>
   )
 }

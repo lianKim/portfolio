@@ -28,7 +28,7 @@ export default function Skill({ data }: SkillProps) {
   )
 
   return (
-    <div className={styles['grid-container']}>
+    <section className="section">
       <h3 className="sub-title">Skill</h3>
       <ul className={`${styles.content} ${styles.skill}`}>
         {skillList.map((skill) => (
@@ -39,7 +39,7 @@ export default function Skill({ data }: SkillProps) {
           />
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
 

@@ -4,8 +4,6 @@ import styles from '@/styles/Work.module.css'
 import Image from 'next/image'
 import ThumbnailDefault from '@images/work/thumbnail_default.png'
 import { WorkItemData } from '@/types/workList'
-import WorkDetail from './detail/WorkDetail'
-import Modal from '../modal/Modal'
 import {
   getPeriodOfWork,
   makeNumberToTwoLetter,
@@ -13,10 +11,9 @@ import {
 
 interface WorkItemProps {
   data: WorkItemData
-  pageId: string
 }
 
-export default React.memo(function WorkItem({ data, pageId }: WorkItemProps) {
+export default React.memo(function WorkItem({ data }: WorkItemProps) {
   const [hovered, setHovered] = useState(false)
   const [clicked, setClicked] = useState(false)
 
@@ -52,13 +49,6 @@ export default React.memo(function WorkItem({ data, pageId }: WorkItemProps) {
       onMouseOut={handleMouseOut}
       onClick={handleModalOpen}
     >
-      {/* Modal */}
-      {clicked && (
-        <Modal onClose={handleModalClose}>
-          <WorkDetail pageId={pageId} />
-        </Modal>
-      )}
-
       {/* 작업 순서 (역순) */}
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
 

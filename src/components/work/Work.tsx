@@ -1,6 +1,7 @@
 import { getWorkList } from '@/lib/api/workApi'
 import WorkItem from '@/components/work/WorkItem'
 import styles from '@/styles/Work.module.css'
+import Link from 'next/link'
 
 export default async function Work() {
   const workList = await getWorkList()
@@ -14,14 +15,16 @@ export default async function Work() {
             throw new Error('No Properties Error')
           }
 
-          const { properties, id } = work as any
+          const { properties } = work as any
 
           return (
-            <WorkItem
-              data={properties}
-              pageId={id}
+            <Link
+              href={`/work/${properties.Order.number}`}
+              prefetch={true}
               key={properties.Order.number}
-            />
+            >
+              <WorkItem data={properties} />
+            </Link>
           )
         })}
       </ol>

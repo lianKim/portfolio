@@ -1,6 +1,6 @@
-.grid-container + .grid-container {
-  margin-top: 160px;
-}
+/* .grid-container + .grid-container {
+  margin-top: 180px;
+} */
 
 .sub-title {
   font-size: var(--font-x-large);

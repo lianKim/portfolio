@@ -4,6 +4,7 @@ import Header from '@/components/header/Header'
 
 interface RootLayoutProps {
   children: React.ReactNode
+  modal: React.ReactNode
 }
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   description: '프론트엔드 개발자 김리안의 포트폴리오입니다.',
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html>
       <head>
@@ -20,7 +21,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <div className="grid-container">
           <Header />
-          {children}
+          <main className="main">{children}</main>
+          {modal}
         </div>
       </body>
     </html>

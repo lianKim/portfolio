@@ -25,9 +25,9 @@ export default function Education({ data }: EducationProps) {
   )
 
   return (
-    <div className={styles['grid-container']}>
+    <section className="section">
       <h3 className="sub-title">Education</h3>
       <EducationTimeline dataList={educationList} />
-    </div>
+    </section>
   )
 }

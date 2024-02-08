@@ -10,11 +10,9 @@ export default async function About() {
   const skillList = await getSkillList()
 
   return (
-    <section className="section">
-      <div className="container">
-        <Skill data={skillList as SkillItemData[]} />
-        <Education data={educationList as EducationItemData[]} />
-      </div>
-    </section>
+    <>
+      <Skill data={skillList as SkillItemData[]} />
+      <Education data={educationList as EducationItemData[]} />
+    </>
   )
 }
