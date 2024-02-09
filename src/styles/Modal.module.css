@@ -6,8 +6,9 @@
   height: 100vh;
   padding: 0 20px;
   padding-top: 12vh;
-  background-color: var(--color-white);
-  z-index: 150;
+  /* background-color: var(--color-white); */
+  background-color: rgba(28, 28, 28, 0.8);
+  z-index: 200;
 }
 
 .container {
