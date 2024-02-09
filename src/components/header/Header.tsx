@@ -18,7 +18,7 @@ export default function Header() {
         <nav className={styles.nav}>
           <ol>
             <li className={styles['nav-item']}>
-              <Link href="/about">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li className={styles['nav-item']}>
               <Link href="/about">About</Link>

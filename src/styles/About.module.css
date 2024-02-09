@@ -1,6 +1,6 @@
-.grid-container + .grid-container {
-  margin-top: 160px;
-}
+/* .grid-container + .grid-container {
+  margin-top: 180px;
+} */
 
 .sub-title {
   font-size: var(--font-x-large);
@@ -65,4 +65,8 @@
   grid-area: date;
   color: var(--color-gray);
   text-align: right;
+}
+
+.education-timeline-wrapper {
+  width: 100%;
 }

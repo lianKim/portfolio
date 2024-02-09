@@ -7,18 +7,18 @@ import Image from 'next/image'
 
 interface ModalProps {
   children: React.ReactNode
-  onClose: () => void
 }
 
-export default function Modal({ children, onClose }: ModalProps) {
-  // const router = useRouter()
-  // const HandleModalClose = (
-  //   e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
-  // ) => {
-  //   e.preventDefault()
-  //   e.stopPropagation()
-  //   router.back()
-  // }
+export default function Modal({ children }: ModalProps) {
+  const router = useRouter()
+  const HandleModalClose = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
+  ) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    router.back()
+  }
 
   // 스크롤 방지
   useEffect(() => {
@@ -39,7 +39,11 @@ export default function Modal({ children, onClose }: ModalProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <button type="button" className={styles['btn-close']} onClick={onClose}>
+        <button
+          type="button"
+          className={styles['btn-close']}
+          onClick={HandleModalClose}
+        >
           <Image src={CloseIcon} alt="close icon" />
         </button>
         <div className={styles.content}>{children}</div>
