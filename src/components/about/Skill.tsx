@@ -72,8 +72,7 @@ function SkillItem({ name, imgSrc }: SkillItemProps) {
             alt={`${name} icon`}
             width={100}
             height={100}
-            priority
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: '100%' }}
           />
         </div>
       )}

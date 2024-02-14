@@ -36,6 +36,7 @@
   top: -88px;
   right: 0;
   width: 80px;
+  height: 80px;
   z-index: 1;
   background-color: white;
   padding: 14px;
@@ -44,7 +45,7 @@
 
 .skill-logo {
   width: 100%;
-  height: auto;
+  height: 100%;
   vertical-align: middle;
 }
 
