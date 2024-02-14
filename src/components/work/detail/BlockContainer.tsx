@@ -116,7 +116,6 @@ function BulletedListItem({
   data,
   children,
 }: BlockProps<BulletedListItemData>) {
-  console.log(data)
   const textList = data.bulleted_list_item.rich_text?.map(
     (text) => text.plain_text,
   )
@@ -143,8 +142,9 @@ function ImageFile({ data }: BlockProps<ImageData>) {
         <Image
           src={imageUrl}
           alt="project image"
-          width={200}
-          height={100}
+          width={2000}
+          height={1334}
+          loading="lazy"
           style={{ width: '100%', height: '100%' }}
         />
       )}

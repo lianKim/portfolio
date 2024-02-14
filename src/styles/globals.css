@@ -8,6 +8,8 @@
   --color-gray: #a0a0a0;
   --color-light-gray: #dddddd;
   --color-dark-gray: #808080;
+  --color-orange: #f3331b;
+  --color-purple: #caa4cc;
   /* Font Family */
   --font-korean: 'Spoqa Han Sans Neo';
   --font-serif: 'neulis-sans';
@@ -35,6 +37,8 @@
   --line-height-regular: 1.5em;
   /* Margin & Padding */
   --grid-column-gap: 20px;
+  /* Border Radius */
+  --rounded-normal: 8px;
 }
 
 html {

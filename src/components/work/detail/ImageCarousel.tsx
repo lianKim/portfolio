@@ -26,8 +26,6 @@ export default function ImageCarousel({ blockList }: ImageCarouselProps) {
     nextArrow: <CustomNextArrow />,
   }
 
-  console.log(blockList)
-
   return (
     <Slider {...carouselSetting}>
       {blockList.map((data) => (

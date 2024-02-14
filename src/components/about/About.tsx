@@ -1,5 +1,5 @@
-import Education from '@/components/about/Education'
 import Skill from '@/components/about/Skill'
+import Education from '@/components/about/Education'
 import React from 'react'
 import { EducationItemData } from '@/types/education'
 import { SkillItemData } from '@/types/skill'
@@ -11,8 +11,10 @@ export default async function About() {
 
   return (
     <>
-      <Skill data={skillList as SkillItemData[]} />
-      <Education data={educationList as EducationItemData[]} />
+      {!!skillList?.length && <Skill data={skillList as SkillItemData[]} />}
+      {!!educationList?.length && (
+        <Education data={educationList as EducationItemData[]} />
+      )}
     </>
   )
 }

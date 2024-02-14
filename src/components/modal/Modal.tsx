@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '@/styles/Modal.module.css'
 import { useRouter } from 'next/navigation'
 import CloseIcon from '@icons/close_icon.svg'
@@ -11,21 +11,34 @@ interface ModalProps {
 
 export default function Modal({ children }: ModalProps) {
   const router = useRouter()
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
   const HandleModalClose = (
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
   ) => {
     e.preventDefault()
     e.stopPropagation()
 
-    router.back()
+    setIsOpen(false)
+
+    setTimeout(() => {
+      router.back()
+    }, 500)
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true)
+    }, 100)
+  }, [])
 
   // 스크롤 방지
   useEffect(() => {
     document.body.style.cssText = `
         position: fixed;
         top: -${window.scrollY}px;
-        overflow-y: scroll;
+        overflow-y: hidden;
         width: 100%;
       `
 
@@ -37,15 +50,16 @@ export default function Modal({ children }: ModalProps) {
   }, [])
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${isOpen ? styles['active'] : ''}`}>
+      <button
+        type="button"
+        className={styles['btn-close']}
+        onClick={HandleModalClose}
+      >
+        <Image src={CloseIcon} alt="close icon" />
+      </button>
       <div className={styles.container}>
-        <button
-          type="button"
-          className={styles['btn-close']}
-          onClick={HandleModalClose}
-        >
-          <Image src={CloseIcon} alt="close icon" />
-        </button>
+        {/* <div className={styles['modal-header']}></div> */}
         <div className={styles.content}>{children}</div>
       </div>
     </div>

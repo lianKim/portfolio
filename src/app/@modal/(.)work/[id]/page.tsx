@@ -24,7 +24,7 @@ export default async function WorkDetailModal({
   const workDetailBlocks = await getNotionBlockChildren(workDetailPageId)
 
   const [imageBlock, ...contentBlocks] = workDetailBlocks
-  const imageBlockList = (imageBlock as any)?.length
+  const imageBlockList = imageBlock?.id
     ? await getNotionBlockChildren(imageBlock.id)
     : []
   const filteredImageBlockList = (imageBlockList as NotionBlockData[]).filter(
@@ -32,22 +32,35 @@ export default async function WorkDetailModal({
   )
 
   return (
-    <Modal>
-      <div className={styles.container}>
-        {/* 이미지 */}
-        {!!filteredImageBlockList?.length && (
+    <>
+      {/* {!!params.id && ( */}
+      <Modal>
+        <div className={styles.container}>
+          {/* 이미지 */}
+          {/* {!!filteredImageBlockList?.length && (
           <div className={styles['carousel-container']}>
             <ImageCarousel blockList={filteredImageBlockList as ImageData[]} />
           </div>
-        )}
-        {/* 내용 */}
-        {!!contentBlocks?.length && (
-          <div className={styles['content-container']}>
-            <MainContent properties={workProperties} />
-            <Content blockList={contentBlocks as NotionBlockData[]} />
-          </div>
-        )}
-      </div>
-    </Modal>
+        )} */}
+          {/* 임시 이미지 */}
+          {!!filteredImageBlockList?.length &&
+            filteredImageBlockList.map((data) => (
+              <div className={styles['image-container']} key={data.id}>
+                <BlockContainer data={data as NotionBlockData} />
+              </div>
+            ))}
+          {/* 내용 */}
+          {!!contentBlocks?.length && (
+            <div className={styles['content-container']}>
+              <MainContent properties={workProperties} />
+              <div className={styles['sub-content-container']}>
+                <Content blockList={contentBlocks as NotionBlockData[]} />
+              </div>
+            </div>
+          )}
+        </div>
+      </Modal>
+      {/* )} */}
+    </>
   )
 }
