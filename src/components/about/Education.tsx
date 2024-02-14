@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { EducationItemData } from '@/types/education'
 import EducationTimeline from './EducationTimeline'
+import SectionTitle from '../@common/SectionTitle'
 
 interface EducationProps {
   data: EducationItemData[]
@@ -26,7 +27,7 @@ export default function Education({ data }: EducationProps) {
 
   return (
     <section className="section">
-      <h3 className="sub-title">Education</h3>
+      <SectionTitle title="Education" />
       <EducationTimeline dataList={educationList} />
     </section>
   )
