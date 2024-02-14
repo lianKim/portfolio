@@ -20,7 +20,8 @@ export default async function Work() {
           return (
             <Link
               href={`/work/${properties.Order.number}`}
-              prefetch={true}
+              // as={`/work/${properties.Order.number}`}
+              // prefetch={true}
               key={properties.Order.number}
             >
               <WorkItem data={properties} />

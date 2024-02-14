@@ -53,7 +53,7 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
 
       {/* 썸네일 */}
-      {hovered && thumbnail && (
+      {/* {hovered && thumbnail && (
         <div className={styles['preview-image']}>
           <Image
             src={thumbnail}
@@ -64,7 +64,7 @@ export default React.memo(function WorkItem({ data }: WorkItemProps) {
             style={{ width: '100%', height: 'auto' }}
           />
         </div>
-      )}
+      )} */}
 
       <div className={styles.content}>
         {/* 이름 */}

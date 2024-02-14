@@ -12,6 +12,8 @@ export default async function Content({ blockList }: ContentProps) {
   return (
     <>
       {blockList.map(async (data) => {
+        if (!data?.id) return
+
         if (!data.has_children) {
           return <BlockContainer data={data} key={data.id} />
         }

@@ -4,14 +4,14 @@
   left: 0;
   padding: 20px;
   background-color: var(--color-white);
-  z-index: 200;
+  z-index: 199;
 }
 
 .grid-container {
   display: grid;
   gap: var(--grid-column-gap);
   grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: 'logo logo nav nav . . . . . . contact contact';
+  grid-template-areas: 'logo logo . nav nav . . . . . contact contact';
 }
 
 .logo {
@@ -23,8 +23,6 @@
 }
 
 .nav-item {
-  /* display: inline-block;
-  margin-right: 20px; */
   display: block;
   color: var(--color-gray);
 }

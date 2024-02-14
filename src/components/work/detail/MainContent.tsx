@@ -19,13 +19,8 @@ export default function MainContent({ properties }: MainContentProps) {
 
   return (
     <div className={styles['main-content-container']}>
-      <h3 className={styles.title}>
-        {/* <span>{`(${makeNumberToTwoLetter(order)})`}</span> */}
-        <span>{title}</span>
-      </h3>
-      {/* <div>{title}</div> */}
-      <div>{getPeriodOfWork(startDate, endDate)}</div>
-
+      <h3 className={styles.title}>{title}</h3>
+      <div className={styles.period}>{getPeriodOfWork(startDate, endDate)}</div>
       {!!stack?.length && (
         <ul className={styles.stack}>
           {stack.map((item) => (

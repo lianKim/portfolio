@@ -11,7 +11,7 @@
 }
 
 .order {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-size: var(--font-large);
   font-weight: var(--weight-light);
   color: var(--color-gray);
@@ -38,13 +38,13 @@
 
 .period {
   color: var(--color-gray);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .title {
   font-size: var(--font-large);
   font-weight: var(--weight-light);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .skills {

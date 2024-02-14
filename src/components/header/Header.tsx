@@ -20,9 +20,6 @@ export default function Header() {
             <li className={styles['nav-item']}>
               <Link href="/">Home</Link>
             </li>
-            <li className={styles['nav-item']}>
-              <Link href="/about">About</Link>
-            </li>
             <li className={`${styles['nav-item']} ${styles.active}`}>
               <Link href="/work">Work</Link>
             </li>
