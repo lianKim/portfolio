@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/Landing.module.css'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, useTexture, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -16,9 +16,8 @@ export default function BusinessCardAnimation() {
       if (!containerRef?.current) return
 
       containerRef.current.style.width = window.innerWidth - 40 + 'px'
-      containerRef.current.style.height = window.innerHeight - 20 + 'px'
+      containerRef.current.style.height = window.innerHeight + 'px'
     }
-
     window.addEventListener('resize', resizeHandler)
 
     return () => window.removeEventListener('resize', resizeHandler)
@@ -26,13 +25,9 @@ export default function BusinessCardAnimation() {
 
   return (
     <div className={styles['canvas-container']} ref={containerRef}>
-      <Canvas
-        camera={{
-          position: [0, 0, 8],
-        }}
-      >
+      <Canvas>
         <ambientLight />
-        <BusinessCard scale={[9, 5, 0.01]} position={[0, 0, 0]} />
+        <BusinessCard />
         <OrbitControls enableZoom={false} />
       </Canvas>
     </div>
@@ -45,6 +40,15 @@ function BusinessCard(props: any) {
   const texture = useTexture(
     '/static/images/texture/black-concrete-texture.jpg',
   )
+  const { viewport } = useThree()
+
+  const responsiveScale = useMemo((): [number, number, 0.01] | null => {
+    const deviceWidth = window?.innerWidth || 1024
+    const maxX: number = deviceWidth < 768 ? 2.7 : 3.5
+    const nextX: number = Math.max(viewport.width / 2.5, maxX)
+
+    return [nextX, (nextX / 9) * 5, 0.01]
+  }, [viewport])
 
   useFrame((state) => {
     if (meshRef.current === null) return
@@ -67,13 +71,13 @@ function BusinessCard(props: any) {
     )
     meshRef.current.position.y = THREE.MathUtils.lerp(
       meshRef.current.position.y,
-      (-2 + Math.sin(t / 2)) / 2,
+      (-1.2 + Math.sin(t / 2)) / 3,
       0.1,
     )
   })
 
   return (
-    <mesh ref={meshRef} {...props}>
+    <mesh ref={meshRef} scale={responsiveScale} {...props}>
       <boxGeometry ref={boxRef} />
       <meshBasicMaterial map={texture} toneMapped={false} />
       <Html
