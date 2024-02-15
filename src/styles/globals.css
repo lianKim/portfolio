@@ -36,6 +36,7 @@
   --line-height-narrow: 1.5em;
   --line-height-regular: 1.5em;
   /* Margin & Padding */
+  --grid-columns: repeat(12, 1fr);
   --grid-column-gap: 20px;
   /* Border Radius */
   --rounded-normal: 8px;
@@ -72,7 +73,7 @@ body {
 }
 
 .main {
-  padding: 20px;
+  padding: var(--grid-column-gap);
   margin-bottom: 180px;
 }
 
@@ -118,4 +119,19 @@ body {
 .font-kor {
   font-family: var(--font-korean);
   letter-spacing: var(--letter-spacing-kor);
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --grid-columns: repeat(4, 1fr);
+    --grid-column-gap: 16px;
+  }
+
+  .main {
+    margin-bottom: 120px;
+  }
+
+  .section + .section {
+    margin-top: 30vh;
+  }
 }

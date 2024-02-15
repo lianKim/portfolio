@@ -8,13 +8,15 @@ export default function Header() {
       <div className={styles['grid-container']}>
         <h1 className={styles.logo}>
           <Link href="/">
-            Lian Kim,
-            <br />
-            Front-End
-            <br />
-            Web Developer
+            <span>Lian Kim,</span>
+            <span>Front-End</span>
+            <span>Web Developer</span>
           </Link>
         </h1>
+        <div className={styles['contact-list']}>
+          <a href={`tel:+82(0)1090011250`}>{'+82(0)1090011250'}</a>
+          <a href={`mailto:5ffcut@gmail.com`}>{'5ffcut@gmail.com'}</a>
+        </div>
         <nav className={styles.nav}>
           <ol>
             <li className={styles['nav-item']}>
@@ -25,10 +27,6 @@ export default function Header() {
             </li>
           </ol>
         </nav>
-        <div className={styles['contact-list']}>
-          <a href={`tel:+82(0)1090011250`}>{'+82(0)1090011250'}</a>
-          <a href={`mailto:5ffcut@gmail.com`}>{'5ffcut@gmail.com'}</a>
-        </div>
       </div>
     </header>
   )
