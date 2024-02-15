@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react'
 import styles from '@/styles/About.module.css'
 import Image from 'next/image'
 import { SkillItemData } from '@/types/skill'
+import SectionTitle from '../@common/SectionTitle'
 
 interface SkillProps {
   data: SkillItemData[]
@@ -29,7 +30,7 @@ export default function Skill({ data }: SkillProps) {
 
   return (
     <section className="section">
-      <h3 className="sub-title">Skill</h3>
+      <SectionTitle title="Skill" />
       <ul className={`${styles.content} ${styles.skill}`}>
         {skillList.map((skill) => (
           <SkillItem
@@ -73,6 +74,7 @@ function SkillItem({ name, imgSrc }: SkillItemProps) {
             width={100}
             height={100}
             style={{ width: '100%', height: '100%' }}
+            loading="lazy"
           />
         </div>
       )}

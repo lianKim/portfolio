@@ -74,7 +74,7 @@ function Heading2({ data, children }: BlockProps<Heading2Data>) {
   const heading = data.heading_2.rich_text?.at(0)?.plain_text || ''
 
   return (
-    <div>
+    <div className={styles['block-sub-wrapper']}>
       <h5 className={styles['block-sub-title']}>{heading}</h5>
       {children}
     </div>

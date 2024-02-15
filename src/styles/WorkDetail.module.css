@@ -86,6 +86,10 @@
   margin-bottom: 8px;
 }
 
+.block-sub-wrapper {
+  margin-bottom: 14px;
+}
+
 .block-sub-title {
   display: inline-block;
   padding: 3px;
@@ -105,9 +109,23 @@
 
 .bulleted-item {
   display: inline-block;
+  line-height: calc(var(--font-small) * 1.5);
 }
 
 .bullted-item-divider {
   color: var(--color-light-gray);
   margin: 0 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .content-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'main'
+      'sub';
+  }
+
+  .main-content-container {
+    margin-bottom: 48px;
+  }
 }

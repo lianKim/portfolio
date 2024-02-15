@@ -1,6 +1,6 @@
 .canvas-container {
   width: 100%;
-  height: calc(100vh - 20px);
+  height: 100vh;
   position: relative;
   top: -120px;
   z-index: 100;
