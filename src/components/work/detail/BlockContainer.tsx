@@ -61,12 +61,22 @@ function Heading1({ data, children }: BlockProps<Heading1Data>) {
   const heading = data.heading_1.rich_text?.at(0)?.plain_text || ''
 
   return (
-    <div
-      className={`${styles['block-wrapper']} ${styles[heading.toLowerCase()]}`}
-    >
-      <h4 className={styles['block-title']}>{heading}</h4>
-      {children}
-    </div>
+    <>
+      {heading && (
+        <div
+          className={`${styles['block-wrapper']}`}
+          id={heading.toLowerCase()}
+        >
+          <h4 className={styles['block-title']}>{heading}</h4>
+          {/* {heading === 'Description' ? (
+            <p className="font-kor">{children}</p>
+          ) : (
+            children
+          )} */}
+          {children}
+        </div>
+      )}
+    </>
   )
 }
 
@@ -87,16 +97,21 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const url = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
 
   return (
-    <div className={styles.heading3}>
+    <>
       {url ? (
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          <h6 className={styles['block-link']}>{heading}</h6>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles['block-link']}
+        >
+          <h6>{heading}</h6>
         </a>
       ) : (
         <h6 className={styles['block-sub-title']}>{heading}</h6>
       )}
       {children}
-    </div>
+    </>
   )
 }
 
@@ -105,10 +120,10 @@ function Paragraph({ data, children }: BlockProps<ParagraphData>) {
     data.paragraph.rich_text?.map((text) => text.plain_text) || []
 
   return (
-    <div className={`font-kor`}>
-      {!!textList?.length && <div>{textList.join(' ')}</div>}
+    <>
+      <p className={`${styles.paragraph} font-kor"`}>{textList.join(' ')}</p>
       {children}
-    </div>
+    </>
   )
 }
 
@@ -116,23 +131,20 @@ function BulletedListItem({
   data,
   children,
 }: BlockProps<BulletedListItemData>) {
-  const textList = data.bulleted_list_item.rich_text?.map(
-    (text) => text.plain_text,
-  )
+  const textList =
+    data.bulleted_list_item.rich_text?.map((text) => text.plain_text) || []
 
   return (
-    <span className={`font-kor`}>
-      {!!textList?.length && (
-        <span className={`${styles['bulleted-item']}`}>
-          <span className={styles['bullted-item-divider']}> | </span>
-          {textList.join(' ')}
-        </span>
-      )}
+    <>
+      <span className={`${styles['bulleted-item']} font-kor`}>
+        {textList.join(' ')}
+      </span>
       {children}
-    </span>
+    </>
   )
 }
 
+// 캐러셀로 교체한 후에 image-container(div) 없애주기
 function ImageFile({ data }: BlockProps<ImageData>) {
   const imageUrl = data.image?.file?.url || ''
 
