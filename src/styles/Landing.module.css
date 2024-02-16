@@ -1,0 +1,55 @@
+.canvas-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: -120px;
+  z-index: 100;
+}
+
+.html-wrapper {
+  width: 372px;
+  height: 356px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'neulis-sans';
+  font-size: var(--font-regular);
+  font-weight: var(--weight-regular);
+  font-weight: var(--weight-light);
+  color: var(--color-white);
+}
+
+.company_name-input {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: var(--font-large);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--letter-spacing-kor);
+  color: var(--color-white);
+}
+
+.compnay_name-input::placeholder {
+  font-family: var(--font-korean);
+  color: var(--color-gray);
+}
+
+.company_name-input:focus {
+  outline: 1.5px dashed var(--color-purple);
+  outline-offset: 4px;
+}
+
+.contact-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.contact-item {
+  margin-top: 8px;
+}
+
+.job {
+  color: var(--color-gray);
+}

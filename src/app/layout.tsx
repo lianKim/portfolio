@@ -16,12 +16,12 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html>
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/ivl3ywl.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
       </head>
       <body>
         <div className="grid-container">
           <Header />
-          {children}
+          <main className="main">{children}</main>
           {modal}
         </div>
       </body>

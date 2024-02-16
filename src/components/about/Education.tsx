@@ -2,7 +2,8 @@
 import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { EducationItemData } from '@/types/education'
-import { getPeriodOfWork } from '@/app/work/utils'
+import EducationTimeline from './EducationTimeline'
+import SectionTitle from '../@common/SectionTitle'
 
 interface EducationProps {
   data: EducationItemData[]
@@ -12,30 +13,22 @@ export default function Education({ data }: EducationProps) {
   const educationList = useMemo(
     () =>
       data.map((item: EducationItemData) => {
-        const title = item.properties?.Name.title?.at(0)?.plain_text
+        const title = item.properties?.Name.title?.at(0)?.plain_text || ''
         const startDate = item.properties?.Period.date?.start || ''
-        const endDate = item.properties?.Period.date?.end
-        const period = getPeriodOfWork(startDate, endDate)
-        return { title, period }
+        const endDate = item.properties?.Period.date?.end || ''
+
+        return {
+          x: title,
+          y: [new Date(startDate).getTime(), new Date(endDate).getTime()],
+        }
       }),
     [data],
   )
 
   return (
-    <div className={styles['grid-container']}>
-      <h3 className={styles['sub-title']}>{`(Education)`}</h3>
-      <ol className={`${styles.content} ${styles.education}`}>
-        {educationList.map((education) => (
-          <li className={styles['education-item']} key={education.period}>
-            <span className={`${styles['education-title']} font-kor`}>
-              {education.title}
-            </span>
-            <span className={styles['education-duration']}>
-              {education.period}
-            </span>
-          </li>
-        ))}
-      </ol>
-    </div>
+    <section className="section">
+      <SectionTitle title="Education" />
+      <EducationTimeline dataList={educationList} />
+    </section>
   )
 }
