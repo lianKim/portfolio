@@ -90,12 +90,12 @@ function BusinessCard(props: any) {
         <input
           type="text"
           placeholder="귀사의 이름을 입력해주세요"
-          className={styles['company_name-input']}
+          className={`${styles['company_name-input']}`}
         />
         <div className={styles['contact-wrapper']}>
           <div>
-            <div className={styles['contact-item']}>김리안</div>
-            <div className={`${styles['contact-item']} ${styles['job']}`}>
+            <div className={`${styles['contact-item']} font-kor`}>김리안</div>
+            <div className={`${styles['contact-item']} ${styles.job}`}>
               Front-End Web Developer
             </div>
           </div>
