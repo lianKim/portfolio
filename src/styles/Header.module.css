@@ -40,8 +40,6 @@
 .contact-list {
   grid-area: contact;
   text-align: right;
-  display: flex;
-  flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
