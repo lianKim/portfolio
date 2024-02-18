@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { SkillItemData } from '@/types/skill'
 import SectionTitle from '../@common/SectionTitle'
