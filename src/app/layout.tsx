@@ -14,9 +14,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
-    <html>
+    <html lang="ko">
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
+        <link
+          rel="preconnect stylesheet"
+          href="https://use.typekit.net/uhv3fvd.css"
+        />
       </head>
       <body>
         <div className="grid-container">
