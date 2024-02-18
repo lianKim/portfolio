@@ -31,31 +31,15 @@
   display: inline-block;
   margin-left: 12px;
   color: var(--color-gray);
-  animation: slideDown 500ms cubic-bezier(0, 0.93, 0.225, 0.905);
-  animation-fill-mode: both;
-  animation-delay: 900ms;
 }
 
 .nav-item.active {
   color: var(--color-black);
-  animation-delay: 1200ms;
 }
 
 .contact-list {
   grid-area: contact;
   text-align: right;
-  display: flex;
-  flex-direction: column;
-}
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-60px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
 }
 
 @media screen and (max-width: 767px) {
@@ -71,10 +55,6 @@
     position: absolute;
     top: 0;
     right: 0;
-  }
-
-  .nav-item {
-    animation: none;
   }
 
   .contact-list {

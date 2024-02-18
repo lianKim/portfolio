@@ -1,6 +1,5 @@
 'use client'
 import React, { useMemo } from 'react'
-import styles from '@/styles/About.module.css'
 import { EducationItemData } from '@/types/education'
 import EducationTimeline from './EducationTimeline'
 import SectionTitle from '../@common/SectionTitle'

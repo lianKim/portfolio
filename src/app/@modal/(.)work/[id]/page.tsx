@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from '@/components/modal/Modal'
 import BlockContainer from '@/components/work/detail/BlockContainer'
-import { Heading1Data, ImageData, NotionBlockData } from '@/types/workDetail'
+import { ImageData, NotionBlockData } from '@/types/workDetail'
 import Content from '@/components/work/detail/Content'
 import ImageCarousel from '@/components/work/detail/ImageCarousel'
 import styles from '@/styles/WorkDetail.module.css'
