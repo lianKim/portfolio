@@ -1,30 +1,52 @@
-import { Client } from '@notionhq/client'
+import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY
 const WORK_DB_ID = process.env.NEXT_PUBLIC_WORK_DB_ID
-
-const notion = new Client({
-  auth: NOTION_API_KEY,
-})
+const WORK_LIST_QUERY_OPTIONS = {
+  sorts: [
+    {
+      property: 'Order',
+      direction: 'descending',
+    },
+  ],
+}
 
 /**
  * Notion에서 작업물 목록 DB 가져오는 함수
- * @returns {Array} work list
+ * @returns work list
  */
 export const getWorkList = async () => {
   try {
-    const response = await notion.databases.query({
-      database_id: WORK_DB_ID,
-      sorts: [
-        {
-          property: 'Order',
-          direction: 'descending',
+    const res = await fetch(
+      `https://api.notion.com/v1/databases/${WORK_DB_ID}/query`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${NOTION_API_KEY}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json',
         },
-      ],
-    })
+        body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
+        // cache: 'force-cache',
+        next: { revalidate: 3500 },
+        mode: 'cors',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+      },
+    )
 
-    return response?.results
+    if (!res?.ok) {
+      throw new Error(
+        `Failed to fetch data. Error: ${res.status} - ${await res.text()}`,
+      )
+    }
+
+    const data: QueryDatabaseResponse = await res.json()
+
+    return data?.results
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to get work list data')
   }
 }
@@ -36,18 +58,24 @@ export const getWorkList = async () => {
  */
 export const getPageProperties = async (pageId: string) => {
   try {
-    const response = await notion.pages.retrieve({
-      page_id: pageId,
-    })
+    const res = await fetch(`https://api.notion.com/v1/pages/${pageId}`, {
+      headers: {
+        Authorization: `Bearer ${NOTION_API_KEY}`,
+        'Notion-Version': '2022-06-28',
+      },
+      next: { revalidate: 3500 },
+    }).then((r) => r.json())
 
-    const { Order, Period, Name, Stack } = (response as any)?.properties
+    const { Order, Period, Name, Stack } = res?.properties
+
     return {
       Order,
       Period,
       Name,
       Stack,
     }
-  } catch (error) {
+  } catch (err) {
+    console.error(err)
     throw new Error('Failed to get page properties')
   }
 }
@@ -55,16 +83,24 @@ export const getPageProperties = async (pageId: string) => {
 /**
  * Notion에서 특정 block의 children blocks 가져오는 함수
  * @param blockId 작업물 개별 page id (= block id)
- * @returns {Array} work detail 페이지의 항목 block list
+ * @returns work detail 페이지의 항목 block list
  */
 export const getNotionBlockChildren = async (blockId: string) => {
   try {
-    const response = await notion.blocks.children.list({
-      block_id: blockId,
-    })
+    const res = await fetch(
+      `https://api.notion.com/v1/blocks/${blockId}/children`,
+      {
+        headers: {
+          Authorization: `Bearer ${NOTION_API_KEY}`,
+          'Notion-Version': '2022-06-28',
+        },
+        next: { revalidate: 3500 },
+      },
+    ).then((r) => r.json())
 
-    return response?.results
+    return res?.results
   } catch (error) {
-    throw new Error('Failed to get work detail data')
+    console.log(error)
+    throw new Error('Failed to get notion block children')
   }
 }
