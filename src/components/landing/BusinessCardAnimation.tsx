@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/Landing.module.css'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useTexture, Html } from '@react-three/drei'
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
+import { OrbitControls, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function BusinessCardAnimation() {
@@ -37,7 +37,9 @@ export default function BusinessCardAnimation() {
 function BusinessCard(props: any) {
   const meshRef = useRef<THREE.Mesh>(null)
   const boxRef = useRef<THREE.BoxGeometry>(null)
-  const texture = useTexture(
+  // useLoader caches assets
+  const texture = useLoader(
+    THREE.TextureLoader,
     '/static/images/texture/black-concrete-texture.webp',
   )
   const { viewport } = useThree()

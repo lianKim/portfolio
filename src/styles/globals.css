@@ -57,6 +57,7 @@ button,
 input,
 textarea {
   font-family: var(--font-serif), var(--font-sans-serif), var(--font-korean);
+  font-display: swap;
   font-size: var(--font-regular);
   font-weight: var(--weight-regular);
   letter-spacing: var(--letter-spacing-eng);

@@ -16,12 +16,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html lang="ko">
       <head>
-        <link rel="preconnect" href="https://p.typekit.net" />
-        <link
-          rel="preconnect"
-          as="style"
-          href="https://use.typekit.net/uhv3fvd.css"
-        />
+        <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
       </head>
       <body>
         <div className="grid-container">
