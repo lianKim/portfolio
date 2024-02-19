@@ -38,7 +38,7 @@ function BusinessCard(props: any) {
   const meshRef = useRef<THREE.Mesh>(null)
   const boxRef = useRef<THREE.BoxGeometry>(null)
   const texture = useTexture(
-    '/static/images/texture/black-concrete-texture.jpg',
+    '/static/images/texture/black-concrete-texture.webp',
   )
   const { viewport } = useThree()
 
