@@ -27,7 +27,8 @@ export const getSkillList = async () => {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        next: { revalidate: false },
+        // 하루
+        next: { revalidate: 86400 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',

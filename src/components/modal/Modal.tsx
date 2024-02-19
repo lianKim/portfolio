@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Modal.module.css'
 import { useRouter } from 'next/navigation'
 import CloseIcon from '@icons/close_icon.svg'
@@ -12,7 +12,6 @@ interface ModalProps {
 export default function Modal({ children }: ModalProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const HandleModalClose = (
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
@@ -35,6 +34,8 @@ export default function Modal({ children }: ModalProps) {
 
   // 스크롤 방지
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     document.body.style.cssText = `
         position: fixed;
         top: -${window.scrollY}px;
@@ -43,6 +44,8 @@ export default function Modal({ children }: ModalProps) {
       `
 
     return () => {
+      if (typeof window === 'undefined') return
+
       const scrollY = document.body.style.top
       document.body.style.cssText = ''
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
