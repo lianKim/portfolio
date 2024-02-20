@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 const NAV_MENU = [
   { name: 'Home', path: '/' },
-  { name: 'Work', path: '/work' },
+  { name: 'Works', path: '/work' },
 ]
 
 export default function Header() {
