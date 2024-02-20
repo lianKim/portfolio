@@ -11,7 +11,7 @@ export default async function Work() {
     <>
       {!!workList?.length && (
         <section className="section">
-          <SectionTitle title="Work" />
+          <SectionTitle title="Works" />
           <ol className={`${styles.works} container`}>
             {workList.map((work) => {
               if (!('properties' in work)) {
