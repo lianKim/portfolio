@@ -16,9 +16,9 @@
 
 .wrapper > .container {
   width: 100%;
-  height: calc((100vh - 20px));
+  height: calc((100vh - 50px));
   position: relative;
-  top: 20px;
+  top: 50px;
   overflow-y: auto;
   border-top-left-radius: var(--rounded-normal);
   border-top-right-radius: var(--rounded-normal);
@@ -60,4 +60,11 @@
 .content {
   /* margin-top: var(--grid-column-gap); */
   padding: calc(var(--grid-column-gap) * 2);
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper > .container {
+    height: calc((100vh - 45px));
+    top: 45px;
+  }
 }
