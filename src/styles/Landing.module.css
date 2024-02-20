@@ -28,7 +28,7 @@
   color: var(--color-white);
 }
 
-.compnay_name-input::placeholder {
+.company_name-input::placeholder {
   font-family: var(--font-korean);
   color: var(--color-gray);
 }
