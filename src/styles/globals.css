@@ -71,6 +71,7 @@ body {
   white-space: pre-wrap;
   word-break: keep-all;
   line-height: var(--line-height-narrow);
+  position: relative;
 }
 
 .main {
@@ -152,6 +153,6 @@ body {
   }
 
   .section + .section {
-    margin-top: 30vh;
+    margin-top: 25vh;
   }
 }
