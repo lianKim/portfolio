@@ -83,7 +83,7 @@ function BusinessCard(props: any) {
             <div>
               <div className={`${styles['contact-item']} font-kor`}>김리안</div>
               <div className={`${styles['contact-item']} ${styles.job}`}>
-                Front-End Web Developer
+                Front-End Developer
               </div>
             </div>
             <div>
