@@ -26,57 +26,36 @@ export default function BlockContainer({
   data,
   children,
 }: BlockContainerProps) {
-  if (data.type === 'heading_1') {
-    return <Heading1 data={data as Heading1Data}>{children}</Heading1>
+  switch (data.type) {
+    case 'heading_1':
+      return <Heading1 data={data as Heading1Data}>{children}</Heading1>
+    case 'heading_2':
+      return <Heading2 data={data as Heading2Data}>{children}</Heading2>
+    case 'heading_3':
+      return <Heading3 data={data as Heading3Data}>{children}</Heading3>
+    case 'paragraph':
+      return <Paragraph data={data as ParagraphData}>{children}</Paragraph>
+    case 'bulleted_list_item':
+      return (
+        <BulletedListItem data={data as BulletedListItemData}>
+          {children}
+        </BulletedListItem>
+      )
+    case 'image':
+      return <ImageFile data={data as ImageData} />
+    default:
+      return <></>
   }
-
-  if (data.type === 'heading_2') {
-    return <Heading2 data={data as Heading2Data}>{children}</Heading2>
-  }
-
-  if (data.type === 'heading_3') {
-    return <Heading3 data={data as Heading3Data}>{children}</Heading3>
-  }
-
-  if (data.type === 'paragraph') {
-    return <Paragraph data={data as ParagraphData}>{children}</Paragraph>
-  }
-
-  if (data.type === 'bulleted_list_item') {
-    return (
-      <BulletedListItem data={data as BulletedListItemData}>
-        {children}
-      </BulletedListItem>
-    )
-  }
-
-  if (data.type === 'image') {
-    return <ImageFile data={data as ImageData} />
-  }
-
-  return <></>
 }
 
 function Heading1({ data, children }: BlockProps<Heading1Data>) {
   const heading = data.heading_1.rich_text?.at(0)?.plain_text || ''
 
   return (
-    <>
-      {heading && (
-        <div
-          className={`${styles['block-wrapper']}`}
-          id={heading.toLowerCase()}
-        >
-          <h4 className={styles['block-title']}>{heading}</h4>
-          {/* {heading === 'Description' ? (
-            <p className="font-kor">{children}</p>
-          ) : (
-            children
-          )} */}
-          {children}
-        </div>
-      )}
-    </>
+    <div className={`${styles['block-wrapper']}`} id={heading.toLowerCase()}>
+      <h4 className={styles['block-title']}>{heading}</h4>
+      {children}
+    </div>
   )
 }
 
