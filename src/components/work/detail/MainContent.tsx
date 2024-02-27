@@ -36,16 +36,6 @@ export default function MainContent({ properties }: MainContentProps) {
         <span className={styles.divider}> | </span>
         <span>{getPeriodOfWork(startDate, endDate)}</span>
       </div>
-
-      {/* {!!stack?.length && (
-        <ul className={styles.stack}>
-          {stack.map((item) => (
-            <li className={`font-sans ${styles['stack-item']}`} key={item}>
-              {item}
-            </li>
-          ))}
-        </ul>
-      )} */}
     </div>
   )
 }
