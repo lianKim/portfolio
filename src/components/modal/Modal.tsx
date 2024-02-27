@@ -13,17 +13,22 @@ export default function Modal({ children }: ModalProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const HandleModalClose = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
-  ) => {
-    e.preventDefault()
-    e.stopPropagation()
-
+  const HandleModalClose = () => {
     setIsOpen(false)
 
     setTimeout(() => {
       router.back()
     }, 500)
+  }
+
+  const HandleCloseBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    HandleModalClose()
+  }
+
+  const HandleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target !== e.currentTarget) return
+
+    HandleModalClose()
   }
 
   useEffect(() => {
@@ -53,16 +58,19 @@ export default function Modal({ children }: ModalProps) {
   }, [])
 
   return (
-    <div className={`${styles.wrapper} ${isOpen ? styles['active'] : ''}`}>
+    <div
+      className={`${styles.wrapper} ${isOpen ? styles['active'] : ''}`}
+      onClick={HandleBackgroundClick}
+    >
       <button
         type="button"
         className={styles['btn-close']}
-        onClick={HandleModalClose}
+        onClick={HandleCloseBtnClick}
       >
         <Image src={CloseIcon} alt="close icon" />
       </button>
       <div className={styles.container}>
-        <div className={styles['modal-header']}></div>
+        <div className={styles['modal-header']} />
         <div className={styles.content}>{children}</div>
       </div>
     </div>
