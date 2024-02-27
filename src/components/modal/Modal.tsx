@@ -69,10 +69,7 @@ export default function Modal({ children }: ModalProps) {
       >
         <Image src={CloseIcon} alt="close icon" />
       </button>
-      <div className={styles.container}>
-        <div className={styles['modal-header']} />
-        <div className={styles.content}>{children}</div>
-      </div>
+      <div className={styles.container}>{children}</div>
     </div>
   )
 }

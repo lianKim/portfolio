@@ -37,6 +37,7 @@ export default async function WorkDetailModal({
 
   return (
     <Modal>
+      <div className={styles.header} />
       <div className={styles.container}>
         <MainContent properties={workProperties} />
         {/* 이미지 */}
