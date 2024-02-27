@@ -97,7 +97,7 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const url = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
 
   return (
-    <>
+    <div className={styles['block-link-wrapper']}>
       {url ? (
         <a
           href={url}
@@ -111,7 +111,7 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
         <h6 className={styles['block-sub-title']}>{heading}</h6>
       )}
       {children}
-    </>
+    </div>
   )
 }
 

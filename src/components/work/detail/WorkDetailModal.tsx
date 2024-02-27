@@ -7,6 +7,7 @@ import styles from '@/styles/WorkDetail.module.css'
 import MainContent from '@/components/work/detail/MainContent'
 import { getNotionBlockChildren, getPageProperties } from '@/lib/api/workApi'
 import dynamic from 'next/dynamic'
+import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 const ImageCarousel = dynamic(
   async () => await import('@/components/work/detail/ImageCarousel'),
@@ -25,7 +26,8 @@ export default async function WorkDetailModal({
   const workProperties = await getPageProperties(pageId)
   const workDetailBlocks = await getNotionBlockChildren(pageId)
 
-  const [imageBlock, ...contentBlocks] = workDetailBlocks
+  const [imageBlock, wilBlock, ...contentBlocks] = workDetailBlocks
+
   const imageBlockList = imageBlock?.id
     ? await getNotionBlockChildren(imageBlock.id)
     : []
@@ -36,6 +38,7 @@ export default async function WorkDetailModal({
   return (
     <Modal>
       <div className={styles.container}>
+        <MainContent properties={workProperties} />
         {/* 이미지 */}
         {/* {!!filteredImageBlockList?.length && (
             <div className={styles['carousel-container']}>
@@ -52,14 +55,14 @@ export default async function WorkDetailModal({
             </div>
           ))}
         {/* 내용 */}
-        {!!contentBlocks?.length && (
-          <div className={styles['content-container']}>
-            <MainContent properties={workProperties} />
-            <div className={styles['sub-content-container']}>
-              <Content blockList={contentBlocks as NotionBlockData[]} />
-            </div>
+        <div className={styles['content-container']}>
+          <div className={styles['sub-content-container']}>
+            <Content blockList={contentBlocks as NotionBlockData[]} />
           </div>
-        )}
+          <div className={styles['wil-container']}>
+            <Content blockList={[wilBlock] as NotionBlockData[]} />
+          </div>
+        </div>
       </div>
     </Modal>
   )

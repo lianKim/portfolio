@@ -33,14 +33,15 @@
 
 .modal-header {
   width: 100%;
-  height: calc(var(--font-x-large) * 2);
-  background-color: var(--color-orange);
+  height: calc(var(--font-x-large) * 1.6);
+  background-color: var(--color-light-gray);
   position: sticky;
   top: 0;
   left: 0;
   display: flex;
   justify-content: flex-end;
   padding-right: 12px;
+  z-index: 1000;
 }
 
 .btn-close {
@@ -58,7 +59,6 @@
 }
 
 .content {
-  /* margin-top: var(--grid-column-gap); */
   padding: calc(var(--grid-column-gap) * 2);
 }
 
