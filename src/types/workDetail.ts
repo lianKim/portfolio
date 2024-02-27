@@ -18,6 +18,14 @@ export type PagePropertiesData = {
       name: string
     }[]
   }
+  'Design Type'?: {
+    select: {
+      name: string
+    }
+  }
+  Member?: {
+    rich_text?: { plain_text?: string }[]
+  }
 }
 
 export type NotionBlockData =

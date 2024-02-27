@@ -28,7 +28,7 @@ export const getSkillList = async () => {
           'Content-Type': 'application/json',
         },
         // 하루
-        next: { revalidate: 86400 },
+        // next: { revalidate: 86400 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
@@ -67,7 +67,7 @@ export const getEducationList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(EDUCATION_LIST_QUERY_OPTIONS),
-        next: { revalidate: false },
+        // next: { revalidate: false },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
