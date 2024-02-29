@@ -26,6 +26,15 @@ export type PagePropertiesData = {
   Member?: {
     rich_text?: { plain_text?: string }[]
   }
+  Website?: {
+    url?: string
+  }
+  GitHub?: {
+    url?: string
+  }
+  Notion?: {
+    url?: string
+  }
 }
 
 export type NotionBlockData =

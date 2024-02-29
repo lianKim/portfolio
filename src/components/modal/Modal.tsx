@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Modal.module.css'
 import { useRouter } from 'next/navigation'
-import CloseIcon from '@icons/close_icon.svg'
+import CloseIcon from '@icons/close-icon.svg'
 import Image from 'next/image'
 
 interface ModalProps {

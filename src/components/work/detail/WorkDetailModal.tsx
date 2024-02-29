@@ -7,7 +7,7 @@ import styles from '@/styles/WorkDetail.module.css'
 import MainContent from '@/components/work/detail/MainContent'
 import { getNotionBlockChildren, getPageProperties } from '@/lib/api/workApi'
 import dynamic from 'next/dynamic'
-import { getPeriodOfWork } from '@/lib/utils/handleString'
+import ModalHeader from './ModalHeader'
 
 const ImageCarousel = dynamic(
   async () => await import('@/components/work/detail/ImageCarousel'),
@@ -18,6 +18,15 @@ const ImageCarousel = dynamic(
 
 interface WorkDetailModalProps {
   pageId: string
+}
+
+interface ModalHeaderProps {
+  name?: string
+  period?: string
+  links: {
+    name: string
+    url: string
+  }[]
 }
 
 export default async function WorkDetailModal({
@@ -37,7 +46,7 @@ export default async function WorkDetailModal({
 
   return (
     <Modal>
-      <div className={styles.header} />
+      <ModalHeader properties={workProperties} />
       <div className={styles.container}>
         <MainContent properties={workProperties} />
         {/* 이미지 */}

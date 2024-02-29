@@ -21,11 +21,21 @@ export type WorkItemData = {
       name: string
     }[]
   }
-  Thumbnail?: {
-    files: {
-      file: {
-        url: string
-      }
-    }[]
+  'Design Type'?: {
+    select: {
+      name: string
+    }
+  }
+  Member?: {
+    rich_text?: { plain_text?: string }[]
+  }
+  Website?: {
+    url?: string
+  }
+  GitHub?: {
+    url?: string
+  }
+  Notion?: {
+    url?: string
   }
 }

@@ -76,7 +76,11 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const url = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
 
   return (
-    <div className={styles['block-link-wrapper']}>
+    <div
+      className={
+        url ? styles['block-link-wrapper'] : styles['block-heading3-wrapper']
+      }
+    >
       {url ? (
         <a
           href={url}
@@ -100,7 +104,7 @@ function Paragraph({ data, children }: BlockProps<ParagraphData>) {
 
   return (
     <>
-      <p className={`${styles.paragraph} font-kor"`}>{textList.join(' ')}</p>
+      <p className={`${styles.paragraph}`}>{textList.join(' ')}</p>
       {children}
     </>
   )
@@ -115,9 +119,7 @@ function BulletedListItem({
 
   return (
     <>
-      <span className={`${styles['bulleted-item']} font-kor`}>
-        {textList.join(' ')}
-      </span>
+      <span className={`${styles['bulleted-item']}`}>{textList.join(' ')}</span>
       {children}
     </>
   )
