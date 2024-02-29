@@ -1,14 +1,42 @@
 .header {
   width: 100%;
-  height: calc(var(--font-x-large) * 1.6);
-  background-color: var(--color-light-gray);
+  height: calc(var(--font-x-large) * 1.8);
+  background-color: var(--color-white);
   position: sticky;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 12px;
   z-index: 1000;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* font-size: var(--font-large);
+  font-weight: var(--weight-light); */
+
+  font-size: var(--font-medium);
+}
+
+.header-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--font-large);
+  /* line-height: var(--font-regular); */
+  text-decoration: underline;
+  color: var(--color-orange);
+}
+
+.header-period {
+  margin-left: var(--font-large);
+  color: var(--color-gray);
+}
+
+.notion-icon {
+  position: relative;
+  top: 1px;
+  margin-left: 1px;
 }
 
 .container {
@@ -19,6 +47,7 @@
   height: 100%;
   color: var(--color-black);
   padding: calc(var(--grid-column-gap) * 2);
+  margin-top: 40px;
 }
 
 /* 이미지 캐러셀 */
@@ -121,8 +150,12 @@
   margin-right: 6px;
 }
 
+.block-heading3-wrapper {
+  margin-bottom: 14px;
+}
+
 .block-link-wrapper {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .block-link {
