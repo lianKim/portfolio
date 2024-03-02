@@ -1,4 +1,4 @@
-# <img src="https://github.com/lianKim/portfolio/assets/97217822/29e9174f-2bb3-4c3e-9ae5-993f5046bae5" alt="portfolio" width="100px">
+# <img src="https://github.com/lianKim/portfolio/assets/97217822/29e9174f-2bb3-4c3e-9ae5-993f5046bae5" alt="portfolio" height="96px">
 
 프론트엔드 웹 개발자 김리안의 포트폴리오
 
@@ -50,10 +50,10 @@
   <img src="https://img.shields.io/badge/Typescript-3178C6?&style=flat-square&logo=typescript&logoColor=white">
   <img src="https://img.shields.io/badge/React-61DAFB?&style=flat-square&logo=react&logoColor=white">
   <img src="https://img.shields.io/badge/Next.js-FF4154?&style=flat-square&logo=reactquery&logoColor=white">
-  <img src="https://img.shields.io/badge/Notion API-#000000?&style=flat-square&logo=notion&logoColor=white">
-  <img src="https://img.shields.io/badge/Vercel-#000000?&style=flat-square&logo=vercel&logoColor=white">
+  <img src="https://img.shields.io/badge/Notion API-000000?&style=flat-square&logo=notion&logoColor=white">
+  <img src="https://img.shields.io/badge/Vercel-000000?&style=flat-square&logo=vercel&logoColor=white">
   <img src="https://img.shields.io/badge/Figma-F24E1E?&style=flat-square&logo=figma&logoColor=white">
-  <img src="https://img.shields.io/badge/React Three Fiber-#000000?&style=flat-square">
+  <img src="https://img.shields.io/badge/React Three Fiber-000000?&style=flat-square">
 </div>
 
 </br>
