@@ -16,13 +16,9 @@
 
 서버 컴포넌트에서 Next.js용 fetch API의 옵션 revalidate 활용하여 잦은 리페칭 방지
 
-</br>
-
 <h3>$\textbf{\sf{\color{#949494}Notion API로 간편한 데이터 관리}}$</h3>
 
 다용도로 사용 가능한 Notion 데이터베이스로 데이터를 관리하여 반복되는 작업 감소
-
-</br>
 
 <h3>$\textbf{\sf{\color{#949494}React Three Fiber로 3D 명함 구현}}$</h3>
 
