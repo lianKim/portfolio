@@ -27,8 +27,7 @@ export const getWorkList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
-        // cache: 'force-cache',
-        next: { revalidate: 3500 },
+        // next: { revalidate: 3500 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
@@ -63,17 +62,10 @@ export const getPageProperties = async (pageId: string) => {
         Authorization: `Bearer ${NOTION_API_KEY}`,
         'Notion-Version': '2022-06-28',
       },
-      next: { revalidate: 3500 },
+      // next: { revalidate: 3500 },
     }).then((r) => r.json())
 
-    const { Order, Period, Name, Stack } = res?.properties
-
-    return {
-      Order,
-      Period,
-      Name,
-      Stack,
-    }
+    return res?.properties
   } catch (err) {
     console.error(err)
     throw new Error('Failed to get page properties')
@@ -94,7 +86,7 @@ export const getNotionBlockChildren = async (blockId: string) => {
           Authorization: `Bearer ${NOTION_API_KEY}`,
           'Notion-Version': '2022-06-28',
         },
-        next: { revalidate: 3500 },
+        // next: { revalidate: 3500 },
       },
     ).then((r) => r.json())
 

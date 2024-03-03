@@ -7,11 +7,13 @@
   background-color: rgba(28, 28, 28, 0);
   z-index: 200;
   overflow: hidden;
+  transition: all 0.5s;
+  transition-delay: 0.2s;
+  cursor: pointer;
 }
 
 .wrapper.active {
   background-color: rgba(28, 28, 28, 0.8);
-  transition: all 0.5s cubic-bezier(0.31, 0.82, 0.31, 1);
 }
 
 .wrapper > .container {
@@ -19,28 +21,23 @@
   height: calc((100vh - 50px));
   position: relative;
   top: 50px;
-  overflow-y: auto;
   border-top-left-radius: var(--rounded-normal);
   border-top-right-radius: var(--rounded-normal);
   background-color: var(--color-white);
   transform: translateY(100vh);
   transition: transform 0.5s cubic-bezier(0.31, 0.82, 0.31, 1);
+  cursor: auto;
+  padding-bottom: 40px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .wrapper.active > .container {
   transform: translateY(0vh);
 }
 
-.modal-header {
-  width: 100%;
-  height: calc(var(--font-x-large) * 2);
-  background-color: var(--color-orange);
-  position: sticky;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 12px;
+.wrapper.active > .btn-close {
+  transform: translateY(0vh);
 }
 
 .btn-close {
@@ -49,17 +46,14 @@
   bottom: calc(var(--grid-column-gap) * 2);
   width: calc(var(--grid-column-gap) * 2.4);
   height: calc(var(--grid-column-gap) * 2.4);
+  transform: translateY(100vh);
+  transition: transform 0.5s cubic-bezier(0.31, 0.82, 0.31, 1);
   z-index: 201;
 }
 
 .btn-close > img {
   width: 100%;
   height: 100%;
-}
-
-.content {
-  /* margin-top: var(--grid-column-gap); */
-  padding: calc(var(--grid-column-gap) * 2);
 }
 
 @media screen and (max-width: 767px) {
