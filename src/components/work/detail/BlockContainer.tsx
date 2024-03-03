@@ -130,15 +130,15 @@ function ImageFile({ data }: BlockProps<ImageData>) {
   const imageUrl = data.image?.file?.url || ''
 
   return (
-    <div className={styles['image-container']}>
+    <div className={styles['thumb-container']}>
       {imageUrl && (
         <Image
           src={imageUrl}
           alt="project image"
-          width={2000}
-          height={1334}
+          width={1920}
+          height={1440}
           loading="lazy"
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: 'auto' }}
         />
       )}
     </div>
