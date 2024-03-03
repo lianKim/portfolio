@@ -1,3 +1,9 @@
+export type DesignType = {
+  select: {
+    name: string
+  }
+}
+
 export type PagePropertiesData = {
   Order?: {
     number?: number

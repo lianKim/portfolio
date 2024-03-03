@@ -21,13 +21,15 @@
   height: calc((100vh - 50px));
   position: relative;
   top: 50px;
-  overflow-y: auto;
   border-top-left-radius: var(--rounded-normal);
   border-top-right-radius: var(--rounded-normal);
   background-color: var(--color-white);
   transform: translateY(100vh);
   transition: transform 0.5s cubic-bezier(0.31, 0.82, 0.31, 1);
   cursor: auto;
+  padding-bottom: 40px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .wrapper.active > .container {

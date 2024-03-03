@@ -20,50 +20,25 @@ interface WorkDetailModalProps {
   pageId: string
 }
 
-interface ModalHeaderProps {
-  name?: string
-  period?: string
-  links: {
-    name: string
-    url: string
-  }[]
-}
-
 export default async function WorkDetailModal({
   pageId,
 }: WorkDetailModalProps) {
   const workProperties = await getPageProperties(pageId)
   const workDetailBlocks = await getNotionBlockChildren(pageId)
-
-  const [imageBlock, wilBlock, ...contentBlocks] = workDetailBlocks
-
+  const [thumbnail, imageBlock, wilBlock, ...contentBlocks] = workDetailBlocks
   const imageBlockList = imageBlock?.id
     ? await getNotionBlockChildren(imageBlock.id)
     : []
-  const filteredImageBlockList = (imageBlockList as NotionBlockData[]).filter(
-    (block) => block.type === 'image',
-  )
 
   return (
     <Modal>
       <ModalHeader properties={workProperties} />
       <div className={styles.container}>
         <MainContent properties={workProperties} />
-        {/* 이미지 */}
-        {/* {!!filteredImageBlockList?.length && (
-            <div className={styles['carousel-container']}>
-              <ImageCarousel
-                blockList={filteredImageBlockList as ImageData[]}
-              />
-            </div>
-          )} */}
-        {/* 임시 이미지 */}
-        {!!filteredImageBlockList?.length &&
-          filteredImageBlockList.map((data) => (
-            <div className={styles['image-container']} key={data.id}>
-              <BlockContainer data={data as NotionBlockData} />
-            </div>
-          ))}
+        {/* 썸네일 */}
+        <div className={styles['thumb-container']} key={thumbnail.id}>
+          <BlockContainer data={thumbnail as NotionBlockData} />
+        </div>
         {/* 내용 */}
         <div className={styles['content-container']}>
           <div className={styles['sub-content-container']}>
@@ -73,6 +48,14 @@ export default async function WorkDetailModal({
             <Content blockList={[wilBlock] as NotionBlockData[]} />
           </div>
         </div>
+        {/* 이미지 */}
+        {/* {!!imageBlockList?.length && (
+            <div className={styles['carousel-container']}>
+              <ImageCarousel
+                blockList={imageBlockList as ImageData[]}
+              />
+            </div>
+          )} */}
       </div>
     </Modal>
   )
