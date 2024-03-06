@@ -1,0 +1,36 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  position: sticky;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* 스크롤바 숨김 */
+  -ms-overflow-style: none;
+}
+
+/* 스크롤바 숨김 */
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: calc(var(--grid-column-gap) * 2);
+}
+
+.item {
+  height: 70vh;
+  border: 1px solid var(--color-gray);
+  background-color: var(--color-light-gray);
+}
+
+.item img {
+  object-fit: contain;
+}

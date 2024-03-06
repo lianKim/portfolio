@@ -12,14 +12,6 @@
   transform: translateY(15vh);
 }
 
-@media screen and (max-width: 767px) {
-  .canvas-container {
-    width: 100%;
-    height: 60vh;
-    transform: translateY(20vh);
-  }
-}
-
 .html-wrapper {
   width: 372px;
   height: 356px;
@@ -66,4 +58,12 @@
 
 .job {
   color: var(--color-gray);
+}
+
+@media screen and (max-width: 767px) {
+  .canvas-container {
+    width: 100%;
+    height: 60vh;
+    transform: translateY(20vh);
+  }
 }
