@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/HorizontalScrollSlider.module.css'
 import Image from 'next/image'
 import { ImageData, PagePropertiesData } from '@/types/workDetail'
+import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
 interface HorizontalScrollSliderProps {
   imageBlockList: ImageData[]
@@ -98,6 +99,8 @@ export default React.memo(function HorizontalScrollSlider({
                   height: '100%',
                 }}
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL_BASE64}
               />
             </div>
           ))}

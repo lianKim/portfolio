@@ -28,7 +28,6 @@
 .item {
   height: 70vh;
   border: 1px solid var(--color-gray);
-  background-color: var(--color-light-gray);
 }
 
 .item img {
