@@ -137,7 +137,7 @@ function ImageFile({ data }: BlockProps<ImageData>) {
           alt="project image"
           width={1920}
           height={1440}
-          loading="lazy"
+          priority
           style={{ width: '100%', height: 'auto' }}
         />
       )}

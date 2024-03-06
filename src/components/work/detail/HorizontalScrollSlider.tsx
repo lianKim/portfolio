@@ -97,6 +97,7 @@ export default React.memo(function HorizontalScrollSlider({
                   width: 'auto',
                   height: '100%',
                 }}
+                loading="lazy"
               />
             </div>
           ))}
