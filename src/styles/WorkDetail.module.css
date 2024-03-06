@@ -46,6 +46,7 @@
 .thumb-container {
   width: 100%;
   height: auto;
+  background-color: var(--color-light-gray);
 }
 
 .thumb-container > img {
