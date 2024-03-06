@@ -11,6 +11,7 @@ import {
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import Image from 'next/image'
+import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
 interface BlockContainerProps {
   data: NotionBlockData
@@ -139,6 +140,8 @@ function ImageFile({ data }: BlockProps<ImageData>) {
           height={1440}
           priority
           style={{ width: '100%', height: 'auto' }}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL_BASE64}
         />
       )}
     </div>
