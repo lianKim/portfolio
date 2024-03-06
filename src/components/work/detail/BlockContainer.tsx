@@ -11,6 +11,7 @@ import {
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import Image from 'next/image'
+import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
 interface BlockContainerProps {
   data: NotionBlockData
@@ -125,7 +126,7 @@ function BulletedListItem({
   )
 }
 
-// 캐러셀로 교체한 후에 image-container(div) 없애주기
+// 썸네일
 function ImageFile({ data }: BlockProps<ImageData>) {
   const imageUrl = data.image?.file?.url || ''
 
@@ -137,8 +138,10 @@ function ImageFile({ data }: BlockProps<ImageData>) {
           alt="project image"
           width={1920}
           height={1440}
-          loading="lazy"
+          priority
           style={{ width: '100%', height: 'auto' }}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL_BASE64}
         />
       )}
     </div>
