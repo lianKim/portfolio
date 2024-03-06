@@ -9,20 +9,11 @@ interface MainContentProps {
 }
 
 export default function MainContent({ properties }: MainContentProps) {
-  const {
-    Order,
-    Period,
-    Name,
-    Stack,
-    'Design Type': DesignType,
-    Member,
-  } = properties
+  const { Period, Name, 'Design Type': DesignType, Member } = properties
 
-  const order = Order?.number || 'unknown'
   const startDate = Period?.date?.start || ''
   const endDate = Period?.date?.end || ''
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
-  const stack = Stack?.multi_select?.map((tag) => tag.name || '') || []
   const designType = DesignType?.select?.name || ''
   const member = Member?.rich_text?.map((obj) => obj.plain_text).join(' ')
 

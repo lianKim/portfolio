@@ -48,7 +48,7 @@ export default async function WorkDetailModal({
             <Content blockList={[wilBlock] as NotionBlockData[]} />
           </div>
         </div>
-        {/* ㄴ이미지 슬라이더 (수평 스크롤) */}
+        {/* 이미지 슬라이더 (수평 스크롤) */}
         {imageBlockList.length && (
           <HorizontalScrollSlider
             imageBlockList={imageBlockList as ImageData[]}

@@ -127,16 +127,6 @@ body {
   z-index: 198;
 }
 
-@keyframes textUp {
-  0% {
-    top: calc(var(--font-x-large) * 2);
-  }
-
-  100% {
-    top: 0;
-  }
-}
-
 /* 한글 Font */
 .font-kor {
   font-family: var(--font-korean);
@@ -155,5 +145,15 @@ body {
 
   .section + .section {
     margin-top: 25vh;
+  }
+}
+
+@keyframes textUp {
+  0% {
+    top: calc(var(--font-x-large) * 2);
+  }
+
+  100% {
+    top: 0;
   }
 }
