@@ -125,7 +125,7 @@ function BulletedListItem({
   )
 }
 
-// 캐러셀로 교체한 후에 image-container(div) 없애주기
+// 썸네일
 function ImageFile({ data }: BlockProps<ImageData>) {
   const imageUrl = data.image?.file?.url || ''
 
