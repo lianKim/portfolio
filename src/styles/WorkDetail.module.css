@@ -40,7 +40,7 @@
   width: 100%;
   color: var(--color-black);
   padding: calc(var(--grid-column-gap) * 2);
-  margin: 80px 0 40px;
+  margin: 60px 0 40px;
 }
 
 .thumb-container {
