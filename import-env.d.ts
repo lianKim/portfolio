@@ -8,5 +8,6 @@ declare namespace NodeJS {
     NEXT_PUBLIC_WORK_2_ID: string
     NEXT_PUBLIC_WORK_3_ID: string
     NEXT_PUBLIC_WORK_4_ID: string
+    NEXT_PUBLIC_NOTION_PAGE_BASE_URL: string
   }
 }
