@@ -22,6 +22,11 @@
   font-weight: var(--weight-regular);
   font-weight: var(--weight-light);
   color: var(--color-white);
+  /* 드래그 방지 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .company_name-input {
