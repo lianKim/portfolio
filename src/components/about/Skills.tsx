@@ -1,7 +1,7 @@
 'use client'
 import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
-import { SkillItemData } from '@/types/skill'
+import { SkillItemData } from '@/types/skills'
 import SectionTitle from '../@common/SectionTitle'
 
 interface SkillProps {
