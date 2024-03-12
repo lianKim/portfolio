@@ -8,7 +8,7 @@ interface SkillProps {
   data: SkillItemData[]
 }
 
-export default function Skill({ data }: SkillProps) {
+export default function Skills({ data }: SkillProps) {
   const skillList = useMemo(
     () =>
       data
@@ -22,8 +22,8 @@ export default function Skill({ data }: SkillProps) {
 
   return (
     <section className="section">
-      <SectionTitle title="Skill" />
-      <ul className={`${styles.content} ${styles.skill}`}>
+      <SectionTitle title="Skills" />
+      <ul className={`${styles.content} ${styles.skills}`}>
         {skillList.map((skill) => (
           <li className={`${styles['skill-item']}`} key={skill}>
             <h4>{skill}</h4>
