@@ -5,31 +5,42 @@ import { SkillItemData } from '@/types/skills'
 import SectionTitle from '../@common/SectionTitle'
 
 interface SkillProps {
-  data: SkillItemData[]
+  dataList: SkillItemData[][]
 }
 
-export default function Skills({ data }: SkillProps) {
-  const skillList = useMemo(
-    () =>
-      data
+export default function Skills({ dataList }: SkillProps) {
+  const skillList = useMemo(() => {
+    return dataList.map((list) => {
+      const type = list.at(0)?.properties?.Type.select?.name || 'ETC'
+      const sortedList = list
         .map(
           (item: SkillItemData) =>
             item.properties?.Name.title?.at(0)?.plain_text,
         )
-        .reverse(),
-    [data],
-  )
+        .reverse()
+
+      return { title: type, list: sortedList }
+    })
+  }, [])
 
   return (
     <section className="section">
       <SectionTitle title="Skills" />
-      <ul className={`${styles.content} ${styles.skills}`}>
-        {skillList.map((skill) => (
-          <li className={`${styles['skill-item']}`} key={skill}>
-            <h4>{skill}</h4>
-          </li>
-        ))}
-      </ul>
+      {skillList.map((listOfType) => (
+        <div
+          className={styles['skill-list-container']}
+          key={listOfType.title.slice(0, 3)}
+        >
+          <h4 className={styles['skill-title']}>{listOfType.title}</h4>
+          <ul className={`${styles.content} ${styles['skill-list']}`}>
+            {listOfType.list.map((skill) => (
+              <li className={`${styles['skill-item']}`} key={skill}>
+                <h5>{skill}</h5>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </section>
   )
 }

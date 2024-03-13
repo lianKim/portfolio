@@ -12,39 +12,80 @@ const EDUCATION_LIST_QUERY_OPTIONS = {
   ],
 }
 
+const SKILL_TYPE_FILTER_LIST = [
+  {
+    filter: {
+      property: 'Type',
+      select: {
+        equals: 'FrontEnd Development',
+      },
+    },
+  },
+  {
+    filter: {
+      property: 'Type',
+      select: {
+        equals: 'Various Libraries Experience',
+      },
+    },
+  },
+  {
+    filter: {
+      property: 'Type',
+      select: {
+        equals: 'Web Deployment',
+      },
+    },
+  },
+  {
+    filter: {
+      property: 'Type',
+      select: {
+        equals: 'Team Collaboration',
+      },
+    },
+  },
+  {
+    filter: {
+      property: 'Type',
+      select: {
+        equals: 'Wireframe and Design',
+      },
+    },
+  },
+]
+
 /**
- * Notion에서 Skill 목록 가져오는 함수
+ * Notion에서 Skill 목록 타입별로 묶어 가져오는 함수
  * @returns skill list
  */
-export const getSkillList = async () => {
+
+export const getSkillLists = async () => {
   try {
-    const res = await fetch(
-      `https://api.notion.com/v1/databases/${SKILL_DB_ID}/query`,
-      {
+    const resList = SKILL_TYPE_FILTER_LIST.map((filter) => {
+      return fetch(`https://api.notion.com/v1/databases/${SKILL_DB_ID}/query`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${NOTION_API_KEY}`,
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(filter),
         // 하루
         next: { revalidate: 86400 },
+        // next: { revalidate: 0 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-      },
-    )
+      })
+        .then((res) => res.json())
+        .then((data) => data?.results)
+    })
 
-    if (!res?.ok) {
-      throw new Error(
-        `Failed to fetch data. Error: ${res.status} - ${await res.text()}`,
-      )
-    }
+    const results = await Promise.all(resList)
 
-    const data: QueryDatabaseResponse = await res.json()
-
-    return data?.results
+    return results
   } catch (error) {
     console.log(error)
     throw new Error('Failed to get skill list data')

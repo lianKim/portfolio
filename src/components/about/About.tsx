@@ -3,15 +3,17 @@ import Education from '@/components/about/Education'
 import React from 'react'
 import { EducationItemData } from '@/types/education'
 import { SkillItemData } from '@/types/skills'
-import { getEducationList, getSkillList } from '@/lib/api/aboutApi'
+import { getEducationList, getSkillLists } from '@/lib/api/aboutApi'
 
 export default async function About() {
   const educationList = await getEducationList()
-  const skillList = await getSkillList()
+  const skillsList = await getSkillLists()
 
   return (
     <>
-      {!!skillList?.length && <Skills data={skillList as SkillItemData[]} />}
+      {!!skillsList?.length && (
+        <Skills dataList={skillsList as SkillItemData[][]} />
+      )}
       {!!educationList?.length && (
         <Education data={educationList as EducationItemData[]} />
       )}

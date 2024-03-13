@@ -5,9 +5,9 @@ export type SkillItemData = {
         plain_text?: string
       }[]
     }
-    Type?: {
-      select: {
-        name: string
+    Type: {
+      select?: {
+        name?: string
       }
     }
   }
