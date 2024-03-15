@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import styles from '@/styles/About.module.css'
 import { SkillItemData } from '@/types/skills'
 import SectionTitle from '../@common/SectionTitle'
+import SectionContainer from '../@common/SectionContainer'
 
 interface SkillProps {
   dataList: SkillItemData[][]
@@ -21,10 +22,31 @@ export default function Skills({ dataList }: SkillProps) {
 
       return { title: type, list: sortedList }
     })
-  }, [])
+  }, [dataList])
+
+  // return (
+  //   <section className="section">
+  //     <SectionTitle title="Skills" />
+  //     {skillList.map((listOfType) => (
+  //       <div
+  //         className={styles['skill-list-container']}
+  //         key={listOfType.title.slice(0, 3)}
+  //       >
+  //         <h4 className={styles['skill-title']}>{listOfType.title}</h4>
+  //         <ul className={`${styles.content} ${styles['skill-list']}`}>
+  //           {listOfType.list.map((skill) => (
+  //             <li className={`${styles['skill-item']}`} key={skill}>
+  //               <h5>{skill}</h5>
+  //             </li>
+  //           ))}
+  //         </ul>
+  //       </div>
+  //     ))}
+  //   </section>
+  // )
 
   return (
-    <section className="section">
+    <SectionContainer>
       <SectionTitle title="Skills" />
       {skillList.map((listOfType) => (
         <div
@@ -41,6 +63,6 @@ export default function Skills({ dataList }: SkillProps) {
           </ul>
         </div>
       ))}
-    </section>
+    </SectionContainer>
   )
 }

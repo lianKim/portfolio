@@ -13,6 +13,21 @@
   margin-bottom: 36px;
 }
 
+@media screen and (max-width: 1023px) {
+  .skill-list-container {
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      'type'
+      'item';
+  }
+
+  .skill-title {
+    margin-bottom: 10px;
+  }
+}
+
 .skill-title {
   font-size: var(--font-large);
   font-weight: var(--weight-light);

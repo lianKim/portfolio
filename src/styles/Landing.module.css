@@ -1,15 +1,13 @@
 .canvas-wrapper {
   width: 100%;
-  height: 100vh;
-  position: relative;
-  top: -120px;
+  height: 100%;
   z-index: 100;
 }
 
 .canvas-container {
   width: 100%;
-  height: 70vh;
-  transform: translateY(15vh);
+  height: 80vh;
+  transform: translateY(-10vh);
 }
 
 .html-wrapper {
@@ -65,10 +63,19 @@
   color: var(--color-gray);
 }
 
+@media screen and (max-width: 1023px) {
+  .canvas-wrapper {
+    height: 100vh;
+  }
+
+  .canvas-container {
+    height: 60vh;
+    transform: translateY(15vh);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .canvas-container {
-    width: 100%;
-    height: 60vh;
-    transform: translateY(20vh);
+    transform: translateY(18vh);
   }
 }

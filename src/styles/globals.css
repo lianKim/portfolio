@@ -77,19 +77,15 @@ body {
 
 .main {
   padding: var(--grid-column-gap);
-  margin-bottom: 180px;
+  /* margin-bottom: 180px; */
 }
 
 .section + .section {
-  margin-top: 50vh;
-}
-
-.page-wrapper {
-  margin-top: 60px;
+  /* margin-top: 50vh; */
 }
 
 .sub-title {
-  margin-bottom: 48px;
+  margin-bottom: 60px;
   font-weight: var(--weight-light);
   font-size: var(--font-x-large);
   line-height: calc(var(--font-x-large) * 1.5);
@@ -114,17 +110,16 @@ body {
   height: 100vh;
   top: 0;
   left: 0;
-  font-size: calc(var(--font-x-large) * 2);
+  font-size: var(--font-x-large);
   font-weight: var(--weight-light);
-  line-height: calc(var(--font-x-large) * 2 * 1.3);
-  color: var(--color-white);
-  background-color: var(--color-black);
+  color: var(--color-orange);
+  background-color: var(--color-purple);
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   overflow: hidden;
-  z-index: 198;
+  z-index: 200;
 }
 
 /* 한글 Font */
@@ -140,7 +135,7 @@ body {
   }
 
   .main {
-    margin-bottom: 120px;
+    margin-bottom: 100px;
   }
 
   .section + .section {
@@ -148,10 +143,13 @@ body {
   }
 
   .loading {
-    font-size: var(--font-x-large);
-    line-height: 1.3;
-    justify-content: center;
-    align-items: center;
+  }
+}
+
+/* for Parallax of Framer-Motion */
+@media screen and (min-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
   }
 }
 
