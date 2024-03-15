@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV_MENU = [
-  { name: 'Home', path: '/' },
+  { name: 'About', path: '/' },
   { name: 'Works', path: '/work' },
 ]
 

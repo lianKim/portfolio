@@ -5,12 +5,10 @@ export type SkillItemData = {
         plain_text?: string
       }[]
     }
-    Image: {
-      files?: {
-        file?: {
-          url?: string
-        }
-      }[]
+    Type: {
+      select?: {
+        name?: string
+      }
     }
   }
 }

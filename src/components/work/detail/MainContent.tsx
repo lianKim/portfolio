@@ -25,7 +25,9 @@ export default function MainContent({ properties }: MainContentProps) {
         <span className={styles.divider}> | </span>
         <span>{designType}</span>
         <span className={styles.divider}> | </span>
-        <span>{getPeriodOfWork(startDate, endDate)}</span>
+        <span className={styles.period}>
+          {getPeriodOfWork(startDate, endDate)}
+        </span>
       </div>
     </div>
   )

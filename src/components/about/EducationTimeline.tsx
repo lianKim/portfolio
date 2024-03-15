@@ -73,7 +73,7 @@ export default function EducationTimeline({
       enabled: true,
       textAnchor: 'start',
       offsetX: -56,
-      offsetY: 30,
+      offsetY: 36,
       style: {
         colors: ['#111'],
         fontSize: 16,
@@ -162,7 +162,7 @@ export default function EducationTimeline({
         options={options as any}
         series={series}
         type="rangeBar"
-        height={series[0].data.length * 150}
+        height={series[0].data.length * 200}
       />
     </div>
   )

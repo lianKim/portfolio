@@ -13,12 +13,12 @@ export default function SectionTitle({ title }: SectionTitleProps) {
     <IntersectionObserverContainer>
       <h3 className="sub-title">
         {chars.map((char, idx) => {
-          const delayTime = idx * 80 + 200
+          const delayTime = idx * 40 + 180
 
           return (
             <span
               className="char"
-              style={{ animationDelay: idx * 80 + 200 + 'ms' }}
+              style={{ animationDelay: delayTime + 'ms' }}
               key={delayTime}
             >
               {char}

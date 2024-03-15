@@ -16,6 +16,7 @@
     "@react-three/drei": "^9.96.5",
     "@react-three/fiber": "^8.15.15",
     "apexcharts": "^3.45.2",
+    "framer-motion": "^11.0.13",
     "next": "14.0.3",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
