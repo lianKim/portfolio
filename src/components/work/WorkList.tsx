@@ -1,14 +1,9 @@
 import React from 'react'
 import SectionContainer from '../@common/SectionContainer'
-// import WorkItem from '@/components/work/WorkItem'
 import styles from '@/styles/Work.module.css'
 import Link from 'next/link'
-import SectionTitle from '../@common/SectionTitle'
 import { WorkItemData } from '@/types/workList'
-import {
-  getPeriodOfWork,
-  makeNumberToTwoLetter,
-} from '@/lib/utils/handleString'
+import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
 import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
@@ -22,8 +17,7 @@ interface WorkItemProps {
 
 export default function WorkList({ dataList }: WorkListProps) {
   return (
-    <SectionContainer>
-      <SectionTitle title="Works" />
+    <SectionContainer title="Works">
       <ol className={`${styles.works} container`}>
         {dataList.map((work) => {
           if (!('properties' in work)) {
@@ -56,31 +50,11 @@ function WorkItem({ data }: WorkItemProps) {
   const skillList = Stack?.multi_select?.map((tag) => tag.name || '') || []
   const thumbnail = Thumbnail?.files?.at(0)?.file?.url || ''
 
-  // return (
-  //   <li className={styles['work-item']}>
-  //     {/* 작업 순서 (역순) */}
-  //     <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
-  //     {/* 프로젝트 정보 */}
-  //     <div className={styles.content}>
-  //       {/* 이름 */}
-  //       <div className={`${styles['title']}`}>{title}</div>
-  //       {/* 작업 기간 */}
-  //       <div className={styles.period}>
-  //         {getPeriodOfWork(startDate, endDate)}
-  //       </div>
-  //       {/* 설명 */}
-  //       <div className="font-kor">{description}</div>
-  //       {/* 기술 스택 */}
-  //       <div className={styles['skills']}>{skillList.join('  |  ')}</div>
-  //     </div>
-  //   </li>
-  // )
-
   return (
     <li className={styles['work-item']}>
       {/* 작업 순서 (역순) */}
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
-
+      {/* 썸네일 */}
       <div className={styles['thumb-container']}>
         <Image
           src={thumbnail}
@@ -93,25 +67,14 @@ function WorkItem({ data }: WorkItemProps) {
           style={{ width: '100%', height: 'auto' }}
         />
       </div>
-
       {/* 프로젝트 정보 */}
       <div className={styles.content}>
         {/* 기술 스택 */}
         <div className={styles['tech-stack']}>{skillList.join('  |  ')}</div>
-
         {/* 이름 */}
         <div className={`${styles['title']}`}>{title}</div>
-
-        {/* 작업 기간 */}
-        {/* <div className={styles.period}>
-          {getPeriodOfWork(startDate, endDate)}
-        </div> */}
-
         {/* 설명 */}
         <div className={`${styles.desc} font-kor`}>{description}</div>
-
-        {/* 기술 스택 */}
-        {/* <div className={styles['skills']}>{skillList.join('  |  ')}</div> */}
       </div>
     </li>
   )
