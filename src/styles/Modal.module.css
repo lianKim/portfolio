@@ -61,8 +61,4 @@
     height: calc((100vh - 45px));
     top: 45px;
   }
-
-  .btn-close {
-    bottom: calc(var(--grid-column-gap) * 3);
-  }
 }
