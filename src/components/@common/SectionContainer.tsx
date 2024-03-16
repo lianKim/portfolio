@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from '@/styles/Section.module.css'
 import SectionTitle from './SectionTitle'
 import {
@@ -10,6 +10,7 @@ import {
   LazyMotion,
   domAnimation,
   m,
+  useInView,
 } from 'framer-motion'
 import { useIntersectionObserver } from '@/lib/hooks/useIntersectionObserver'
 
@@ -30,19 +31,29 @@ export default function SectionContainer({
   children,
   title,
 }: SectionContainerProps) {
-  const { targetRef: ref, isInView } = useIntersectionObserver()
+  const ref = useRef(null)
+  // const isInView = useInView(ref)
+
+  const { targetRef, isInView } = useIntersectionObserver({
+    threshold: 0.1,
+  })
   const { scrollYProgress } = useScroll({ target: ref })
   const y = useParallax(scrollYProgress, 160)
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className={styles.section} ref={ref}>
+      <section className={styles.section} ref={targetRef}>
         {title && (
-          <m.h2 initial={false} style={{ y }}>
+          <m.h2
+            initial={false}
+            style={{ y }}
+            className={styles['title-container']}
+          >
             <SectionTitle title={title} />
           </m.h2>
         )}
         <m.div
+          ref={ref}
           className={styles['content-wrapper']}
           variants={variants}
           initial={false}

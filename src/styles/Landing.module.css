@@ -1,6 +1,7 @@
 .canvas-wrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: calc(100vh - (var(--height-header) + (var(--grid-column-gap))));
   z-index: 100;
 }
 
@@ -63,19 +64,16 @@
   color: var(--color-gray);
 }
 
-@media screen and (max-width: 1023px) {
-  .canvas-wrapper {
-    height: 100vh;
-  }
-
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .canvas-container {
     height: 60vh;
-    transform: translateY(15vh);
+    transform: translateY(10vh);
   }
 }
 
 @media screen and (max-width: 767px) {
   .canvas-container {
-    transform: translateY(18vh);
+    height: 60vh;
+    transform: translateY(2vh);
   }
 }
