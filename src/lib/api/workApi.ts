@@ -27,8 +27,8 @@ export const getWorkList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
+        cache: 'force-cache',
         next: { revalidate: 3500 },
-        // next: { revalidate: 0 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
@@ -64,7 +64,6 @@ export const getPageProperties = async (pageId: string) => {
         'Notion-Version': '2022-06-28',
       },
       next: { revalidate: 3500 },
-      // next: { revalidate: 0 },
     }).then((r) => r.json())
 
     return res?.properties
@@ -88,8 +87,7 @@ export const getNotionBlockChildren = async (blockId: string) => {
           Authorization: `Bearer ${NOTION_API_KEY}`,
           'Notion-Version': '2022-06-28',
         },
-        // next: { revalidate: 3500 },
-        next: { revalidate: 0 },
+        next: { revalidate: 3500 },
       },
     ).then((r) => r.json())
 
