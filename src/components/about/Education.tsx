@@ -1,8 +1,8 @@
 'use client'
 import React, { useMemo } from 'react'
 import { EducationItemData } from '@/types/education'
-import SectionTitle from '../@common/SectionTitle'
 import dynamic from 'next/dynamic'
+import SectionContainer from '../@common/SectionContainer'
 
 const EducationTimeline = dynamic(
   async () => await import('@/components/about/EducationTimeline'),
@@ -32,9 +32,8 @@ export default function Education({ data }: EducationProps) {
   )
 
   return (
-    <section className="section">
-      <SectionTitle title="Education" />
+    <SectionContainer title="Education">
       <EducationTimeline dataList={educationList} />
-    </section>
+    </SectionContainer>
   )
 }

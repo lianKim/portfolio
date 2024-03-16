@@ -27,6 +27,7 @@ export const getWorkList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
+        cache: 'force-cache',
         next: { revalidate: 3500 },
         mode: 'cors',
         credentials: 'same-origin',

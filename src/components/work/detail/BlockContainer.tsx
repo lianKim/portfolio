@@ -74,12 +74,14 @@ function Heading2({ data, children }: BlockProps<Heading2Data>) {
 // 외부 URL 필요할 경우 Heading3 link에 주소 값 있음
 function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const heading = data.heading_3.rich_text?.at(0)?.plain_text || ''
-  const url = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
+  const link = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
+  const NOTION_PAGE_BASE_URL = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
+  const url = link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
 
   return (
     <div
       className={
-        url ? styles['block-link-wrapper'] : styles['block-heading3-wrapper']
+        link ? styles['block-link-wrapper'] : styles['block-heading3-wrapper']
       }
     >
       {url ? (
@@ -136,12 +138,16 @@ function ImageFile({ data }: BlockProps<ImageData>) {
         <Image
           src={imageUrl}
           alt="project image"
-          width={1920}
-          height={1440}
           priority
-          style={{ width: '100%', height: 'auto' }}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
+          width={1920}
+          height={1080}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          quality={100}
         />
       )}
     </div>

@@ -27,6 +27,7 @@
 }
 
 .header-period {
+  display: inline-block;
   margin-left: var(--font-large);
   color: var(--color-gray);
 }
@@ -48,6 +49,7 @@
 }
 
 .thumb-container {
+  position: relative;
   width: 100%;
   height: auto;
 }
@@ -189,12 +191,17 @@
 
 @media screen and (max-width: 767px) {
   .header {
-    justify-content: flex-end;
-    height: calc(var(--font-x-large) * 1.6);
+    /* justify-content: flex-end; */
+    height: calc(var(--font-x-large) * 1.5);
     padding: 0 var(--grid-column-gap);
+    font-size: var(--font-regular);
   }
 
-  .header-project-info {
+  .header-links {
+    gap: var(--font-regular);
+  }
+
+  .header-period {
     display: none;
   }
 

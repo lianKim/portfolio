@@ -38,4 +38,11 @@ export type WorkItemData = {
   Notion?: {
     url?: string
   }
+  Thumbnail?: {
+    files?: {
+      file?: {
+        url?: string
+      }
+    }[]
+  }
 }

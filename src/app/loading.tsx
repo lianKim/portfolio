@@ -1,7 +1,9 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 export default function Loading() {
+  const ref = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -20,5 +22,10 @@ export default function Loading() {
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
     }
   }, [])
-  return <div className="loading">Loading...</div>
+
+  return (
+    <div className="loading">
+      <span className="text">Loading...</span>
+    </div>
+  )
 }

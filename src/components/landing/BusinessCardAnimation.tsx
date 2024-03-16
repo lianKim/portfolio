@@ -4,18 +4,21 @@ import styles from '@/styles/Landing.module.css'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { OrbitControls, Html } from '@react-three/drei'
 import * as THREE from 'three'
+import SectionContainer from '../@common/SectionContainer'
 
 export default function BusinessCardAnimation() {
   return (
-    <div className={styles['canvas-wrapper']}>
-      <div className={styles['canvas-container']}>
-        <Canvas>
-          <ambientLight />
-          <BusinessCard />
-          <OrbitControls enableZoom={false} />
-        </Canvas>
+    <SectionContainer>
+      <div className={styles['canvas-wrapper']}>
+        <div className={styles['canvas-container']}>
+          <Canvas>
+            <ambientLight />
+            <BusinessCard />
+            <OrbitControls enableZoom={false} />
+          </Canvas>
+        </div>
       </div>
-    </div>
+    </SectionContainer>
   )
 }
 
