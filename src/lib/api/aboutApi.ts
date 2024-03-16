@@ -73,7 +73,6 @@ export const getSkillLists = async () => {
         body: JSON.stringify(filter),
         // 하루
         next: { revalidate: 86400 },
-        // next: { revalidate: 0 },
         mode: 'cors',
         credentials: 'same-origin',
         redirect: 'follow',
@@ -108,6 +107,7 @@ export const getEducationList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(EDUCATION_LIST_QUERY_OPTIONS),
+        cache: 'force-cache',
         next: { revalidate: false },
         mode: 'cors',
         credentials: 'same-origin',

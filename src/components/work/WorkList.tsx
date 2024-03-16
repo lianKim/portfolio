@@ -29,6 +29,7 @@ export default function WorkList({ dataList }: WorkListProps) {
           return (
             <Link
               href={`/work/${properties.Order.number}`}
+              prefetch
               key={properties.Order.number}
             >
               <WorkItem data={properties} />

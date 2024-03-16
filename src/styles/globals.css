@@ -42,6 +42,8 @@
   --grid-column-gap: 20px;
   /* Border Radius */
   --rounded-normal: 8px;
+  /* Height */
+  --height-header: 112px;
 }
 
 html {
@@ -83,6 +85,10 @@ body {
 
 .section + .section {
   /* margin-top: 50vh; */
+}
+
+.page-wrapper {
+  margin-top: 24px;
 }
 
 .sub-title {
@@ -141,6 +147,7 @@ body {
   :root {
     --grid-columns: repeat(4, 1fr);
     --grid-column-gap: 16px;
+    --height-header: 104px;
   }
 
   .main {
@@ -160,6 +167,10 @@ body {
 @media screen and (min-width: 1024px) {
   html {
     scroll-snap-type: y mandatory;
+  }
+
+  .page-wrapper {
+    margin-top: 0;
   }
 }
 

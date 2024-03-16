@@ -3,19 +3,24 @@
   margin-bottom: 96px;
 }
 
-.section:first-of-type {
-  position: relative;
-  top: -124px;
-  height: calc(100vh - 124px);
-  margin: 0;
-}
-
 .content-wrapper {
   overflow-x: hidden;
 }
 
 .content {
   width: 100%;
+}
+
+.title-container {
+  position: relative;
+  top: 160px;
+  z-index: 10;
+}
+
+@media screen and (max-width: 767px) {
+  .title-container {
+    top: 180px;
+  }
 }
 
 /* for Parallax of Framer-Motion  */
@@ -26,10 +31,6 @@
     perspective: 500px;
     display: flex;
     flex-direction: column;
-  }
-
-  .section:first-of-type {
-    height: 100vh;
   }
 
   .content-wrapper {
@@ -43,5 +44,10 @@
     position: absolute;
     top: 160px;
     left: 0;
+  }
+
+  .title-container {
+    position: static;
+    top: 0;
   }
 }

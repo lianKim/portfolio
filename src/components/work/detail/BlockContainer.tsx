@@ -138,12 +138,16 @@ function ImageFile({ data }: BlockProps<ImageData>) {
         <Image
           src={imageUrl}
           alt="project image"
-          width={1920}
-          height={1440}
           priority
-          style={{ width: '100%', height: 'auto' }}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
+          width={1920}
+          height={1080}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          quality={100}
         />
       )}
     </div>

@@ -1,7 +1,5 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import SectionTitle from '@/components/@common/SectionTitle'
 
 export default function Loading() {
   const ref = useRef<HTMLDivElement>(null)
