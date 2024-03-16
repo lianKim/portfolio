@@ -3,14 +3,12 @@ import React, { useRef } from 'react'
 import styles from '@/styles/Section.module.css'
 import SectionTitle from './SectionTitle'
 import {
-  motion,
   useScroll,
   useTransform,
   MotionValue,
   LazyMotion,
   domAnimation,
   m,
-  useInView,
 } from 'framer-motion'
 import { useIntersectionObserver } from '@/lib/hooks/useIntersectionObserver'
 
@@ -32,7 +30,6 @@ export default function SectionContainer({
   title,
 }: SectionContainerProps) {
   const ref = useRef(null)
-  // const isInView = useInView(ref)
 
   const { targetRef, isInView } = useIntersectionObserver({
     threshold: 0.1,
