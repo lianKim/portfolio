@@ -53,9 +53,9 @@
 <div>
   <img src="https://img.shields.io/badge/Typescript-3178C6?&style=flat-square&logo=typescript&logoColor=white">
   <img src="https://img.shields.io/badge/React-61DAFB?&style=flat-square&logo=react&logoColor=white">
-  <img src="https://img.shields.io/badge/Next.js-FF4154?&style=flat-square&logo=reactquery&logoColor=white">
+  <img src="https://img.shields.io/badge/Next.js-FF4154?&style=flat-square&logo=nextdotjs&logoColor=white">
   <img src="https://img.shields.io/badge/Notion API-000000?&style=flat-square&logo=notion&logoColor=white">
-  <img src="https://img.shields.io/badge/React Three Fiber-000000?&style=flat-square">
+  <img src="https://img.shields.io/badge/React Three Fiber-000000?&style=flat-square&logo=threedotjs&logoColor=white">
   <img src="https://img.shields.io/badge/Vercel-000000?&style=flat-square&logo=vercel&logoColor=white">
   <img src="https://img.shields.io/badge/Figma-F24E1E?&style=flat-square&logo=figma&logoColor=white">
 </div>
