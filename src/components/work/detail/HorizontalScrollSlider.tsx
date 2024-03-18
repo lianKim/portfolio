@@ -102,7 +102,6 @@ export default React.memo(function HorizontalScrollSlider({
               <Image
                 src={url}
                 alt="project image"
-                priority
                 width={isMoibleFirstDesign ? 400 : 1280}
                 height={isMoibleFirstDesign ? 800 : 740}
                 style={{

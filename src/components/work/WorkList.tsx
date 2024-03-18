@@ -60,7 +60,6 @@ function WorkItem({ data }: WorkItemProps) {
         <Image
           src={thumbnail}
           alt={`${title} thumbnail`}
-          priority
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
           width="640"
