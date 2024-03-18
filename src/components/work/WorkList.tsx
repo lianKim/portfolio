@@ -5,10 +5,7 @@ import Link from 'next/link'
 import { WorkItemPropData } from '@/types/works'
 import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
-import {
-  BLUR_DATA_URL_BASE64,
-  getNotionUrlNonExp,
-} from '@/lib/utils/handleImage'
+import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
 interface WorkListProps {
   dataList: WorkItemPropData[]

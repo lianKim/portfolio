@@ -18,7 +18,7 @@ export default function ModalHeader({ properties }: ModalHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles['header-project-info']}>
-        <span className={styles['header-title']}>{title}</span>
+        <span>{title}</span>
         <span className={styles['header-period']}>
           {getPeriodOfWork(startDate, endDate)}
         </span>

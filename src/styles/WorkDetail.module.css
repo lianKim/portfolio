@@ -26,11 +26,6 @@
   display: block;
 }
 
-.header-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .header-period {
   display: inline-block;
   margin-left: var(--font-large);
@@ -196,14 +191,21 @@
 
 @media screen and (max-width: 767px) {
   .header {
-    /* justify-content: flex-end; */
+    flex-wrap: nowrap;
     height: calc(var(--font-x-large) * 1.5);
     padding: 0 var(--grid-column-gap);
     font-size: var(--font-regular);
   }
 
+  .header-project-info {
+    max-width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .header-links {
-    gap: var(--font-regular);
+    gap: var(--font-tiny);
   }
 
   .header-period {

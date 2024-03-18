@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import Modal from '@/components/modal/Modal'
 import BlockContainer from '@/components/work/detail/BlockContainer'
 import { ImageData, NotionBlockData } from '@/types/works'
@@ -50,12 +50,10 @@ export default async function WorkDetailModal({
         </div>
         {/* 이미지 슬라이더 (수평 스크롤) */}
         {imageBlockList.length && (
-          <Suspense fallback="loading images...">
-            <HorizontalScrollSlider
-              imageBlockList={imageBlockList as ImageData[]}
-              properties={workProperties}
-            />
-          </Suspense>
+          <HorizontalScrollSlider
+            imageBlockList={imageBlockList as ImageData[]}
+            properties={workProperties}
+          />
         )}
       </div>
     </Modal>
