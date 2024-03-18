@@ -11,6 +11,14 @@ const EDUCATION_LIST_QUERY_OPTIONS = {
     },
   ],
 }
+const SKILL_SORT_TYPE = {
+  sorts: [
+    {
+      property: 'Order',
+      direction: 'ascending',
+    },
+  ],
+}
 
 const SKILL_TYPE_FILTER_LIST = [
   {
@@ -62,7 +70,7 @@ const SKILL_TYPE_FILTER_LIST = [
 
 export const getSkillLists = async () => {
   try {
-    const resList = SKILL_TYPE_FILTER_LIST.map((filter) => {
+    const resList = SKILL_TYPE_FILTER_LIST.map(async (filter) => {
       return fetch(`https://api.notion.com/v1/databases/${SKILL_DB_ID}/query`, {
         method: 'POST',
         headers: {
@@ -70,7 +78,8 @@ export const getSkillLists = async () => {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(filter),
+        // body: JSON.stringify(filter),
+        body: JSON.stringify({ ...filter, ...SKILL_SORT_TYPE }),
         // 하루
         next: { revalidate: 86400 },
         mode: 'cors',

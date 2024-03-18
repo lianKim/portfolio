@@ -46,7 +46,7 @@ export default function BlockContainer({
         </BulletedListItem>
       )
     case 'image':
-      return <ImageFile data={data as ImageData} />
+      return <Thumbnail data={data as ImageData} />
     default:
       return <></>
   }
@@ -132,10 +132,10 @@ function BulletedListItem({
 }
 
 // 썸네일
-function ImageFile({ data }: BlockProps<ImageData>) {
+function Thumbnail({ data }: BlockProps<ImageData>) {
   const imageBlockId = data.id
   const imageUrl = data.image?.file?.url
-  const url = getNotionUrlNonExp(imageUrl, imageBlockId)
+  const url = getNotionUrlNonExp(imageUrl, imageBlockId, '1920')
 
   return (
     <div className={styles['thumb-container']}>
@@ -147,12 +147,11 @@ function ImageFile({ data }: BlockProps<ImageData>) {
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
           width={1920}
-          height={1080}
+          height={1440}
           style={{
             width: '100%',
             height: 'auto',
           }}
-          quality={100}
         />
       )}
     </div>

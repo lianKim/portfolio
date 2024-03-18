@@ -12,12 +12,9 @@ export default function Skills({ dataList }: SkillProps) {
   const skillList = useMemo(() => {
     return dataList.map((list) => {
       const type = list.at(0)?.properties?.Type.select?.name || 'ETC'
-      const sortedList = list
-        .map(
-          (item: SkillItemData) =>
-            item.properties?.Name.title?.at(0)?.plain_text,
-        )
-        .reverse()
+      const sortedList = list.map(
+        (item: SkillItemData) => item.properties?.Name.title?.at(0)?.plain_text,
+      )
 
       return { title: type, list: sortedList }
     })
