@@ -107,7 +107,6 @@ export const getEducationList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(EDUCATION_LIST_QUERY_OPTIONS),
-        cache: 'force-cache',
         next: { revalidate: false },
         mode: 'cors',
         credentials: 'same-origin',

@@ -4,7 +4,7 @@ export type DesignType = {
   }
 }
 
-export type PagePropertiesData = {
+export type WorkItemPropData = {
   Order?: {
     number?: number
   }
@@ -18,6 +18,9 @@ export type PagePropertiesData = {
     title?: {
       plain_text?: string
     }[]
+  }
+  Description?: {
+    rich_text: { plain_text: string }[]
   }
   Stack?: {
     multi_select: {
@@ -40,6 +43,16 @@ export type PagePropertiesData = {
   }
   Notion?: {
     url?: string
+  }
+  Figma?: {
+    url?: string
+  }
+  Thumbnail?: {
+    files?: {
+      file?: {
+        url?: string
+      }
+    }[]
   }
 }
 

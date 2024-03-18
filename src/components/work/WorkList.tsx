@@ -2,17 +2,17 @@ import React from 'react'
 import SectionContainer from '../@common/SectionContainer'
 import styles from '@/styles/Work.module.css'
 import Link from 'next/link'
-import { WorkItemData } from '@/types/workList'
+import { WorkItemPropData } from '@/types/works'
 import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
 import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 
 interface WorkListProps {
-  dataList: WorkItemData[]
+  dataList: WorkItemPropData[]
 }
 
 interface WorkItemProps {
-  data: WorkItemData
+  data: WorkItemPropData
 }
 
 export default function WorkList({ dataList }: WorkListProps) {
@@ -60,7 +60,6 @@ function WorkItem({ data }: WorkItemProps) {
         <Image
           src={thumbnail}
           alt={`${title} thumbnail`}
-          priority
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
           width="640"

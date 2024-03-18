@@ -2,12 +2,15 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/HorizontalScrollSlider.module.css'
 import Image from 'next/image'
-import { ImageData, PagePropertiesData } from '@/types/workDetail'
-import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
+import { ImageData, WorkItemPropData } from '@/types/works'
+import {
+  BLUR_DATA_URL_BASE64,
+  getNotionUrlNonExp,
+} from '@/lib/utils/handleImage'
 
 interface HorizontalScrollSliderProps {
   imageBlockList: ImageData[]
-  properties: PagePropertiesData
+  properties: WorkItemPropData
 }
 
 const CONTAINER_POS_TOP = 100
@@ -32,7 +35,14 @@ export default React.memo(function HorizontalScrollSlider({
           (block) =>
             block.type === 'image' && !!(block as ImageData).image?.file?.url,
         )
-        .map((block) => block.image.file.url),
+
+        .map((block) => {
+          const imageBlockId = block.id
+          const imageUrl = block.image?.file?.url
+          const url = getNotionUrlNonExp(imageUrl, imageBlockId)
+
+          return url
+        }),
     [imageBlockList],
   )
 
@@ -92,7 +102,6 @@ export default React.memo(function HorizontalScrollSlider({
               <Image
                 src={url}
                 alt="project image"
-                priority
                 width={isMoibleFirstDesign ? 400 : 1280}
                 height={isMoibleFirstDesign ? 800 : 740}
                 style={{

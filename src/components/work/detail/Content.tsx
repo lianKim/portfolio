@@ -1,4 +1,4 @@
-import { NotionBlockData } from '@/types/workDetail'
+import { NotionBlockData } from '@/types/works'
 import React from 'react'
 import BlockContainer from './BlockContainer'
 import { getNotionBlockChildren } from '@/lib/api/workApi'

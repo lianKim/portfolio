@@ -2,11 +2,33 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'www.notion.so',
-      'images.unsplash.com',
-      's3.us-west-2.amazonaws.com',
-      'prod-files-secure.s3.us-west-2.amazonaws.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'kimlian.notion.site',
+        port: '',
+        pathname: '/image/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
+        port: '',
+      },
     ],
   },
 }
