@@ -45,6 +45,13 @@ export default function ModalHeader({ properties }: ModalHeaderProps) {
             </a>
           </li>
         )}
+        {Figma?.url && (
+          <li>
+            <a href={Figma.url} target="_blank" rel="noopener noreferrer">
+              Figma
+            </a>
+          </li>
+        )}
       </ul>
     </header>
   )
