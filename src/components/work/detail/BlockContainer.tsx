@@ -11,7 +11,10 @@ import {
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import Image from 'next/image'
-import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
+import {
+  BLUR_DATA_URL_BASE64,
+  getNotionUrlNonExp,
+} from '@/lib/utils/handleImage'
 
 interface BlockContainerProps {
   data: NotionBlockData
@@ -130,13 +133,15 @@ function BulletedListItem({
 
 // 썸네일
 function ImageFile({ data }: BlockProps<ImageData>) {
-  const imageUrl = data.image?.file?.url || ''
+  const imageBlockId = data.id
+  const imageUrl = data.image?.file?.url
+  const url = getNotionUrlNonExp(imageUrl, imageBlockId)
 
   return (
     <div className={styles['thumb-container']}>
-      {imageUrl && (
+      {url && (
         <Image
-          src={imageUrl}
+          src={url}
           alt="project image"
           priority
           placeholder="blur"

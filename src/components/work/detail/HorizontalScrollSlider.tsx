@@ -3,7 +3,10 @@ import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/HorizontalScrollSlider.module.css'
 import Image from 'next/image'
 import { ImageData, PagePropertiesData } from '@/types/workDetail'
-import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
+import {
+  BLUR_DATA_URL_BASE64,
+  getNotionUrlNonExp,
+} from '@/lib/utils/handleImage'
 
 interface HorizontalScrollSliderProps {
   imageBlockList: ImageData[]
@@ -32,7 +35,14 @@ export default React.memo(function HorizontalScrollSlider({
           (block) =>
             block.type === 'image' && !!(block as ImageData).image?.file?.url,
         )
-        .map((block) => block.image.file.url),
+
+        .map((block) => {
+          const imageBlockId = block.id
+          const imageUrl = block.image?.file?.url
+          const url = getNotionUrlNonExp(imageUrl, imageBlockId)
+
+          return url
+        }),
     [imageBlockList],
   )
 
