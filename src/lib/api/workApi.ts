@@ -1,5 +1,6 @@
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
+export const MY_NOTION_DOMAIN = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY
 const WORK_DB_ID = process.env.NEXT_PUBLIC_WORK_DB_ID
 const WORK_LIST_QUERY_OPTIONS = {
@@ -27,7 +28,6 @@ export const getWorkList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
-        cache: 'force-cache',
         next: { revalidate: 3500 },
         mode: 'cors',
         credentials: 'same-origin',
