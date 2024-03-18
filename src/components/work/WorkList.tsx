@@ -5,7 +5,10 @@ import Link from 'next/link'
 import { WorkItemPropData } from '@/types/works'
 import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
-import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
+import {
+  BLUR_DATA_URL_BASE64,
+  getNotionUrlNonExp,
+} from '@/lib/utils/handleImage'
 
 interface WorkListProps {
   dataList: WorkItemPropData[]
@@ -49,24 +52,26 @@ function WorkItem({ data }: WorkItemProps) {
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
   const description = Description?.rich_text?.at(0)?.plain_text || 'no content'
   const skillList = Stack?.multi_select?.map((tag) => tag.name || '') || []
-  const thumbnail = Thumbnail?.files?.at(0)?.file?.url || ''
+  const thumbnail = getNotionUrlNonExp(Thumbnail?.files?.at(0)?.file?.url)
 
   return (
     <li className={styles['work-item']}>
       {/* 작업 순서 (역순) */}
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
       {/* 썸네일 */}
-      <div className={styles['thumb-container']}>
-        <Image
-          src={thumbnail}
-          alt={`${title} thumbnail`}
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL_BASE64}
-          width="640"
-          height="480"
-          style={{ width: '100%', height: 'auto' }}
-        />
-      </div>
+      {thumbnail && (
+        <div className={styles['thumb-container']}>
+          <Image
+            src={thumbnail}
+            alt={`${title} thumbnail`}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL_BASE64}
+            width="640"
+            height="480"
+            style={{ width: '100%', height: 'auto' }}
+          />
+        </div>
+      )}
       {/* 프로젝트 정보 */}
       <div className={styles.content}>
         {/* 기술 스택 */}
