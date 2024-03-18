@@ -1,11 +1,11 @@
 'use client'
-import { PagePropertiesData } from '@/types/workDetail'
+import { WorkItemPropData } from '@/types/works'
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 interface MainContentProps {
-  properties: PagePropertiesData
+  properties: WorkItemPropData
 }
 
 export default function MainContent({ properties }: MainContentProps) {

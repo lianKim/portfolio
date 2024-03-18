@@ -1,8 +1,7 @@
 import Skills from '@/components/about/Skills'
 import Education from '@/components/about/Education'
 import React from 'react'
-import { EducationItemData } from '@/types/education'
-import { SkillItemData } from '@/types/skills'
+import { EducationItemData, SkillItemData } from '@/types/about'
 import { getEducationList, getSkillLists } from '@/lib/api/aboutApi'
 
 export default async function About() {

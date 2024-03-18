@@ -7,7 +7,7 @@ import {
   ImageData,
   NotionBlockData,
   ParagraphData,
-} from '@/types/workDetail'
+} from '@/types/works'
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import Image from 'next/image'

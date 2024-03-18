@@ -1,15 +1,15 @@
 'use client'
 import React from 'react'
 import styles from '@/styles/WorkDetail.module.css'
-import { PagePropertiesData } from '@/types/workDetail'
+import { WorkItemPropData } from '@/types/works'
 import { getPeriodOfWork } from '@/lib/utils/handleString'
 
 interface ModalHeaderProps {
-  properties: PagePropertiesData
+  properties: WorkItemPropData
 }
 
 export default function ModalHeader({ properties }: ModalHeaderProps) {
-  const { Name, Period, Website, GitHub, Notion } = properties
+  const { Name, Period, Website, GitHub, Notion, Figma } = properties
 
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
   const startDate = Period?.date?.start || ''

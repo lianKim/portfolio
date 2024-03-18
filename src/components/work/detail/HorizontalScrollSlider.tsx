@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import styles from '@/styles/HorizontalScrollSlider.module.css'
 import Image from 'next/image'
-import { ImageData, PagePropertiesData } from '@/types/workDetail'
+import { ImageData, WorkItemPropData } from '@/types/works'
 import {
   BLUR_DATA_URL_BASE64,
   getNotionUrlNonExp,
@@ -10,7 +10,7 @@ import {
 
 interface HorizontalScrollSliderProps {
   imageBlockList: ImageData[]
-  properties: PagePropertiesData
+  properties: WorkItemPropData
 }
 
 const CONTAINER_POS_TOP = 100

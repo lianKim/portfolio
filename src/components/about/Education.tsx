@@ -1,8 +1,8 @@
 'use client'
 import React, { useMemo } from 'react'
-import { EducationItemData } from '@/types/education'
 import dynamic from 'next/dynamic'
 import SectionContainer from '../@common/SectionContainer'
+import { EducationItemData } from '@/types/about'
 
 const EducationTimeline = dynamic(
   async () => await import('@/components/about/EducationTimeline'),
