@@ -18,7 +18,7 @@ export default function ModalHeader({ properties }: ModalHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles['header-project-info']}>
-        <span>{title}</span>
+        <span className={styles['header-title']}>{title}</span>
         <span className={styles['header-period']}>
           {getPeriodOfWork(startDate, endDate)}
         </span>
@@ -42,6 +42,13 @@ export default function ModalHeader({ properties }: ModalHeaderProps) {
           <li>
             <a href={Notion.url} target="_blank" rel="noopener noreferrer">
               Notion
+            </a>
+          </li>
+        )}
+        {Figma?.url && (
+          <li>
+            <a href={Figma.url} target="_blank" rel="noopener noreferrer">
+              Figma
             </a>
           </li>
         )}

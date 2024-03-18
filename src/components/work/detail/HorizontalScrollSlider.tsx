@@ -21,7 +21,7 @@ export default React.memo(function HorizontalScrollSlider({
   imageBlockList,
   properties,
 }: HorizontalScrollSliderProps) {
-  const { 'Design Type': DesignType } = properties
+  const { 'Design Type': DesignType, Name: title } = properties
   const isMoibleFirstDesign = DesignType?.select?.name.startsWith('Mobile')
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -39,11 +39,15 @@ export default React.memo(function HorizontalScrollSlider({
         .map((block) => {
           const imageBlockId = block.id
           const imageUrl = block.image?.file?.url
-          const url = getNotionUrlNonExp(imageUrl, imageBlockId)
+          const url = getNotionUrlNonExp(
+            imageUrl,
+            imageBlockId,
+            isMoibleFirstDesign ? '640' : '1920',
+          )
 
           return url
         }),
-    [imageBlockList],
+    [imageBlockList, isMoibleFirstDesign],
   )
 
   useEffect(() => {
@@ -97,22 +101,25 @@ export default React.memo(function HorizontalScrollSlider({
     <div ref={wrapperRef} className={styles.wrapper}>
       <div ref={containerRef} className={styles.container}>
         <div ref={contentRef} className={styles.content}>
-          {imageUrlList.map((url) => (
-            <div className={styles.item} key={url}>
-              <Image
-                src={url}
-                alt="project image"
-                width={isMoibleFirstDesign ? 400 : 1280}
-                height={isMoibleFirstDesign ? 800 : 740}
-                style={{
-                  width: 'auto',
-                  height: '100%',
-                }}
-                placeholder="blur"
-                blurDataURL={BLUR_DATA_URL_BASE64}
-              />
-            </div>
-          ))}
+          {imageUrlList.map((url, idx) => {
+            if (!url) return
+            return (
+              <div className={styles.item} key={url}>
+                <Image
+                  src={url}
+                  alt={`${title} image${idx + 1}`}
+                  width={isMoibleFirstDesign ? 640 : 1280}
+                  height={isMoibleFirstDesign ? 1280 : 740}
+                  style={{
+                    width: 'auto',
+                    height: '100%',
+                  }}
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL_BASE64}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

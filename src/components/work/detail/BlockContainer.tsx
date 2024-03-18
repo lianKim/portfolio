@@ -135,7 +135,7 @@ function BulletedListItem({
 function ImageFile({ data }: BlockProps<ImageData>) {
   const imageBlockId = data.id
   const imageUrl = data.image?.file?.url
-  const url = getNotionUrlNonExp(imageUrl, imageBlockId)
+  const url = getNotionUrlNonExp(imageUrl, imageBlockId, '1920')
 
   return (
     <div className={styles['thumb-container']}>

@@ -26,6 +26,11 @@
   display: block;
 }
 
+.header-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .header-period {
   display: inline-block;
   margin-left: var(--font-large);

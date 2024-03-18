@@ -29,6 +29,16 @@ const nextConfig = {
         hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ibb.co',
+        port: '',
+      },
     ],
   },
 }

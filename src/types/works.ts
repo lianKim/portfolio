@@ -48,8 +48,12 @@ export type WorkItemPropData = {
     url?: string
   }
   Thumbnail?: {
+    id: string
     files?: {
       file?: {
+        url?: string
+      }
+      external?: {
         url?: string
       }
     }[]
