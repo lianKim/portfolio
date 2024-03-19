@@ -32,12 +32,6 @@
   color: var(--color-gray);
 }
 
-.notion-icon {
-  position: relative;
-  top: 1px;
-  margin-left: 1px;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -187,6 +181,19 @@
   width: 1px;
   height: 70%;
   background-color: var(--color-gray);
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-light-gray);
+  font-size: var(--font-large);
+  font-weight: var(--weight-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {

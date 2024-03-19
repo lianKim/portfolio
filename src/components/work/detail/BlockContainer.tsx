@@ -135,7 +135,7 @@ function BulletedListItem({
 function Thumbnail({ data }: BlockProps<ImageData>) {
   const imageBlockId = data.id
   const imageUrl = data.image?.file?.url
-  const url = getNotionUrlNonExp(imageUrl, imageBlockId, '1920')
+  const url = getNotionUrlNonExp(imageUrl, imageBlockId, '1280')
 
   return (
     <div className={styles['thumb-container']}>
@@ -146,8 +146,8 @@ function Thumbnail({ data }: BlockProps<ImageData>) {
           priority
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL_BASE64}
-          width={1920}
-          height={1440}
+          width={1280}
+          height={960}
           style={{
             width: '100%',
             height: 'auto',

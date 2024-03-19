@@ -33,7 +33,7 @@ const SKILL_TYPE_FILTER_LIST = [
     filter: {
       property: 'Type',
       select: {
-        equals: 'Various Libraries Experience',
+        equals: 'Third-Party Libraries',
       },
     },
   },
@@ -78,7 +78,6 @@ export const getSkillLists = async () => {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        // body: JSON.stringify(filter),
         body: JSON.stringify({ ...filter, ...SKILL_SORT_TYPE }),
         // 하루
         next: { revalidate: 86400 },

@@ -42,9 +42,7 @@ export default function WorkList({ dataList }: WorkListProps) {
 }
 
 function WorkItem({ data }: WorkItemProps) {
-  const { Order, Period, Name, Description, Stack, Thumbnail } = data
-  const startDate = Period?.date?.start || ''
-  const endDate = Period?.date?.end || ''
+  const { Order, Name, Description, Stack, Thumbnail } = data
   const order = Order?.number || 'unknown'
   const title = Name?.title?.at(0)?.plain_text || 'untitled'
   const description = Description?.rich_text?.at(0)?.plain_text || 'no content'
@@ -53,7 +51,6 @@ function WorkItem({ data }: WorkItemProps) {
     Thumbnail?.files?.at(0)?.external?.url ||
     Thumbnail?.files?.at(0)?.file?.url ||
     ''
-  console.log(thumbnailUrl)
 
   return (
     <li className={styles['work-item']}>

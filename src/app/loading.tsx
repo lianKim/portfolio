@@ -1,9 +1,7 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 
 export default function Loading() {
-  const ref = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     if (typeof window === 'undefined') return
 
