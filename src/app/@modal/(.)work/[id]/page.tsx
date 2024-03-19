@@ -1,5 +1,7 @@
-import React from 'react'
-import WorkDetailModal from '@/components/work/detail/WorkDetailModal'
+import React, { Suspense } from 'react'
+import WorkDetail from '@/components/work/detail/WorkDetail'
+import Modal from '@/components/modal/Modal'
+import LoadingModal from '../../loading'
 
 interface WorkDetailProps {
   params: {
@@ -7,9 +9,15 @@ interface WorkDetailProps {
   }
 }
 
-export default function WorkDetail({ params }: WorkDetailProps) {
+export default function WorkDetailModal({ params }: WorkDetailProps) {
   const workDetailPageId = process.env[`NEXT_PUBLIC_WORK_${params.id}_ID`]
   if (typeof workDetailPageId !== 'string') return
 
-  return <WorkDetailModal pageId={workDetailPageId} />
+  return (
+    <Modal>
+      <Suspense fallback={<LoadingModal />}>
+        <WorkDetail pageId={workDetailPageId} />
+      </Suspense>
+    </Modal>
+  )
 }

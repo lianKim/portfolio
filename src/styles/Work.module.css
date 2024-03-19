@@ -41,28 +41,8 @@
   flex-direction: column;
 }
 
-.preview-image {
-  width: 100%;
-  position: absolute;
-  top: 110px;
-  right: 0;
-  z-index: 1;
-}
-
-.preview-image > img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
 .title {
   font-size: var(--font-medium);
-  /* font-weight: var(--weight-light); */
-}
-
-.period {
-  color: var(--color-gray);
-  margin-bottom: 14px;
 }
 
 .desc {

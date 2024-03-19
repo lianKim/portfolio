@@ -1,5 +1,4 @@
 import React from 'react'
-import Modal from '@/components/modal/Modal'
 import BlockContainer from '@/components/work/detail/BlockContainer'
 import { ImageData, NotionBlockData } from '@/types/works'
 import Content from '@/components/work/detail/Content'
@@ -16,13 +15,11 @@ const HorizontalScrollSlider = dynamic(
   },
 )
 
-interface WorkDetailModalProps {
+interface WorkDetailProps {
   pageId: string
 }
 
-export default async function WorkDetailModal({
-  pageId,
-}: WorkDetailModalProps) {
+export default async function WorkDetail({ pageId }: WorkDetailProps) {
   const workProperties = await getPageProperties(pageId)
   const workDetailBlocks = await getNotionBlockChildren(pageId)
   const [thumbBlock, imageBlock, wilBlock, ...contentBlocks] = workDetailBlocks
@@ -31,7 +28,7 @@ export default async function WorkDetailModal({
     : []
 
   return (
-    <Modal>
+    <>
       <ModalHeader properties={workProperties} />
       <div className={styles.container}>
         <MainContent properties={workProperties} />
@@ -56,6 +53,6 @@ export default async function WorkDetailModal({
           />
         )}
       </div>
-    </Modal>
+    </>
   )
 }
