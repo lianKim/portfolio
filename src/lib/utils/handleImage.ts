@@ -11,9 +11,5 @@ export const getNotionUrlNonExp = (
 ) => {
   if (!id || !imageUrl) return ''
 
-  const regex = /^https?:\/\/(.|\-)+(\.webp|\.png|\.jpeg|\.jpg|\.gif)/i
-  const pureUrl = imageUrl.match(regex)?.at(0)
-  if (!pureUrl) return ''
-
-  return `${MY_NOTION_DOMAIN}/image/${encodeURIComponent(pureUrl)}?table=block&id=${id}&cache=v2&width=${width}`
+  return `${MY_NOTION_DOMAIN}/image/${encodeURIComponent(imageUrl)}?table=block&id=${id}&cache=v2&width=${width}`
 }

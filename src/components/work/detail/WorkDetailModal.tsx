@@ -13,6 +13,7 @@ const HorizontalScrollSlider = dynamic(
   async () => await import('@/components/work/detail/HorizontalScrollSlider'),
   {
     ssr: false,
+    // loading: () => <div>Loading Slider...</div>,
   },
 )
 
