@@ -32,12 +32,6 @@
   color: var(--color-gray);
 }
 
-.notion-icon {
-  position: relative;
-  top: 1px;
-  margin-left: 1px;
-}
-
 .container {
   display: flex;
   flex-direction: column;

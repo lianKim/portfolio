@@ -119,9 +119,6 @@ body {
   height: 100vh;
   top: 0;
   left: 0;
-  font-size: var(--font-x-large);
-  font-weight: var(--weight-light);
-  color: var(--color-purple);
   background-color: var(--color-black);
   display: flex;
   justify-content: center;
