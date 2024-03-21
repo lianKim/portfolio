@@ -139,9 +139,14 @@
   padding: 3px 4px;
   font-size: var(--font-small);
   line-height: var(--font-small);
+  background-color: var(--color-gray);
+  color: var(--color-white);
+  margin-right: 8px;
+}
+
+.block-sub-title.faint {
   background-color: var(--color-light-gray);
   color: var(--color-gray);
-  margin-right: 8px;
 }
 
 .block-heading3-wrapper {
@@ -161,6 +166,10 @@
 
 .block-content {
   color: var(--color-black);
+}
+
+.paragraph {
+  word-break: break-all;
 }
 
 .bulleted-item {
