@@ -79,7 +79,8 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const heading = data.heading_3.rich_text?.at(0)?.plain_text || ''
   const link = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
   const NOTION_PAGE_BASE_URL = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
-  const url = link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
+  const url =
+    !link || link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
 
   return (
     <div
