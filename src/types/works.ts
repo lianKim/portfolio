@@ -103,9 +103,22 @@ type BlockCommonData = {
 }
 
 type RichText = {
-  rich_text?: { plain_text?: string }[]
+  rich_text?: { plain_text?: string; annotations: Annotations }[]
 }
 
 type LinkedRichText = {
-  rich_text?: { plain_text?: string; text?: { link?: { url?: string } } }[]
+  rich_text?: {
+    plain_text?: string
+    text?: { link?: { url?: string } }
+    annotations: Annotations
+  }[]
+}
+
+type Annotations = {
+  bold: boolean
+  code: boolean
+  color: string
+  italic: boolean
+  strikethrough: boolean
+  underline: boolean
 }

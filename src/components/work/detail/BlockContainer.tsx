@@ -64,11 +64,18 @@ function Heading1({ data, children }: BlockProps<Heading1Data>) {
 }
 
 function Heading2({ data, children }: BlockProps<Heading2Data>) {
+  // console.log(data)
   const heading = data.heading_2.rich_text?.at(0)?.plain_text || ''
+  const isLessImportant =
+    data.heading_2.rich_text?.at(0)?.annotations.color === 'gray'
 
   return (
-    <div className={styles['block-sub-wrapper']}>
-      <h5 className={styles['block-sub-title']}>{heading}</h5>
+    <div className={`${styles['block-sub-wrapper']}`}>
+      <h5
+        className={`${styles['block-sub-title']} ${isLessImportant && styles.faint}`}
+      >
+        {heading}
+      </h5>
       {children}
     </div>
   )
@@ -79,7 +86,10 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const heading = data.heading_3.rich_text?.at(0)?.plain_text || ''
   const link = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
   const NOTION_PAGE_BASE_URL = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
-  const url = link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
+  const url =
+    !link || link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
+  const isLessImportant =
+    data.heading_3.rich_text?.at(0)?.annotations.color === 'gray'
 
   return (
     <div
@@ -97,7 +107,11 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
           <h6>{heading}</h6>
         </a>
       ) : (
-        <h6 className={styles['block-sub-title']}>{heading}</h6>
+        <h6
+          className={`${styles['block-sub-title']} ${isLessImportant && styles.faint}`}
+        >
+          {heading}
+        </h6>
       )}
       {children}
     </div>
