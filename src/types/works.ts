@@ -1,63 +1,69 @@
-export type DesignType = {
-  select: {
-    name: string
+export type TitleType = {
+  title: {
+    plain_text: string
+  }[]
+}
+
+export type TextType = {
+  rich_text: {
+    plain_text: string
+    text: { link?: { url?: string } }
+    annotations: Annotations
+  }[]
+}
+
+export type NumberType = {
+  number?: number
+}
+
+export type DateType = {
+  date: {
+    start: string
+    end?: string
   }
 }
 
+export type SelectType = {
+  select: {
+    name?: string
+  }
+}
+
+export type MultiSelectType = {
+  multi_select: {
+    name: string
+  }[]
+}
+
+export type UrlType = {
+  url?: string
+}
+
+export type FileType = {
+  file?: UrlType
+}
+
+export type FilesAndMediaType = {
+  id: string
+  files: {
+    file?: UrlType
+    external?: UrlType
+  }[]
+}
+
 export type WorkItemPropData = {
-  Order?: {
-    number?: number
-  }
-  Period?: {
-    date?: {
-      start?: string
-      end?: string
-    }
-  }
-  Name?: {
-    title?: {
-      plain_text?: string
-    }[]
-  }
-  Description?: {
-    rich_text: { plain_text: string }[]
-  }
-  Stack?: {
-    multi_select: {
-      name: string
-    }[]
-  }
-  'Design Type'?: {
-    select: {
-      name: string
-    }
-  }
-  Member?: {
-    rich_text?: { plain_text?: string }[]
-  }
-  Website?: {
-    url?: string
-  }
-  GitHub?: {
-    url?: string
-  }
-  Notion?: {
-    url?: string
-  }
-  Figma?: {
-    url?: string
-  }
-  Thumbnail?: {
-    id: string
-    files?: {
-      file?: {
-        url?: string
-      }
-      external?: {
-        url?: string
-      }
-    }[]
-  }
+  Order?: NumberType
+  Period?: DateType
+  Name?: TitleType
+  Description?: TextType
+  Stack?: MultiSelectType
+  'Design Type'?: SelectType
+  Member?: TextType
+  Website?: UrlType
+  GitHub?: UrlType
+  Notion?: UrlType
+  Figma?: UrlType
+  Thumbnail?: FilesAndMediaType
 }
 
 export type NotionBlockData =
@@ -69,49 +75,33 @@ export type NotionBlockData =
   | ImageData
 
 export type Heading1Data = BlockCommonData & {
-  heading_1: RichText
+  heading_1: TextType
 }
 
 export type Heading2Data = BlockCommonData & {
-  heading_2: RichText
+  heading_2: TextType
 }
 
 export type Heading3Data = BlockCommonData & {
-  heading_3: LinkedRichText
+  heading_3: TextType
 }
 
 export type ParagraphData = BlockCommonData & {
-  paragraph: RichText
+  paragraph: TextType
 }
 
 export type BulletedListItemData = BlockCommonData & {
-  bulleted_list_item: RichText
+  bulleted_list_item: TextType
 }
 
 export type ImageData = BlockCommonData & {
-  image: {
-    file: {
-      url: string
-    }
-  }
+  image: FileType
 }
 
 type BlockCommonData = {
   id: string
   type: string
   has_children: boolean
-}
-
-type RichText = {
-  rich_text?: { plain_text?: string; annotations: Annotations }[]
-}
-
-type LinkedRichText = {
-  rich_text?: {
-    plain_text?: string
-    text?: { link?: { url?: string } }
-    annotations: Annotations
-  }[]
 }
 
 type Annotations = {
