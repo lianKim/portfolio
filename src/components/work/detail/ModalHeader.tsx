@@ -1,8 +1,12 @@
 'use client'
-import React from 'react'
+import React, { useMemo } from 'react'
 import styles from '@/styles/WorkDetail.module.css'
 import { WorkItemPropData } from '@/types/works'
-import { getPeriodOfWork } from '@/lib/utils/handleString'
+import {
+  getPeriodData,
+  getTitleData,
+  getUrlData,
+} from '@/lib/utils/handleNotionData'
 
 interface ModalHeaderProps {
   properties: WorkItemPropData
@@ -10,48 +14,45 @@ interface ModalHeaderProps {
 
 export default function ModalHeader({ properties }: ModalHeaderProps) {
   const { Name, Period, Website, GitHub, Notion, Figma } = properties
-
-  const title = Name?.title?.at(0)?.plain_text || 'untitled'
-  const startDate = Period?.date?.start || ''
-  const endDate = Period?.date?.end || ''
+  const title = getTitleData(Name)
+  const period = getPeriodData(Period)
+  const linkList = useMemo(
+    () =>
+      [
+        {
+          name: 'Website',
+          url: getUrlData(Website),
+        },
+        {
+          name: 'GitHub',
+          url: getUrlData(GitHub),
+        },
+        {
+          name: 'Notion',
+          url: getUrlData(Notion),
+        },
+        {
+          name: 'Figma',
+          url: getUrlData(Figma),
+        },
+      ].filter((link) => !!link.url),
+    [Website, GitHub, Notion, Figma],
+  )
 
   return (
     <header className={styles.header}>
       <div className={styles['header-project-info']}>
         <span>{title}</span>
-        <span className={styles['header-period']}>
-          {getPeriodOfWork(startDate, endDate)}
-        </span>
+        <span className={styles['header-period']}>{period}</span>
       </div>
       <ul className={styles['header-links']}>
-        {Website?.url && (
-          <li>
-            <a href={Website.url} target="_blank" rel="noopener noreferrer">
-              Website
+        {linkList.map((link) => (
+          <li key={link.name}>
+            <a href={link.url} target="_blank" rel="noopener noreferrer">
+              {link.name}
             </a>
           </li>
-        )}
-        {GitHub?.url && (
-          <li>
-            <a href={GitHub.url} target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-          </li>
-        )}
-        {Notion?.url && (
-          <li>
-            <a href={Notion.url} target="_blank" rel="noopener noreferrer">
-              Notion
-            </a>
-          </li>
-        )}
-        {Figma?.url && (
-          <li>
-            <a href={Figma.url} target="_blank" rel="noopener noreferrer">
-              Figma
-            </a>
-          </li>
-        )}
+        ))}
       </ul>
     </header>
   )

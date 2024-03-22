@@ -10,6 +10,9 @@ interface RootLayoutProps {
 export const metadata: Metadata = {
   title: 'Lian Kim | Portfolio',
   description: '프론트엔드 개발자 김리안의 포트폴리오입니다.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({ children, modal }: RootLayoutProps) {
