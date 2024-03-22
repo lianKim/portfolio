@@ -21,6 +21,7 @@ import {
   getLinkedTextUrl,
   getTextData,
 } from '@/lib/utils/handleNotionData'
+import ExternalLinkIcon from '@icons/arrow_outward-icon.svg'
 
 interface BlockContainerProps {
   data: NotionBlockData
@@ -114,6 +115,7 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
         rel="noopener noreferrer"
         className={styles['block-link']}
       >
+        <Image src={ExternalLinkIcon} width="18" height="18" alt="close icon" />
         <h6>{heading}</h6>
       </a>
       {children}
