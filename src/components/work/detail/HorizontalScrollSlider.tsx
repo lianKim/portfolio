@@ -1,12 +1,14 @@
 'use client'
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from '@/styles/HorizontalScrollSlider.module.css'
 import Image from 'next/image'
 import { ImageData, WorkItemPropData } from '@/types/works'
+import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
 import {
-  BLUR_DATA_URL_BASE64,
-  getNotionUrlNonExp,
-} from '@/lib/utils/handleImage'
+  getConvertedImages,
+  getSelectData,
+  getTitleData,
+} from '@/lib/utils/handleNotionData'
 
 interface HorizontalScrollSliderProps {
   imageBlockList: ImageData[]
@@ -21,34 +23,15 @@ export default React.memo(function HorizontalScrollSlider({
   imageBlockList,
   properties,
 }: HorizontalScrollSliderProps) {
-  const { 'Design Type': DesignType, Name: title } = properties
-  const isMoibleFirstDesign = DesignType?.select?.name.startsWith('Mobile')
-
   const wrapperRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  const imageUrlList = useMemo(
-    () =>
-      imageBlockList
-        .filter(
-          (block) =>
-            block.type === 'image' && !!(block as ImageData).image?.file?.url,
-        )
-
-        .map((block) => {
-          const imageBlockId = block.id
-          const imageUrl = block.image?.file?.url
-          const url = getNotionUrlNonExp(
-            imageUrl,
-            imageBlockId,
-            isMoibleFirstDesign ? '640' : '1920',
-          )
-
-          return url
-        }),
-    [imageBlockList, isMoibleFirstDesign],
-  )
+  const { 'Design Type': DesignType, Name } = properties
+  const title = getTitleData(Name)
+  const isMoibleFirstDesign = getSelectData(DesignType)?.startsWith('Mobile')
+  const width = isMoibleFirstDesign ? '640' : '1920'
+  const imageUrlList = getConvertedImages(imageBlockList, width)
 
   useEffect(() => {
     const wrapper = wrapperRef?.current

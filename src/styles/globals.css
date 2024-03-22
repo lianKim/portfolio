@@ -35,8 +35,10 @@
   /* Letter Spacing */
   --letter-spacing-eng: normal;
   --letter-spacing-kor: -0.025em;
+  /* Line Height */
   --line-height-narrow: 1.4em;
   --line-height-regular: 1.5em;
+  --line-height-paragraph: 1.7em;
   /* Margin & Padding */
   --grid-columns: repeat(12, 1fr);
   --grid-column-gap: 20px;

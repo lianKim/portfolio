@@ -15,6 +15,13 @@ import {
   BLUR_DATA_URL_BASE64,
   getNotionUrlNonExp,
 } from '@/lib/utils/handleImage'
+import {
+  getAnnotations,
+  getImageData,
+  getLinkedTextUrl,
+  getTextData,
+} from '@/lib/utils/handleNotionData'
+import ExternalLinkIcon from '@icons/arrow_outward-icon.svg'
 
 interface BlockContainerProps {
   data: NotionBlockData
@@ -53,7 +60,7 @@ export default function BlockContainer({
 }
 
 function Heading1({ data, children }: BlockProps<Heading1Data>) {
-  const heading = data.heading_1.rich_text?.at(0)?.plain_text || ''
+  const heading = getTextData(data.heading_1)
 
   return (
     <div className={`${styles['block-wrapper']}`} id={heading.toLowerCase()}>
@@ -64,10 +71,9 @@ function Heading1({ data, children }: BlockProps<Heading1Data>) {
 }
 
 function Heading2({ data, children }: BlockProps<Heading2Data>) {
-  // console.log(data)
-  const heading = data.heading_2.rich_text?.at(0)?.plain_text || ''
-  const isLessImportant =
-    data.heading_2.rich_text?.at(0)?.annotations.color === 'gray'
+  const block = data.heading_2
+  const heading = getTextData(block)
+  const isLessImportant = getAnnotations(block)?.color === 'gray'
 
   return (
     <div className={`${styles['block-sub-wrapper']}`}>
@@ -83,48 +89,46 @@ function Heading2({ data, children }: BlockProps<Heading2Data>) {
 
 // 외부 URL 필요할 경우 Heading3 link에 주소 값 있음
 function Heading3({ data, children }: BlockProps<Heading3Data>) {
-  const heading = data.heading_3.rich_text?.at(0)?.plain_text || ''
-  const link = data.heading_3.rich_text?.at(0)?.text?.link?.url || ''
-  const NOTION_PAGE_BASE_URL = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
-  const url =
-    !link || link.startsWith('http') ? link : NOTION_PAGE_BASE_URL + link
-  const isLessImportant =
-    data.heading_3.rich_text?.at(0)?.annotations.color === 'gray'
+  const block = data.heading_3
+  const heading = getTextData(block)
+  const isLessImportant = getAnnotations(block)?.color === 'gray'
+  const link = getLinkedTextUrl(block)
 
-  return (
-    <div
-      className={
-        link ? styles['block-link-wrapper'] : styles['block-heading3-wrapper']
-      }
-    >
-      {url ? (
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles['block-link']}
-        >
-          <h6>{heading}</h6>
-        </a>
-      ) : (
+  if (!link) {
+    return (
+      <div className={styles['block-heading3-wrapper']}>
         <h6
           className={`${styles['block-sub-title']} ${isLessImportant && styles.faint}`}
         >
           {heading}
         </h6>
-      )}
+        {children}
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles['block-link-wrapper']}>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles['block-link']}
+      >
+        <Image src={ExternalLinkIcon} width="18" height="18" alt="close icon" />
+        <h6>{heading}</h6>
+      </a>
       {children}
     </div>
   )
 }
 
 function Paragraph({ data, children }: BlockProps<ParagraphData>) {
-  const textList =
-    data.paragraph.rich_text?.map((text) => text.plain_text) || []
+  const text = getTextData(data.paragraph)
 
   return (
     <>
-      <p className={`${styles.paragraph}`}>{textList.join(' ')}</p>
+      <p className={`${styles.paragraph}`}>{text}</p>
       {children}
     </>
   )
@@ -134,12 +138,11 @@ function BulletedListItem({
   data,
   children,
 }: BlockProps<BulletedListItemData>) {
-  const textList =
-    data.bulleted_list_item.rich_text?.map((text) => text.plain_text) || []
+  const text = getTextData(data.bulleted_list_item)
 
   return (
     <>
-      <span className={`${styles['bulleted-item']}`}>{textList.join(' ')}</span>
+      <span className={`${styles['bulleted-item']}`}>{text}</span>
       {children}
     </>
   )
@@ -148,7 +151,7 @@ function BulletedListItem({
 // 썸네일
 function Thumbnail({ data }: BlockProps<ImageData>) {
   const imageBlockId = data.id
-  const imageUrl = data.image?.file?.url
+  const imageUrl = getImageData(data.image)
   const url = getNotionUrlNonExp(imageUrl, imageBlockId, '1280')
 
   return (
