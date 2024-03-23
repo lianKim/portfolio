@@ -44,8 +44,8 @@
   position: fixed;
   right: calc(var(--grid-column-gap) * 2);
   bottom: calc(var(--grid-column-gap) * 2);
-  width: calc(var(--grid-column-gap) * 2.4);
-  height: calc(var(--grid-column-gap) * 2.4);
+  width: calc(var(--grid-column-gap) * 2.25);
+  height: calc(var(--grid-column-gap) * 2.25);
   transform: translateY(100vh);
   transition: transform 0.5s cubic-bezier(0.31, 0.82, 0.31, 1);
   z-index: 201;
