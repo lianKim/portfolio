@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import Header from '@/components/header/Header'
+import LinkedIcons from '@/components/@common/LinkedIcons'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -24,6 +25,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       <body>
         <div className="grid-container">
           <Header />
+          <LinkedIcons />
           <main className="main">{children}</main>
           {modal}
         </div>
