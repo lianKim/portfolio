@@ -17,6 +17,7 @@ import {
 } from '@/lib/utils/handleImage'
 import {
   getAnnotations,
+  getBoldTextData,
   getImageData,
   getLinkedTextUrl,
   getTextData,
@@ -71,17 +72,11 @@ function Heading1({ data, children }: BlockProps<Heading1Data>) {
 }
 
 function Heading2({ data, children }: BlockProps<Heading2Data>) {
-  const block = data.heading_2
-  const heading = getTextData(block)
-  const isLessImportant = getAnnotations(block)?.color === 'gray'
+  const heading = getTextData(data.heading_2)
 
   return (
     <div className={`${styles['block-sub-wrapper']}`}>
-      <h5
-        className={`${styles['block-sub-title']} ${isLessImportant && styles.faint}`}
-      >
-        {heading}
-      </h5>
+      <h5 className={`${styles['block-sub-title']}`}>{heading}</h5>
       {children}
     </div>
   )
@@ -91,17 +86,12 @@ function Heading2({ data, children }: BlockProps<Heading2Data>) {
 function Heading3({ data, children }: BlockProps<Heading3Data>) {
   const block = data.heading_3
   const heading = getTextData(block)
-  const isLessImportant = getAnnotations(block)?.color === 'gray'
   const link = getLinkedTextUrl(block)
 
   if (!link) {
     return (
       <div className={styles['block-heading3-wrapper']}>
-        <h6
-          className={`${styles['block-sub-title']} ${isLessImportant && styles.faint}`}
-        >
-          {heading}
-        </h6>
+        <h6 className={`${styles['block-sub-title']}`}>{heading}</h6>
         {children}
       </div>
     )
@@ -124,11 +114,24 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
 }
 
 function Paragraph({ data, children }: BlockProps<ParagraphData>) {
-  const text = getTextData(data.paragraph)
+  const block = data.paragraph
+  const styledText = getBoldTextData(block)
 
   return (
     <>
-      <p className={`${styles.paragraph}`}>{text}</p>
+      <p>
+        {styledText.map((text) => {
+          if (text.isBold) {
+            return (
+              <strong className={styles.highlight} key={text.content}>
+                {text.content}
+              </strong>
+            )
+          }
+
+          return text.content
+        })}
+      </p>
       {children}
     </>
   )
@@ -138,11 +141,17 @@ function BulletedListItem({
   data,
   children,
 }: BlockProps<BulletedListItemData>) {
-  const text = getTextData(data.bulleted_list_item)
+  const block = data.bulleted_list_item
+  const text = getTextData(block)
+  const isBold = getAnnotations(block)?.bold
 
   return (
     <>
-      <span className={`${styles['bulleted-item']}`}>{text}</span>
+      <span
+        className={`${styles['bulleted-item']} ${isBold && styles.highlight}`}
+      >
+        {text}
+      </span>
       {children}
     </>
   )

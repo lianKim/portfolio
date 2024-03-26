@@ -20,6 +20,12 @@ export const getTitleData = (block?: TitleType) =>
 export const getTextData = (block?: TextType) =>
   block?.rich_text.reduce((prev, curr) => prev + curr.plain_text, '') || ''
 
+export const getBoldTextData = (block?: TextType) =>
+  block?.rich_text.map((text) => ({
+    content: text.plain_text,
+    isBold: text.annotations?.bold === true,
+  })) || []
+
 export const getLinkedTextUrl = (block?: TextType) => {
   const link = block?.rich_text.at(0)?.text.link?.url || ''
   const url = !link || link.startsWith('http') ? link : MY_NOTION_DOMAIN + link
