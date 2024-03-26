@@ -136,17 +136,15 @@
 
 .block-sub-title {
   display: inline-block;
-  padding: 3px 4px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 4.5px 4px;
+  position: relative;
+  top: -0.5px;
   font-size: var(--font-small);
   line-height: var(--font-small);
   background-color: var(--color-gray);
   color: var(--color-white);
-  margin-right: 8px;
-}
-
-.block-sub-title.faint {
-  background-color: var(--color-light-gray);
-  color: var(--color-gray);
 }
 
 .block-heading3-wrapper {
@@ -189,6 +187,12 @@
 .paragraph {
   word-break: break-all;
   line-height: var(--line-height-paragraph);
+}
+
+.highlight {
+  padding: 0 2px;
+  background-color: var(--color-light-gray);
+  color: var(--color-black);
 }
 
 .bulleted-item {
