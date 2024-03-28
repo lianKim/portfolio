@@ -194,20 +194,17 @@
   display: inline-block;
   position: relative;
   margin-bottom: 6px;
+  margin-right: 16px;
 }
 
-.bulleted-item + .bulleted-item {
-  margin-left: 16px;
-}
-
-.bulleted-item + .bulleted-item::before {
+.bulleted-item:not(:last-of-type)::after {
   content: '';
   position: absolute;
   top: 4px;
-  left: -8px;
+  right: -8px;
   width: 1px;
   height: 70%;
-  background-color: var(--color-gray);
+  border-right: 1px solid var(--color-gray);
 }
 
 .loading {
