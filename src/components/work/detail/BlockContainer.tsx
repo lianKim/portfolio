@@ -105,7 +105,13 @@ function Heading3({ data, children }: BlockProps<Heading3Data>) {
         rel="noopener noreferrer"
         className={styles['block-link']}
       >
-        <Image src={ExternalLinkIcon} width="18" height="18" alt="close icon" />
+        <Image
+          src={ExternalLinkIcon}
+          width="18"
+          height="18"
+          alt="close icon"
+          className={styles['icon-link']}
+        />
         <h6>{heading}</h6>
       </a>
       {children}
