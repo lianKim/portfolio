@@ -82,11 +82,7 @@ body {
 
 .main {
   padding: var(--grid-column-gap);
-  /* margin-bottom: 180px; */
-}
-
-.section + .section {
-  /* margin-top: 50vh; */
+  margin-bottom: 40px;
 }
 
 .page-wrapper {
@@ -190,10 +186,6 @@ body {
     --height-header: 104px;
   }
 
-  .main {
-    margin-bottom: 100px;
-  }
-
   .section + .section {
     margin-top: 25vh;
   }
@@ -215,6 +207,10 @@ body {
 @media screen and (min-width: 1024px) {
   html {
     scroll-snap-type: y mandatory;
+  }
+
+  .main {
+    margin-bottom: 0;
   }
 
   .page-wrapper {

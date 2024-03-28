@@ -12,15 +12,8 @@
 }
 
 .title-container {
-  position: relative;
-  top: 160px;
+  position: static;
   z-index: 10;
-}
-
-@media screen and (max-width: 767px) {
-  .title-container {
-    top: 180px;
-  }
 }
 
 /* for Parallax of Framer-Motion  */
@@ -47,7 +40,7 @@
   }
 
   .title-container {
-    position: static;
-    top: 0;
+    position: relative;
+    top: 160px;
   }
 }
