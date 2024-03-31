@@ -35,7 +35,7 @@ export default function SectionContainer({
     threshold: 0.1,
   })
   const { scrollYProgress } = useScroll({ target: ref })
-  const y = useParallax(scrollYProgress, 160)
+  const y = useParallax(scrollYProgress, 0)
 
   return (
     <LazyMotion features={domAnimation}>
@@ -43,7 +43,7 @@ export default function SectionContainer({
         {title && (
           <m.h2
             initial={false}
-            style={{ y }}
+            style={{ y, zIndex: 10 }}
             className={styles['title-container']}
           >
             <SectionTitle title={title} />
