@@ -53,14 +53,6 @@ const SKILL_TYPE_FILTER_LIST = [
       },
     },
   },
-  {
-    filter: {
-      property: 'Type',
-      select: {
-        equals: 'Wireframe and Design',
-      },
-    },
-  },
 ]
 
 /**
