@@ -15,7 +15,6 @@
 
 @media screen and (max-width: 1023px) {
   .skill-list-container {
-    /* grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: auto;
     grid-template-rows: 1fr auto;
     grid-template-areas:
@@ -60,26 +59,8 @@
   background-color: var(--color-black);
 }
 
-/* Education */
-.education-item {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-areas: 'title title title . date date date';
-  gap: var(--grid-column-gap);
-  margin-bottom: 0.7em;
-}
-
-.education-title {
-  grid-area: title;
-}
-
-.education-duration {
-  grid-area: date;
-  color: var(--color-gray);
-  text-align: right;
-}
-
-.education-timeline-wrapper {
+/* Timeline */
+.timeline-chart-wrapper {
   width: 100%;
   overflow-x: visible;
 }

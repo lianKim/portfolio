@@ -4,16 +4,16 @@ import styles from '@/styles/About.module.css'
 import ApexChart from 'react-apexcharts'
 import { getPeriodOfWork } from '@/lib/utils/handleString'
 
-interface EducationTimelineProps {
+interface TimelineChartProps {
   dataList: {
     x: string
     y: number[]
   }[]
 }
 
-export default function EducationTimeline({
+export default React.memo(function TimelineChart({
   dataList,
-}: EducationTimelineProps) {
+}: TimelineChartProps) {
   const [isPC, setIsPC] = useState<boolean>(false)
 
   useEffect(() => {
@@ -177,7 +177,7 @@ export default function EducationTimeline({
   )
 
   return (
-    <div className={styles['education-timeline-wrapper']}>
+    <div className={styles['timeline-chart-wrapper']}>
       <ApexChart
         options={options as any}
         series={series}
@@ -186,4 +186,4 @@ export default function EducationTimeline({
       />
     </div>
   )
-}
+})

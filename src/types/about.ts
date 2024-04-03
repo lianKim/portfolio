@@ -16,8 +16,8 @@ export type SkillItemData = {
   }
 }
 
-// Education
-export type EducationItemData = {
+// Timeline
+export type TimelineItemData = {
   properties: {
     Name: TitleType
     Period: DateType

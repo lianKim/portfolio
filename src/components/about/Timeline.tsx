@@ -2,29 +2,29 @@
 import React, { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import SectionContainer from '../@common/SectionContainer'
-import { EducationItemData } from '@/types/about'
+import { TimelineItemData } from '@/types/about'
 import {
   getDateData,
   getTextData,
   getTitleData,
 } from '@/lib/utils/handleNotionData'
 
-const EducationTimeline = dynamic(
-  async () => await import('@/components/about/EducationTimeline'),
+const TimelineChart = dynamic(
+  async () => await import('@/components/about/TimelineChart'),
   {
     ssr: false,
   },
 )
 
-interface EducationProps {
-  data: EducationItemData[]
+interface TimelineProps {
+  data: TimelineItemData[]
 }
 
-export default function Education({ data }: EducationProps) {
-  const educationList = useMemo(
+export default function Timeline({ data }: TimelineProps) {
+  const timelineList = useMemo(
     () =>
       data
-        .map((item: EducationItemData) => {
+        .map((item: TimelineItemData) => {
           const { Name, Period, Note } = item.properties
           const title = getTitleData(Name)
           const note = getTextData(Note)
@@ -43,10 +43,8 @@ export default function Education({ data }: EducationProps) {
   )
 
   return (
-    <SectionContainer title="Education">
-      {educationList.length > 0 && (
-        <EducationTimeline dataList={educationList} />
-      )}
+    <SectionContainer title="Timeline">
+      {timelineList.length > 0 && <TimelineChart dataList={timelineList} />}
     </SectionContainer>
   )
 }

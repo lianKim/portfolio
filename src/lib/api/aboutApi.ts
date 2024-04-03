@@ -1,10 +1,9 @@
-import { EducationItemData } from '@/types/about'
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY
 const SKILL_DB_ID = process.env.NEXT_PUBLIC_SKILL_DB_ID
-const EDUCATION_DB_ID = process.env.NEXT_PUBLIC_EDUCATION_DB_ID
-const EDUCATION_LIST_QUERY_OPTIONS = {
+const TIMELINE_DB_ID = process.env.NEXT_PUBLIC_TIMELINE_DB_ID
+const TIMELINE_LIST_QUERY_OPTIONS = {
   sorts: [
     {
       property: 'Period',
@@ -93,13 +92,13 @@ export const getSkillLists = async () => {
 }
 
 /**
- * Notion에서 Education 목록 가져오는 함수
- * @returns education list
+ * Notion에서 Timeline 목록 가져오는 함수
+ * @returns timeline list
  */
-export const getEducationList = async () => {
+export const getTimelineList = async () => {
   try {
     const res = await fetch(
-      `https://api.notion.com/v1/databases/${EDUCATION_DB_ID}/query`,
+      `https://api.notion.com/v1/databases/${TIMELINE_DB_ID}/query`,
       {
         method: 'POST',
         headers: {
@@ -107,7 +106,7 @@ export const getEducationList = async () => {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(EDUCATION_LIST_QUERY_OPTIONS),
+        body: JSON.stringify(TIMELINE_LIST_QUERY_OPTIONS),
         next: { revalidate: false },
         mode: 'cors',
         credentials: 'same-origin',
@@ -128,6 +127,6 @@ export const getEducationList = async () => {
     return result
   } catch (error) {
     console.log(error)
-    throw new Error('Failed to get education list data')
+    throw new Error('Failed to get timeline list data')
   }
 }
