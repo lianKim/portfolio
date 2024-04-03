@@ -1,3 +1,4 @@
+import { EducationItemData } from '@/types/about'
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY
@@ -122,8 +123,9 @@ export const getEducationList = async () => {
     }
 
     const data: QueryDatabaseResponse = await res.json()
+    const result: unknown = data?.results
 
-    return data?.results
+    return result
   } catch (error) {
     console.log(error)
     throw new Error('Failed to get education list data')

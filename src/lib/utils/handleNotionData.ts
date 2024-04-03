@@ -32,12 +32,16 @@ export const getLinkedTextUrl = (block?: TextType) => {
 
   return url
 }
-export const getNumberData = (block?: NumberType) => block?.number
+export const getNumberData = (block?: NumberType) => block?.number || 0
 
 export const getPeriodData = (block?: DateType) => {
   if (!block) return
 
   return getPeriodOfWork(block.date.start, block.date.end)
+}
+
+export const getDateData = (block?: DateType) => {
+  return [block?.date?.start || '', block?.date?.end || '']
 }
 
 export const getSelectData = (block?: SelectType) => block?.select.name || ''

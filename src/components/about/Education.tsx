@@ -3,6 +3,11 @@ import React, { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import SectionContainer from '../@common/SectionContainer'
 import { EducationItemData } from '@/types/about'
+import {
+  getDateData,
+  getTextData,
+  getTitleData,
+} from '@/lib/utils/handleNotionData'
 
 const EducationTimeline = dynamic(
   async () => await import('@/components/about/EducationTimeline'),
@@ -18,22 +23,30 @@ interface EducationProps {
 export default function Education({ data }: EducationProps) {
   const educationList = useMemo(
     () =>
-      data.map((item: EducationItemData) => {
-        const title = item.properties?.Name.title?.at(0)?.plain_text || ''
-        const startDate = item.properties?.Period.date?.start || ''
-        const endDate = item.properties?.Period.date?.end || ''
+      data
+        .map((item: EducationItemData) => {
+          const { Name, Period, Note } = item.properties
+          const title = getTitleData(Name)
+          const note = getTextData(Note)
+          const [startDate, endDate] = getDateData(Period)
 
-        return {
-          x: title,
-          y: [new Date(startDate).getTime(), new Date(endDate).getTime()],
-        }
-      }),
+          return {
+            x: title ? title + '|' + note : '',
+            y:
+              startDate && endDate
+                ? [new Date(startDate).getTime(), new Date(endDate).getTime()]
+                : [],
+          }
+        })
+        .filter((item) => !!item?.x && !!item.y.length),
     [data],
   )
 
   return (
     <SectionContainer title="Education">
-      <EducationTimeline dataList={educationList} />
+      {educationList.length > 0 && (
+        <EducationTimeline dataList={educationList} />
+      )}
     </SectionContainer>
   )
 }

@@ -81,4 +81,5 @@
 
 .education-timeline-wrapper {
   width: 100%;
+  overflow-x: visible;
 }

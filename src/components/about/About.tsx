@@ -13,7 +13,7 @@ export default async function About() {
       {!!skillsList?.length && (
         <Skills dataList={skillsList as SkillItemData[][]} />
       )}
-      {!!educationList?.length && (
+      {!!(educationList as EducationItemData[])?.length && (
         <Education data={educationList as EducationItemData[]} />
       )}
     </>
