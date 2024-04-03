@@ -9,9 +9,9 @@ import {
   TextType,
   TitleType,
   UrlType,
-} from '@/types/works'
-import { getPeriodOfWork } from './handleString'
-import { MY_NOTION_DOMAIN } from '../api/workApi'
+} from '@/types/projects'
+import { getPeriodFromDates } from './handleString'
+import { MY_NOTION_DOMAIN } from '../api/projectApi'
 import { getNotionUrlNonExp } from './handleImage'
 
 export const getTitleData = (block?: TitleType) =>
@@ -37,7 +37,7 @@ export const getNumberData = (block?: NumberType) => block?.number || 0
 export const getPeriodData = (block?: DateType) => {
   if (!block) return
 
-  return getPeriodOfWork(block.date.start, block.date.end)
+  return getPeriodFromDates(block.date.start, block.date.end)
 }
 
 export const getDateData = (block?: DateType) => {
@@ -50,6 +50,9 @@ export const getMultiSelectDataList = (block?: MultiSelectType) =>
   block?.multi_select.map((item) => item.name) || []
 
 export const getUrlData = (block?: UrlType) => block?.url || ''
+
+export const getFileUrlData = (block?: FilesAndMediaType) =>
+  block?.files?.at(0)?.external?.url || block?.files?.at(0)?.file?.url || ''
 
 export const getFileDataList = (block?: FilesAndMediaType) =>
   block?.files.map((item) => item.file?.url || item.external?.url) || []

@@ -1,4 +1,4 @@
-import { DateType, TextType, TitleType } from './works'
+import { DateType, TextType, TitleType } from './projects'
 
 // Skills
 export type SkillItemData = {

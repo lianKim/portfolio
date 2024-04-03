@@ -17,7 +17,7 @@ export const makeNumberToTwoLetter = (number: number | string): string => {
  * @param endDate
  * @returns  작업 기간 (YYYY.MM - YYYY.MM)
  */
-export const getPeriodOfWork = (
+export const getPeriodFromDates = (
   startDate: string,
   endDate?: string,
 ): string => {

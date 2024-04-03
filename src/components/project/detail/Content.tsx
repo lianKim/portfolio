@@ -1,7 +1,7 @@
-import { NotionBlockData } from '@/types/works'
+import { NotionBlockData } from '@/types/projects'
 import React from 'react'
 import BlockContainer from './BlockContainer'
-import { getNotionBlockChildren } from '@/lib/api/workApi'
+import { getNotionBlockChildren } from '@/lib/api/projectApi'
 
 interface ContentProps {
   blockList: NotionBlockData[]

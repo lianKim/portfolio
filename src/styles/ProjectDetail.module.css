@@ -180,8 +180,8 @@
 }
 
 .paragraph {
-  word-break: break-all;
   line-height: var(--line-height-paragraph);
+  margin-bottom: 8px;
 }
 
 .highlight {

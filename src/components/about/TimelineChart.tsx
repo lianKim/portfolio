@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '@/styles/About.module.css'
 import ApexChart from 'react-apexcharts'
-import { getPeriodOfWork } from '@/lib/utils/handleString'
+import { getPeriodFromDates } from '@/lib/utils/handleString'
 
 interface TimelineChartProps {
   dataList: {
@@ -98,7 +98,7 @@ export default React.memo(function TimelineChart({
           // period
           const startDate = new Date(val[0]).toISOString()
           const endDate = new Date(val[1]).toISOString()
-          const period = getPeriodOfWork(startDate, endDate)
+          const period = getPeriodFromDates(startDate, endDate)
           // label
           const [label, note] = w.globals.labels[dataPointIndex].split('|')
 
