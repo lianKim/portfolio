@@ -51,7 +51,7 @@ export type FilesAndMediaType = {
   }[]
 }
 
-export type WorkItemPropData = {
+export type ProjectItemPropData = {
   Order?: NumberType
   Period?: DateType
   Name?: TitleType

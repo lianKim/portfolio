@@ -1,37 +1,39 @@
 import React from 'react'
-import BlockContainer from '@/components/work/detail/BlockContainer'
-import { ImageData, NotionBlockData } from '@/types/works'
-import Content from '@/components/work/detail/Content'
-import styles from '@/styles/WorkDetail.module.css'
-import MainContent from '@/components/work/detail/MainContent'
-import { getNotionBlockChildren, getPageProperties } from '@/lib/api/workApi'
+import BlockContainer from '@/components/project/detail/BlockContainer'
+import { ImageData, NotionBlockData } from '@/types/projects'
+import Content from '@/components/project/detail/Content'
+import styles from '@/styles/ProjectDetail.module.css'
+import MainContent from '@/components/project/detail/MainContent'
+import { getNotionBlockChildren, getPageProperties } from '@/lib/api/projectApi'
 import dynamic from 'next/dynamic'
 import ModalHeader from './ModalHeader'
 
 const HorizontalScrollSlider = dynamic(
-  async () => await import('@/components/work/detail/HorizontalScrollSlider'),
+  async () =>
+    await import('@/components/project/detail/HorizontalScrollSlider'),
   {
     ssr: false,
   },
 )
 
-interface WorkDetailProps {
+interface ProjectDetailProps {
   pageId: string
 }
 
-export default async function WorkDetail({ pageId }: WorkDetailProps) {
-  const workProperties = await getPageProperties(pageId)
-  const workDetailBlocks = await getNotionBlockChildren(pageId)
-  const [thumbBlock, imageBlock, wilBlock, ...contentBlocks] = workDetailBlocks
+export default async function ProjectDetail({ pageId }: ProjectDetailProps) {
+  const projectProperties = await getPageProperties(pageId)
+  const ProjectDetailBlocks = await getNotionBlockChildren(pageId)
+  const [thumbBlock, imageBlock, wilBlock, ...contentBlocks] =
+    ProjectDetailBlocks
   const imageBlockList = imageBlock?.id
     ? await getNotionBlockChildren(imageBlock.id)
     : []
 
   return (
     <>
-      <ModalHeader properties={workProperties} />
+      <ModalHeader properties={projectProperties} />
       <div className={styles.container}>
-        <MainContent properties={workProperties} />
+        <MainContent properties={projectProperties} />
         {/* 썸네일 */}
         <div className={styles['thumb-container']} key={thumbBlock.id}>
           <BlockContainer data={thumbBlock as NotionBlockData} />
@@ -49,7 +51,7 @@ export default async function WorkDetail({ pageId }: WorkDetailProps) {
         {imageBlockList.length && (
           <HorizontalScrollSlider
             imageBlockList={imageBlockList as ImageData[]}
-            properties={workProperties}
+            properties={projectProperties}
           />
         )}
       </div>

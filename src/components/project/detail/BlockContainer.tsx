@@ -7,9 +7,9 @@ import {
   ImageData,
   NotionBlockData,
   ParagraphData,
-} from '@/types/works'
+} from '@/types/projects'
 import React from 'react'
-import styles from '@/styles/WorkDetail.module.css'
+import styles from '@/styles/ProjectDetail.module.css'
 import Image from 'next/image'
 import {
   BLUR_DATA_URL_BASE64,
@@ -125,7 +125,7 @@ function Paragraph({ data, children }: BlockProps<ParagraphData>) {
 
   return (
     <>
-      <p>
+      <p className={styles.paragraph}>
         {styledText.map((text) => {
           if (text.isBold) {
             return (

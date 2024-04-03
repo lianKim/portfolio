@@ -1,7 +1,7 @@
 'use client'
-import { WorkItemPropData } from '@/types/works'
+import { ProjectItemPropData } from '@/types/projects'
 import React from 'react'
-import styles from '@/styles/WorkDetail.module.css'
+import styles from '@/styles/ProjectDetail.module.css'
 import {
   getPeriodData,
   getSelectData,
@@ -10,7 +10,7 @@ import {
 } from '@/lib/utils/handleNotionData'
 
 interface MainContentProps {
-  properties: WorkItemPropData
+  properties: ProjectItemPropData
 }
 
 export default function MainContent({ properties }: MainContentProps) {

@@ -1,7 +1,7 @@
 'use client'
 import React, { useMemo } from 'react'
-import styles from '@/styles/WorkDetail.module.css'
-import { WorkItemPropData } from '@/types/works'
+import styles from '@/styles/ProjectDetail.module.css'
+import { ProjectItemPropData } from '@/types/projects'
 import {
   getPeriodData,
   getTitleData,
@@ -9,7 +9,7 @@ import {
 } from '@/lib/utils/handleNotionData'
 
 interface ModalHeaderProps {
-  properties: WorkItemPropData
+  properties: ProjectItemPropData
 }
 
 export default function ModalHeader({ properties }: ModalHeaderProps) {
