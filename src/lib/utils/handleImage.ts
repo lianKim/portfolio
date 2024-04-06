@@ -1,4 +1,4 @@
-import { MY_NOTION_DOMAIN } from '../api/workApi'
+import { MY_NOTION_DOMAIN } from '../api/projectApi'
 
 export const BLUR_DATA_URL_BASE64 =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAEUlEQVR42mO8+58BAzAOZUEATNMSo0SmzPsAAAAASUVORK5CYII='

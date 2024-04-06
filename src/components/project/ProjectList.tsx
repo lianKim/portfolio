@@ -1,38 +1,45 @@
 import React from 'react'
 import SectionContainer from '../@common/SectionContainer'
-import styles from '@/styles/Work.module.css'
+import styles from '@/styles/Project.module.css'
 import Link from 'next/link'
-import { WorkItemPropData } from '@/types/works'
+import { ProjectItemData, ProjectItemPropData } from '@/types/projects'
 import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
 import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
+import {
+  getFileUrlData,
+  getMultiSelectDataList,
+  getNumberData,
+  getTextData,
+  getTitleData,
+} from '@/lib/utils/handleNotionData'
 
-interface WorkListProps {
-  dataList: WorkItemPropData[]
+interface ProjectListProps {
+  dataList: ProjectItemData[]
 }
 
-interface WorkItemProps {
-  data: WorkItemPropData
+interface ProjectItemProps {
+  data: ProjectItemPropData
 }
 
-export default function WorkList({ dataList }: WorkListProps) {
+export default function ProjectList({ dataList }: ProjectListProps) {
   return (
-    <SectionContainer title="Works">
-      <ol className={`${styles.works} container`}>
-        {dataList.map((work) => {
-          if (!('properties' in work)) {
+    <SectionContainer title="Projects">
+      <ol className={`${styles.projects} container`}>
+        {dataList.map((project: ProjectItemData) => {
+          if (!('properties' in project)) {
             throw new Error('No Properties Error')
           }
 
-          const { properties } = work as any
+          const { properties } = project
 
           return (
             <Link
-              href={`/work/${properties.Order.number}`}
+              href={`/project/${properties.Order.number}`}
               prefetch
               key={properties.Order.number}
             >
-              <WorkItem data={properties} />
+              <ProjectItem data={properties} />
             </Link>
           )
         })}
@@ -41,19 +48,16 @@ export default function WorkList({ dataList }: WorkListProps) {
   )
 }
 
-function WorkItem({ data }: WorkItemProps) {
+function ProjectItem({ data }: ProjectItemProps) {
   const { Order, Name, Description, Stack, Thumbnail } = data
-  const order = Order?.number || 'unknown'
-  const title = Name?.title?.at(0)?.plain_text || 'untitled'
-  const description = Description?.rich_text?.at(0)?.plain_text || 'no content'
-  const skillList = Stack?.multi_select?.map((tag) => tag.name || '') || []
-  const thumbnailUrl =
-    Thumbnail?.files?.at(0)?.external?.url ||
-    Thumbnail?.files?.at(0)?.file?.url ||
-    ''
+  const order = getNumberData(Order)
+  const title = getTitleData(Name)
+  const description = getTextData(Description)
+  const skillList = getMultiSelectDataList(Stack)
+  const thumbnailUrl = getFileUrlData(Thumbnail)
 
   return (
-    <li className={styles['work-item']}>
+    <li className={styles['project-item']}>
       {/* 작업 순서 (역순) */}
       <div className={styles.order}>{makeNumberToTwoLetter(order)}</div>
       {/* 썸네일 */}

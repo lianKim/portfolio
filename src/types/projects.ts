@@ -51,8 +51,14 @@ export type FilesAndMediaType = {
   }[]
 }
 
-export type WorkItemPropData = {
-  Order?: NumberType
+export type ProjectItemData = {
+  properties: ProjectItemPropData
+  last_edited_time: string
+  id: string
+}
+
+export type ProjectItemPropData = {
+  Order: NumberType
   Period?: DateType
   Name?: TitleType
   Description?: TextType

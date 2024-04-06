@@ -1,4 +1,4 @@
-.works {
+.projects {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -6,7 +6,7 @@
   column-gap: var(--grid-column-gap);
 }
 
-.work-item {
+.project-item {
   position: relative;
 }
 
@@ -61,13 +61,13 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .works {
+  .projects {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 767px) {
-  .works {
+  .projects {
     grid-template-columns: 1fr;
   }
 }

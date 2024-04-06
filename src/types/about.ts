@@ -1,3 +1,5 @@
+import { DateType, TextType, TitleType } from './projects'
+
 // Skills
 export type SkillItemData = {
   properties?: {
@@ -14,19 +16,11 @@ export type SkillItemData = {
   }
 }
 
-// Education
-export type EducationItemData = {
-  properties?: {
-    Name: {
-      title?: {
-        plain_text?: string
-      }[]
-    }
-    Period: {
-      date?: {
-        start?: string
-        end?: string
-      }
-    }
+// Timeline
+export type TimelineItemData = {
+  properties: {
+    Name: TitleType
+    Period: DateType
+    Note: TextType
   }
 }

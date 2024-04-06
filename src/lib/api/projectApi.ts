@@ -2,8 +2,8 @@ import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export const MY_NOTION_DOMAIN = process.env.NEXT_PUBLIC_NOTION_PAGE_BASE_URL
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY
-const WORK_DB_ID = process.env.NEXT_PUBLIC_WORK_DB_ID
-const WORK_LIST_QUERY_OPTIONS = {
+const PROJECT_DB_ID = process.env.NEXT_PUBLIC_PROJECT_DB_ID
+const PROJECT_LIST_QUERY_OPTIONS = {
   sorts: [
     {
       property: 'Order',
@@ -14,12 +14,12 @@ const WORK_LIST_QUERY_OPTIONS = {
 
 /**
  * Notion에서 작업물 목록 DB 가져오는 함수
- * @returns work list
+ * @returns project list
  */
-export const getWorkList = async () => {
+export const getProjectList = async () => {
   try {
     const res = await fetch(
-      `https://api.notion.com/v1/databases/${WORK_DB_ID}/query`,
+      `https://api.notion.com/v1/databases/${PROJECT_DB_ID}/query`,
       {
         method: 'POST',
         headers: {
@@ -27,7 +27,7 @@ export const getWorkList = async () => {
           'Notion-Version': '2022-06-28',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(WORK_LIST_QUERY_OPTIONS),
+        body: JSON.stringify(PROJECT_LIST_QUERY_OPTIONS),
         next: { revalidate: 3500 },
         mode: 'cors',
         credentials: 'same-origin',
@@ -43,11 +43,12 @@ export const getWorkList = async () => {
     }
 
     const data: QueryDatabaseResponse = await res.json()
+    const result: unknown = data?.results
 
-    return data?.results
+    return result
   } catch (error) {
     console.log(error)
-    throw new Error('Failed to get work list data')
+    throw new Error('Failed to get project list data')
   }
 }
 
@@ -76,7 +77,7 @@ export const getPageProperties = async (pageId: string) => {
 /**
  * Notion에서 특정 block의 children blocks 가져오는 함수
  * @param blockId 작업물 개별 page id (= block id)
- * @returns work detail 페이지의 항목 block list
+ * @returns project detail 페이지의 항목 block list
  */
 export const getNotionBlockChildren = async (blockId: string) => {
   try {
