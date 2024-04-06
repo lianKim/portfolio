@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
-import Header from '@/components/header/Header'
+import Header from '@/components/@common/Header'
 import LinkedIcons from '@/components/@common/LinkedIcons'
 
 interface RootLayoutProps {

@@ -10,12 +10,8 @@ export default async function About() {
 
   return (
     <>
-      {!!skillsList?.length && (
-        <Skills dataList={skillsList as SkillItemData[][]} />
-      )}
-      {!!(timelineList as TimelineItemData[])?.length && (
-        <Timeline data={timelineList as TimelineItemData[]} />
-      )}
+      <Skills dataList={skillsList as SkillItemData[][]} />
+      <Timeline data={timelineList as TimelineItemData[]} />
     </>
   )
 }

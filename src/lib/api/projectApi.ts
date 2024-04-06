@@ -43,8 +43,9 @@ export const getProjectList = async () => {
     }
 
     const data: QueryDatabaseResponse = await res.json()
+    const result: unknown = data?.results
 
-    return data?.results
+    return result
   } catch (error) {
     console.log(error)
     throw new Error('Failed to get project list data')
