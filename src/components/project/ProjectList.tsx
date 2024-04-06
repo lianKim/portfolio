@@ -2,7 +2,7 @@ import React from 'react'
 import SectionContainer from '../@common/SectionContainer'
 import styles from '@/styles/Project.module.css'
 import Link from 'next/link'
-import { ProjectItemPropData } from '@/types/projects'
+import { ProjectItemData, ProjectItemPropData } from '@/types/projects'
 import { makeNumberToTwoLetter } from '@/lib/utils/handleString'
 import Image from 'next/image'
 import { BLUR_DATA_URL_BASE64 } from '@/lib/utils/handleImage'
@@ -15,7 +15,7 @@ import {
 } from '@/lib/utils/handleNotionData'
 
 interface ProjectListProps {
-  dataList: ProjectItemPropData[]
+  dataList: ProjectItemData[]
 }
 
 interface ProjectItemProps {
@@ -26,12 +26,12 @@ export default function ProjectList({ dataList }: ProjectListProps) {
   return (
     <SectionContainer title="Projects">
       <ol className={`${styles.projects} container`}>
-        {dataList.map((project) => {
+        {dataList.map((project: ProjectItemData) => {
           if (!('properties' in project)) {
             throw new Error('No Properties Error')
           }
 
-          const { properties } = project as any
+          const { properties } = project
 
           return (
             <Link
