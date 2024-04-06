@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import ProjectDetail from '@/components/project/detail/ProjectDetail'
-import Modal from '@/components/modal/Modal'
+import Modal from '@/components/@common/Modal'
 import LoadingModal from '../../loading'
 
 interface ProjectDetailModalProps {
