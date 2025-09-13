@@ -1,4 +1,4 @@
-<!-- 
+<!--
 🔍 CONTEXT: 프로젝트 초기 설정, 패키지 설치, 디렉토리 구조 생성, 타입 정의 시 참조
 🏷️ KEYWORDS: yarn add, setup, directory, types, configuration, package, shadcn, tailwind
 🎯 TRIGGER: "패키지", "설치", "초기 설정", "디렉토리 생성", "환경 설정", "타입 정의"
@@ -11,17 +11,20 @@
 ### 1. 패키지 설치
 
 ```bash
+# Tailwind CSS
+yarn add tailwindcss @tailwindcss/postcss postcss autoprefixer
+
 # MDX 관련 패키지
-yarn add next-mdx-remote gray-matter reading-time glob
+yarn add next-mdx-remote gray-matter reading-time glob @tailwindcss/typography
 
 # MDX 플러그인
 yarn add remark-gfm remark-breaks rehype-pretty-code rehype-slug
 
-# 타입 정의
-yarn add -D @types/glob
+# 코드 하이라이팅 (rehype-pretty-code의 peer dependency)
+yarn add shiki
 
-# Tailwind Typography
-yarn add @tailwindcss/typography
+# 아이콘 라이브러리
+yarn add lucide-react
 
 # 상태관리 (필요시)
 yarn add zustand
@@ -30,19 +33,36 @@ yarn add zustand
 yarn add @giscus/react
 ```
 
-### 2. shadcn/ui 컴포넌트 추가
+### 2. shadcn/ui 설치 및 컴포넌트 추가
 
 ```bash
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add card
-npx shadcn-ui@latest add badge
-npx shadcn-ui@latest add separator
-npx shadcn-ui@latest add scroll-area
-npx shadcn-ui@latest add tooltip
-npx shadcn-ui@latest add dropdown-menu
+# shadcn/ui 초기화 (Tailwind v4 호환)
+npx shadcn@latest init
+# 색상: Neutral 선택
+
+# 필요한 컴포넌트 추가
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add badge
+npx shadcn@latest add separator
+npx shadcn@latest add scroll-area
+npx shadcn@latest add tooltip
+npx shadcn@latest add dropdown-menu
 ```
 
-### 3. 디렉토리 생성
+### 3. PostCSS 설정 파일 생성
+
+```javascript
+// postcss.config.js
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+```
+
+### 4. 디렉토리 생성
 
 ```bash
 # 블로그 라우트 디렉토리
@@ -131,66 +151,51 @@ console.log(\"Hello, World!\")
 ![이미지 설명](/blog/images/example.jpg)
 ````
 
-## Tailwind
+## Tailwind CSS v4 설정
 
-### tailwind.config.js
+### src/app/globals.css
 
-```javascript
-module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/content/**/*.mdx',
-  ],
-  theme: {
-    extend: {
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            maxWidth: 'none',
-            color: theme('colors.gray.700'),
-            a: {
-              color: theme('colors.blue.600'),
-              '&:hover': {
-                color: theme('colors.blue.700'),
-              },
-            },
-            'code::before': {
-              content: '""',
-            },
-            'code::after': {
-              content: '""',
-            },
-            code: {
-              backgroundColor: theme('colors.gray.100'),
-              borderRadius: theme('borderRadius.md'),
-              paddingTop: theme('spacing.1'),
-              paddingBottom: theme('spacing.1'),
-              paddingLeft: theme('spacing.1.5'),
-              paddingRight: theme('spacing.1.5'),
-            },
-          },
-        },
-        dark: {
-          css: {
-            color: theme('colors.gray.300'),
-            a: {
-              color: theme('colors.blue.400'),
-              '&:hover': {
-                color: theme('colors.blue.300'),
-              },
-            },
-            code: {
-              backgroundColor: theme('colors.gray.800'),
-            },
-          },
-        },
-      }),
-    },
-  },
-  plugins: [require('@tailwindcss/typography')],
+**주의**: 이 프로젝트는 Tailwind CSS v4를 사용합니다. v4에서는 설정 파일 대신 CSS 파일에서 직접 설정합니다.
+
+```css
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-*: initial;
+  --radius: 0.5rem;
+  /* shadcn/ui 색상 변수들이 자동으로 추가됩니다 */
 }
+
+:root {
+  --radius: 0.625rem;
+  /* 색상 변수들이 자동으로 추가됩니다 */
+}
+
+.dark {
+  /* 다크모드 색상 변수들이 자동으로 추가됩니다 */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
+
+### Tailwind Typography 플러그인 적용
+
+Tailwind Typography는 자동으로 적용되며, MDX 콘텐츠에 `prose` 클래스를 사용하면 됩니다:
+
+```jsx
+<article className="prose prose-lg max-w-none dark:prose-invert">
+  {/* MDX 콘텐츠 */}
+</article>
 ```
 
 ## 환경 변수 (.env.local)
