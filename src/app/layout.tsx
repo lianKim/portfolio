@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import './globals.css'
 import Header from '@/components/@common/Header'
 import LinkedIcons from '@/components/@common/LinkedIcons'
 
