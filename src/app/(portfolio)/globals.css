@@ -1,5 +1,5 @@
-@import 'reset.css';
-@import 'fonts.css';
+@import '../../styles/reset.css'; /* 1. 리셋 먼저 */
+@import '../../styles/fonts.css'; /* 2. 폰트 설정 */
 
 :root {
   /* Color */
