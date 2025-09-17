@@ -1,15 +1,10 @@
-<!-- 
-🔍 CONTEXT: 성능 최적화, 배포, 트러블슈팅, 참조 자료가 필요할 때 참조
-🏷️ KEYWORDS: performance, optimization, deploy, troubleshooting, reference, seo, build
-🎯 TRIGGER: "최적화", "성능", "배포", "트러블슈팅", "문제 해결", "참조", "SEO"
+<!--
+🔍 CONTEXT: 성능 최적화, 배포, 트러블슈팅 시 참조
+🏷️ KEYWORDS: performance, optimization, deploy, troubleshooting, seo, build
+🎯 TRIGGER: "최적화", "성능", "배포", "트러블슈팅", "문제 해결", "SEO"
 -->
 
-# 🔍 참조 & 최적화
-
-## 참고 사이트
-
-1. [limtong.com](https://www.limtong.com/post/create-a-blog-with-nextjs) - 사이트 UI, SSG 최적화, 렌더링 성능
-2. [d5br5.dev](https://d5br5.dev/blog/nextjs_blog/setup) - 사이트 UI, 체계적인 구조, glob 파일 탐색
+# 🔍 최적화
 
 ## 성능 최적화 체크리스트
 
