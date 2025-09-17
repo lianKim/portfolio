@@ -66,17 +66,17 @@ module.exports = {
 
 ```bash
 # 블로그 라우트 디렉토리
-mkdir -p src/app/blog/\\[category\\]/\\[slug\\]
+mkdir -p src/app/(blog)/blog/\\[slug\\]
 
 # 컴포넌트 디렉토리
 mkdir -p src/components/blog
-mkdir -p src/components/mdx
+mkdir -p src/components/blog/mdx
 
 # 라이브러리 디렉토리
 mkdir -p src/lib/blog
 
 # 콘텐츠 디렉토리
-mkdir -p src/content/posts/{tech,review,tutorial}
+mkdir -p public/blog/posts
 
 # 정적 자산 디렉토리
 mkdir -p public/blog/images
