@@ -1,6 +1,6 @@
 import './globals.css'
 
-import Header from '@/components/@common/Header'
+import Header from '@/components/blog/Header'
 import type { Metadata } from 'next'
 
 interface RootLayoutProps {
@@ -23,9 +23,11 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
         <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
       </head>
       <body>
-        <div className="grid-container">
-          <header>임시 헤더</header>
-          <main className="main">{children}</main>
+        <div>
+          <Header />
+          <main className="mx-auto px-4 py-12 max-w-[1400px] min-h-screen">
+            {children}
+          </main>
           {modal}
         </div>
       </body>
