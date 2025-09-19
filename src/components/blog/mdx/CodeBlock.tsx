@@ -3,6 +3,7 @@
 import { Check, Copy } from 'lucide-react'
 import { ReactNode, isValidElement, useState } from 'react'
 
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 interface CodeBlockProps {
@@ -51,11 +52,12 @@ export function CodeBlock({
         <span className="text-xs font-medium text-muted-foreground uppercase">
           {lang}
         </span>
-        <button
+        <Button
           onClick={handleCopy}
+          variant="ghost"
+          size="sm"
           className={cn(
-            'flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors',
-            'hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+            'h-7 gap-1.5 text-xs cursor-pointer',
             copied
               ? 'text-green-600 dark:text-green-400'
               : 'text-muted-foreground hover:text-foreground',
@@ -72,7 +74,7 @@ export function CodeBlock({
               <span>복사</span>
             </>
           )}
-        </button>
+        </Button>
       </div>
 
       {/* 코드 블록 */}
@@ -80,7 +82,8 @@ export function CodeBlock({
         className={cn(
           'overflow-x-auto p-4 bg-card border border-t-0 border-border/40 rounded-b-lg',
           'text-sm leading-relaxed text-card-foreground',
-          '[&>code]:bg-transparent [&>code]:p-0',
+          '[&>code]:bg-transparent [&>code]:p-0 [&>code]:font-normal',
+          '[&_code]:font-normal',
           className,
         )}
       >

@@ -93,7 +93,7 @@ export default function ServerComponent() {
 }
 
 // 클라이언트 컴포넌트
-;('use client')
+'use client'
 export default function ClientComponent() {
   const [count, setCount] = useState(0)
   return <button onClick={() => setCount(count + 1)}>{count}</button>
@@ -162,7 +162,7 @@ export default function Loading() {
 }
 
 // error.tsx
-;('use client')
+'use client'
 export default function Error({
   error,
   reset,
