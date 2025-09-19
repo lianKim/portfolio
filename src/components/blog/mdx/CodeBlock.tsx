@@ -82,8 +82,7 @@ export function CodeBlock({
         className={cn(
           'overflow-x-auto p-4 bg-card border border-t-0 border-border/40 rounded-b-lg',
           'text-sm leading-relaxed text-card-foreground',
-          '[&>code]:bg-transparent [&>code]:p-0 [&>code]:font-normal',
-          '[&_code]:font-normal',
+          '[&>code]:bg-transparent [&>code]:p-0',
           className,
         )}
       >

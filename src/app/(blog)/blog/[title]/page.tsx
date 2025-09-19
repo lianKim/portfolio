@@ -9,7 +9,7 @@ export default async function BlogPage() {
   const { frontmatter, content } = await getTestPost()
 
   return (
-    <article className="max-w-3xl mx-auto">
+    <article className="w-full mx-auto">
       {/* 포스트 헤더 */}
       <header className="mb-6">
         <div className="flex flex-wrap gap-2 mb-4">
