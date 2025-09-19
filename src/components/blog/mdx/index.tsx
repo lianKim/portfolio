@@ -7,6 +7,7 @@ import { Blockquote } from './Blockquote'
 import { UnorderedList, OrderedList } from './List'
 import { Separator } from './Separator'
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from './Table'
+import { Paragraph } from './Paragraph'
 
 // MDX 컴포넌트 맵핑
 export const mdxComponents = {
@@ -30,4 +31,5 @@ export const mdxComponents = {
   tr: (props: any) => <TableRow {...props} />,
   td: (props: any) => <TableCell {...props} />,
   th: (props: any) => <TableHead {...props} />,
+  p: (props: any) => <Paragraph {...props} />,
 }

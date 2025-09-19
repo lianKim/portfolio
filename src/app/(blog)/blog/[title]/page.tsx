@@ -7,13 +7,16 @@ import { getTestPost } from '@/lib/blog/mdx'
 export default async function BlogPage() {
   // 테스트용 마크다운 파일 파싱
   const { frontmatter, content } = await getTestPost()
+
   return (
     <article className="max-w-3xl mx-auto">
       {/* 포스트 헤더 */}
       <header className="mb-6">
         <div className="flex flex-wrap gap-2 mb-4">
           {frontmatter.tags.map((tag) => (
-            <Badge key={tag} variant="secondary">{tag}</Badge>
+            <Badge key={tag} variant="secondary">
+              {tag}
+            </Badge>
           ))}
         </div>
 
@@ -28,7 +31,9 @@ export default async function BlogPage() {
         <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-8">
           <div className="flex items-center gap-1">
             <Calendar className="w-4 h-4" />
-            <span>{new Date(frontmatter.date).toLocaleDateString('ko-KR')}</span>
+            <span>
+              {new Date(frontmatter.date).toLocaleDateString('ko-KR')}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Clock className="w-4 h-4" />
