@@ -8,6 +8,7 @@ import { UnorderedList, OrderedList } from './List'
 import { Separator } from './Separator'
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from './Table'
 import { Paragraph } from './Paragraph'
+import { InlineCode } from './InlineCode'
 
 // MDX 컴포넌트 맵핑
 export const mdxComponents = {
@@ -18,6 +19,7 @@ export const mdxComponents = {
   h5: (props: any) => <Heading level={5} {...props} />,
   h6: (props: any) => <Heading level={6} {...props} />,
   pre: (props: any) => <CodeBlock {...props} />,
+  code: (props: any) => <InlineCode {...props} />,
   img: (props: any) => <Image {...props} />,
   a: (props: any) => <Link {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
