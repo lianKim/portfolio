@@ -25,32 +25,19 @@ export function Image({
 
   return (
     <figure className="my-8 space-y-3">
-      {isExternal ? (
-        // 외부 이미지는 일반 img 태그 사용
-        <img
-          src={src}
-          alt={alt}
-          className={cn(
-            'w-full h-auto rounded-lg border border-border/40',
-            className,
-          )}
-          loading={priority ? 'eager' : 'lazy'}
-        />
-      ) : (
-        // 내부 이미지는 Next.js Image 컴포넌트 사용
-        <NextImage
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          priority={priority}
-          className={cn(
-            'w-full h-auto rounded-lg border border-border/40',
-            className,
-          )}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-        />
-      )}
+      <NextImage
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        className={cn(
+          'w-full h-auto rounded-lg border border-border/40',
+          className,
+        )}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        unoptimized={isExternal} // 외부 이미지는 최적화 비활성화
+      />
 
       {(caption || alt) && (
         <figcaption className="text-center text-sm text-muted-foreground leading-relaxed">
