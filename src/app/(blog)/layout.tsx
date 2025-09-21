@@ -25,7 +25,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       <body>
         <div>
           <Header />
-          <main className="mx-auto px-4 py-12 max-w-[1400px] min-h-screen">
+          <main className="mx-auto px-4 max-w-[var(--container-max-width)] min-h-screen">
             {children}
           </main>
           {modal}
