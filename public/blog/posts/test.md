@@ -6,6 +6,8 @@ tags: ['Next.js', 'React', 'App Router', 'TypeScript']
 readingTime: 8
 ---
 
+# 제목
+
 ## 서론
 
 `Next.js 14`에서 도입된 App Router는 React의 최신 기능들을 활용하여 더욱 강력하고 유연한 라우팅 시스템을 제공합니다. 이 글에서는 App Router의 핵심 개념부터 실제 프로젝트에 적용하는 방법까지 상세히 다루어보겠습니다.
