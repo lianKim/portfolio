@@ -40,12 +40,12 @@ export function Heading({ level, children, id, className }: HeadingProps) {
     >
       <a
         href={`#${headingId}`}
-        className="group flex items-center gap-2 no-underline hover:text-foreground/80"
+        className="group relative no-underline hover:text-foreground/80"
       >
-        {children}
-        <span className="opacity-0 group-hover:opacity-100 transition-opacity text-foreground/40 select-none">
+        <span className="absolute -left-3 -translate-x-full opacity-0 group-hover:opacity-100 transition-opacity text-foreground/40 select-none">
           #
         </span>
+        {children}
       </a>
     </Component>
   )
