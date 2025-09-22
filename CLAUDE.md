@@ -118,4 +118,5 @@ src/
 - **🏗️ 핵심 시스템 구현**: `.claude/CLAUDE-CORE.md` - MDX 파싱, 포스트 처리, 라우팅
 - **🧩 컴포넌트 개발**: `.claude/CLAUDE-COMPONENTS.md` - 블로그 컴포넌트, UI 구현
 - **📝 MDX/콘텐츠 작업**: `.claude/CLAUDE-MDX.md` - MDX 커스텀 컴포넌트, 콘텐츠 최적화
-- **🔍 참조/트러블슈팅**: `.claude/CLAUDE-REFERENCE.md` - 성능 최적화, 배포, 문제 해결
+- **🧰 최적화/트러블슈팅**: `.claude/CLAUDE-REFERENCE.md` - 성능 최적화, 배포, 문제 해결
+- **🔍 참고 자료**: `./CLAUDE.local.md` - 레퍼런스
