@@ -1,9 +1,18 @@
 import { PostCard } from '@/components/blog/PostCard'
+import { TagList } from '@/components/blog/TagList'
 
 export default function BlogPage() {
   return (
-    <div className="py-12">
-      <div className="space-y-8">
+    <div className="relative grid grid-cols-1 lg:grid-cols-[14rem_1fr] gap-8">
+      {/* 왼쪽 태그 목록 */}
+      <aside className="hidden lg:block">
+        <div className="w-56 sticky top-[var(--sticky-top-offset)]">
+          <TagList />
+        </div>
+      </aside>
+
+      {/* 오른쪽 포스트 목록 */}
+      <div className="py-12">
         <PostCard
           title="Next.js 블로그 만들기: 왜 직접 만들기로 했을까?"
           description="최근에 커리어를 정리하면서 여러 개발자들의 이력서를 들여다보는데, 생각보다 많은 사람들이 개인 블로그를 운영하고 있었다. 자기만의 공간에서 프로젝트나 기술 글을 잘 정리해둔 걸 보면서 나도 이런 공간 하나쯤은 있어야 하지 않을까..."

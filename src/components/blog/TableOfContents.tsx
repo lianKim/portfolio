@@ -68,9 +68,9 @@ export function TableOfContents({ className }: TableOfContentsProps) {
       const headerHeight = parseInt(
         getComputedStyle(document.documentElement)
           .getPropertyValue('--header-height')
-          .replace('px', '')
+          .replace('px', ''),
       )
-      
+
       // 헤더 높이 + 여백(24px)만큼 오프셋
       const offset = headerHeight + 24
       const y = element.getBoundingClientRect().top + window.scrollY - offset

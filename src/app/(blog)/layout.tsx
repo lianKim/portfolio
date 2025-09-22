@@ -23,9 +23,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
       </head>
       <body>
-        <div>
+        <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="mx-auto px-4 max-w-[var(--container-max-width)] min-h-screen">
+          <main className="flex-1 mx-auto px-4 max-w-[var(--container-max-width)]">
             {children}
           </main>
         </div>

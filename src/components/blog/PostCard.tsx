@@ -17,6 +17,7 @@ export function PostCard({
   tags,
   thumbnail,
 }: PostCardProps) {
+  // 첫번째 Card는 padding-top 제거
   return (
     <Card className="cursor-pointer relative border-none shadow-none hover:shadow-none">
       <CardContent className="flex gap-6 px-0">
