@@ -10,27 +10,12 @@ interface Tag {
 
 interface TagListProps {
   className?: string
-  selectedTag?: string
+  selectedTag?: string | null
   onTagSelect?: (tag: string | null) => void
+  tags?: Tag[]
 }
 
-export function TagList({ className, selectedTag, onTagSelect }: TagListProps) {
-  // 임시 더미 데이터 - 나중에 실제 데이터로 교체
-  const tags: Tag[] = [
-    { name: 'nextjs', count: 5 },
-    { name: 'react', count: 8 },
-    { name: 'typescript', count: 6 },
-    { name: 'javascript', count: 4 },
-    { name: 'css', count: 3 },
-    { name: 'blog', count: 2 },
-    { name: '개발', count: 7 },
-    { name: '렌더링', count: 2 },
-    { name: 'CSR', count: 1 },
-    { name: 'SSR', count: 1 },
-    { name: '클립보드', count: 1 },
-    { name: '웹API', count: 1 },
-    { name: 'UX', count: 1 },
-  ]
+export function TagList({ className, selectedTag, onTagSelect, tags = [] }: TagListProps) {
 
   const handleTagClick = (tagName: string) => {
     // 이미 선택된 태그를 클릭하면 선택 해제
