@@ -2,10 +2,11 @@ import './globals.css'
 
 import Header from '@/components/blog/Header'
 import type { Metadata } from 'next'
+import { ReactNode } from 'react'
 
 interface RootLayoutProps {
-  children: React.ReactNode
-  modal: React.ReactNode
+  children: ReactNode
+  modal: ReactNode
 }
 
 export const metadata: Metadata = {

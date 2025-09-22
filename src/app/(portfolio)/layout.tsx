@@ -3,10 +3,11 @@ import './globals.css'
 import Header from '@/components/@common/Header'
 import LinkedIcons from '@/components/@common/LinkedIcons'
 import type { Metadata } from 'next'
+import { ReactNode } from 'react'
 
 interface RootLayoutProps {
-  children: React.ReactNode
-  modal: React.ReactNode
+  children: ReactNode
+  modal: ReactNode
 }
 
 export const metadata: Metadata = {
