@@ -1,4 +1,6 @@
-import React from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+
+import { Badge } from '@/components/ui/badge'
 
 interface PostCardProps {
   title: string
@@ -16,37 +18,48 @@ export function PostCard({
   thumbnail,
 }: PostCardProps) {
   return (
-    <article className="flex gap-6 py-6 bg-white dark:bg-gray-900 cursor-pointer relative">
-      <div className="flex-1">
-        <h2 className="text-2xl font-bold mb-3 text-foreground">{title}</h2>
-        <p className="text-muted-foreground mb-4 leading-relaxed">
-          {description}
-        </p>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-muted-foreground">{date}</span>
-          <div className="flex gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-md"
-              >
-                {tag}
-              </span>
-            ))}
+    <Card className="cursor-pointer relative border-none shadow-none hover:shadow-none">
+      <CardContent className="flex gap-6 px-0">
+        {/* 왼쪽 콘텐츠 영역 - 제목, 설명, 메타정보 */}
+        <div className="flex-1">
+          {/* 포스트 제목 */}
+          <h2 className="text-xl font-bold mb-2 text-foreground">{title}</h2>
+
+          {/* 포스트 설명/요약 */}
+          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            {description}
+          </p>
+
+          {/* 하단 메타정보 영역 - 날짜와 태그 */}
+          <div className="flex items-center gap-4">
+            {/* 작성 날짜 */}
+            <span className="text-xs text-muted-foreground tracking-tight">
+              {date}
+            </span>
+
+            {/* 태그 목록 */}
+            <div className="flex gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="w-40 h-[107px] aspect-ratio-160-107 rounded-md overflow-hidden bg-muted">
-        {/* default thumbnail 필요 */}
-        {
-          <img
-            src={thumbnail || ''}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
-        }
-      </div>
-    </article>
+        {/* 오른쪽 썸네일 영역 */}
+        <div className="w-40 h-[107px] aspect-ratio-160-107 rounded-md overflow-hidden bg-muted">
+          {/* 썸네일 이미지 - default 이미지 필요 */}
+          {
+            <img
+              src={thumbnail || ''}
+              alt={title}
+              className="w-full h-full object-cover"
+            />
+          }
+        </div>
+      </CardContent>
+    </Card>
   )
 }
