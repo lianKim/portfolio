@@ -6,7 +6,6 @@ import { ReactNode } from 'react'
 
 interface RootLayoutProps {
   children: ReactNode
-  modal: ReactNode
 }
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children, modal }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
       <head>
@@ -29,7 +28,6 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
           <main className="mx-auto px-4 max-w-[var(--container-max-width)] min-h-screen">
             {children}
           </main>
-          {modal}
         </div>
       </body>
     </html>

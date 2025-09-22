@@ -20,7 +20,7 @@ export const mdxComponents = {
   h6: (props: any) => <Heading level={6} {...props} />,
   pre: (props: any) => <CodeBlock {...props} />,
   code: (props: any) => <InlineCode {...props} />,
-  img: (props: any) => <Image {...props} />,
+  img: (props: any) => <Image alt="" {...props} />,
   a: (props: any) => <Link {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
   callout: (props: any) => <Callout {...props} />,
