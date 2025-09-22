@@ -1,10 +1,11 @@
 import { Card, CardContent } from '@/components/ui/card'
-
 import { Badge } from '@/components/ui/badge'
 import { ImageIcon } from 'lucide-react'
 import NextImage from 'next/image'
+import Link from 'next/link'
 
 interface PostCardProps {
+  id: string
   title: string
   description: string
   date: string
@@ -13,6 +14,7 @@ interface PostCardProps {
 }
 
 export function PostCard({
+  id,
   title,
   description,
   date,
@@ -21,7 +23,8 @@ export function PostCard({
 }: PostCardProps) {
   // 첫번째 Card는 padding-top 제거
   return (
-    <Card className="cursor-pointer relative border-none shadow-none hover:shadow-none pt-0 [&+&]:pt-6">
+    <Link href={`/blog/${id}`}>
+      <Card className="cursor-pointer relative border-none shadow-none hover:shadow-none pt-0 [&+&]:pt-6">
       <CardContent className="flex gap-6 px-0">
         {/* 왼쪽 콘텐츠 영역 - 제목, 설명, 메타정보 */}
         <div className="flex-1">
@@ -67,5 +70,6 @@ export function PostCard({
         </div>
       </CardContent>
     </Card>
+    </Link>
   )
 }

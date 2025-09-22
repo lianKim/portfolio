@@ -27,6 +27,7 @@ export function PostList({ posts }: PostListProps) {
       {sortedPosts.map((post) => (
         <PostCard
           key={post.id}
+          id={post.id}
           title={post.title}
           description={post.description}
           date={post.date}
