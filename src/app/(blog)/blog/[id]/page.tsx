@@ -1,11 +1,11 @@
 import { Calendar, Clock } from 'lucide-react'
-import { notFound } from 'next/navigation'
 
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { parseMarkdownFile } from '@/lib/blog/mdx'
 import { getAllPosts } from '@/lib/blog/posts'
+import { notFound } from 'next/navigation'
+import { parseMarkdownFile } from '@/lib/blog/mdx'
 import path from 'path'
 
 interface BlogPageProps {
@@ -17,21 +17,21 @@ interface BlogPageProps {
 export default async function BlogPage({ params }: BlogPageProps) {
   // URL 파라미터에서 포스트 ID 가져오기
   const postId = params.id
-  
+
   // 해당 ID의 포스트가 존재하는지 확인
   const allPosts = getAllPosts()
-  const post = allPosts.find(p => p.id === postId)
-  
+  const post = allPosts.find((p) => p.id === postId)
+
   if (!post) {
     notFound()
   }
-  
+
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
   const { frontmatter, content } = await parseMarkdownFile(postPath)
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_14rem] gap-8">
+    <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_12rem] gap-8 w-full">
       {/* 메인 콘텐츠 */}
       <article className="py-12">
         {/* 포스트 헤더 */}
@@ -94,7 +94,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       {/* 사이드바 목차 - absolute 위치 */}
       <aside className="hidden lg:block">
-        <div className="w-56 sticky top-[var(--sticky-top-offset)]">
+        <div className="sticky top-[var(--sticky-top-offset)]">
           <TableOfContents />
         </div>
       </aside>
