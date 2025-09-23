@@ -65,6 +65,9 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
     const element = document.getElementById(id)
     if (element) {
+      // URL에 해시 추가
+      window.history.pushState(null, '', `#${id}`)
+      
       // CSS 변수에서 헤더 높이 가져오기
       const headerHeight = parseInt(
         getComputedStyle(document.documentElement)
