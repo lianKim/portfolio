@@ -25,11 +25,11 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
     headings.forEach((heading) => {
       if (heading.id) {
-        // 헤딩 내부의 앵커 링크에서 '#' 문자 제외하고 텍스트 추출
-        const text = heading.textContent?.replace(/\s*#\s*$/, '') || ''
+        // 헤딩 내부에서 '#' 문자 제외하고 텍스트 추출 (앞/뒤 모두)
+        const text = heading.textContent?.replace(/^\s*#+\s*|\s*#+\s*$/g, '') || ''
         tocItems.push({
           id: heading.id,
-          text,
+          text: text,
           level: parseInt(heading.tagName.charAt(1)),
         })
       }
