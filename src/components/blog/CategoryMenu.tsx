@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { usePathname } from 'next/navigation'
 
 interface Post {
   id: string
@@ -13,6 +16,13 @@ interface CategoryMenuProps {
 }
 
 export function CategoryMenu({ className, posts }: CategoryMenuProps) {
+  const pathname = usePathname()
+
+  // /blog/[id] 패턴에서 현재 포스트 ID 추출
+  const currentPostId =
+    pathname.startsWith('/blog/') && pathname !== '/blog'
+      ? pathname.split('/blog/')[1]
+      : undefined
   // 카테고리별로 포스트 그룹화
   const postsByCategory = posts.reduce(
     (acc, post) => {
@@ -48,13 +58,24 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
 
               {/* 해당 카테고리의 포스트 목록 */}
               <div className="space-y-1">
-                {categoryPosts.map((post) => (
-                  <Link key={post.id} href={`/blog/${post.id}`}>
-                    <div className="px-2 py-1 text-sm text-muted-foreground hover:text-foreground cursor-pointer leading-normal">
-                      {post.title}
-                    </div>
-                  </Link>
-                ))}
+                {categoryPosts.map((post) => {
+                  const isCurrentPost = currentPostId === post.id
+
+                  return (
+                    <Link key={post.id} href={`/blog/${post.id}`}>
+                      <div
+                        className={cn(
+                          'px-2 py-1 text-sm cursor-pointer leading-normal',
+                          isCurrentPost
+                            ? 'text-accent-foreground font-medium'
+                            : 'text-muted-foreground hover:text-foreground',
+                        )}
+                      >
+                        {post.title}
+                      </div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           ),

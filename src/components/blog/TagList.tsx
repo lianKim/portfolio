@@ -35,10 +35,10 @@ export function TagList({ className, selectedTag, tags = [] }: TagListProps) {
             <Link key={tag.name} href={createTagUrl(tag.name)}>
               <div
                 className={cn(
-                  'group w-full px-2 py-1 hover:text-foreground cursor-pointer leading-normal',
+                  'group w-full px-2 py-1 cursor-pointer leading-normal',
                   selectedTag === tag.name
-                    ? 'font-medium text-foreground'
-                    : 'text-muted-foreground',
+                    ? 'font-medium text-accent-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
                 )}
               >
                 <span>{tag.name}</span>
