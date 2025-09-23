@@ -1,6 +1,7 @@
+import { getAllPosts, getAllTags } from '@/lib/blog/posts'
+
 import { PostList } from '@/components/blog/PostList'
 import { TagList } from '@/components/blog/TagList'
-import { getAllPosts, getAllTags } from '@/lib/blog/posts'
 
 export default function BlogPage() {
   // 서버에서 포스트 데이터 가져오기

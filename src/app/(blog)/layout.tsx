@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-1 mx-auto px-4 max-w-[var(--container-max-width)]">
+          <main className="flex-1 mx-auto px-4 w-full max-w-[var(--container-max-width)]">
             {children}
           </main>
         </div>
