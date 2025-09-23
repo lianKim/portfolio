@@ -7,6 +7,7 @@ export interface Post {
   title: string
   description: string
   date: string
+  category?: string
   tags: string[]
   readingTime?: number
   thumbnail?: string
@@ -52,6 +53,7 @@ export function getAllPosts(): Post[] {
         title: data.title || '',
         description: data.description || '',
         date: formatDate(data.date) || '',
+        category: data.category || 'uncategorized',
         tags: data.tags || [],
         readingTime: data.readingTime,
         thumbnail: data.thumbnail,
@@ -91,5 +93,33 @@ export function getAllTags(): { name: string; count: number }[] {
   
   return Object.entries(tagCount)
     .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count) // 개수 내림차순
+}
+
+// 모든 카테고리와 개수 반환
+export function getAllCategories(): { name: string; slug: string; count: number }[] {
+  const posts = getAllPosts()
+  const categoryCount: { [key: string]: number } = {}
+  
+  posts.forEach(post => {
+    const category = post.category || 'uncategorized'
+    categoryCount[category] = (categoryCount[category] || 0) + 1
+  })
+  
+  // 카테고리 이름 매핑
+  const categoryNames: { [key: string]: string } = {
+    'development': '개발',
+    'review': '리뷰',
+    'learning': '학습',
+    'retrospective': '회고',
+    'uncategorized': '미분류'
+  }
+  
+  return Object.entries(categoryCount)
+    .map(([slug, count]) => ({ 
+      name: categoryNames[slug] || slug, 
+      slug, 
+      count 
+    }))
     .sort((a, b) => b.count - a.count) // 개수 내림차순
 }
