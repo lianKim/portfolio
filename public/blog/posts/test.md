@@ -2,11 +2,10 @@
 title: 'Next.js 14 App Router 완벽 가이드'
 description: 'Next.js 14의 새로운 App Router에 대해 자세히 알아보고, 실제 프로젝트에 적용하는 방법을 살펴보겠습니다.'
 date: '2024-01-20'
+category: 'development'
 tags: ['Next.js', 'React', 'App Router', 'TypeScript']
 readingTime: 8
 ---
-
-# 제목
 
 ## 서론
 
