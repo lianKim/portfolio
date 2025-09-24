@@ -67,7 +67,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
     if (element) {
       // URL에 해시 추가
       window.history.pushState(null, '', `#${id}`)
-      
+
       // CSS 변수에서 헤더 높이 가져오기
       const headerHeight = parseInt(
         getComputedStyle(document.documentElement)
@@ -97,7 +97,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
               href={`#${item.id}`}
               onClick={(e) => handleClick(e, item.id)}
               className={cn(
-                'group flex w-full items-center border border-transparent px-2 py-1 hover:text-foreground cursor-pointer leading-normal',
+                'group flex w-full items-center px-2 py-1 hover:text-foreground cursor-pointer leading-normal',
                 activeId === item.id
                   ? 'font-medium text-foreground'
                   : 'text-muted-foreground',

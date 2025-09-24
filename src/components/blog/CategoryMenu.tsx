@@ -46,7 +46,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
   }
 
   return (
-    <nav className={cn('w-56', className)}>
+    <nav className={className}>
       <div className="space-y-6 text-sm pb-4">
         {Object.entries(postsByCategory).map(
           ([categorySlug, categoryPosts]) => (
