@@ -9,15 +9,15 @@ export default function Header() {
           <nav className="flex items-center gap-6 text-sm">
             <a
               className="transition-colors hover:text-foreground/80 text-foreground/60"
-              href="/blog"
+              href="/about"
             >
-              Blog
+              About
             </a>
             <a
               className="transition-colors hover:text-foreground/80 text-foreground/60"
-              href="/"
+              href="/blog"
             >
-              Portfolio
+              Blog
             </a>
           </nav>
         </div>

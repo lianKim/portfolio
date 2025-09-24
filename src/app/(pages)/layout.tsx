@@ -9,8 +9,8 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: 'Lian Kim | Blog',
-  description: '프론트엔드 개발자 김리안의 블로그입니다.',
+  title: 'Lian Kim',
+  description: '프론트엔드 개발자 김리안의 포트폴리오 사이트입니다.',
   icons: {
     icon: '/favicon.ico',
   },
