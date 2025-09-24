@@ -28,6 +28,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
         // 헤딩 내부에서 '#' 문자 제외하고 텍스트 추출 (앞/뒤 모두)
         const text =
           heading.textContent?.replace(/^\s*#+\s*|\s*#+\s*$/g, '') || ''
+
         tocItems.push({
           id: heading.id,
           text: text,
@@ -89,7 +90,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
   return (
     <nav className={className}>
       <div className="pb-4">
-        <h4 className="mb-1 px-2 pb-1 text-sm font-semibold">On this page</h4>
+        <h4 className="mb-1 pr-2 pb-1 text-sm font-semibold">On this page</h4>
         <div className="grid grid-flow-row auto-rows-max text-sm">
           {toc.map((item) => (
             <a
@@ -97,11 +98,14 @@ export function TableOfContents({ className }: TableOfContentsProps) {
               href={`#${item.id}`}
               onClick={(e) => handleClick(e, item.id)}
               className={cn(
-                'group flex w-full items-center px-2 py-1 hover:text-foreground cursor-pointer leading-normal',
+                'group flex w-full items-center pr-2 py-1 hover:text-foreground cursor-pointer leading-normal',
                 activeId === item.id
                   ? 'font-medium text-foreground'
                   : 'text-muted-foreground',
-                item.level > 2 && 'pl-6',
+                item.level === 3 && 'pl-6',
+                item.level === 4 && 'pl-12',
+                item.level === 5 && 'pl-18',
+                item.level === 6 && 'pl-24',
               )}
             >
               {item.text}

@@ -39,10 +39,14 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
   // 카테고리 이름 매핑
   const categoryNames: { [key: string]: string } = {
     development: '개발',
-    review: '리뷰',
-    learning: '학습',
     retrospective: '회고',
-    uncategorized: '미분류',
+    web: 'Web',
+    nextjs: 'Next.js',
+    react: 'React',
+    typescript: 'TypeScript',
+    javascript: 'JavaScript',
+    html: 'HTML',
+    css: 'CSS',
   }
 
   return (
@@ -52,7 +56,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
           ([categorySlug, categoryPosts]) => (
             <div key={categorySlug}>
               {/* 카테고리 제목 */}
-              <h3 className="font-bold text-foreground mb-2 px-2">
+              <h3 className="font-bold text-foreground mb-2 pr-2">
                 {categoryNames[categorySlug] || categorySlug}
               </h3>
 
@@ -65,7 +69,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
                     <Link key={post.id} href={`/blog/${post.id}`}>
                       <div
                         className={cn(
-                          'px-2 py-1 text-sm cursor-pointer leading-normal',
+                          'pr-2 py-1 text-sm cursor-pointer leading-normal',
                           isCurrentPost
                             ? 'text-accent-foreground font-medium'
                             : 'text-muted-foreground hover:text-foreground',
