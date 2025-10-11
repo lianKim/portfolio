@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '@/components/blog/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <main className="flex-1 mx-auto px-4 w-full max-w-[var(--container-max-width)]">
             {children}
           </main>
+          <ScrollToTopButton />
         </div>
       </body>
     </html>
