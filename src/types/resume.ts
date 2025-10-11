@@ -24,6 +24,11 @@ export interface Education {
   description?: string
 }
 
+export interface SkillCategory {
+  category: string
+  skills: string[]
+}
+
 export interface ResumeHeader {
   name: string
   introduction: string
@@ -33,4 +38,5 @@ export interface ResumeData {
   header: ResumeHeader
   experiences: Experience[]
   education: Education[]
+  skills: SkillCategory[]
 }

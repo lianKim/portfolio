@@ -69,4 +69,31 @@ export const resumeData: ResumeData = {
       major: '영상·영화 전공',
     },
   ],
+  skills: [
+    {
+      category: 'Language',
+      skills: ['JavaScript', 'TypeScript'],
+    },
+    {
+      category: 'Frontend',
+      skills: [
+        'React',
+        'Next.js',
+        'React Query',
+        'Jotai',
+        'Styled Components',
+        'Emotion',
+        'Tailwind CSS',
+        'Storybook',
+      ],
+    },
+    {
+      category: 'DevOps & Deployment',
+      skills: ['GitHub Actions', 'Vercel', 'Amazon EC2', 'Amazon S3'],
+    },
+    {
+      category: 'Collaboration & Tools',
+      skills: ['Figma', 'Notion', 'Slack', 'Git', 'Swagger', 'Postman'],
+    },
+  ],
 }

@@ -1,6 +1,7 @@
 import AboutHeader from '@/components/resume/AboutHeader'
 import WorkExperienceSection from '@/components/resume/WorkExperienceSection'
 import EducationSection from '@/components/resume/EducationSection'
+import SkillsSection from '@/components/resume/SkillsSection'
 import { resumeData } from '@/lib/data/resume'
 
 export default function AboutPage() {
@@ -11,6 +12,7 @@ export default function AboutPage() {
 
         <main className="space-y-32">
           <WorkExperienceSection experiences={resumeData.experiences} />
+          <SkillsSection skills={resumeData.skills} />
           <EducationSection education={resumeData.education} />
         </main>
       </div>
