@@ -1,6 +1,7 @@
 import { Calendar, Clock } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
+import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { getAllPosts } from '@/lib/blog/posts'
@@ -77,18 +78,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
         {/* 포스트 푸터 */}
         <footer className="space-y-6">
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm text-foreground/60">태그:</span>
-            {frontmatter.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs">
-                #{tag}
-              </Badge>
-            ))}
-          </div>
-
-          <div className="text-center text-sm text-foreground/60">
-            이 글이 도움이 되셨다면 공유해 주세요!
-          </div>
+          <Giscus />
         </footer>
       </article>
 
