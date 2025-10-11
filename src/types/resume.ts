@@ -17,6 +17,13 @@ export interface Experience {
   tasks: Task[]
 }
 
+export interface Education {
+  company: string
+  period: string
+  major: string
+  description?: string
+}
+
 export interface ResumeHeader {
   name: string
   introduction: string
@@ -25,4 +32,5 @@ export interface ResumeHeader {
 export interface ResumeData {
   header: ResumeHeader
   experiences: Experience[]
+  education: Education[]
 }

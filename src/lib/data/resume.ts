@@ -62,4 +62,11 @@ export const resumeData: ResumeData = {
       ],
     },
   ],
+  education: [
+    {
+      company: '홍익대학교',
+      period: '2013.03 - 2019.02',
+      major: '영상·영화 전공',
+    },
+  ],
 }
