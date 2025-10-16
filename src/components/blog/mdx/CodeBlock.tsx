@@ -1,10 +1,11 @@
 'use client'
 
 import { Check, Copy } from 'lucide-react'
-import { ReactNode, isValidElement, useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils/cn'
+import { extractCodeText } from '@/lib/utils/mdx'
 
 interface CodeBlockProps {
   children: ReactNode
@@ -22,20 +23,9 @@ export function CodeBlock({
   // 언어 추출 (className에서 language- 접두사 제거)
   const lang = language || className?.replace('language-', '') || 'text'
 
-  // 코드 텍스트 추출
-  const getCodeText = () => {
-    if (typeof children === 'string') return children
-    if (
-      isValidElement(children) &&
-      typeof children.props.children === 'string'
-    ) {
-      return children.props.children
-    }
-    return ''
-  }
-
   const handleCopy = async () => {
-    const codeText = getCodeText()
+    const codeText = extractCodeText(children)
+
     try {
       await navigator.clipboard.writeText(codeText)
       setCopied(true)
