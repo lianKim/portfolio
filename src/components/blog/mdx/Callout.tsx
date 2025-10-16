@@ -1,5 +1,5 @@
 import { AlertCircle, Info, AlertTriangle, CheckCircle } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface CalloutProps {
   type?: 'info' | 'warning' | 'error' | 'success'

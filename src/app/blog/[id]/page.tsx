@@ -4,9 +4,9 @@ import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllPosts } from '@/lib/blog/posts'
+import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/blog/mdx'
+import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
 
 interface BlogPageProps {

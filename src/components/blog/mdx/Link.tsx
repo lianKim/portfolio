@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import { ExternalLink } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface LinkProps {
   href: string

@@ -4,7 +4,7 @@ import { Check, Copy } from 'lucide-react'
 import { ReactNode, isValidElement, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface CodeBlockProps {
   children: ReactNode

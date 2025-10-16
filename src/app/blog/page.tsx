@@ -1,5 +1,5 @@
 import { PostList } from '@/components/blog/PostList'
-import { getAllPosts } from '@/lib/blog/posts'
+import { getAllPosts } from '@/lib/utils/posts'
 
 interface BlogPageProps {
   searchParams: {
