@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 import type { Post } from '@/types/blog'
+import { CATEGORY_NAMES } from '@/lib/constants/blog'
 
 interface CategoryMenuProps {
   className?: string
@@ -31,19 +32,6 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
     {} as Record<string, Post[]>,
   )
 
-  // 카테고리 이름 매핑
-  const categoryNames: { [key: string]: string } = {
-    development: '개발',
-    retrospective: '회고',
-    web: 'Web',
-    nextjs: 'Next.js',
-    react: 'React',
-    typescript: 'TypeScript',
-    javascript: 'JavaScript',
-    html: 'HTML',
-    css: 'CSS',
-  }
-
   return (
     <nav className={className}>
       <div className="space-y-6 text-sm pb-4">
@@ -52,7 +40,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
             <div key={categorySlug}>
               {/* 카테고리 제목 */}
               <h3 className="font-bold text-foreground mb-2 pr-2">
-                {categoryNames[categorySlug] || categorySlug}
+                {CATEGORY_NAMES[categorySlug] || categorySlug}
               </h3>
 
               {/* 해당 카테고리의 포스트 목록 */}
