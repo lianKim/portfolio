@@ -1,6 +1,6 @@
 import { Calendar, Clock } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
+import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
@@ -32,12 +32,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { frontmatter, content } = await parseMarkdownFile(postPath)
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_12rem] gap-8 w-full">
+    <div className="relative w-full grid grid-cols-1 lg:grid-cols-[1fr_12rem] xl:grid-cols-[14rem_1fr_12rem] gap-12">
+      {/* 왼쪽 카테고리 메뉴 */}
+      <aside className="hidden xl:block">
+        <div className="sticky top-[var(--sticky-top-offset)]">
+          <CategoryMenu posts={allPosts} />
+        </div>
+      </aside>
+
       {/* 메인 콘텐츠 */}
       <article className="py-12">
         {/* 포스트 헤더 */}
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+          <h1 className="text-4xl font-bold leading-tight">
             {frontmatter.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
@@ -57,11 +64,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
         <Separator className="mb-16" />
 
         {/* 포스트 본문 */}
-        <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
+        <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
           {content}
         </div>
 
-        <Separator className="my-12" />
+        <Separator className="mb-12" />
 
         {/* 포스트 푸터 */}
         <footer className="space-y-6">
