@@ -1,14 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
-
-interface Post {
-  id: string
-  title: string
-  category?: string
-}
+import type { Post } from '@/types/blog'
 
 interface CategoryMenuProps {
   className?: string

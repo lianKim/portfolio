@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 interface ParagraphProps {
   children: React.ReactNode

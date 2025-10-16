@@ -1,26 +1,42 @@
-import { DateType, TextType, TitleType } from './projects'
-
-// Skills
-export type SkillItemData = {
-  properties?: {
-    Name: {
-      title?: {
-        plain_text?: string
-      }[]
-    }
-    Type: {
-      select?: {
-        name?: string
-      }
-    }
-  }
+export interface TaskDetail {
+  content: string
+  subContent?: string[]
 }
 
-// Timeline
-export type TimelineItemData = {
-  properties: {
-    Name: TitleType
-    Period: DateType
-    Note: TextType
-  }
+export interface Task {
+  title: string
+  details: TaskDetail[]
+  technologies: string[]
+}
+
+export interface Experience {
+  company: string
+  period: string
+  position: string
+  description: string
+  tasks: Task[]
+}
+
+export interface Education {
+  company: string
+  period: string
+  major: string
+  description?: string
+}
+
+export interface SkillCategory {
+  category: string
+  skills: string[]
+}
+
+export interface Introduction {
+  title: string
+  description: string
+}
+
+export interface AboutData {
+  introduction: Introduction
+  experiences: Experience[]
+  skills: SkillCategory[]
+  education: Education[]
 }

@@ -1,14 +1,5 @@
 import { PostCard } from './PostCard'
-
-interface Post {
-  id: string
-  title: string
-  description: string
-  date: string
-  tags: string[]
-  thumbnail?: string
-  category?: string
-}
+import type { Post } from '@/types/blog'
 
 interface PostListProps {
   posts: Post[]
