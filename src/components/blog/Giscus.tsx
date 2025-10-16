@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 
 import { useTheme } from 'next-themes'
+import { GISCUS_CONFIG } from '@/lib/constants/giscus'
 
 export default function Giscus() {
   const ref = useRef<HTMLDivElement>(null)
@@ -19,17 +20,17 @@ export default function Giscus() {
     scriptElem.async = true
     scriptElem.crossOrigin = 'anonymous'
 
-    scriptElem.setAttribute('data-repo', 'lianKim/portfolio')
-    scriptElem.setAttribute('data-repo-id', 'R_kgDOKvSlcg')
-    scriptElem.setAttribute('data-category', 'Comments')
-    scriptElem.setAttribute('data-category-id', 'DIC_kwDOKvSlcs4Cwf8s')
-    scriptElem.setAttribute('data-mapping', 'pathname')
-    scriptElem.setAttribute('data-strict', '0')
-    scriptElem.setAttribute('data-reactions-enabled', '1')
-    scriptElem.setAttribute('data-emit-metadata', '0')
-    scriptElem.setAttribute('data-input-position', 'bottom')
+    scriptElem.setAttribute('data-repo', GISCUS_CONFIG.repo)
+    scriptElem.setAttribute('data-repo-id', GISCUS_CONFIG.repoId)
+    scriptElem.setAttribute('data-category', GISCUS_CONFIG.category)
+    scriptElem.setAttribute('data-category-id', GISCUS_CONFIG.categoryId)
+    scriptElem.setAttribute('data-mapping', GISCUS_CONFIG.mapping)
+    scriptElem.setAttribute('data-strict', GISCUS_CONFIG.strict)
+    scriptElem.setAttribute('data-reactions-enabled', GISCUS_CONFIG.reactionsEnabled)
+    scriptElem.setAttribute('data-emit-metadata', GISCUS_CONFIG.emitMetadata)
+    scriptElem.setAttribute('data-input-position', GISCUS_CONFIG.inputPosition)
     scriptElem.setAttribute('data-theme', theme)
-    scriptElem.setAttribute('data-lang', 'ko')
+    scriptElem.setAttribute('data-lang', GISCUS_CONFIG.lang)
 
     ref.current.appendChild(scriptElem)
   }, [theme])
