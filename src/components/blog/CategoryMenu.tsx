@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 import type { Post } from '@/types/blog'
 import { CATEGORY_NAMES } from '@/lib/constants/blog'
+import { groupPostsByCategory } from '@/lib/utils/posts'
 
 interface CategoryMenuProps {
   className?: string
@@ -19,18 +20,9 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
     pathname.startsWith('/blog/') && pathname !== '/blog'
       ? pathname.split('/blog/')[1]
       : undefined
+
   // 카테고리별로 포스트 그룹화
-  const postsByCategory = posts.reduce(
-    (acc, post) => {
-      const category = post.category || 'uncategorized'
-      if (!acc[category]) {
-        acc[category] = []
-      }
-      acc[category].push(post)
-      return acc
-    },
-    {} as Record<string, Post[]>,
-  )
+  const postsByCategory = groupPostsByCategory(posts)
 
   return (
     <nav className={className}>
