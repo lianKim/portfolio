@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils/cn'
 import { useTocItems } from '@/hooks/useTocItems'
 import { useActiveSection } from '@/hooks/useActiveSection'
+import { scrollToElement } from '@/lib/utils/scroll'
 
 interface TableOfContentsProps {
   className?: string
@@ -14,24 +15,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
-
-    const element = document.getElementById(id)
-    if (element) {
-      // URL에 해시 추가
-      window.history.pushState(null, '', `#${id}`)
-
-      // CSS 변수에서 헤더 높이 가져오기
-      const headerHeight = parseInt(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--header-height')
-          .replace('px', ''),
-      )
-
-      // 헤더 높이 + 여백(24px)만큼 오프셋
-      const offset = headerHeight + 24
-      const y = element.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
+    scrollToElement(id)
   }
 
   if (toc.length === 0) {
