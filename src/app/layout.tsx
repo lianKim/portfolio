@@ -1,9 +1,9 @@
 import './globals.css'
 
-import Header from '@/components/blog/Header'
+import Header from '@/components/shared/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
-import ScrollToTopButton from '@/components/ScrollToTopButton'
+import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
 
 interface RootLayoutProps {
   children: ReactNode
