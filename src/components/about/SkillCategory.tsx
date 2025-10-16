@@ -1,5 +1,5 @@
 import { Badge } from '../ui/badge'
-import type { SkillCategory as SkillCategoryType } from '@/types/resume'
+import type { SkillCategory as SkillCategoryType } from '@/types/about'
 
 interface SkillCategoryProps {
   skillCategory: SkillCategoryType

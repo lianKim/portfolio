@@ -1,19 +1,19 @@
-import AboutHeader from '@/components/resume/AboutHeader'
-import EducationSection from '@/components/resume/EducationSection'
-import SkillsSection from '@/components/resume/SkillsSection'
-import WorkExperienceSection from '@/components/resume/WorkExperienceSection'
-import { resumeData } from '@/lib/data/resume'
+import Introduction from '@/components/about/Introduction'
+import EducationSection from '@/components/about/EducationSection'
+import SkillsSection from '@/components/about/SkillsSection'
+import WorkExperienceSection from '@/components/about/WorkExperienceSection'
+import { aboutData } from '@/lib/data/about'
 
 export default function AboutPage() {
   return (
     <div className="py-12">
       <div className="max-w-4xl space-y-24">
-        <AboutHeader data={resumeData.header} />
+        <Introduction data={aboutData.introduction} />
 
         <main className="space-y-32">
-          <WorkExperienceSection experiences={resumeData.experiences} />
-          <SkillsSection skills={resumeData.skills} />
-          <EducationSection education={resumeData.education} />
+          <WorkExperienceSection experiences={aboutData.experiences} />
+          <SkillsSection skills={aboutData.skills} />
+          <EducationSection education={aboutData.education} />
         </main>
       </div>
     </div>

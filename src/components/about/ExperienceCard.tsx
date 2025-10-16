@@ -1,5 +1,5 @@
 import TaskItem from './TaskItem'
-import type { Experience } from '@/types/resume'
+import type { Experience } from '@/types/about'
 
 interface ExperienceCardProps {
   experience: Experience

@@ -1,4 +1,4 @@
-import type { Education } from '@/types/resume'
+import type { Education } from '@/types/about'
 
 interface EducationCardProps {
   education: Education

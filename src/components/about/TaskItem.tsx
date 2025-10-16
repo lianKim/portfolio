@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge'
-import type { Task } from '@/types/resume'
+import type { Task } from '@/types/about'
 
 interface TaskItemProps {
   task: Task

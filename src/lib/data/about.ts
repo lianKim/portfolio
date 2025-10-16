@@ -1,9 +1,9 @@
-import type { ResumeData } from '@/types/resume'
+import type { AboutData } from '@/types/about'
 
-export const resumeData: ResumeData = {
-  header: {
-    name: '프론트엔드 개발자 김리안입니다.',
-    introduction: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+export const aboutData: AboutData = {
+  introduction: {
+    title: '프론트엔드 개발자 김리안입니다.',
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
     quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
     Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
     elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur
@@ -62,13 +62,6 @@ export const resumeData: ResumeData = {
       ],
     },
   ],
-  education: [
-    {
-      company: '홍익대학교',
-      period: '2013.03 - 2019.02',
-      major: '영상·영화 전공',
-    },
-  ],
   skills: [
     {
       category: 'Language',
@@ -94,6 +87,13 @@ export const resumeData: ResumeData = {
     {
       category: 'Collaboration & Tools',
       skills: ['Figma', 'Notion', 'Slack', 'Git', 'Swagger', 'Postman'],
+    },
+  ],
+  education: [
+    {
+      company: '홍익대학교',
+      period: '2013.03 - 2019.02',
+      major: '영상·영화 전공',
     },
   ],
 }
