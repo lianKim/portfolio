@@ -36,24 +36,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
       {/* 메인 콘텐츠 */}
       <article className="py-12">
         {/* 포스트 헤더 */}
-        <header className="mb-6">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {frontmatter.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
+        <header className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold leading-tight">
             {frontmatter.title}
           </h1>
-
-          <p className="text-l text-foreground/70 mt-4 leading-relaxed">
-            {frontmatter.description}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-8">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>
@@ -67,7 +54,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           </div>
         </header>
 
-        <Separator className="mb-12" />
+        <Separator className="mb-16" />
 
         {/* 포스트 본문 */}
         <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
