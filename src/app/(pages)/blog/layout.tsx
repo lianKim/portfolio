@@ -11,9 +11,9 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
   const posts = getAllPosts()
 
   return (
-    <div className="relative w-full grid grid-cols-1 lg:grid-cols-[14rem_1fr] gap-12">
+    <div className="relative w-full grid grid-cols-1 xl:grid-cols-[14rem_1fr] gap-12">
       {/* 왼쪽 카테고리 메뉴 */}
-      <aside className="hidden lg:block">
+      <aside className="hidden xl:block">
         <div className="sticky top-[var(--sticky-top-offset)]">
           <CategoryMenu posts={posts} />
         </div>
