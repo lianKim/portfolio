@@ -5,6 +5,7 @@ import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { getAllPosts } from '@/lib/utils/posts'
+import { formatDate } from '@/lib/utils/format'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
@@ -50,9 +51,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              <span>
-                {new Date(frontmatter.date).toLocaleDateString('ko-KR')}
-              </span>
+              <span>{formatDate(frontmatter.date)}</span>
             </div>
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
