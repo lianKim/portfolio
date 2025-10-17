@@ -30,7 +30,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
-  const { frontmatter, content } = await parseMarkdownFile(postPath)
+  const { frontmatter, content, readingTime } = await parseMarkdownFile(postPath)
 
   return (
     <div className="relative w-full grid grid-cols-1 lg:grid-cols-[1fr_12rem] xl:grid-cols-[14rem_1fr_12rem] gap-12">
@@ -55,7 +55,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
-              <span>{frontmatter.readingTime}분 읽기</span>
+              <span>{readingTime}분 읽기</span>
             </div>
           </div>
         </header>

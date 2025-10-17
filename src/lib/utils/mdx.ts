@@ -8,9 +8,14 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
+import getReadingTime from 'reading-time'
 
 export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
   const source = fs.readFileSync(filePath, 'utf-8')
+
+  // 읽기 시간 계산
+  const { minutes } = getReadingTime(source)
+  const readingTime = Math.ceil(minutes)
 
   const { content, frontmatter } = await compileMDX<PostFrontmatter>({
     source,
@@ -36,6 +41,7 @@ export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
   return {
     frontmatter,
     content,
+    readingTime,
   }
 }
 
