@@ -6,6 +6,7 @@ import fs from 'fs'
 import { mdxComponents } from '@/components/blog/mdx'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
+import rehypeUnwrapImages from 'rehype-unwrap-images'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import getReadingTime from 'reading-time'
@@ -25,6 +26,7 @@ export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkBreaks],
         rehypePlugins: [
+          rehypeUnwrapImages, // 이미지를 p 태그에서 제거
           [
             rehypePrettyCode,
             {
