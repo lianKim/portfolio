@@ -18,8 +18,6 @@ readingTime: 8
 - **로딩 UI**: 내장된 로딩 상태 관리
 - **에러 처리**: 컴포넌트 레벨 에러 경계
 
-![Next.js App Router 구조](https://github-production-user-asset-6210df.s3.amazonaws.com/97217822/309466998-29e9174f-2bb3-4c3e-9ae5-993f5046bae5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250917%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250917T064905Z&X-Amz-Expires=300&X-Amz-Signature=952ca4e705ffd4590b3989d694e5e1d0d9965499cdb1d626b33e6702ee25bde9&X-Amz-SignedHeaders=host)
-
 ### 실제 구현 예제
 
 다음은 간단한 App Router 구조의 예제입니다:
