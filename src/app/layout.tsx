@@ -23,9 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
-      <head>
-        <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
-      </head>
+      <head></head>
       <body>
         <div className="flex flex-col min-h-screen">
           <Header />
