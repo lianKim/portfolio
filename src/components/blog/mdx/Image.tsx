@@ -20,9 +20,6 @@ export function Image({
   caption,
   priority = false,
 }: ImageProps) {
-  // 외부 이미지인지 확인
-  const isExternal = src.startsWith('http')
-
   return (
     <figure className="my-8 space-y-3">
       <NextImage
@@ -31,12 +28,14 @@ export function Image({
         width={width}
         height={height}
         priority={priority}
+        loading={priority ? 'eager' : 'lazy'}
         className={cn(
           'w-full h-auto rounded-lg border border-border/40',
           className,
         )}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-        unoptimized={isExternal} // 외부 이미지는 최적화 비활성화
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, (max-width: 1280px) 60vw, 720px"
+        placeholder="empty"
+        unoptimized={false} // 외부 이미지도 Next.js로 최적화
       />
 
       {(caption || alt) && (
