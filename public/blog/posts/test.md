@@ -79,13 +79,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
 App Router에서는 기본적으로 모든 컴포넌트가 **서버 컴포넌트**입니다. 클라이언트에서 실행되어야 하는 컴포넌트만 `'use client'` 지시어를 사용합니다.
 
-<callout type="info" title="서버 컴포넌트 장점">
+<Callout type="info" title="서버 컴포넌트 장점">
 서버 컴포넌트는 초기 로딩 속도를 크게 향상시키고, SEO에도 유리합니다.
-</callout>
+</Callout>
 
-<callout type="warning">
+<Callout type="warning">
 클라이언트 컴포넌트에서는 useState, useEffect 같은 React 훅을 사용할 수 있지만, 서버 컴포넌트에서는 사용할 수 없습니다.
-</callout>
+</Callout>
 
 ```tsx
 // 서버 컴포넌트 (기본)
@@ -182,9 +182,9 @@ export default function Error({
 
 ## 마이그레이션 가이드
 
-<callout type="error" title="중요한 변경사항">
+<Callout type="error" title="중요한 변경사항">
 기존 Pages Router에서 App Router로 마이그레이션할 때는 많은 변경이 필요합니다.
-</callout>
+</Callout>
 
 기존 Pages Router에서 App Router로 마이그레이션할 때 주의사항:
 
@@ -193,9 +193,9 @@ export default function Error({
 3. **API Routes**: `pages/api/` → `app/api/`
 4. **데이터 페칭**: `getServerSideProps` → `fetch` in 서버 컴포넌트
 
-<callout type="success">
+<Callout type="success">
 단계적으로 마이그레이션하면 기존 코드를 유지하면서 새로운 기능을 점진적으로 도입할 수 있습니다.
-</callout>
+</Callout>
 
 ## 성능 최적화
 

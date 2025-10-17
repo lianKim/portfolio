@@ -1,14 +1,22 @@
-import { Heading } from './Heading'
-import { CodeBlock } from './CodeBlock'
-import { Image } from './Image'
-import { Link } from './Link'
-import { Callout } from './Callout'
+import { OrderedList, UnorderedList } from './List'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './Table'
+
 import { Blockquote } from './Blockquote'
-import { UnorderedList, OrderedList } from './List'
-import { Separator } from './Separator'
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from './Table'
-import { Paragraph } from './Paragraph'
+import { Callout } from './Callout'
+import { CodeBlock } from './CodeBlock'
+import { Heading } from './Heading'
+import { Image } from './Image'
 import { InlineCode } from './InlineCode'
+import { Link } from './Link'
+import { Paragraph } from './Paragraph'
+import { Separator } from './Separator'
 
 // MDX 컴포넌트 맵핑
 export const mdxComponents = {
@@ -23,7 +31,7 @@ export const mdxComponents = {
   img: (props: any) => <Image alt="" {...props} />,
   a: (props: any) => <Link {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
-  callout: (props: any) => <Callout {...props} />,
+  Callout: (props: any) => <Callout {...props} />,
   ul: (props: any) => <UnorderedList {...props} />,
   ol: (props: any) => <OrderedList {...props} />,
   hr: (props: any) => <Separator {...props} />,
