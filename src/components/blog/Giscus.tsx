@@ -4,16 +4,19 @@ import { useEffect, useRef } from 'react'
 
 import { useTheme } from 'next-themes'
 import { GISCUS_CONFIG } from '@/lib/constants/giscus'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 export default function Giscus() {
   const ref = useRef<HTMLDivElement>(null)
   const { resolvedTheme } = useTheme()
+  const isIntersecting = useIntersectionObserver(ref, { rootMargin: '200px' })
 
   // https://github.com/giscus/giscus/tree/main/styles/themes
   const theme = resolvedTheme === 'dark' ? 'dark' : 'light'
 
+  // 뷰포트에 진입했을 때만 Giscus 스크립트 로드
   useEffect(() => {
-    if (!ref.current || ref.current.hasChildNodes()) return
+    if (!isIntersecting || !ref.current || ref.current.hasChildNodes()) return
 
     const scriptElem = document.createElement('script')
     scriptElem.src = 'https://giscus.app/client.js'
@@ -33,7 +36,7 @@ export default function Giscus() {
     scriptElem.setAttribute('data-lang', GISCUS_CONFIG.lang)
 
     ref.current.appendChild(scriptElem)
-  }, [theme])
+  }, [isIntersecting, theme])
 
   // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
   useEffect(() => {
