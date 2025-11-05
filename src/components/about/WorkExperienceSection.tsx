@@ -1,17 +1,21 @@
-import ExperienceCard from './ExperienceCard'
 import type { Experience } from '@/types/about'
+import ExperienceCard from './ExperienceCard'
 
 interface WorkExperienceSectionProps {
   experiences: Experience[]
 }
 
-export default function WorkExperienceSection({ experiences }: WorkExperienceSectionProps) {
+export default function WorkExperienceSection({
+  experiences,
+}: WorkExperienceSectionProps) {
   return (
-    <div className="space-y-8">
-      <h2 className="text-xl font-bold">Work Experience</h2>
-      {experiences.map((experience, index) => (
-        <ExperienceCard key={index} experience={experience} />
-      ))}
+    <div>
+      <h2 className="text-xl font-bold mb-8">Work Experience</h2>
+      <div className="space-y-14">
+        {experiences.map((experience, index) => (
+          <ExperienceCard key={index} experience={experience} />
+        ))}
+      </div>
     </div>
   )
 }

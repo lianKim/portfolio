@@ -1,5 +1,5 @@
-import TaskItem from './TaskItem'
 import type { Experience } from '@/types/about'
+import TaskItem from './TaskItem'
 
 interface ExperienceCardProps {
   experience: Experience
@@ -12,19 +12,15 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         {experience.company}
       </h3>
       <div className="flex items-center gap-2 text-sm leading-tight">
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground text-sm font-medium">
           {experience.period}
         </p>
         <span className="text-muted-foreground text-sm">|</span>
-        <p className="text-muted-foreground text-sm">
-          {experience.position}
-        </p>
+        <p className="text-muted-foreground text-sm">{experience.position}</p>
       </div>
-      <p className="mt-2">
-        {experience.description}
-      </p>
+      <p className="mt-2">{experience.description}</p>
 
-      <ol className="space-y-8 mt-8">
+      <ol className="space-y-10 mt-8">
         {experience.tasks.map((task, index) => (
           <TaskItem key={index} task={task} />
         ))}

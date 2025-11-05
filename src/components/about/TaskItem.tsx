@@ -7,31 +7,57 @@ interface TaskItemProps {
 
 export default function TaskItem({ task }: TaskItemProps) {
   return (
-    <li className="space-y-2">
+    <li className="space-y-4">
+      {/* 주요 업무 타이틀 */}
       <h4 className="font-bold">{task.title}</h4>
-      <ul className="space-y-1 list-disc pl-4">
-        {task.details.map((detail, index) => (
-          <li key={index}>
-            <div>{detail.content}</div>
-            {detail.subContent && (
-              <ul className="space-y-1 list-[circle] pl-6 mt-2">
-                {detail.subContent.map((subItem, subIndex) => (
-                  <li key={subIndex} className="text-sm text-muted-foreground">
-                    {subItem}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-      <div className="flex gap-2 mt-3">
-        {task.technologies.map((tech) => (
-          <Badge key={tech} variant="secondary">
-            {tech}
-          </Badge>
-        ))}
+
+      {/* 문제 상황 */}
+      {task.problem && (
+        <div>
+          <p className="text-sm font-medium text-muted-foreground mb-2">
+            문제 상황
+          </p>
+          <p>{task.problem}</p>
+        </div>
+      )}
+
+      {/* 해결 과정 */}
+      <div>
+        <p className="text-sm font-medium text-muted-foreground mb-2">
+          해결 과정
+        </p>
+        <ul className="space-y-1.5 list-disc pl-4">
+          {task.process.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
       </div>
+
+      {/* 결과 */}
+      <div>
+        <p className="text-sm font-medium text-muted-foreground mb-2">결과</p>
+        <ul className="space-y-1.5 list-disc pl-4">
+          {task.results.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* 기술 스택 */}
+      {task.technologies && task.technologies.length > 0 && (
+        <div>
+          <p className="text-sm font-medium text-muted-foreground mb-2">
+            기술 스택
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {task.technologies.map((tech) => (
+              <Badge key={tech} variant="secondary">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
     </li>
   )
 }
