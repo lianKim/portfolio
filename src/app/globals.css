@@ -2,27 +2,11 @@
 
 /* Font Faces */
 @font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
   font-display: swap;
-  src: url('/fonts/NotoSansKR-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/NotoSansKR-Medium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/NotoSansKR-Bold.woff2') format('woff2');
+  src: url('/fonts/PretendardVariable_subset.woff2') format('woff2')
+    url('/fonts/PretendardVariable_subset.woff') format('woff');
 }
 
 @theme inline {
@@ -151,7 +135,8 @@
   body {
     @apply bg-background text-foreground;
     font-family:
-      'Noto Sans KR',
+      'Pretendard Variable',
+      Pretendard,
       -apple-system,
       BlinkMacSystemFont,
       'Segoe UI',
@@ -163,6 +148,5 @@
       'Droid Sans',
       'Helvetica Neue',
       sans-serif;
-    letter-spacing: -0.0375em;
   }
 }
