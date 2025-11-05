@@ -18,8 +18,6 @@ readingTime: 8
 - **로딩 UI**: 내장된 로딩 상태 관리
 - **에러 처리**: 컴포넌트 레벨 에러 경계
 
-![Next.js App Router 구조](https://github-production-user-asset-6210df.s3.amazonaws.com/97217822/309466998-29e9174f-2bb3-4c3e-9ae5-993f5046bae5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250917%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250917T064905Z&X-Amz-Expires=300&X-Amz-Signature=952ca4e705ffd4590b3989d694e5e1d0d9965499cdb1d626b33e6702ee25bde9&X-Amz-SignedHeaders=host)
-
 ### 실제 구현 예제
 
 다음은 간단한 App Router 구조의 예제입니다:
@@ -79,13 +77,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
 App Router에서는 기본적으로 모든 컴포넌트가 **서버 컴포넌트**입니다. 클라이언트에서 실행되어야 하는 컴포넌트만 `'use client'` 지시어를 사용합니다.
 
-<callout type="info" title="서버 컴포넌트 장점">
+<Callout type="info" title="서버 컴포넌트 장점">
 서버 컴포넌트는 초기 로딩 속도를 크게 향상시키고, SEO에도 유리합니다.
-</callout>
+</Callout>
 
-<callout type="warning">
+<Callout type="warning">
 클라이언트 컴포넌트에서는 useState, useEffect 같은 React 훅을 사용할 수 있지만, 서버 컴포넌트에서는 사용할 수 없습니다.
-</callout>
+</Callout>
 
 ```tsx
 // 서버 컴포넌트 (기본)
@@ -182,9 +180,9 @@ export default function Error({
 
 ## 마이그레이션 가이드
 
-<callout type="error" title="중요한 변경사항">
+<Callout type="error" title="중요한 변경사항">
 기존 Pages Router에서 App Router로 마이그레이션할 때는 많은 변경이 필요합니다.
-</callout>
+</Callout>
 
 기존 Pages Router에서 App Router로 마이그레이션할 때 주의사항:
 
@@ -193,9 +191,9 @@ export default function Error({
 3. **API Routes**: `pages/api/` → `app/api/`
 4. **데이터 페칭**: `getServerSideProps` → `fetch` in 서버 컴포넌트
 
-<callout type="success">
+<Callout type="success">
 단계적으로 마이그레이션하면 기존 코드를 유지하면서 새로운 기능을 점진적으로 도입할 수 있습니다.
-</callout>
+</Callout>
 
 ## 성능 최적화
 

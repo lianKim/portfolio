@@ -6,6 +6,7 @@ import {
   TableHeader as ShadcnTableHeader,
   TableRow as ShadcnTableRow,
 } from '@/components/ui/table'
+import { cn } from '@/lib/utils/cn'
 
 interface TableProps {
   children: React.ReactNode
@@ -37,5 +38,5 @@ export function TableCell({ children, className }: TableProps) {
 }
 
 export function TableHead({ children, className }: TableProps) {
-  return <ShadcnTableHead className={`font-semibold ${className || ''}`}>{children}</ShadcnTableHead>
+  return <ShadcnTableHead className={cn('font-semibold', className)}>{children}</ShadcnTableHead>
 }

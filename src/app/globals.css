@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+/* Font Faces */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-display: swap;
+  src: url('/fonts/PretendardVariable_subset.woff2') format('woff2')
+    url('/fonts/PretendardVariable_subset.woff') format('woff');
+}
+
 @theme inline {
   --color-*: initial;
   --radius: 0.5rem;
@@ -125,5 +134,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family:
+      'Pretendard Variable',
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Roboto',
+      'Oxygen',
+      'Ubuntu',
+      'Cantarell',
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      sans-serif;
   }
 }

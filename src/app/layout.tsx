@@ -10,8 +10,11 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: 'Lian Kim',
-  description: '프론트엔드 개발자 김리안의 포트폴리오 사이트입니다.',
+  title: '김리안 | 프론트엔드 개발자',
+  /**
+   * @todo description 수정 예정
+   */
+  description: 'Lian Kim | Frontend Developer',
   icons: {
     icon: '/favicon.ico',
   },
@@ -20,9 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
-      <head>
-        <link rel="stylesheet" href="https://use.typekit.net/uhv3fvd.css" />
-      </head>
+      <head></head>
       <body>
         <div className="flex flex-col min-h-screen">
           <Header />

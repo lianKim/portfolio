@@ -4,8 +4,8 @@ import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllPosts } from '@/lib/utils/posts'
 import { formatDate } from '@/lib/utils/format'
+import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
@@ -30,7 +30,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
-  const { frontmatter, content } = await parseMarkdownFile(postPath)
+  const { frontmatter, content, readingTime } =
+    await parseMarkdownFile(postPath)
 
   return (
     <div className="relative w-full grid grid-cols-1 lg:grid-cols-[1fr_12rem] xl:grid-cols-[14rem_1fr_12rem] gap-12">
@@ -55,7 +56,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
-              <span>{frontmatter.readingTime}분 읽기</span>
+              <span>{readingTime}분 읽기</span>
             </div>
           </div>
         </header>
@@ -83,4 +84,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
       </aside>
     </div>
   )
+}
+
+// 빌드 타임에 모든 블로그 포스트를 정적으로 생성
+export async function generateStaticParams() {
+  const posts = getAllPosts()
+
+  return posts.map((post) => ({
+    id: post.id,
+  }))
 }

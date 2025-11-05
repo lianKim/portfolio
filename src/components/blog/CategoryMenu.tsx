@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 import type { Post } from '@/types/blog'
+import { CATEGORY_NAMES } from '@/lib/constants/blog'
+import { groupPostsByCategory } from '@/lib/utils/posts'
 
 interface CategoryMenuProps {
   className?: string
@@ -18,31 +20,9 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
     pathname.startsWith('/blog/') && pathname !== '/blog'
       ? pathname.split('/blog/')[1]
       : undefined
-  // 카테고리별로 포스트 그룹화
-  const postsByCategory = posts.reduce(
-    (acc, post) => {
-      const category = post.category || 'uncategorized'
-      if (!acc[category]) {
-        acc[category] = []
-      }
-      acc[category].push(post)
-      return acc
-    },
-    {} as Record<string, Post[]>,
-  )
 
-  // 카테고리 이름 매핑
-  const categoryNames: { [key: string]: string } = {
-    development: '개발',
-    retrospective: '회고',
-    web: 'Web',
-    nextjs: 'Next.js',
-    react: 'React',
-    typescript: 'TypeScript',
-    javascript: 'JavaScript',
-    html: 'HTML',
-    css: 'CSS',
-  }
+  // 카테고리별로 포스트 그룹화
+  const postsByCategory = groupPostsByCategory(posts)
 
   return (
     <nav className={className}>
@@ -52,7 +32,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
             <div key={categorySlug}>
               {/* 카테고리 제목 */}
               <h3 className="font-bold text-foreground mb-2 pr-2">
-                {categoryNames[categorySlug] || categorySlug}
+                {CATEGORY_NAMES[categorySlug] || categorySlug}
               </h3>
 
               {/* 해당 카테고리의 포스트 목록 */}

@@ -14,10 +14,10 @@ export interface PostFrontmatter {
   description: string
   date: string
   tags: string[]
-  readingTime: number
 }
 
 export interface ParsedPost {
   frontmatter: PostFrontmatter
   content: React.ReactElement
+  readingTime: number
 }

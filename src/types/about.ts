@@ -1,12 +1,9 @@
-export interface TaskDetail {
-  content: string
-  subContent?: string[]
-}
-
 export interface Task {
   title: string
-  details: TaskDetail[]
-  technologies: string[]
+  problem?: string
+  process: string[]
+  results: string[]
+  technologies?: string[]
 }
 
 export interface Experience {
@@ -31,7 +28,8 @@ export interface SkillCategory {
 
 export interface Introduction {
   title: string
-  description: string
+  subtitles: string[]
+  description: string[]
 }
 
 export interface AboutData {
