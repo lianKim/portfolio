@@ -25,7 +25,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         </div>
       </div>
 
-      <div className="col-span-1 mt-3 md:col-span-7 md:mt-0">
+      <div className="col-span-1 md:col-span-7 mt-3 md:mt-0">
         <Separator />
         <p className="text-sm font-medium my-3 md:my-5">
           {experience.description}
