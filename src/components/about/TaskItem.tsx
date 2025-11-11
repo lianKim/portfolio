@@ -7,9 +7,9 @@ interface TaskItemProps {
 
 export default function TaskItem({ task }: TaskItemProps) {
   return (
-    <li className="space-y-4">
+    <li className="space-y-6 leading-relaxed">
       {/* 주요 업무 타이틀 */}
-      <h4 className="font-bold">{task.title}</h4>
+      <h4 className="font-bold text-accent-foreground">{task.title}</h4>
 
       {/* 문제 상황 */}
       {task.problem && (
@@ -26,7 +26,7 @@ export default function TaskItem({ task }: TaskItemProps) {
         <p className="text-sm font-medium text-muted-foreground mb-2">
           해결 과정
         </p>
-        <ul className="space-y-1.5 list-disc pl-4">
+        <ul className="space-y-2 list-disc pl-4">
           {task.process.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
@@ -36,7 +36,7 @@ export default function TaskItem({ task }: TaskItemProps) {
       {/* 결과 */}
       <div>
         <p className="text-sm font-medium text-muted-foreground mb-2">결과</p>
-        <ul className="space-y-1.5 list-disc pl-4">
+        <ul className="space-y-2 list-disc pl-4">
           {task.results.map((item, index) => (
             <li key={index}>{item}</li>
           ))}

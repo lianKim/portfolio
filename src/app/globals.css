@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 
 /* Font Faces */
-@font-face {
+/* @font-face {
   font-family: 'Pretendard Variable';
   font-weight: 45 920;
   font-display: swap;
   src: url('/fonts/PretendardVariable_subset.woff2') format('woff2')
     url('/fonts/PretendardVariable_subset.woff') format('woff');
-}
+} */
 
 @theme inline {
   --color-*: initial;

@@ -122,7 +122,7 @@ export const aboutData: AboutData = {
     {
       company: 'arffy',
       period: '2023.06 - 2024.01',
-      position: '프로젝트 총괄, 브랜딩 및 UI 디자인, 프론트엔드 개발',
+      position: 'Project Lead & Frontend Engineer',
       description: '20세기 유럽 조명 및 소품 커머스 브랜드',
       tasks: [
         {
