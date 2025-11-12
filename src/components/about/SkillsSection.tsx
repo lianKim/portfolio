@@ -12,8 +12,11 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
         Skills
       </h2>
       <div className="col-span-1 md:col-span-7 mt-8 md:mt-0 space-y-8">
-        {skills.map((skillCategory, index) => (
-          <SkillCategory key={index} skillCategory={skillCategory} />
+        {skills.map((skillCategory) => (
+          <SkillCategory
+            key={skillCategory.category}
+            skillCategory={skillCategory}
+          />
         ))}
       </div>
     </div>

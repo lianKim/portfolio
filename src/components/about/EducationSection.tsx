@@ -12,8 +12,8 @@ export default function EducationSection({ education }: EducationSectionProps) {
         Education
       </h2>
       <div className="col-span-1 md:col-span-7 mt-8 md:mt-0 space-y-6">
-        {education.map((edu, index) => (
-          <EducationCard key={index} education={edu} />
+        {education.map((edu) => (
+          <EducationCard key={edu.company} education={edu} />
         ))}
       </div>
     </div>

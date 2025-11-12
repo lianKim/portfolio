@@ -23,8 +23,8 @@ export default function TaskItem({ task }: TaskItemProps) {
       <div>
         <p className="text-sm text-muted-foreground mb-2">해결 과정</p>
         <ul className="space-y-2 list-disc pl-4">
-          {task.process.map((item, index) => (
-            <li key={index}>{item}</li>
+          {task.process.map((item) => (
+            <li key={item}>{item}</li>
           ))}
         </ul>
       </div>
@@ -33,8 +33,8 @@ export default function TaskItem({ task }: TaskItemProps) {
       <div>
         <p className="text-sm text-muted-foreground mb-2">결과</p>
         <ul className="space-y-2 list-disc pl-4">
-          {task.results.map((item, index) => (
-            <li key={index}>{item}</li>
+          {task.results.map((item) => (
+            <li key={item}>{item}</li>
           ))}
         </ul>
       </div>

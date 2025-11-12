@@ -29,8 +29,8 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         <Separator />
 
         <ol className="space-y-14 mt-10 md:mt-14">
-          {experience.tasks.map((task, index) => (
-            <TaskItem key={index} task={task} />
+          {experience.tasks.map((task) => (
+            <TaskItem key={`${experience.company}-${task.title}`} task={task} />
           ))}
         </ol>
       </div>
