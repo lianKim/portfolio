@@ -17,6 +17,7 @@ import { InlineCode } from './InlineCode'
 import { Link } from './Link'
 import { Paragraph } from './Paragraph'
 import { Separator } from './Separator'
+import { Strong } from './Strong'
 
 // MDX 컴포넌트 맵핑
 export const mdxComponents = {
@@ -42,4 +43,5 @@ export const mdxComponents = {
   td: (props: any) => <TableCell {...props} />,
   th: (props: any) => <TableHead {...props} />,
   p: (props: any) => <Paragraph {...props} />,
+  strong: (props: any) => <Strong {...props} />,
 }
