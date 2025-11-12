@@ -46,7 +46,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <article className="py-12">
         {/* 포스트 헤더 */}
         <header className="mb-8">
-          <h1 className="text-4xl font-bold leading-tight">
+          <h1 className="text-4xl font-extralight leading-tight">
             {frontmatter.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">

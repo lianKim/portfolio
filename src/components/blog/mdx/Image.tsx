@@ -21,7 +21,7 @@ export function Image({
   priority = false,
 }: ImageProps) {
   return (
-    <figure className="my-8 space-y-3">
+    <figure className="my-6 space-y-2">
       <NextImage
         src={src}
         alt={alt}
