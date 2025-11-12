@@ -5,8 +5,12 @@
   font-family: 'Pretendard Variable';
   font-weight: 45 920;
   font-display: swap;
-  src: url('/fonts/PretendardVariable_subset.woff2') format('woff2')
+  src:
+    url('/fonts/PretendardVariable.woff2') format('woff2'),
+    url('/fonts/PretendardVariable_subset.woff2') format('woff2'),
     url('/fonts/PretendardVariable_subset.woff') format('woff');
+  /* 한글에만 적용 */
+  unicode-range: U+AC00-D7A3;
 }
 
 @theme inline {
@@ -72,7 +76,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.66 0 0);
+  --muted-foreground: oklch(0.72 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.626 0.2288 30.85);
   --destructive: oklch(0.577 0.245 27.325);
@@ -137,6 +141,7 @@
     font-family:
       'Pretendard Variable',
       Pretendard,
+      'mundial-narrow-variable',
       -apple-system,
       BlinkMacSystemFont,
       'Segoe UI',

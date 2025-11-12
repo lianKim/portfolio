@@ -1,5 +1,6 @@
-import { PostCard } from './PostCard'
 import type { Post } from '@/types/blog'
+import { PostCard } from './PostCard'
+import { Separator } from './mdx/Separator'
 
 interface PostListProps {
   posts: Post[]
@@ -7,18 +8,22 @@ interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="flex flex-col">
+      <Separator className="mt-0 mb-12" />
       {/* 포스트 목록 */}
       {posts.map((post) => (
-        <PostCard
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          description={post.description}
-          date={post.date}
-          tags={post.tags}
-          thumbnail={post.thumbnail}
-        />
+        <>
+          <PostCard
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            description={post.description}
+            date={post.date}
+            tags={post.tags}
+            thumbnail={post.thumbnail}
+          />
+          <Separator className="my-12" />
+        </>
       ))}
     </div>
   )

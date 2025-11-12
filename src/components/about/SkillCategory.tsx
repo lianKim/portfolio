@@ -8,7 +8,7 @@ interface SkillCategoryProps {
 export default function SkillCategory({ skillCategory }: SkillCategoryProps) {
   return (
     <div className="gap-4">
-      <h3 className="text-lg font-bold text-foreground mb-3">
+      <h3 className="text-sm text-muted-foreground mb-3">
         {skillCategory.category}
       </h3>
       <div className="flex flex-wrap gap-2">

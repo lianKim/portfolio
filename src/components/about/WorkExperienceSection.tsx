@@ -10,10 +10,10 @@ export default function WorkExperienceSection({
 }: WorkExperienceSectionProps) {
   return (
     <div>
-      <h2 className="text-xl font-bold mb-8">Work Experience</h2>
-      <div className="space-y-14">
-        {experiences.map((experience, index) => (
-          <ExperienceCard key={index} experience={experience} />
+      <h2 className="text-[1.8rem] font-thin mb-8">Work Experience</h2>
+      <div className="space-y-20">
+        {experiences.map((experience) => (
+          <ExperienceCard key={experience.company} experience={experience} />
         ))}
       </div>
     </div>

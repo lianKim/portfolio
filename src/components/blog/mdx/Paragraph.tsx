@@ -6,14 +6,5 @@ interface ParagraphProps {
 }
 
 export function Paragraph({ children, className }: ParagraphProps) {
-  return (
-    <p
-      className={cn(
-        'leading-7 [&:not(:first-child)]:mt-6',
-        className,
-      )}
-    >
-      {children}
-    </p>
-  )
+  return <p className={cn('leading-7 mb-3', className)}>{children}</p>
 }

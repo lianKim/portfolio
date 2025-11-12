@@ -3,7 +3,6 @@ import { Calendar, Clock } from 'lucide-react'
 import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import { Separator } from '@/components/ui/separator'
-import { TableOfContents } from '@/components/blog/TableOfContents'
 import { formatDate } from '@/lib/utils/format'
 import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
@@ -34,19 +33,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
     await parseMarkdownFile(postPath)
 
   return (
-    <div className="relative w-full grid grid-cols-1 lg:grid-cols-[1fr_12rem] xl:grid-cols-[14rem_1fr_12rem] gap-12">
+    <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
       {/* 왼쪽 카테고리 메뉴 */}
-      <aside className="hidden xl:block">
-        <div className="sticky top-[var(--sticky-top-offset)]">
+      <aside className="hidden md:block col-span-5">
+        <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
           <CategoryMenu posts={allPosts} />
         </div>
       </aside>
 
       {/* 메인 콘텐츠 */}
-      <article className="py-12">
+      <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12 ">
         {/* 포스트 헤더 */}
         <header className="mb-8">
-          <h1 className="text-4xl font-bold leading-tight">
+          <h1 className="text-4xl font-extralight leading-tight">
             {frontmatter.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
@@ -75,13 +74,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
           <Giscus />
         </footer>
       </article>
-
-      {/* 사이드바 목차 - absolute 위치 */}
-      <aside className="hidden lg:block">
-        <div className="sticky top-[var(--sticky-top-offset)]">
-          <TableOfContents />
-        </div>
-      </aside>
     </div>
   )
 }

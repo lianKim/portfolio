@@ -1,4 +1,5 @@
 import type { Experience } from '@/types/about'
+import { Separator } from '../ui/separator'
 import TaskItem from './TaskItem'
 
 interface ExperienceCardProps {
@@ -7,24 +8,32 @@ interface ExperienceCardProps {
 
 export default function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
-    <div className="gap-4">
-      <h3 className="text-lg font-bold text-foreground mb-1">
-        {experience.company}
-      </h3>
-      <div className="flex items-center gap-2 text-sm leading-tight">
-        <p className="text-muted-foreground text-sm font-medium">
-          {experience.period}
-        </p>
-        <span className="text-muted-foreground text-sm">|</span>
-        <p className="text-muted-foreground text-sm">{experience.position}</p>
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-x-5">
+      <div className="col-span-1 md:col-span-5">
+        <div className="md:sticky md:top-[var(--sticky-top-offset)]">
+          <h3 className="mb-2">{experience.company}</h3>
+          <div className="lg:h-5 flex flex-col lg:flex-row lg:items-center gap-x-2 gap-y-1 text-sm leading-tight text-muted-foreground">
+            <p>{experience.period}</p>
+            <Separator
+              orientation="vertical"
+              className="hidden lg:inline-block"
+            />
+            <p>{experience.position}</p>
+          </div>
+        </div>
       </div>
-      <p className="mt-2">{experience.description}</p>
 
-      <ol className="space-y-10 mt-8">
-        {experience.tasks.map((task, index) => (
-          <TaskItem key={index} task={task} />
-        ))}
-      </ol>
+      <div className="col-span-1 md:col-span-7 mt-3 md:mt-0">
+        <Separator />
+        <p className="text-sm my-3 md:my-5">{experience.description}</p>
+        <Separator />
+
+        <ol className="space-y-14 mt-10 md:mt-14">
+          {experience.tasks.map((task) => (
+            <TaskItem key={`${experience.company}-${task.title}`} task={task} />
+          ))}
+        </ol>
+      </div>
     </div>
   )
 }

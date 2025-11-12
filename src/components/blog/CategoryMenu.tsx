@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-import { cn } from '@/lib/utils/cn'
-import { usePathname } from 'next/navigation'
-import type { Post } from '@/types/blog'
 import { CATEGORY_NAMES } from '@/lib/constants/blog'
+import Link from 'next/link'
+import type { Post } from '@/types/blog'
+import { cn } from '@/lib/utils/cn'
 import { groupPostsByCategory } from '@/lib/utils/posts'
+import { usePathname } from 'next/navigation'
 
 interface CategoryMenuProps {
   className?: string
@@ -26,12 +26,12 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
 
   return (
     <nav className={className}>
-      <div className="space-y-6 text-sm pb-4">
+      <div className="space-y-6 pb-4 text-sm">
         {Object.entries(postsByCategory).map(
           ([categorySlug, categoryPosts]) => (
             <div key={categorySlug}>
               {/* 카테고리 제목 */}
-              <h3 className="font-bold text-foreground mb-2 pr-2">
+              <h3 className="text-foreground mb-2 pr-2">
                 {CATEGORY_NAMES[categorySlug] || categorySlug}
               </h3>
 
@@ -46,8 +46,8 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
                         className={cn(
                           'pr-2 py-1 text-sm cursor-pointer leading-normal',
                           isCurrentPost
-                            ? 'text-accent-foreground font-medium'
-                            : 'text-muted-foreground hover:text-foreground',
+                            ? 'text-accent-foreground'
+                            : 'text-muted-foreground hover:text-foreground/70',
                         )}
                       >
                         {post.title}
