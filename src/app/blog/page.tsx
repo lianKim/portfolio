@@ -1,5 +1,18 @@
+import type { Metadata } from 'next'
 import { PostList } from '@/components/blog/PostList'
 import { getAllPosts } from '@/lib/utils/posts'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    '프론트엔드 개발 경험과 기술을 공유하는 김리안의 기술 블로그. React, Next.js, TypeScript 등 웹 개발 관련 글을 확인하세요.',
+  openGraph: {
+    title: 'Blog | 김리안',
+    description:
+      '프론트엔드 개발 경험과 기술을 공유하는 김리안의 기술 블로그. React, Next.js, TypeScript 등 웹 개발 관련 글을 확인하세요.',
+    url: '/blog',
+  },
+}
 
 export default function BlogPage() {
   // 서버에서 포스트 데이터 가져오기

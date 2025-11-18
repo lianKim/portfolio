@@ -14,6 +14,7 @@ export interface PostFrontmatter {
   description: string
   date: string
   tags: string[]
+  thumbnail?: string
 }
 
 export interface ParsedPost {

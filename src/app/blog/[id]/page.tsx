@@ -2,6 +2,7 @@ import { Calendar, Clock } from 'lucide-react'
 
 import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
+import type { Metadata } from 'next'
 import { Separator } from '@/components/ui/separator'
 import { formatDate } from '@/lib/utils/format'
 import { getAllPosts } from '@/lib/utils/posts'
@@ -12,6 +13,58 @@ import path from 'path'
 interface BlogPageProps {
   params: {
     id: string
+  }
+}
+
+// 동적 메타데이터 생성
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
+  const postId = params.id
+  const allPosts = getAllPosts()
+  const post = allPosts.find((p) => p.id === postId)
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    }
+  }
+
+  // 포스트 파일 경로 생성하고 파싱
+  const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
+  const { frontmatter } = await parseMarkdownFile(postPath)
+
+  const ogImage = frontmatter.thumbnail || '/images/opengraph-image.webp'
+
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description || frontmatter.title,
+    keywords: frontmatter.tags,
+    authors: [{ name: '김리안' }],
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description || frontmatter.title,
+      url: `/blog/${postId}`,
+      siteName: '김리안 포트폴리오',
+      type: 'article',
+      publishedTime: frontmatter.date,
+      authors: ['김리안'],
+      tags: frontmatter.tags,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: frontmatter.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: frontmatter.title,
+      description: frontmatter.description || frontmatter.title,
+      images: [ogImage],
+    },
   }
 }
 
