@@ -135,6 +135,25 @@ export function generateBlogPostingSchema(
 }
 
 /**
+ * ProfilePage 스키마 생성 (About 페이지용)
+ */
+export function generateProfilePageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${siteConfig.url}/about#profilePage`,
+    mainEntity: {
+      '@id': `${siteConfig.url}/about#person`,
+    },
+    url: toAbsoluteUrl('/about'),
+    name: 'About | 김리안',
+    description:
+      '프론트엔드 개발자 김리안의 이력서입니다. React, Next.js, TypeScript를 활용한 웹 개발 경험을 소개합니다.',
+    inLanguage: 'ko-KR',
+  }
+}
+
+/**
  * BreadcrumbList 스키마 생성
  */
 export function generateBreadcrumbSchema(postTitle: string, postId: string) {
@@ -167,8 +186,11 @@ export function generateBreadcrumbSchema(postTitle: string, postId: string) {
 
 /**
  * JSON-LD 스크립트 태그를 위한 안전한 직렬화
- * XSS 공격을 방지하기 위해 '<' 문자를 유니코드로 대체
+ * XSS 공격을 방지하기 위해 위험한 문자를 유니코드로 대체
  */
 export function serializeJsonLd<T = unknown>(jsonLd: T): string {
-  return JSON.stringify(jsonLd).replace(/</g, '\\u003c')
+  return JSON.stringify(jsonLd)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/<\//g, '<\\/')
 }

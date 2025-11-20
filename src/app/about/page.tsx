@@ -4,6 +4,11 @@ import type { Metadata } from 'next'
 import SkillsSection from '@/components/about/SkillsSection'
 import WorkExperienceSection from '@/components/about/WorkExperienceSection'
 import { aboutData } from '@/lib/data/about'
+import {
+  generatePersonSchema,
+  generateProfilePageSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -18,17 +23,30 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [generatePersonSchema(), generateProfilePageSchema()],
+  }
+
   return (
-    <div className="pt-20 pb-60 whitespace-pre-line break-keep">
-      {/* <div className="max-w-4xl space-y-24"> */}
-      <div className="space-y-24">
-        <main className="space-y-32">
-          <Introduction data={aboutData.introduction} />
-          <WorkExperienceSection experiences={aboutData.experiences} />
-          <SkillsSection skills={aboutData.skills} />
-          <EducationSection education={aboutData.education} />
-        </main>
+    <>
+      {/* JSON-LD 구조화된 데이터 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+
+      <div className="pt-20 pb-60 whitespace-pre-line break-keep">
+        {/* <div className="max-w-4xl space-y-24"> */}
+        <div className="space-y-24">
+          <main className="space-y-32">
+            <Introduction data={aboutData.introduction} />
+            <WorkExperienceSection experiences={aboutData.experiences} />
+            <SkillsSection skills={aboutData.skills} />
+            <EducationSection education={aboutData.education} />
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
