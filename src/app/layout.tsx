@@ -4,13 +4,14 @@ import Header from '@/components/shared/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
+import { siteConfig } from '@/lib/env'
 
 interface RootLayoutProps {
   children: ReactNode
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://liankim.kr'),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: '김리안 | Frontend Engineer',
     template: '%s | 김리안',
@@ -30,12 +31,12 @@ export const metadata: Metadata = {
     '웹 개발',
     '기술 블로그',
   ],
-  authors: [{ name: '김리안', url: 'https://liankim.kr' }],
+  authors: [{ name: '김리안', url: siteConfig.url }],
   creator: '김리안',
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://liankim.kr',
+    url: siteConfig.url,
     siteName: '김리안 포트폴리오',
     title: '김리안 | Frontend Engineer',
     description:

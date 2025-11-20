@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { siteConfig } from '@/lib/env'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://liankim.kr/sitemap.xml',
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   }
 }

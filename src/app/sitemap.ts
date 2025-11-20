@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/utils/posts'
+import { siteConfig } from '@/lib/env'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://liankim.kr'
+  const baseUrl = siteConfig.url
 
   // 사이트 최종 업데이트 날짜 (배포 시 자동 갱신됨)
   const lastModified = new Date()
