@@ -82,7 +82,7 @@ export function generateBlogPostingSchema(
     description: frontmatter.description,
     image: `${siteConfig.url}${image}`,
     datePublished: frontmatter.date,
-    dateModified: frontmatter.date, // 수정일이 있다면 별도로 관리
+    dateModified: frontmatter.lastModified || frontmatter.date,
     author: {
       '@type': 'Person',
       name: '김리안',
