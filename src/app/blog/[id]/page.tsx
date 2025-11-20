@@ -9,6 +9,11 @@ import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
+import {
+  generateBlogPostingSchema,
+  generateBreadcrumbSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
 
 interface BlogPageProps {
   params: {
@@ -85,8 +90,24 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { frontmatter, content, readingTime } =
     await parseMarkdownFile(postPath)
 
+  // JSON-LD 구조화된 데이터 생성
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateBlogPostingSchema(postId, frontmatter),
+      generateBreadcrumbSchema(frontmatter.title, postId),
+    ],
+  }
+
   return (
-    <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+    <>
+      {/* JSON-LD 스크립트 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+
+      <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
       {/* 왼쪽 카테고리 메뉴 */}
       <aside className="hidden md:block col-span-5">
         <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
@@ -127,7 +148,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
           <Giscus />
         </footer>
       </article>
-    </div>
+      </div>
+    </>
   )
 }
 

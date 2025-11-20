@@ -5,6 +5,12 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
 import { siteConfig } from '@/lib/env'
+import {
+  generateWebSiteSchema,
+  generatePersonSchema,
+  generateOrganizationSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -73,11 +79,25 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateWebSiteSchema(),
+      generatePersonSchema(),
+      generateOrganizationSchema(),
+    ],
+  }
+
   return (
     <html lang="ko">
       <head>
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="" />
         <link rel="stylesheet" href="https://use.typekit.net/ydp6xrt.css" />
+        {/* JSON-LD 구조화된 데이터 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
       </head>
       <body>
         {/*  */}
