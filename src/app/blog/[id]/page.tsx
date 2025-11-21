@@ -2,16 +2,78 @@ import { Calendar, Clock } from 'lucide-react'
 
 import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
+import type { Metadata } from 'next'
 import { Separator } from '@/components/ui/separator'
-import { formatDate } from '@/lib/utils/format'
+import { formatDate, toAbsoluteUrl } from '@/lib/utils/format'
 import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
+import {
+  generateBlogPostingSchema,
+  generateBreadcrumbSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
+import { SITE_CONFIG } from '@/lib/constants/site'
 
 interface BlogPageProps {
   params: {
     id: string
+  }
+}
+
+// 동적 메타데이터 생성
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
+  const postId = params.id
+  const allPosts = getAllPosts()
+  const post = allPosts.find((p) => p.id === postId)
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    }
+  }
+
+  // 포스트 파일 경로 생성하고 파싱
+  const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
+  const { frontmatter } = await parseMarkdownFile(postPath)
+
+  const ogImage = frontmatter.thumbnail || SITE_CONFIG.images.ogImage
+
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description || frontmatter.title,
+    keywords: frontmatter.tags,
+    authors: [{ name: SITE_CONFIG.author.name }],
+    alternates: {
+      canonical: toAbsoluteUrl(`/blog/${postId}`),
+    },
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description || frontmatter.title,
+      url: `/blog/${postId}`,
+      siteName: SITE_CONFIG.name,
+      type: 'article',
+      publishedTime: frontmatter.date,
+      authors: [SITE_CONFIG.author.name],
+      tags: frontmatter.tags,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: frontmatter.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: frontmatter.title,
+      description: frontmatter.description || frontmatter.title,
+      images: [ogImage],
+    },
   }
 }
 
@@ -32,8 +94,24 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { frontmatter, content, readingTime } =
     await parseMarkdownFile(postPath)
 
+  // JSON-LD 구조화된 데이터 생성
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateBlogPostingSchema(postId, frontmatter),
+      generateBreadcrumbSchema(frontmatter.title, postId),
+    ],
+  }
+
   return (
-    <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+    <>
+      {/* JSON-LD 스크립트 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+
+      <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
       {/* 왼쪽 카테고리 메뉴 */}
       <aside className="hidden md:block col-span-5">
         <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
@@ -74,7 +152,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
           <Giscus />
         </footer>
       </article>
-    </div>
+      </div>
+    </>
   )
 }
 
