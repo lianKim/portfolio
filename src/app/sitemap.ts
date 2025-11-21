@@ -1,27 +1,25 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/utils/posts'
-import { siteConfig } from '@/lib/env'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.url
-
   // 사이트 최종 업데이트 날짜 (배포 시 자동 갱신됨)
   const lastModified = new Date()
 
   // 정적 페이지
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: toAbsoluteUrl('/'),
       lastModified,
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/about`,
+      url: toAbsoluteUrl('/about'),
       lastModified,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: toAbsoluteUrl('/blog'),
       lastModified,
       priority: 0.9,
     },
@@ -32,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts: MetadataRoute.Sitemap = posts
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // 최신 순 정렬
     .map((post) => ({
-      url: `${baseUrl}/blog/${post.id}`,
+      url: toAbsoluteUrl(`/blog/${post.id}`),
       lastModified: new Date(post.date),
       priority: 0.7,
     }))

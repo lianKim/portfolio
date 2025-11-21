@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { siteConfig } from '@/lib/env'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: toAbsoluteUrl('/sitemap.xml'),
   }
 }
