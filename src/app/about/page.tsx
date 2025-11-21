@@ -1,16 +1,17 @@
-import EducationSection from '@/components/about/EducationSection'
-import Introduction from '@/components/about/Introduction'
-import type { Metadata } from 'next'
-import SkillsSection from '@/components/about/SkillsSection'
-import WorkExperienceSection from '@/components/about/WorkExperienceSection'
-import { aboutData } from '@/lib/data/about'
 import {
   generatePersonSchema,
   generateProfilePageSchema,
   serializeJsonLd,
 } from '@/lib/utils/seo'
-import { toAbsoluteUrl } from '@/lib/utils/format'
+
+import EducationSection from '@/components/about/EducationSection'
+import Introduction from '@/components/about/Introduction'
+import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
+import SkillsSection from '@/components/about/SkillsSection'
+import WorkExperienceSection from '@/components/about/WorkExperienceSection'
+import { aboutData } from '@/lib/data/about'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export const metadata: Metadata = {
   title: 'About',

@@ -1,20 +1,20 @@
 import { Calendar, Clock } from 'lucide-react'
-
-import { CategoryMenu } from '@/components/blog/CategoryMenu'
-import Giscus from '@/components/blog/Giscus'
-import type { Metadata } from 'next'
-import { Separator } from '@/components/ui/separator'
 import { formatDate, toAbsoluteUrl } from '@/lib/utils/format'
-import { getAllPosts } from '@/lib/utils/posts'
-import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/utils/mdx'
-import path from 'path'
 import {
   generateBlogPostingSchema,
   generateBreadcrumbSchema,
   serializeJsonLd,
 } from '@/lib/utils/seo'
+
+import { CategoryMenu } from '@/components/blog/CategoryMenu'
+import Giscus from '@/components/blog/Giscus'
+import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
+import { Separator } from '@/components/ui/separator'
+import { getAllPosts } from '@/lib/utils/posts'
+import { notFound } from 'next/navigation'
+import { parseMarkdownFile } from '@/lib/utils/mdx'
+import path from 'path'
 
 interface BlogPageProps {
   params: {
@@ -112,46 +112,46 @@ export default async function BlogPage({ params }: BlogPageProps) {
       />
 
       <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
-      {/* 왼쪽 카테고리 메뉴 */}
-      <aside className="hidden md:block col-span-5">
-        <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
-          <CategoryMenu posts={allPosts} />
-        </div>
-      </aside>
-
-      {/* 메인 콘텐츠 */}
-      <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12 ">
-        {/* 포스트 헤더 */}
-        <header className="mb-8">
-          <h1 className="text-4xl font-extralight leading-tight">
-            {frontmatter.title}
-          </h1>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              <span>{formatDate(frontmatter.date)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              <span>{readingTime}분 읽기</span>
-            </div>
+        {/* 왼쪽 카테고리 메뉴 */}
+        <aside className="hidden md:block col-span-5">
+          <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
+            <CategoryMenu posts={allPosts} />
           </div>
-        </header>
+        </aside>
 
-        <Separator className="mb-16" />
+        {/* 메인 콘텐츠 */}
+        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12 ">
+          {/* 포스트 헤더 */}
+          <header className="mb-8">
+            <h1 className="text-4xl font-extralight leading-tight">
+              {frontmatter.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
+              <div className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                <span>{formatDate(frontmatter.date)}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                <span>{readingTime}분 읽기</span>
+              </div>
+            </div>
+          </header>
 
-        {/* 포스트 본문 */}
-        <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
-          {content}
-        </div>
+          <Separator className="mb-16" />
 
-        <Separator className="mb-12" />
+          {/* 포스트 본문 */}
+          <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
+            {content}
+          </div>
 
-        {/* 포스트 푸터 */}
-        <footer className="space-y-6">
-          <Giscus />
-        </footer>
-      </article>
+          <Separator className="mb-12" />
+
+          {/* 포스트 푸터 */}
+          <footer className="space-y-6">
+            <Giscus />
+          </footer>
+        </article>
       </div>
     </>
   )
