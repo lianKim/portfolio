@@ -1,32 +1,39 @@
-import { getProjectList } from '@/lib/api/projectApi'
-import { getNumberData } from '@/lib/utils/handleNotionData'
-import { ProjectItemData } from '@/types/projects'
 import { MetadataRoute } from 'next'
+import { getAllPosts } from '@/lib/utils/posts'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await getProjectList()
-  const BASE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL
+export default function sitemap(): MetadataRoute.Sitemap {
+  // 사이트 최종 업데이트 날짜 (배포 시 자동 갱신됨)
+  const lastModified = new Date()
 
-  return [
+  // 정적 페이지
+  const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
+      url: toAbsoluteUrl('/'),
+      lastModified,
+      priority: 1.0,
     },
     {
-      url: `${BASE_URL}/project`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      url: toAbsoluteUrl('/about'),
+      lastModified,
+      priority: 0.8,
     },
-    ...(projects as ProjectItemData[])?.map((project) => {
-      const { properties, last_edited_time } = project
-      const projectId = getNumberData(properties.Order)
-
-      return {
-        url: `${BASE_URL}/project/${projectId}`,
-        lastModified: new Date(last_edited_time),
-      }
-    }),
+    {
+      url: toAbsoluteUrl('/blog'),
+      lastModified,
+      priority: 0.9,
+    },
   ]
+
+  // 동적 블로그 포스트 페이지
+  const posts = getAllPosts()
+  const blogPosts: MetadataRoute.Sitemap = posts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // 최신 순 정렬
+    .map((post) => ({
+      url: toAbsoluteUrl(`/blog/${post.id}`),
+      lastModified: new Date(post.date),
+      priority: 0.7,
+    }))
+
+  return [...staticPages, ...blogPosts]
 }
