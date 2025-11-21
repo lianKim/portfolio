@@ -1,14 +1,10 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    NEXT_PUBLIC_WEBSITE_URL: string
-    NEXT_PUBLIC_NOTION_API_KEY: string
-    NEXT_PUBLIC_SKILL_DB_ID: string
-    NEXT_PUBLIC_TIMELINE_DB_ID: string
-    NEXT_PUBLIC_PROJECT_DB_ID: string
-    NEXT_PUBLIC_PROJECT_1_ID: string
-    NEXT_PUBLIC_PROJECT_2_ID: string
-    NEXT_PUBLIC_PROJECT_3_ID: string
-    NEXT_PUBLIC_PROJECT_4_ID: string
-    NEXT_PUBLIC_NOTION_PAGE_BASE_URL: string
+    // 사이트 주소
+    NEXT_PUBLIC_SITE_URL: string
+    // 구글 인증코드
+    NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: string
+    // 네이버 인증코드
+    NEXT_PUBLIC_NAVER_SITE_VERIFICATION: string
   }
 }

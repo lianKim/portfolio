@@ -26,6 +26,13 @@ export const metadata: Metadata = {
   keywords: [...SITE_CONFIG.keywords],
   authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.author.name,
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      'naver-site-verification':
+        process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
