@@ -9,14 +9,14 @@ import {
   generateProfilePageSchema,
   serializeJsonLd,
 } from '@/lib/utils/seo'
-import { siteConfig } from '@/lib/env'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export const metadata: Metadata = {
   title: 'About',
   description:
     '프론트엔드 개발자 김리안의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.',
   alternates: {
-    canonical: `${siteConfig.url}/about`,
+    canonical: toAbsoluteUrl('/about'),
   },
   openGraph: {
     title: 'About | 김리안',

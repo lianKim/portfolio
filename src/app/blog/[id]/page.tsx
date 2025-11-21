@@ -14,7 +14,7 @@ import {
   generateBreadcrumbSchema,
   serializeJsonLd,
 } from '@/lib/utils/seo'
-import { siteConfig } from '@/lib/env'
+import { toAbsoluteUrl } from '@/lib/utils/format'
 
 interface BlogPageProps {
   params: {
@@ -48,7 +48,7 @@ export async function generateMetadata({
     keywords: frontmatter.tags,
     authors: [{ name: '김리안' }],
     alternates: {
-      canonical: `${siteConfig.url}/blog/${postId}`,
+      canonical: toAbsoluteUrl(`/blog/${postId}`),
     },
     openGraph: {
       title: frontmatter.title,
