@@ -3,9 +3,10 @@
  * JSON-LD 구조화된 데이터 생성 헬퍼
  */
 
+import { toAbsoluteUrl, toISO8601 } from './format'
+
 import type { PostFrontmatter } from '@/types/blog'
-import { siteConfig } from '@/lib/env'
-import { toISO8601, toAbsoluteUrl } from './format'
+import { SITE_CONFIG } from '@/lib/constants/site'
 
 /**
  * WebSite 스키마 생성
@@ -14,14 +15,13 @@ export function generateWebSiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${siteConfig.url}#website`,
-    name: '김리안 포트폴리오',
+    '@id': `${SITE_CONFIG.url}#website`,
+    name: SITE_CONFIG.name,
     url: toAbsoluteUrl('/'),
-    description:
-      '프론트엔드 개발자 김리안의 포트폴리오. React, Next.js, TypeScript를 활용한 웹 개발 경험과 기술 블로그를 공유합니다.',
-    inLanguage: 'ko-KR',
+    description: SITE_CONFIG.description,
+    inLanguage: SITE_CONFIG.locale,
     publisher: {
-      '@id': `${siteConfig.url}#organization`,
+      '@id': `${SITE_CONFIG.url}#organization`,
     },
   }
 }
@@ -33,20 +33,13 @@ export function generatePersonSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': `${siteConfig.url}/about#person`,
-    name: '김리안',
-    alternateName: 'Lian Kim',
-    jobTitle: 'Frontend Engineer',
+    '@id': `${SITE_CONFIG.url}/about#person`,
+    name: SITE_CONFIG.author.name,
+    alternateName: SITE_CONFIG.author.nameEn,
+    jobTitle: SITE_CONFIG.author.jobTitle,
     url: toAbsoluteUrl('/about'),
-    sameAs: ['https://github.com/lianKim'],
-    knowsAbout: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'JavaScript',
-      'Frontend Development',
-      'Web Development',
-    ],
+    sameAs: [SITE_CONFIG.author.github],
+    knowsAbout: SITE_CONFIG.author.skills,
   }
 }
 
@@ -57,12 +50,12 @@ export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': `${siteConfig.url}#organization`,
-    name: '김리안',
+    '@id': `${SITE_CONFIG.url}#organization`,
+    name: SITE_CONFIG.author.name,
     url: toAbsoluteUrl('/'),
     logo: {
       '@type': 'ImageObject',
-      url: toAbsoluteUrl('/images/logo.png'),
+      url: toAbsoluteUrl(SITE_CONFIG.images.logo),
       width: 512,
       height: 512,
     },
@@ -76,12 +69,12 @@ export function generateBlogPostingSchema(
   postId: string,
   frontmatter: PostFrontmatter,
 ) {
-  const image = frontmatter.thumbnail || '/images/opengraph-image.webp'
+  const image = frontmatter.thumbnail || SITE_CONFIG.images.ogImage
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    '@id': `${siteConfig.url}/blog/${postId}#blogPosting`,
+    '@id': `${SITE_CONFIG.url}/blog/${postId}#blogPosting`,
     headline: frontmatter.title,
     description: frontmatter.description,
     url: toAbsoluteUrl(`/blog/${postId}`),
@@ -89,17 +82,17 @@ export function generateBlogPostingSchema(
     datePublished: toISO8601(frontmatter.date),
     dateModified: toISO8601(frontmatter.lastModified || frontmatter.date),
     author: {
-      '@id': `${siteConfig.url}/about#person`,
+      '@id': `${SITE_CONFIG.url}/about#person`,
     },
     publisher: {
-      '@id': `${siteConfig.url}#organization`,
+      '@id': `${SITE_CONFIG.url}#organization`,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': toAbsoluteUrl(`/blog/${postId}`),
     },
     keywords: frontmatter.tags.join(', '),
-    inLanguage: 'ko-KR',
+    inLanguage: SITE_CONFIG.locale,
   }
 }
 
@@ -110,15 +103,14 @@ export function generateProfilePageSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    '@id': `${siteConfig.url}/about#profilePage`,
+    '@id': `${SITE_CONFIG.url}/about#profilePage`,
     mainEntity: {
-      '@id': `${siteConfig.url}/about#person`,
+      '@id': `${SITE_CONFIG.url}/about#person`,
     },
     url: toAbsoluteUrl('/about'),
-    name: 'About | 김리안',
-    description:
-      '프론트엔드 개발자 김리안의 이력서입니다. React, Next.js, TypeScript를 활용한 웹 개발 경험을 소개합니다.',
-    inLanguage: 'ko-KR',
+    name: `About | ${SITE_CONFIG.author.name}`,
+    description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, Next.js, TypeScript를 활용한 웹 개발 경험을 소개합니다.`,
+    inLanguage: SITE_CONFIG.locale,
   }
 }
 
@@ -129,7 +121,7 @@ export function generateBreadcrumbSchema(postTitle: string, postId: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    '@id': `${siteConfig.url}/blog/${postId}#breadcrumbs`,
+    '@id': `${SITE_CONFIG.url}/blog/${postId}#breadcrumbs`,
     itemListElement: [
       {
         '@type': 'ListItem',

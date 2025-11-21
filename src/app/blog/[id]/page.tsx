@@ -4,7 +4,7 @@ import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import type { Metadata } from 'next'
 import { Separator } from '@/components/ui/separator'
-import { formatDate } from '@/lib/utils/format'
+import { formatDate, toAbsoluteUrl } from '@/lib/utils/format'
 import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
@@ -14,7 +14,7 @@ import {
   generateBreadcrumbSchema,
   serializeJsonLd,
 } from '@/lib/utils/seo'
-import { toAbsoluteUrl } from '@/lib/utils/format'
+import { SITE_CONFIG } from '@/lib/constants/site'
 
 interface BlogPageProps {
   params: {
@@ -40,13 +40,13 @@ export async function generateMetadata({
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
   const { frontmatter } = await parseMarkdownFile(postPath)
 
-  const ogImage = frontmatter.thumbnail || '/images/opengraph-image.webp'
+  const ogImage = frontmatter.thumbnail || SITE_CONFIG.images.ogImage
 
   return {
     title: frontmatter.title,
     description: frontmatter.description || frontmatter.title,
     keywords: frontmatter.tags,
-    authors: [{ name: '김리안' }],
+    authors: [{ name: SITE_CONFIG.author.name }],
     alternates: {
       canonical: toAbsoluteUrl(`/blog/${postId}`),
     },
@@ -54,10 +54,10 @@ export async function generateMetadata({
       title: frontmatter.title,
       description: frontmatter.description || frontmatter.title,
       url: `/blog/${postId}`,
-      siteName: '김리안 포트폴리오',
+      siteName: SITE_CONFIG.name,
       type: 'article',
       publishedTime: frontmatter.date,
-      authors: ['김리안'],
+      authors: [SITE_CONFIG.author.name],
       tags: frontmatter.tags,
       images: [
         {

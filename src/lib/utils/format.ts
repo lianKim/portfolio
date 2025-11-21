@@ -1,4 +1,4 @@
-import { siteConfig } from '@/lib/env'
+import { SITE_CONFIG } from '@/lib/constants/site'
 
 /**
  * 날짜를 한국어 형식으로 포맷팅
@@ -50,5 +50,5 @@ export function toAbsoluteUrl(path: string): string {
 
   // 슬래시 처리
   const separator = path.startsWith('/') ? '' : '/'
-  return `${siteConfig.url}${separator}${path}`
+  return `${SITE_CONFIG.url}${separator}${path}`
 }

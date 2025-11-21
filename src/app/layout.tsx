@@ -4,7 +4,7 @@ import Header from '@/components/shared/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
-import { siteConfig } from '@/lib/env'
+import { SITE_CONFIG } from '@/lib/constants/site'
 import {
   generateWebSiteSchema,
   generatePersonSchema,
@@ -17,51 +17,36 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: '김리안 | Frontend Engineer',
-    template: '%s | 김리안',
+    default: SITE_CONFIG.title,
+    template: `%s | ${SITE_CONFIG.author.name}`,
   },
-  description:
-    '프론트엔드 개발자 김리안의 포트폴리오. React, Next.js, TypeScript를 활용한 웹 개발 경험과 기술 블로그를 공유합니다.',
-  keywords: [
-    '김리안',
-    'Lian Kim',
-    '프론트엔드 개발자',
-    'Frontend Engineer',
-    '포트폴리오',
-    '이력서',
-    'React',
-    'Next.js',
-    'TypeScript',
-    '웹 개발',
-    '기술 블로그',
-  ],
-  authors: [{ name: '김리안', url: siteConfig.url }],
-  creator: '김리안',
+  description: SITE_CONFIG.description,
+  keywords: [...SITE_CONFIG.keywords],
+  authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.url }],
+  creator: SITE_CONFIG.author.name,
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: siteConfig.url,
-    siteName: '김리안 포트폴리오',
-    title: '김리안 | Frontend Engineer',
-    description:
-      '프론트엔드 개발자 김리안의 포트폴리오. React, Next.js, TypeScript를 활용한 웹 개발 경험과 기술 블로그를 공유합니다.',
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
     images: [
       {
-        url: '/images/opengraph-image.webp',
+        url: SITE_CONFIG.images.ogImage,
         width: 1200,
         height: 630,
-        alt: '김리안 | Frontend Engineer',
+        alt: SITE_CONFIG.title,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '김리안 | Frontend Engineer',
-    description:
-      '프론트엔드 개발자 김리안의 포트폴리오. React, Next.js, TypeScript를 활용한 웹 개발 경험과 기술 블로그를 공유합니다.',
-    images: ['/images/opengraph-image.webp'],
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: [SITE_CONFIG.images.ogImage],
   },
   robots: {
     index: true,

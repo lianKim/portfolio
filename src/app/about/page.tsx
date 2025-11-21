@@ -10,18 +10,17 @@ import {
   serializeJsonLd,
 } from '@/lib/utils/seo'
 import { toAbsoluteUrl } from '@/lib/utils/format'
+import { SITE_CONFIG } from '@/lib/constants/site'
 
 export const metadata: Metadata = {
   title: 'About',
-  description:
-    '프론트엔드 개발자 김리안의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.',
+  description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.`,
   alternates: {
     canonical: toAbsoluteUrl('/about'),
   },
   openGraph: {
-    title: 'About | 김리안',
-    description:
-      '프론트엔드 개발자 김리안의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.',
+    title: `About | ${SITE_CONFIG.author.name}`,
+    description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.`,
     url: '/about',
   },
 }
