@@ -12,6 +12,7 @@ import Giscus from '@/components/blog/Giscus'
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { Separator } from '@/components/ui/separator'
+import { ShareButton } from '@/components/blog/ShareButton'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
@@ -165,7 +166,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <div>{content}</div>
           </div>
 
-          <Separator className="mb-12" />
+          <Separator />
+
+          {/* 공유 버튼 */}
+          <div className="my-6">
+            <ShareButton url={toAbsoluteUrl(`/blog/${postId}`)} />
+          </div>
+
+          <Separator className="mb-16" />
 
           {/* 포스트 푸터 */}
           <footer className="space-y-6">
