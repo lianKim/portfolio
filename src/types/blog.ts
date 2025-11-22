@@ -13,6 +13,7 @@ export interface PostFrontmatter {
   title: string
   description: string
   date: string
+  category: string
   lastModified?: string
   tags: string[]
   thumbnail?: string

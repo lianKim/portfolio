@@ -6,11 +6,13 @@ import {
   serializeJsonLd,
 } from '@/lib/utils/seo'
 
+import { CATEGORY_NAMES } from '@/lib/constants/blog'
 import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { Separator } from '@/components/ui/separator'
+import { TableOfContents } from '@/components/blog/TableOfContents'
 import { getAllPosts } from '@/lib/utils/posts'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/utils/mdx'
@@ -120,29 +122,47 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </aside>
 
         {/* 메인 콘텐츠 */}
-        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12 ">
+        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12">
           {/* 포스트 헤더 */}
-          <header className="mb-8">
+          <header>
+            {/* 포스트 제목 */}
             <h1 className="text-4xl font-extralight leading-tight">
               {frontmatter.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6">
-              <div className="flex items-center gap-1">
+
+            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6 h-4">
+              {/* 카테고리 */}
+              <span>
+                {CATEGORY_NAMES[frontmatter.category] || frontmatter.category}
+              </span>
+
+              <Separator orientation="vertical" />
+
+              {/* 작성 날짜 */}
+              <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>{formatDate(frontmatter.date)}</span>
               </div>
-              <div className="flex items-center gap-1">
+
+              <Separator orientation="vertical" />
+
+              {/* 읽는 시간 */}
+              <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>{readingTime}분 읽기</span>
+                <span>{readingTime}분</span>
               </div>
             </div>
           </header>
 
-          <Separator className="mb-16" />
+          <Separator className="mt-12 mb-16" />
 
           {/* 포스트 본문 */}
           <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
-            {content}
+            {/* 목차 */}
+            <TableOfContents />
+            <Separator className="mt-12 mb-16" />
+            {/* 본문 */}
+            <div>{content}</div>
           </div>
 
           <Separator className="mb-12" />
