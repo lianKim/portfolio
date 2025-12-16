@@ -7,6 +7,18 @@ interface PostListProps {
 }
 
 export function PostList({ posts }: PostListProps) {
+  // 포스트가 없을 때 Empty UI 표시
+  if (posts.length === 0) {
+    return (
+      <div>
+        <Separator className="mt-0 mb-12" />
+        <p className="text-sm text-muted-foreground">
+          작성된 포스트가 없습니다.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col">
       <Separator className="mt-0 mb-12" />

@@ -15,9 +15,9 @@ export function PostCard({
   id,
   title,
   description,
-  date,
-  tags,
-  thumbnail,
+  // date,
+  // tags,
+  // thumbnail,
 }: PostCardProps) {
   return (
     <Link href={`/blog/${id}`}>

@@ -1,16 +1,18 @@
 import './globals.css'
 
+import {
+  generateOrganizationSchema,
+  generatePersonSchema,
+  generateWebSiteSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
+
 import Header from '@/components/shared/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
-import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import {
-  generateWebSiteSchema,
-  generatePersonSchema,
-  generateOrganizationSchema,
-  serializeJsonLd,
-} from '@/lib/utils/seo'
+import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
+import { Toaster } from 'sonner'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -92,13 +94,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body>
-        {/*  */}
         <div className="flex flex-col min-h-screen">
+          {/* 헤더 */}
           <Header />
+          {/* 메인 */}
           <main className="flex-1 mx-auto px-4 w-full max-w-[var(--container-max-width)]">
             {children}
           </main>
+          {/* 스크롤 탑 버튼 */}
           <ScrollToTopButton />
+          {/* 토스트 알림 */}
+          <Toaster
+            position="top-right"
+            offset={{
+              top: 'var(--header-height)',
+            }}
+          />
         </div>
       </body>
     </html>
