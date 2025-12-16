@@ -382,7 +382,7 @@ export function PostList({ posts, columns = 3 }: PostListProps) {
     return (
       <div className="text-center py-12">
         <p className="text-gray-500 dark:text-gray-400">
-          아직 작성된 포스트가 없습니다.
+          작성된 포스트가 없습니다.
         </p>
       </div>
     )

@@ -13,7 +13,7 @@ export function PostList({ posts }: PostListProps) {
       <div>
         <Separator className="mt-0 mb-12" />
         <p className="text-sm text-muted-foreground">
-          아직 작성된 글이 없습니다
+          작성된 포스트가 없습니다.
         </p>
       </div>
     )
