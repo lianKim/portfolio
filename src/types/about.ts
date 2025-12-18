@@ -27,8 +27,12 @@ export interface SkillCategory {
 }
 
 export interface Introduction {
-  title: string
-  subtitles: string[]
+  name: string
+  position: string
+  contact: {
+    email: string
+    phone: string
+  }
   description: string[]
 }
 
