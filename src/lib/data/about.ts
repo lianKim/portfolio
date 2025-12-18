@@ -2,12 +2,16 @@ import type { AboutData } from '@/types/about'
 
 export const aboutData: AboutData = {
   introduction: {
-    title: '김리안',
-    subtitles: ['2년 차 프론트엔드 개발자', 'React·TypeScript 기반'],
+    name: '김리안',
+    position: 'Frontend Engineer',
+    contact: {
+      email: '5ffcut@gmail.com',
+      phone: '+82 10-9001-1250',
+    },
     description: [
-      // 'React/TypeScript 기반의 2년 차 프론트엔드 개발자입니다.',
+      'React/TypeScript 기반의 2년 차 프론트엔드 개발자입니다.',
       '스타트업에서 비즈니스 요구사항 분석부터 프로덕션 배포까지 제품 개발 전반을 주도했습니다. Multi-Scope FSD 아키텍처 도입과 체계적 문서화로 신규 개발자 온보딩을 40% 단축했고, Server-Driven UI 시스템으로 파트너사 대응 시간을 30% 단축해 운영 효율성을 크게 개선했습니다.',
-      '도메인을 깊이 이해하고 제품 기획과 UI/UX 디자인에 적극 참여하며, 디자인 전공을 바탕으로 시각적 완성도가 높은 인터페이스를 구현합니다. 당장의 구현뿐 아니라 장기적인 생산성과 코드 확장성을 고려하며, 팀과 함께 더 나은 방향을 찾아가는 개발자입니다.',
+      '도메인을 깊이 이해하고 제품 기획과 UI/UX 디자인에 적극 참여하며, 디자인 전공을 바탕으로 시각적 완성도가 높은 인터페이스를 구현합니다. 당장의 구현뿐 아니라 장기적인 생산성과 코드 확장성을 고려하며, 팀과 함께 더 나은 방향을 찾아가고자 합니다.',
     ],
   },
   experiences: [
