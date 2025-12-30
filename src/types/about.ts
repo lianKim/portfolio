@@ -26,14 +26,20 @@ export interface SkillCategory {
   skills: string[]
 }
 
+export interface DescriptionItem {
+  title: string
+  content: string
+}
+
 export interface Introduction {
   name: string
   position: string
   contact: {
     email: string
     phone: string
+    github: string
   }
-  description: string[]
+  description: DescriptionItem[]
 }
 
 export interface AboutData {

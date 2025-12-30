@@ -3,15 +3,28 @@ import type { AboutData } from '@/types/about'
 export const aboutData: AboutData = {
   introduction: {
     name: '김리안',
-    position: 'Frontend Engineer',
+    position: '프론트엔드 개발자',
     contact: {
       email: '5ffcut@gmail.com',
       phone: '+82 10-9001-1250',
+      github: 'github.com/lianKim',
     },
     description: [
-      'React/TypeScript 기반의 2년 차 프론트엔드 개발자입니다.',
-      '스타트업에서 비즈니스 요구사항 분석부터 프로덕션 배포까지 제품 개발 전반을 주도했습니다. Multi-Scope FSD 아키텍처 도입과 체계적 문서화로 신규 개발자 온보딩을 40% 단축했고, Server-Driven UI 시스템으로 파트너사 대응 시간을 30% 단축해 운영 효율성을 크게 개선했습니다.',
-      '도메인을 깊이 이해하고 제품 기획과 UI/UX 디자인에 적극 참여하며, 디자인 전공을 바탕으로 시각적 완성도가 높은 인터페이스를 구현합니다. 당장의 구현뿐 아니라 장기적인 생산성과 코드 확장성을 고려하며, 팀과 함께 더 나은 방향을 찾아가고자 합니다.',
+      {
+        title: '제품의 성장 주기를 함께한 프론트엔드 오너',
+        content:
+          '초기 1인 개발자로 시작해 아키텍처 설계부터 제품 배포까지 전 과정을 주도했습니다. 팀 확장기에는 개발 표준 및 온보딩 체계를 정립하여 팀 생산성을 개선했습니다.',
+      },
+      {
+        title: '유연한 시스템 설계로 비즈니스 가치 창출',
+        content:
+          'SDUI, 디자인 시스템, FSD 아키텍처를 도입하여 요구사항 대응 리드타임을 30% 단축했으며, 장기적인 확장성을 고려한 코드 설계를 지향합니다.',
+      },
+      {
+        title: '디자인 전공 기반의 시각적 인터랙션 구현',
+        content:
+          '디자인 전공을 바탕으로 사용자의 시선 흐름을 고려한 UI를 구현하며, 디자이너와 높은 수준의 기술적 소통이 가능합니다.',
+      },
     ],
   },
   experiences: [
@@ -163,7 +176,7 @@ export const aboutData: AboutData = {
     {
       company: '홍익대학교',
       period: '2013.03 - 2019.02',
-      major: '영상·영화 전공',
+      major: '디자인영상학부',
     },
   ],
 }
