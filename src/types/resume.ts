@@ -42,7 +42,7 @@ export interface Introduction {
   description: DescriptionItem[]
 }
 
-export interface AboutData {
+export interface ResumeData {
   introduction: Introduction
   experiences: Experience[]
   skills: SkillCategory[]

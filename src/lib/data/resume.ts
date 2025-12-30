@@ -1,6 +1,6 @@
-import type { AboutData } from '@/types/about'
+import type { ResumeData } from '@/types/resume'
 
-export const aboutData: AboutData = {
+export const resumeData: ResumeData = {
   introduction: {
     name: '김리안',
     position: '프론트엔드 개발자',

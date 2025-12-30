@@ -33,11 +33,11 @@ export function generatePersonSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': `${SITE_CONFIG.url}/about#person`,
+    '@id': `${SITE_CONFIG.url}/resume#person`,
     name: SITE_CONFIG.author.name,
     alternateName: SITE_CONFIG.author.nameEn,
     jobTitle: SITE_CONFIG.author.jobTitle,
-    url: toAbsoluteUrl('/about'),
+    url: toAbsoluteUrl('/resume'),
     sameAs: [SITE_CONFIG.author.github],
     knowsAbout: SITE_CONFIG.author.skills,
   }
@@ -82,7 +82,7 @@ export function generateBlogPostingSchema(
     datePublished: toISO8601(frontmatter.date),
     dateModified: toISO8601(frontmatter.lastModified || frontmatter.date),
     author: {
-      '@id': `${SITE_CONFIG.url}/about#person`,
+      '@id': `${SITE_CONFIG.url}/resume#person`,
     },
     publisher: {
       '@id': `${SITE_CONFIG.url}#organization`,
@@ -97,17 +97,17 @@ export function generateBlogPostingSchema(
 }
 
 /**
- * ProfilePage 스키마 생성 (About 페이지용)
+ * ProfilePage 스키마 생성 (Resume 페이지용)
  */
 export function generateProfilePageSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    '@id': `${SITE_CONFIG.url}/about#profilePage`,
+    '@id': `${SITE_CONFIG.url}/resume#profilePage`,
     mainEntity: {
-      '@id': `${SITE_CONFIG.url}/about#person`,
+      '@id': `${SITE_CONFIG.url}/resume#person`,
     },
-    url: toAbsoluteUrl('/about'),
+    url: toAbsoluteUrl('/resume'),
     name: `About | ${SITE_CONFIG.author.name}`,
     description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, Next.js, TypeScript를 활용한 웹 개발 경험을 소개합니다.`,
     inLanguage: SITE_CONFIG.locale,

@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge'
-import type { Task } from '@/types/about'
+import type { Task } from '@/types/resume'
 import { parseRichText } from '@/lib/utils/richText'
 
 interface TaskItemProps {

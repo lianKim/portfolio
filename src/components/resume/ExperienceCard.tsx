@@ -1,4 +1,4 @@
-import type { Experience } from '@/types/about'
+import type { Experience } from '@/types/resume'
 import { Separator } from '../ui/separator'
 import TaskItem from './TaskItem'
 

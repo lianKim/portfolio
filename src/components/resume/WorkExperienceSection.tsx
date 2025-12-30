@@ -1,4 +1,4 @@
-import type { Experience } from '@/types/about'
+import type { Experience } from '@/types/resume'
 import ExperienceCard from './ExperienceCard'
 
 interface WorkExperienceSectionProps {

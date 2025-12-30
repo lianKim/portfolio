@@ -1,4 +1,4 @@
-import type { Introduction } from '@/types/about'
+import type { Introduction } from '@/types/resume'
 import { Separator } from '../ui/separator'
 import { Mail, Phone } from 'lucide-react'
 
