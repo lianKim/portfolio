@@ -147,17 +147,14 @@ export const resumeData: ResumeData = {
   ],
   skills: [
     {
-      category: 'Language',
-      skills: ['JavaScript', 'TypeScript'],
-    },
-    {
       category: 'Frontend',
       skills: [
+        'TypeScript',
         'React',
         'Next.js',
         'React Query',
         'Jotai',
-        'Styled Components',
+        'styled-components',
         'Emotion',
         'Tailwind CSS',
         'Storybook',
@@ -165,11 +162,11 @@ export const resumeData: ResumeData = {
     },
     {
       category: 'DevOps & Deployment',
-      skills: ['GitHub Actions', 'Vercel', 'Amazon EC2', 'Amazon S3'],
+      skills: ['GitHub Actions', 'Vercel', 'AWS EC2'],
     },
     {
       category: 'Collaboration & Tools',
-      skills: ['Figma', 'Notion', 'Slack', 'Git', 'Swagger', 'Postman'],
+      skills: ['Git', 'Figma', 'Slack', 'Notion', 'Swagger', 'Postman'],
     },
   ],
   education: [
