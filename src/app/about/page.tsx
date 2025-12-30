@@ -40,7 +40,7 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="pt-20 pb-60 whitespace-pre-line break-keep">
+      <div className="pt-20 pb-40 whitespace-pre-line break-keep">
         {/* <div className="max-w-4xl space-y-24"> */}
         <div className="space-y-24">
           <main className="space-y-32">
