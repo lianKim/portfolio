@@ -18,20 +18,20 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-background">
       <div className="container mx-auto px-4 flex h-[var(--header-height)] max-w-[var(--container-max-width)] items-center justify-between">
         <div className="mr-4 flex">
-          <a className="mr-12 flex items-center space-x-2" href="/blog">
+          <a className="mr-12 flex items-center space-x-2" href="/resume">
             <span className="tracking-tight">LIAN KIM</span>
           </a>
           <nav className="flex items-center gap-6 text-sm">
             <a
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isActive('/about')
+                isActive('/resume')
                   ? 'text-foreground'
                   : 'text-muted-foreground',
               )}
-              href="/about"
+              href="/resume"
             >
-              About
+              Resume
             </a>
             <a
               className={cn(
