@@ -328,9 +328,7 @@ export default function SideBar() {
 
 전체 흐름을 정리하면 다음과 같다.
 
-```
-역할 확인 → 역할별 라우트 가져오기 → 평탄화 → handle 필터링 → 그룹화 → 렌더링
-```
+ ![](/blog/images/react-router-role-based-routing/flow-chart.webp)
 
 라우트 정의 한 곳만 수정하면 라우터와 사이드바 메뉴가 동시에 반영되는 구조가 완성됐다.
 
