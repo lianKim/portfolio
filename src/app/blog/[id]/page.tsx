@@ -127,11 +127,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
           {/* 포스트 헤더 */}
           <header>
             {/* 포스트 제목 */}
-            <h1 className="text-4xl font-extralight leading-tight">
+            <h1 className="text-3xl font-semibold tracking-tight leading-tight">
               {frontmatter.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mt-6 h-4">
+            <div className=" mt-6 h-4 flex flex-wrap items-center gap-4 text-sm text-foreground/60">
               {/* 카테고리 */}
               <span>
                 {CATEGORY_NAMES[frontmatter.category] || frontmatter.category}
@@ -155,13 +155,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
           </header>
 
-          <Separator className="mt-12 mb-16" />
+          <Separator className="mt-6 mb-16" />
 
           {/* 포스트 본문 */}
           <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
             {/* 목차 */}
             <TableOfContents />
-            <Separator className="mt-12 mb-16" />
             {/* 본문 */}
             <div>{content}</div>
           </div>
