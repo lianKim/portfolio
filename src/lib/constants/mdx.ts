@@ -32,13 +32,6 @@ export const CALLOUT_CONFIGS = {
   },
 } as const
 
-export const CALLOUT_DEFAULT_TITLES = {
-  info: '정보',
-  warning: '주의',
-  error: '오류',
-  success: '성공',
-} as const
-
 // Heading 컴포넌트 스타일
 export const HEADING_STYLES = {
   1: 'text-3xl font-semibold tracking-tight text-balance mb-5 mt-18 text-foreground',

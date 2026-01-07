@@ -4,7 +4,7 @@ description: '프론트엔드 프로젝트에 Feature-Sliced Design을 도입하
 date: '2025-03-06'
 lastModified: '2025-03-06'
 category: 'development'
-tags: ['React', 'React Router', 'TypeScript', 'Admin', 'RBAC']
+tags: ['React', 'FSD']
 readingTime: 8
 ---
 
