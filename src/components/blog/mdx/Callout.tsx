@@ -1,5 +1,4 @@
-import { CALLOUT_CONFIGS, CALLOUT_DEFAULT_TITLES } from '@/lib/constants/mdx'
-
+import { CALLOUT_CONFIGS } from '@/lib/constants/mdx'
 import { cn } from '@/lib/utils/cn'
 
 interface CalloutProps {
@@ -17,7 +16,6 @@ export function Callout({
 }: CalloutProps) {
   const config = CALLOUT_CONFIGS[type]
   const Icon = config.icon
-  const displayTitle = title || CALLOUT_DEFAULT_TITLES[type]
 
   return (
     <div
@@ -28,9 +26,9 @@ export function Callout({
           className={cn('w-5 h-5 mt-0.5 flex-shrink-0', config.iconColor)}
         />
         <div className="flex-1 space-y-2">
-          {displayTitle && (
+          {title && (
             <div className={cn('font-semibold text-sm', config.titleColor)}>
-              {displayTitle}
+              {title}
             </div>
           )}
           <div className="text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">

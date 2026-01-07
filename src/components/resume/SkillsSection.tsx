@@ -1,5 +1,5 @@
 import SkillCategory from './SkillCategory'
-import type { SkillCategory as SkillCategoryType } from '@/types/about'
+import type { SkillCategory as SkillCategoryType } from '@/types/resume'
 
 interface SkillsSectionProps {
   skills: SkillCategoryType[]

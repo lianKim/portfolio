@@ -32,19 +32,12 @@ export const CALLOUT_CONFIGS = {
   },
 } as const
 
-export const CALLOUT_DEFAULT_TITLES = {
-  info: '정보',
-  warning: '주의',
-  error: '오류',
-  success: '성공',
-} as const
-
 // Heading 컴포넌트 스타일
 export const HEADING_STYLES = {
-  1: 'text-4xl font-extralight tracking-tight text-balance mb-5 mt-18 text-foreground',
-  2: 'text-3xl font-extralight tracking-tight mb-4 mt-16 text-foreground',
-  3: 'text-2xl font-extralight tracking-tight mb-4 mt-8 text-foreground',
-  4: 'text-xl font-light tracking-tight mb-3 mt-8 text-foreground',
-  5: 'text-base md:text-lg font-light tracking-tight mb-2 mt-4 text-foreground/80',
-  6: 'text-sm md:text-base font-light tracking-tight mb-2 mt-3 text-foreground/70',
+  1: 'text-3xl font-semibold tracking-tight text-balance mb-5 mt-18 text-foreground',
+  2: 'text-2xl font-semibold tracking-tight mb-4 mt-16 text-foreground',
+  3: 'text-lg font-semibold tracking-tight mb-3 mt-8 text-foreground',
+  4: 'text-base font-semibold tracking-tight mb-3 mt-4 text-foreground',
+  5: 'text-base font-medium tracking-tight mb-2 mt-4 text-foreground/80',
+  6: 'text-base font-medium tracking-tight mb-2 mt-3 text-foreground/70',
 } as const

@@ -4,29 +4,29 @@ import {
   serializeJsonLd,
 } from '@/lib/utils/seo'
 
-import EducationSection from '@/components/about/EducationSection'
-import Introduction from '@/components/about/Introduction'
+import EducationSection from '@/components/resume/EducationSection'
+import Introduction from '@/components/resume/Introduction'
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import SkillsSection from '@/components/about/SkillsSection'
-import WorkExperienceSection from '@/components/about/WorkExperienceSection'
-import { aboutData } from '@/lib/data/about'
+import SkillsSection from '@/components/resume/SkillsSection'
+import WorkExperienceSection from '@/components/resume/WorkExperienceSection'
+import { resumeData } from '@/lib/data/resume'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'Resume',
   description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.`,
   alternates: {
-    canonical: toAbsoluteUrl('/about'),
+    canonical: toAbsoluteUrl('/resume'),
   },
   openGraph: {
-    title: `About | ${SITE_CONFIG.author.name}`,
+    title: `Resume | ${SITE_CONFIG.author.name}`,
     description: `프론트엔드 개발자 ${SITE_CONFIG.author.name}의 이력서입니다. React, TypeScript 기반의 웹 애플리케이션 개발 경험을 확인하세요.`,
-    url: '/about',
+    url: '/resume',
   },
 }
 
-export default function AboutPage() {
+export default function ResumePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [generatePersonSchema(), generateProfilePageSchema()],
@@ -40,14 +40,14 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="pt-20 pb-60 whitespace-pre-line break-keep">
+      <div className="pt-20 pb-40 whitespace-pre-line break-keep">
         {/* <div className="max-w-4xl space-y-24"> */}
         <div className="space-y-24">
           <main className="space-y-32">
-            <Introduction data={aboutData.introduction} />
-            <WorkExperienceSection experiences={aboutData.experiences} />
-            <SkillsSection skills={aboutData.skills} />
-            <EducationSection education={aboutData.education} />
+            <Introduction data={resumeData.introduction} />
+            <WorkExperienceSection experiences={resumeData.experiences} />
+            <SkillsSection skills={resumeData.skills} />
+            <EducationSection education={resumeData.education} />
           </main>
         </div>
       </div>
