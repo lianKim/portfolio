@@ -5,7 +5,6 @@ date: '2025-06-02'
 lastModified: '2025-06-02'
 category: 'development'
 tags: ['React', 'TypeScript', 'SDUI']
-readingTime: 10
 ---
 
 제품에 부착된 QR 코드를 스캔하면 나타나는 제품 인증 페이지. 이 페이지에서 사용자는 제품 정보 확인, 브랜드 스토리 열람, 소유자 등록과 해제까지 한 번에 처리할 수 있다.

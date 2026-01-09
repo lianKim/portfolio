@@ -61,15 +61,22 @@ export function generateHeadingId(text: string): string {
 }
 
 /**
- * CodeBlock children에서 코드 텍스트를 추출합니다.
+ * CodeBlock children에서 코드 텍스트를 재귀적으로 추출합니다.
+ * rehype-pretty-code로 인해 중첩된 span 구조를 처리합니다.
  * @param children - React children
  * @returns 추출된 코드 텍스트
  */
 export function extractCodeText(children: ReactNode): string {
   if (typeof children === 'string') return children
+  if (typeof children === 'number') return String(children)
+  if (children == null) return ''
 
-  if (isValidElement(children) && typeof children.props.children === 'string') {
-    return children.props.children
+  if (Array.isArray(children)) {
+    return children.map(extractCodeText).join('')
+  }
+
+  if (isValidElement(children)) {
+    return extractCodeText(children.props.children)
   }
 
   return ''
