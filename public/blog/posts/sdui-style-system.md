@@ -5,7 +5,6 @@ date: '2025-06-11'
 lastModified: '2025-06-11'
 category: 'development'
 tags: ['React', 'TypeScript', 'SDUI', 'CSS-in-JS', 'Emotion']
-readingTime: 10
 ---
 
 [이전 글](/blog/sdui-architecture)에서는 `ElementBase` 인터페이스와 `role` 기반 컴포넌트 매핑으로 브랜드별 UI를 JSON으로 구성하는 기본 구조를 만들었다. 스타일은 React의 `CSSProperties`를 그대로 사용하는 단순한 형태였다.

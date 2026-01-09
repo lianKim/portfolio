@@ -5,7 +5,6 @@ date: '2025-04-20'
 lastModified: '2025-04-20'
 category: 'development'
 tags: ['React', 'React Router', 'TypeScript', 'Admin', 'RBAC']
-readingTime: 8
 ---
 
 Admin 시스템을 개발하다 보면 사용자 역할에 따라 접근 가능한 페이지를 다르게 구성해야 하는 경우가 많다. 단순히 특정 페이지의 접근을 막는 수준이 아니라, 역할별로 상당히 다른 메뉴 구조와 기능을 제공해야 할 때도 있다.
