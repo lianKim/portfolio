@@ -1,7 +1,7 @@
 import { HEADING_STYLES } from '@/lib/constants/mdx'
 import { ReactNode } from 'react'
 import { cn } from '@/lib/utils/cn'
-import { generateHeadingId } from '@/lib/utils/mdx'
+import { generateHeadingId } from '@/lib/utils/mdx-utils'
 
 interface HeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6

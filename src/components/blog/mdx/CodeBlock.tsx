@@ -5,7 +5,7 @@ import { ReactNode, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils/cn'
-import { extractCodeText } from '@/lib/utils/mdx'
+import { extractCodeText } from '@/lib/utils/mdx-utils'
 
 interface CodeBlockProps {
   children: ReactNode

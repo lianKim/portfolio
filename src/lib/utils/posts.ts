@@ -49,16 +49,3 @@ export function getAllPosts(): Post[] {
   }
 }
 
-export function groupPostsByCategory(posts: Post[]): Record<string, Post[]> {
-  return posts.reduce(
-    (acc, post) => {
-      const category = post.category || 'uncategorized'
-      if (!acc[category]) {
-        acc[category] = []
-      }
-      acc[category].push(post)
-      return acc
-    },
-    {} as Record<string, Post[]>,
-  )
-}

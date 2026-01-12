@@ -4,7 +4,7 @@ import { CATEGORY_NAMES } from '@/lib/constants/blog'
 import Link from 'next/link'
 import type { Post } from '@/types/blog'
 import { cn } from '@/lib/utils/cn'
-import { groupPostsByCategory } from '@/lib/utils/posts'
+import { groupPostsByCategory } from '@/lib/utils/blog'
 import { usePathname } from 'next/navigation'
 
 interface CategoryMenuProps {
