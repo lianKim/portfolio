@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PostList } from '@/components/blog/PostList'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import { getAllPosts } from '@/lib/utils/posts'
+import { getAllPosts } from '@/lib/server/posts'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export const metadata: Metadata = {

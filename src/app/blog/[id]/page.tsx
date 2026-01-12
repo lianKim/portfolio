@@ -14,9 +14,9 @@ import { SITE_CONFIG } from '@/lib/constants/site'
 import { Separator } from '@/components/ui/separator'
 import { ShareButton } from '@/components/blog/ShareButton'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllPosts } from '@/lib/utils/posts'
+import { getAllPosts } from '@/lib/server/posts'
 import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/utils/mdx'
+import { parseMarkdownFile } from '@/lib/server/mdx'
 import path from 'path'
 
 interface BlogPageProps {
