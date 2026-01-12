@@ -20,16 +20,14 @@ import { parseMarkdownFile } from '@/lib/utils/mdx'
 import path from 'path'
 
 interface BlogPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
-  const postId = params.id
+  const { id: postId } = await params
   const allPosts = getAllPosts()
   const post = allPosts.find((p) => p.id === postId)
 
@@ -82,7 +80,7 @@ export async function generateMetadata({
 
 export default async function BlogPage({ params }: BlogPageProps) {
   // URL 파라미터에서 포스트 ID 가져오기
-  const postId = params.id
+  const { id: postId } = await params
 
   // 해당 ID의 포스트가 존재하는지 확인
   const allPosts = getAllPosts()

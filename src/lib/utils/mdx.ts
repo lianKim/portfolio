@@ -76,7 +76,8 @@ export function extractCodeText(children: ReactNode): string {
   }
 
   if (isValidElement(children)) {
-    return extractCodeText(children.props.children)
+    const props = children.props as { children?: ReactNode }
+    return extractCodeText(props.children)
   }
 
   return ''

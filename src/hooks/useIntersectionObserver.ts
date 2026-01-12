@@ -12,7 +12,7 @@ interface UseIntersectionObserverOptions {
  * @returns 요소가 뷰포트에 진입했는지 여부
  */
 export function useIntersectionObserver(
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   options: UseIntersectionObserverOptions = {}
 ): boolean {
   const [isIntersecting, setIsIntersecting] = useState(false)
