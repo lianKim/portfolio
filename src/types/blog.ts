@@ -19,8 +19,15 @@ export interface PostFrontmatter {
   thumbnail?: string
 }
 
+export interface TocItem {
+  id: string
+  text: string
+  level: number
+}
+
 export interface ParsedPost {
   frontmatter: PostFrontmatter
   content: React.ReactElement
   readingTime: number
+  toc: TocItem[]
 }

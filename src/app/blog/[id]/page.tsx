@@ -92,7 +92,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
-  const { frontmatter, content, readingTime } =
+  const { frontmatter, content, readingTime, toc } =
     await parseMarkdownFile(postPath)
 
   // JSON-LD 구조화된 데이터 생성
@@ -158,7 +158,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           {/* 포스트 본문 */}
           <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
             {/* 목차 */}
-            <TableOfContents />
+            <TableOfContents items={toc} />
             {/* 본문 */}
             <div>{content}</div>
           </div>
