@@ -1,6 +1,7 @@
 'use client'
 
 import { Github } from 'lucide-react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 
@@ -18,11 +19,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-background">
       <div className="container mx-auto px-4 flex h-[var(--header-height)] max-w-[var(--container-max-width)] items-center justify-between">
         <div className="mr-4 flex">
-          <a className="mr-12 flex items-center space-x-2" href="/resume">
+          <Link className="mr-12 flex items-center space-x-2" href="/resume">
             <span className="tracking-tight">LIAN KIM</span>
-          </a>
+          </Link>
           <nav className="flex items-center gap-6 text-sm">
-            <a
+            <Link
               className={cn(
                 'transition-colors hover:text-foreground/70',
                 isActive('/resume')
@@ -32,8 +33,8 @@ export default function Header() {
               href="/resume"
             >
               Resume
-            </a>
-            <a
+            </Link>
+            <Link
               className={cn(
                 'transition-colors hover:text-foreground/70',
                 isActive('/blog') ? 'text-foreground' : 'text-muted-foreground',
@@ -41,7 +42,7 @@ export default function Header() {
               href="/blog"
             >
               Blog
-            </a>
+            </Link>
           </nav>
         </div>
         <a
