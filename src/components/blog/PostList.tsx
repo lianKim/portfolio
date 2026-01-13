@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import type { Post } from '@/types/blog'
 import { PostCard } from './PostCard'
 import { Separator } from './mdx/Separator'
@@ -24,9 +25,8 @@ export function PostList({ posts }: PostListProps) {
       <Separator className="mt-0 mb-12" />
       {/* 포스트 목록 */}
       {posts.map((post) => (
-        <>
+        <Fragment key={post.id}>
           <PostCard
-            key={post.id}
             id={post.id}
             title={post.title}
             description={post.description}
@@ -35,7 +35,7 @@ export function PostList({ posts }: PostListProps) {
             thumbnail={post.thumbnail}
           />
           <Separator className="my-12" />
-        </>
+        </Fragment>
       ))}
     </div>
   )
