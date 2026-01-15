@@ -7,8 +7,8 @@ interface IntroductionProps {
 export default function Introduction({ data }: IntroductionProps) {
   return (
     <section>
-      <div className="grid md:grid-cols-12 gap-x-5">
-        <div className="md:col-span-5">
+      <div className="section-grid">
+        <div className="section-left">
           <div className="md:sticky md:top-[var(--sticky-top-offset)]">
             {/* 이름 */}
             <h3 className="mb-1 text-2xl font-semibold">{data.name}</h3>
@@ -47,7 +47,7 @@ export default function Introduction({ data }: IntroductionProps) {
         </div>
 
         {/* 소개글 */}
-        <div className="md:col-span-7 mt-10 md:mt-0">
+        <div className="section-right mt-10 md:mt-0">
           <div className="flex flex-col gap-6 leading-relaxed">
             {data.description.map((item, index) => (
               <div key={`description-${index}`}>

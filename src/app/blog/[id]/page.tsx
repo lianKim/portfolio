@@ -112,16 +112,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+      <div className="relative w-full section-grid">
         {/* 왼쪽 카테고리 메뉴 */}
-        <aside className="hidden md:block col-span-5">
+        <aside className="section-left hidden md:block">
           <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
             <CategoryMenu posts={allPosts} />
           </div>
         </aside>
 
         {/* 메인 콘텐츠 */}
-        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12">
+        <article className="section-right mt-3 md:mt-0 py-12">
           {/* 포스트 헤더 */}
           <header>
             {/* 포스트 제목 */}
