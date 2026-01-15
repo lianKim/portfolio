@@ -1,6 +1,4 @@
 import type { Introduction } from '@/types/resume'
-import { Separator } from '../ui/separator'
-import { Mail, Phone } from 'lucide-react'
 
 interface IntroductionProps {
   data: Introduction
@@ -9,7 +7,6 @@ interface IntroductionProps {
 export default function Introduction({ data }: IntroductionProps) {
   return (
     <section>
-      {/* <h2 className="text-[1.8rem] font-thin mb-8">Introduction</h2> */}
       <div className="grid md:grid-cols-12 gap-x-5">
         <div className="md:col-span-5">
           <div className="md:sticky md:top-[var(--sticky-top-offset)]">
