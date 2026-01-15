@@ -115,7 +115,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <div className="relative w-full section-grid">
         {/* 왼쪽 카테고리 메뉴 */}
         <aside className="section-left hidden md:block">
-          <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
+          <div className="sticky top-below-header max-w-[14rem]">
             <CategoryMenu posts={allPosts} />
           </div>
         </aside>

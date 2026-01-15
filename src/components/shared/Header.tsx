@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
-      <div className="container mx-auto px-4 flex h-[var(--header-height)] max-w-[var(--container-max-width)] items-center justify-between">
+      <div className="container mx-auto px-4 flex h-header max-w-container items-center justify-between">
         <div className="mr-4 flex">
           <Link className="mr-12 flex items-center space-x-2" href="/resume">
             <span className="tracking-tight">LIAN KIM</span>

@@ -10,7 +10,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
     <div className="section-grid">
       <div className="section-left">
-        <div className="md:sticky md:top-[var(--sticky-top-offset)]">
+        <div className="md:sticky top-below-header">
           <h3 className="mb-3 lg:mb-2 font-semibold">{experience.company}</h3>
           <div className="lg:h-5 flex flex-col lg:flex-row lg:items-center gap-x-2 gap-y-1.5 text-sm leading-tight text-muted-foreground">
             <p>{experience.period}</p>

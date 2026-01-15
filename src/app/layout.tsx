@@ -100,7 +100,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* 헤더 */}
           <Header />
           {/* 메인 */}
-          <main className="flex-1 mx-auto px-4 w-full max-w-[var(--container-max-width)]">
+          <main className="flex-1 mx-auto px-4 w-full max-w-container">
             {children}
           </main>
           {/* 스크롤 탑 버튼 */}
