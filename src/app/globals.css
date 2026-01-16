@@ -3,6 +3,7 @@
 /* Font Faces */
 @font-face {
   font-family: 'Pretendard Variable';
+  font-style: normal;
   font-weight: 45 920;
   font-display: swap;
   src:
@@ -17,7 +18,7 @@
 :root {
   /* Layout */
   --header-height: 56px;
-  --content-padding-y: 48px; /* py-12 = 3rem = 48px */
+  --content-padding-y: 48px;
   --container-max-width: 1400px;
   --top-below-header: calc(var(--header-height) + var(--content-padding-y));
 
@@ -67,18 +68,22 @@
   --ring: oklch(0.556 0 0);
 }
 
-/* Tailwind Theme - Color Mapping */
+/* Tailwind Theme */
 @theme inline {
-  --color-*: initial;
+  /* Layout Utilities */
+  --spacing-header: var(--header-height);
+  --min-height-content: calc(100dvh - var(--header-height));
+  --max-width-container: var(--container-max-width);
+  --inset-below-header: var(--top-below-header);
 
   /* Radius */
-  --radius: 0.5rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
   /* Colors */
+  --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -126,24 +131,6 @@
 
 /* Component Styles */
 @layer components {
-  /* 레이아웃 유틸리티 */
-  .h-header {
-    @apply h-[var(--header-height)];
-  }
-
-  .max-w-container {
-    @apply max-w-[var(--container-max-width)];
-  }
-
-  .min-h-content {
-    @apply min-h-[calc(100vh-var(--header-height))];
-  }
-
-  /* Sticky 유틸리티 - 헤더 아래 고정 (sticky와 조합하여 사용) */
-  .top-below-header {
-    @apply top-[var(--top-below-header)];
-  }
-
   /* 5:7 비율 그리드 섹션 레이아웃 */
   .section-grid {
     @apply grid md:grid-cols-12 gap-x-5;
@@ -160,7 +147,7 @@
 
   /* 스타일 모디파이어 */
   .section-title {
-    @apply text-3xl font-thin md:sticky md:top-[var(--top-below-header)];
+    @apply text-3xl font-thin md:sticky md:top-below-header;
   }
 
   .section-content {
