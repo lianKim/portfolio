@@ -6,7 +6,7 @@ export default function Loading() {
     <div className="relative w-full section-grid">
       {/* 왼쪽 카테고리 메뉴 스켈레톤 */}
       <aside className="section-left hidden md:block">
-        <div className="sticky top-below-header max-w-[14rem] space-y-4">
+        <div className="sticky top-below-header max-w-aside space-y-4">
           <Skeleton className="h-6 w-24" />
           <div className="space-y-2">
             <Skeleton className="h-4 w-full" />

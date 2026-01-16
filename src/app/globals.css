@@ -74,6 +74,7 @@
   --spacing-header: var(--header-height);
   --min-height-content: calc(100dvh - var(--header-height));
   --max-width-container: var(--container-max-width);
+  --max-width-aside: 14rem;
   --inset-below-header: var(--top-below-header);
 
   /* Radius */
