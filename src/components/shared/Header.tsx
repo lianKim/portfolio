@@ -8,12 +8,8 @@ import { usePathname } from 'next/navigation'
 export default function Header() {
   const pathname = usePathname()
 
-  const isActive = (path: string) => {
-    if (path === '/blog') {
-      return pathname.startsWith('/blog')
-    }
-    return pathname.startsWith(path)
-  }
+  const isResumePage = pathname.startsWith('/resume')
+  const isBlogPage = pathname.startsWith('/blog')
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
@@ -24,22 +20,22 @@ export default function Header() {
           </Link>
           <nav className="flex items-center gap-6 text-sm">
             <Link
+              href="/resume"
+              aria-current={isResumePage ? 'page' : undefined}
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isActive('/resume')
-                  ? 'text-foreground'
-                  : 'text-muted-foreground',
+                isResumePage ? 'text-foreground' : 'text-muted-foreground',
               )}
-              href="/resume"
             >
               Resume
             </Link>
             <Link
+              href="/blog"
+              aria-current={isBlogPage ? 'page' : undefined}
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isActive('/blog') ? 'text-foreground' : 'text-muted-foreground',
+                isBlogPage ? 'text-foreground' : 'text-muted-foreground',
               )}
-              href="/blog"
             >
               Blog
             </Link>
