@@ -34,7 +34,14 @@ function extractToc(source: string): TocItem[] {
 }
 
 export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
-  const source = fs.readFileSync(filePath, 'utf-8')
+  // 파일 읽기
+  let source: string
+  try {
+    source = fs.readFileSync(filePath, 'utf-8')
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    throw new Error(`마크다운 파일을 읽을 수 없습니다: ${filePath}\n${message}`)
+  }
 
   // 읽기 시간 계산
   const { minutes } = getReadingTime(source)
@@ -43,32 +50,38 @@ export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
   // 목차 추출
   const toc = extractToc(source)
 
-  const { content, frontmatter } = await compileMDX<PostFrontmatter>({
-    source,
-    components: mdxComponents,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkBreaks],
-        rehypePlugins: [
-          rehypeUnwrapImages, // 이미지를 p 태그에서 제거
-          [
-            rehypePrettyCode,
-            {
-              theme: 'one-light',
-              keepBackground: false,
-            },
+  // MDX 컴파일
+  try {
+    const { content, frontmatter } = await compileMDX<PostFrontmatter>({
+      source,
+      components: mdxComponents,
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [remarkGfm, remarkBreaks],
+          rehypePlugins: [
+            rehypeUnwrapImages,
+            [
+              rehypePrettyCode,
+              {
+                theme: 'one-light',
+                keepBackground: false,
+              },
+            ],
+            rehypeSlug,
           ],
-          rehypeSlug,
-        ],
+        },
       },
-    },
-  })
+    })
 
-  return {
-    frontmatter,
-    content,
-    readingTime,
-    toc,
+    return {
+      frontmatter,
+      content,
+      readingTime,
+      toc,
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    throw new Error(`MDX 컴파일 실패: ${filePath}\n${message}`)
   }
 }
