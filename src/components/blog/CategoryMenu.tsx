@@ -25,7 +25,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
   const postsByCategory = groupPostsByCategory(posts)
 
   return (
-    <nav className={className}>
+    <nav aria-label="카테고리 메뉴" className={className}>
       <div className="space-y-6 pb-4 text-sm">
         {Object.entries(postsByCategory).map(
           ([categorySlug, categoryPosts]) => (

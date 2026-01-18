@@ -18,7 +18,7 @@ export default function Header() {
           <Link className="mr-12 flex items-center space-x-2" href="/resume">
             <span className="tracking-tight">LIAN KIM</span>
           </Link>
-          <nav className="flex items-center gap-6 text-sm">
+          <nav aria-label="메인 네비게이션" className="flex items-center gap-6 text-sm">
             <Link
               href="/resume"
               aria-current={isResumePage ? 'page' : undefined}

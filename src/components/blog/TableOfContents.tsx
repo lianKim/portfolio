@@ -24,7 +24,7 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
 
   return (
     <div>
-      <nav className={className}>
+      <nav aria-label="목차" className={className}>
         <div className="pb-4">
           <div className="mb-1 pr-2 pb-1 flex items-center gap-2">
             <TableOfContentsIcon className="w-4 h-4" />
