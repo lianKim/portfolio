@@ -41,7 +41,6 @@ export default function ResumePage() {
       />
 
       <div className="pt-20 pb-40 whitespace-pre-line break-keep">
-        {/* <div className="max-w-4xl space-y-24"> */}
         <div className="space-y-24">
           <main className="space-y-32">
             <Introduction data={resumeData.introduction} />

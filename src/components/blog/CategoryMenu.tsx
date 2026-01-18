@@ -25,7 +25,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
   const postsByCategory = groupPostsByCategory(posts)
 
   return (
-    <nav className={className}>
+    <nav aria-label="카테고리 메뉴" className={className}>
       <div className="space-y-6 pb-4 text-sm">
         {Object.entries(postsByCategory).map(
           ([categorySlug, categoryPosts]) => (
@@ -41,17 +41,18 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
                   const isCurrentPost = currentPostId === post.id
 
                   return (
-                    <Link key={post.id} href={`/blog/${post.id}`}>
-                      <div
-                        className={cn(
-                          'pr-2 py-1 text-sm cursor-pointer leading-normal',
-                          isCurrentPost
-                            ? 'text-accent-foreground'
-                            : 'text-muted-foreground hover:text-foreground/70',
-                        )}
-                      >
-                        {post.title}
-                      </div>
+                    <Link
+                      key={post.id}
+                      href={`/blog/${post.id}`}
+                      aria-current={isCurrentPost ? 'page' : undefined}
+                      className={cn(
+                        'block pr-2 py-1 text-sm leading-normal',
+                        isCurrentPost
+                          ? 'text-accent-foreground'
+                          : 'text-muted-foreground hover:text-foreground/70',
+                      )}
+                    >
+                      {post.title}
                     </Link>
                   )
                 })}

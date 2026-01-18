@@ -27,6 +27,8 @@ export function formatDate(dateString: string): string {
  * @returns ISO8601 형식의 날짜 문자열 (YYYY-MM-DDTHH:mm:ss.sssZ)
  */
 export function toISO8601(dateString: string): string {
+  if (!dateString) return ''
+
   // 이미 ISO8601 형식이면 그대로 반환
   if (dateString.includes('T')) {
     return dateString
@@ -34,6 +36,13 @@ export function toISO8601(dateString: string): string {
 
   // YYYY-MM-DD 형식을 ISO8601로 변환
   const date = new Date(dateString)
+
+  // 유효하지 않은 날짜 체크
+  if (isNaN(date.getTime())) {
+    console.error(`Invalid date string: ${dateString}`)
+    return dateString
+  }
+
   return date.toISOString()
 }
 

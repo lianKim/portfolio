@@ -11,7 +11,6 @@ import Header from '@/components/shared/Header'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import Script from 'next/script'
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
 import { Toaster } from 'sonner'
 
@@ -86,8 +85,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ko">
       <head>
-        {/* TypeKit 폰트 - preconnect로 연결 준비 */}
+        {/* TypeKit 폰트 */}
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="" />
+        <link rel="stylesheet" href="https://use.typekit.net/ydp6xrt.css" />
 
         {/* JSON-LD 구조화된 데이터 */}
         <script
@@ -100,7 +100,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* 헤더 */}
           <Header />
           {/* 메인 */}
-          <main className="flex-1 mx-auto px-4 w-full max-w-[var(--container-max-width)]">
+          <main className="flex-1 mx-auto px-4 w-full max-w-container">
             {children}
           </main>
           {/* 스크롤 탑 버튼 */}
@@ -113,15 +113,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             }}
           />
         </div>
-
-        {/* TypeKit 비동기 로드 - Adobe 공식 방법 */}
-        <Script
-          src="https://use.typekit.net/ydp6xrt.js"
-          strategy="afterInteractive"
-        />
-        <Script id="typekit-load" strategy="afterInteractive">
-          {`try{Typekit.load({async:true});}catch(e){}`}
-        </Script>
       </body>
     </html>
   )

@@ -1,6 +1,4 @@
 import type { Introduction } from '@/types/resume'
-import { Separator } from '../ui/separator'
-import { Mail, Phone } from 'lucide-react'
 
 interface IntroductionProps {
   data: Introduction
@@ -9,10 +7,9 @@ interface IntroductionProps {
 export default function Introduction({ data }: IntroductionProps) {
   return (
     <section>
-      {/* <h2 className="text-[1.8rem] font-thin mb-8">Introduction</h2> */}
-      <div className="grid md:grid-cols-12 gap-x-5">
-        <div className="md:col-span-5">
-          <div className="md:sticky md:top-[var(--sticky-top-offset)]">
+      <div className="section-grid">
+        <div className="section-left">
+          <div className="md:sticky top-below-header">
             {/* 이름 */}
             <h3 className="mb-1 text-2xl font-semibold">{data.name}</h3>
             {/* 직무 */}
@@ -50,7 +47,7 @@ export default function Introduction({ data }: IntroductionProps) {
         </div>
 
         {/* 소개글 */}
-        <div className="md:col-span-7 mt-10 md:mt-0">
+        <div className="section-right mt-10 md:mt-0">
           <div className="flex flex-col gap-6 leading-relaxed">
             {data.description.map((item, index) => (
               <div key={`description-${index}`}>

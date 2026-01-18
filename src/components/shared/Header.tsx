@@ -8,38 +8,34 @@ import { usePathname } from 'next/navigation'
 export default function Header() {
   const pathname = usePathname()
 
-  const isActive = (path: string) => {
-    if (path === '/blog') {
-      return pathname.startsWith('/blog')
-    }
-    return pathname.startsWith(path)
-  }
+  const isResumePage = pathname.startsWith('/resume')
+  const isBlogPage = pathname.startsWith('/blog')
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
-      <div className="container mx-auto px-4 flex h-[var(--header-height)] max-w-[var(--container-max-width)] items-center justify-between">
+      <div className="container mx-auto px-4 flex h-header max-w-container items-center justify-between">
         <div className="mr-4 flex">
           <Link className="mr-12 flex items-center space-x-2" href="/resume">
             <span className="tracking-tight">LIAN KIM</span>
           </Link>
-          <nav className="flex items-center gap-6 text-sm">
+          <nav aria-label="메인 네비게이션" className="flex items-center gap-6 text-sm">
             <Link
+              href="/resume"
+              aria-current={isResumePage ? 'page' : undefined}
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isActive('/resume')
-                  ? 'text-foreground'
-                  : 'text-muted-foreground',
+                isResumePage ? 'text-foreground' : 'text-muted-foreground',
               )}
-              href="/resume"
             >
               Resume
             </Link>
             <Link
+              href="/blog"
+              aria-current={isBlogPage ? 'page' : undefined}
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isActive('/blog') ? 'text-foreground' : 'text-muted-foreground',
+                isBlogPage ? 'text-foreground' : 'text-muted-foreground',
               )}
-              href="/blog"
             >
               Blog
             </Link>

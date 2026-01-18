@@ -92,7 +92,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
-  const { frontmatter, content, readingTime } =
+  const { frontmatter, content, readingTime, toc } =
     await parseMarkdownFile(postPath)
 
   // JSON-LD 구조화된 데이터 생성
@@ -112,16 +112,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+      <div className="relative w-full section-grid">
         {/* 왼쪽 카테고리 메뉴 */}
-        <aside className="hidden md:block col-span-5">
-          <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
+        <aside className="section-left hidden md:block">
+          <div className="sticky top-below-header max-w-aside">
             <CategoryMenu posts={allPosts} />
           </div>
         </aside>
 
         {/* 메인 콘텐츠 */}
-        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12">
+        <article className="section-right mt-3 md:mt-0 py-12">
           {/* 포스트 헤더 */}
           <header>
             {/* 포스트 제목 */}
@@ -158,7 +158,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           {/* 포스트 본문 */}
           <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
             {/* 목차 */}
-            <TableOfContents />
+            <TableOfContents items={toc} />
             {/* 본문 */}
             <div>{content}</div>
           </div>
