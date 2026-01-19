@@ -3,10 +3,10 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Loading() {
   return (
-    <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+    <div className="relative w-full section-grid">
       {/* 왼쪽 카테고리 메뉴 스켈레톤 */}
-      <aside className="hidden md:block col-span-5">
-        <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem] space-y-4">
+      <aside className="section-left hidden md:block">
+        <div className="sticky top-below-header max-w-aside space-y-4">
           <Skeleton className="h-6 w-24" />
           <div className="space-y-2">
             <Skeleton className="h-4 w-full" />
@@ -18,7 +18,7 @@ export default function Loading() {
       </aside>
 
       {/* 메인 콘텐츠 스켈레톤 */}
-      <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12">
+      <article className="section-right mt-3 md:mt-0 py-12">
         {/* 포스트 헤더 스켈레톤 */}
         <header className="mb-8">
           <Skeleton className="h-10 w-3/4 mb-6" />

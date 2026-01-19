@@ -8,9 +8,9 @@ interface ExperienceCardProps {
 
 export default function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-x-5">
-      <div className="col-span-1 md:col-span-5">
-        <div className="md:sticky md:top-[var(--sticky-top-offset)]">
+    <div className="section-grid">
+      <div className="section-left">
+        <div className="md:sticky top-below-header">
           <h3 className="mb-3 lg:mb-2 font-semibold">{experience.company}</h3>
           <div className="lg:h-5 flex flex-col lg:flex-row lg:items-center gap-x-2 gap-y-1.5 text-sm leading-tight text-muted-foreground">
             <p>{experience.period}</p>
@@ -23,7 +23,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         </div>
       </div>
 
-      <div className="col-span-1 md:col-span-7 mt-4 md:mt-0">
+      <div className="section-right mt-4 md:mt-0">
         <Separator />
         <p className="text-sm my-3 md:my-5">{experience.description}</p>
         <Separator />

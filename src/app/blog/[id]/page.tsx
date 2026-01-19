@@ -14,22 +14,20 @@ import { SITE_CONFIG } from '@/lib/constants/site'
 import { Separator } from '@/components/ui/separator'
 import { ShareButton } from '@/components/blog/ShareButton'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllPosts } from '@/lib/utils/posts'
+import { getAllPosts } from '@/lib/server/posts'
 import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/utils/mdx'
+import { parseMarkdownFile } from '@/lib/server/mdx'
 import path from 'path'
 
 interface BlogPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
-  const postId = params.id
+  const { id: postId } = await params
   const allPosts = getAllPosts()
   const post = allPosts.find((p) => p.id === postId)
 
@@ -82,7 +80,7 @@ export async function generateMetadata({
 
 export default async function BlogPage({ params }: BlogPageProps) {
   // URL 파라미터에서 포스트 ID 가져오기
-  const postId = params.id
+  const { id: postId } = await params
 
   // 해당 ID의 포스트가 존재하는지 확인
   const allPosts = getAllPosts()
@@ -94,7 +92,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
-  const { frontmatter, content, readingTime } =
+  const { frontmatter, content, readingTime, toc } =
     await parseMarkdownFile(postPath)
 
   // JSON-LD 구조화된 데이터 생성
@@ -114,16 +112,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="relative w-full grid grid-cols-1 md:grid-cols-12 gap-x-5">
+      <div className="relative w-full section-grid">
         {/* 왼쪽 카테고리 메뉴 */}
-        <aside className="hidden md:block col-span-5">
-          <div className="sticky top-[var(--sticky-top-offset)] max-w-[14rem]">
+        <aside className="section-left hidden md:block">
+          <div className="sticky top-below-header max-w-aside">
             <CategoryMenu posts={allPosts} />
           </div>
         </aside>
 
         {/* 메인 콘텐츠 */}
-        <article className="col-span-1 md:col-span-7 mt-3 md:mt-0 py-12">
+        <article className="section-right mt-3 md:mt-0 py-12">
           {/* 포스트 헤더 */}
           <header>
             {/* 포스트 제목 */}
@@ -160,7 +158,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
           {/* 포스트 본문 */}
           <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
             {/* 목차 */}
-            <TableOfContents />
+            <TableOfContents items={toc} />
             {/* 본문 */}
             <div>{content}</div>
           </div>

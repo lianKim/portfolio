@@ -4,14 +4,9 @@ import { Skeleton } from '@/components/ui/skeleton'
 export default function Loading() {
   return (
     <div className="relative w-full py-12">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-x-5">
-        {/* 왼쪽 제목 */}
-        <h2 className="text-3xl font-thin col-span-1 md:col-span-5 md:sticky md:top-[var(--sticky-top-offset)]">
-          Posts
-        </h2>
-
-        {/* 오른쪽 포스트 목록 스켈레톤 */}
-        <div className="col-span-1 md:col-span-7 mt-8 md:mt-0 space-y-6">
+      <div className="section-grid">
+        <h2 className="section-left section-title">Posts</h2>
+        <div className="section-right section-content space-y-6">
           <div className="flex flex-col">
             <Separator className="mt-0 mb-12" />
 

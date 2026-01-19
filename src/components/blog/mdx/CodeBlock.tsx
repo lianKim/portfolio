@@ -6,6 +6,7 @@ import { ReactNode, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils/cn'
 import { extractCodeText } from '@/lib/utils/mdx'
+import { toast } from 'sonner'
 
 interface CodeBlockProps {
   children: ReactNode
@@ -32,6 +33,7 @@ export function CodeBlock({
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error('복사 실패:', err)
+      toast.error('코드 복사에 실패했습니다.')
     }
   }
 

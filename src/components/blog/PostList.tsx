@@ -7,7 +7,6 @@ interface PostListProps {
 }
 
 export function PostList({ posts }: PostListProps) {
-  // 포스트가 없을 때 Empty UI 표시
   if (posts.length === 0) {
     return (
       <div>
@@ -20,23 +19,24 @@ export function PostList({ posts }: PostListProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div>
       <Separator className="mt-0 mb-12" />
-      {/* 포스트 목록 */}
-      {posts.map((post) => (
-        <>
-          <PostCard
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            description={post.description}
-            date={post.date}
-            tags={post.tags}
-            thumbnail={post.thumbnail}
-          />
-          <Separator className="my-12" />
-        </>
-      ))}
+      <ul className="flex flex-col">
+        {posts.map((post, index) => (
+          <li key={post.id}>
+            <PostCard
+              id={post.id}
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              tags={post.tags}
+              thumbnail={post.thumbnail}
+            />
+            {index < posts.length - 1 && <Separator className="my-12" />}
+          </li>
+        ))}
+      </ul>
+      <Separator className="mt-12" />
     </div>
   )
 }

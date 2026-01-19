@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PostList } from '@/components/blog/PostList'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import { getAllPosts } from '@/lib/utils/posts'
+import { getAllPosts } from '@/lib/server/posts'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export const metadata: Metadata = {
@@ -23,12 +23,9 @@ export default function BlogPage() {
 
   return (
     <div className="relative w-full py-12">
-      {/* 중앙 포스트 목록 */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-x-5">
-        <h2 className="text-3xl font-thin col-span-1 md:col-span-5 md:sticky md:top-[var(--sticky-top-offset)]">
-          Posts
-        </h2>
-        <div className="col-span-1 md:col-span-7 mt-8 md:mt-0 space-y-6">
+      <div className="section-grid">
+        <h2 className="section-left section-title">Posts</h2>
+        <div className="section-right section-content space-y-6">
           <PostList posts={posts} />
         </div>
       </div>

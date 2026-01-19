@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/utils/posts'
+import { getAllPosts } from '@/lib/server/posts'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export default function sitemap(): MetadataRoute.Sitemap {
