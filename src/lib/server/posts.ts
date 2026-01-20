@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 import type { Post } from '@/types/blog'
 import { formatDate } from '@/lib/utils/format'
 
-const postsDirectory = path.join(process.cwd(), 'public/blog/posts')
+const postsDirectory = path.join(process.cwd(), 'src/content/posts')
 
 export function getAllPosts(): Post[] {
   // 디렉토리 존재 여부 확인
