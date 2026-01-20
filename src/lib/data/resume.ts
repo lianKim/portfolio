@@ -102,7 +102,7 @@ export const resumeData: ResumeData = {
           process: [
             {
               text: '**메뉴 메타데이터 중심의 라우트 설계**로 사이드바와 라우트를 동기화하여 관리 지점 단일화(SSOT)',
-              href: '/blog/react-router-role-based-routing',
+              href: '/blog/role-based-routing',
             },
             {
               text: '**Role 기반 라우트 동적 등록 시스템 구현**으로 권한별 보안 강화 및 초기 로딩 성능 최적화',
