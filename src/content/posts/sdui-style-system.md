@@ -53,7 +53,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, CSSProperties>>;
 
 인증 코드가 전송되면 인증 코드 입력 필드와 타이머가 나타나고, 인증이 완료되면 완료 메시지가 표시된다.
 
-![인증 컴포넌트 상태 변화](/blog/images/sdui-style-system/verification.webp)
+![인증 컴포넌트 상태 변화](/images/posts/sdui-style-system/verification.webp)
 
 ```tsx
 function Verification({ data, style }: VerificationProps) {
@@ -92,7 +92,7 @@ function Verification({ data, style }: VerificationProps) {
 
 서명이 완료되면 초기화 버튼이 나타난다.
 
-![서명 패드 상태 변화](/blog/images/sdui-style-system/signature.webp)
+![서명 패드 상태 변화](/images/posts/sdui-style-system/signature.webp)
 
 ```tsx
 function SignaturePad({ data }: SignaturePadProps) {
@@ -182,7 +182,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 `:focus`로 포커스 시 테두리 색상을 변경하고, `::placeholder`로 힌트 텍스트 색상을 지정한다. `:-webkit-autofill` 관련 선택자로 브라우저 자동완성 시 적용되는 기본 스타일을 브랜드 스타일에 맞게 덮어썼다.
 
-![입력 필드 상태 변화](/blog/images/sdui-style-system/input.webp)
+![입력 필드 상태 변화](/images/posts/sdui-style-system/input.webp)
 
 ```json
 {
@@ -217,7 +217,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 브라우저 기본 체크박스 스타일을 `appearance: none`으로 제거하고 직접 디자인한 스타일을 적용했다. `:checked`로 체크 시 테두리 색상을 변경하고, `:checked::after`로 체크 표시를 CSS로 그린다. 체크박스가 선택되지 않은 상태에서는 연한 테두리의 빈 사각형이 보이고, 선택하면 테두리가 진해지면서 사각형 안에 체크 표시가 나타난다.
 
-![체크박스 상태 변화](/blog/images/sdui-style-system/checkbox.webp)
+![체크박스 상태 변화](/images/posts/sdui-style-system/checkbox.webp)
 
 ```json
 {
@@ -283,7 +283,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 1차 확장에서 상태별 스타일을, 2차 확장에서 의사선택자 지원을 추가했다. 최종 스타일 구조는 다음과 같다.
 
-![ElementStyle 구조 다이어그램](/blog/images/sdui-style-system/diagram.webp)
+![ElementStyle 구조 다이어그램](/images/posts/sdui-style-system/diagram.webp)
 
 상태(`default`, `active`)와 적용 방식(`base`, `pseudo`)의 조합으로 구성된다. 타입 정의는 다음과 같다:
 

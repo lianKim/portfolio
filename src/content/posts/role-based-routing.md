@@ -327,7 +327,7 @@ export default function SideBar() {
 
 전체 흐름을 정리하면 다음과 같다.
 
- ![](/blog/images/react-router-role-based-routing/flow-chart.webp)
+ ![](/images/posts/role-based-routing/flow-chart.webp)
 
 라우트 정의 한 곳만 수정하면 라우터와 사이드바 메뉴가 동시에 반영되는 구조가 완성됐다.
 

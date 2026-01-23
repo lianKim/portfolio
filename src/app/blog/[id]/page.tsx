@@ -38,7 +38,7 @@ export async function generateMetadata({
   }
 
   // 포스트 파일 경로 생성하고 파싱
-  const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
+  const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
   const { frontmatter } = await parseMarkdownFile(postPath)
 
   const ogImage = frontmatter.thumbnail || SITE_CONFIG.images.ogImage
@@ -91,7 +91,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   }
 
   // 포스트 파일 경로 생성하고 파싱
-  const postPath = path.join(process.cwd(), 'public/blog/posts', `${postId}.md`)
+  const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
   const { frontmatter, content, readingTime, toc } =
     await parseMarkdownFile(postPath)
 

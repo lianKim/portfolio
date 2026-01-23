@@ -252,7 +252,7 @@ export type Element =
 
 전체 과정을 정리하면 다음과 같다:
 
- ![SDUI 렌더링 파이프라인 흐름도](/blog/images/sdui-architecture/flow-chart.webp)
+ ![SDUI 렌더링 파이프라인 흐름도](/images/posts/sdui-architecture/flow-chart.webp)
 
 ```tsx
 // 1. 서버 응답을 Element 배열로 파싱

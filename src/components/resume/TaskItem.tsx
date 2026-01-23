@@ -1,5 +1,7 @@
+import type { ProcessItem, Task } from '@/types/resume'
+
 import { Badge } from '@/components/ui/badge'
-import type { Task } from '@/types/resume'
+import Link from 'next/link'
 import { parseRichText } from '@/lib/utils/richText'
 
 interface TaskItemProps {
@@ -25,7 +27,15 @@ export default function TaskItem({ task }: TaskItemProps) {
         <p className="text-sm text-muted-foreground mb-2">해결 과정</p>
         <ul className="space-y-2 list-disc pl-4">
           {task.process.map((item, index) => (
-            <li key={index}>{parseRichText(item)}</li>
+            <li key={index}>
+              {item.href ? (
+                <Link href={item.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+                  {parseRichText(item.text)}
+                </Link>
+              ) : (
+                parseRichText(item.text)
+              )}
+            </li>
           ))}
         </ul>
       </div>
