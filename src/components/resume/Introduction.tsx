@@ -9,7 +9,7 @@ export default function Introduction({ data }: IntroductionProps) {
     <section>
       <div className="section-grid">
         <div className="section-left">
-          <div className="md:sticky top-below-header">
+          <div>
             {/* 이름 */}
             <h3 className="mb-1 text-2xl font-semibold">{data.name}</h3>
             {/* 직무 */}

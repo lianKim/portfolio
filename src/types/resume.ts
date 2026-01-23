@@ -1,7 +1,12 @@
+export interface ProcessItem {
+  text: string
+  href?: string
+}
+
 export interface Task {
   title: string
   problem?: string
-  process: string[]
+  process: ProcessItem[]
   results: string[]
   technologies?: string[]
 }

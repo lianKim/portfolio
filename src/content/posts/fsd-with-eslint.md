@@ -25,7 +25,7 @@ FSD 공식 문서를 살펴보면서 이 방법론이 우리 상황에 적합하
 
 FSD는 세 가지 개념으로 구성된다.
 
- ![FSD의 계층 구조](/blog/images/fsd-with-eslint/visual-schema.webp)
+ ![FSD의 계층 구조](/images/posts/fsd-with-eslint/visual-schema.webp)
 
 **Layers**는 역할에 따른 수직적 계층 구분이다. app, pages, features, entities, shared 순으로 나뉘며, 상위 레이어는 하위 레이어만 참조할 수 있다. 이 단방향 의존성 원칙이 FSD의 핵심이다.
 
