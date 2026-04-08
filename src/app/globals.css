@@ -155,3 +155,16 @@
     @apply mt-8 md:mt-0;
   }
 }
+
+/* Prose 오버플로우 처리 (모바일 코드블록, 테이블 등) */
+.prose pre {
+  @apply overflow-x-auto;
+}
+
+.prose table {
+  @apply block overflow-x-auto;
+}
+
+.prose img {
+  @apply max-w-full h-auto;
+}
