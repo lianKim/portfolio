@@ -121,7 +121,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </aside>
 
         {/* 메인 콘텐츠 */}
-        <article className="section-right mt-3 md:mt-0 py-12">
+        <article className="section-right mt-3 md:mt-0 py-12 min-w-0">
           {/* 포스트 헤더 */}
           <header>
             {/* 포스트 제목 */}
