@@ -6,15 +6,13 @@ import {
   CARD_ASPECT_RATIO_H,
   CARD_ASPECT_RATIO_W,
   CONTACT_INFO,
-  DEFAULT_VIEWPORT_WIDTH,
-  DESKTOP_CARD_SCALE,
   FONT_DEFAULT,
   FONT_EN,
-  MOBILE_BREAKPOINT,
-  MOBILE_CARD_SCALE,
+  TABLET_BREAKPOINT,
   TEXTURE_PATH,
 } from '@/lib/constants/businessCard'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
+import { getCardScale } from '@/lib/utils/responsive'
 import { Html, OrbitControls } from '@react-three/drei'
 import { Suspense, useMemo, useRef } from 'react'
 
@@ -37,9 +35,8 @@ function BusinessCard() {
 
   const responsiveScale = useMemo((): [number, number, 0.01] => {
     const deviceWidth =
-      typeof window !== 'undefined' ? window.innerWidth : DEFAULT_VIEWPORT_WIDTH
-    const maxX =
-      deviceWidth < MOBILE_BREAKPOINT ? MOBILE_CARD_SCALE : DESKTOP_CARD_SCALE
+      typeof window !== 'undefined' ? window.innerWidth : TABLET_BREAKPOINT
+    const maxX = getCardScale(deviceWidth)
     const nextX = Math.min(viewport.width * 0.8, maxX)
 
     return [nextX, (nextX / CARD_ASPECT_RATIO_W) * CARD_ASPECT_RATIO_H, 0.01]

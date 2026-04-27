@@ -7,11 +7,12 @@ export const FONT_DEFAULT =
 export const TEXTURE_PATH = '/images/card-texture.webp'
 
 // 반응형 브레이크포인트
-export const DEFAULT_VIEWPORT_WIDTH = 1024
+export const TABLET_BREAKPOINT = 1024
 export const MOBILE_BREAKPOINT = 768
 
 // 카드 스케일
 export const MOBILE_CARD_SCALE = 3.5
+export const TABLET_CARD_SCALE = 5
 export const DESKTOP_CARD_SCALE = 7
 export const CARD_ASPECT_RATIO_W = 9
 export const CARD_ASPECT_RATIO_H = 5
