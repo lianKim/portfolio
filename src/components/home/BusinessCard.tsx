@@ -19,7 +19,7 @@ import { Suspense, useMemo, useRef } from 'react'
 export default function BusinessCardCanvas() {
   return (
     <div className="h-[80vh] w-full">
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
         <ambientLight />
         <BusinessCard />
         <OrbitControls enableZoom={false} />
