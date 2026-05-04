@@ -1,3 +1,5 @@
+import { PERSONAL_INFO } from './personal'
+
 // 폰트
 export const FONT_EN = "'mundial-narrow-variable', sans-serif"
 export const FONT_DEFAULT =
@@ -19,8 +21,8 @@ export const CARD_ASPECT_RATIO_H = 5
 
 // 연락처 정보
 export const CONTACT_INFO = {
-  name: '김리안',
+  name: PERSONAL_INFO.name,
   job: 'Front-End Developer',
-  phone: '+82(0)1090011250',
-  email: '5ffcut@gmail.com',
+  phone: PERSONAL_INFO.phone,
+  email: PERSONAL_INFO.email,
 } as const
