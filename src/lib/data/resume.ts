@@ -1,13 +1,14 @@
+import { PERSONAL_INFO } from '@/lib/constants/personal'
 import type { ResumeData } from '@/types/resume'
 
 export const resumeData: ResumeData = {
   introduction: {
-    name: '김리안',
+    name: PERSONAL_INFO.name,
     position: '프론트엔드 개발자',
     contact: {
-      email: '5ffcut@gmail.com',
-      phone: '+82 10-9001-1250',
-      github: 'github.com/lianKim',
+      email: PERSONAL_INFO.email,
+      phone: PERSONAL_INFO.phone,
+      github: PERSONAL_INFO.github.display,
     },
     description: [
       {

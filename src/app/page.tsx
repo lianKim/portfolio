@@ -1,5 +1,9 @@
-import { redirect } from 'next/navigation'
+import BusinessCardLoader from '@/components/home/BusinessCardLoader'
 
 export default function HomePage() {
-  redirect('/resume')
+  return (
+    <div className="flex h-full items-center justify-center">
+      <BusinessCardLoader />
+    </div>
+  )
 }
