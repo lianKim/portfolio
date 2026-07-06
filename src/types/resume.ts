@@ -7,7 +7,7 @@ export interface Task {
   title: string
   problem?: string
   process: ProcessItem[]
-  results: string[]
+  results?: string[]
   technologies?: string[]
 }
 

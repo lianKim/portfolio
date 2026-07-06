@@ -47,14 +47,16 @@ export default function TaskItem({ task }: TaskItemProps) {
       </div>
 
       {/* 결과 */}
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">결과</p>
-        <ul className="space-y-2 list-disc pl-4">
-          {task.results.map((item, index) => (
-            <li key={index}>{parseRichText(item)}</li>
-          ))}
-        </ul>
-      </div>
+      {task.results && task.results.length > 0 && (
+        <div>
+          <p className="text-xs text-muted-foreground mb-2">결과</p>
+          <ul className="space-y-2 list-disc pl-4 [&_strong]:text-accent-foreground">
+            {task.results.map((item, index) => (
+              <li key={index}>{parseRichText(item)}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* 기술 스택 */}
       {task.technologies && task.technologies.length > 0 && (
