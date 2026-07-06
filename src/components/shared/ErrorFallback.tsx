@@ -16,7 +16,7 @@ export function ErrorFallback({
   return (
     <div className="relative w-full py-12">
       <div className="section-grid">
-        <h2 className="section-left section-title">{title}</h2>
+        <h2 className="section-left section-label">{title}</h2>
         <div className="section-right section-content">
           <div className="space-y-2">
             <p>{message}</p>

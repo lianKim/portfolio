@@ -77,6 +77,9 @@
   --max-width-aside: 14rem;
   --inset-below-header: var(--top-below-header);
 
+  /* Typography */
+  --text-subhead: 15px;
+
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -148,7 +151,7 @@
   }
 
   /* 스타일 모디파이어 */
-  .section-title {
+  .section-label {
     @apply text-muted-foreground text-sm;
   }
 

@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     <div className="relative w-full py-12">
       <div className="section-grid">
-        <h2 className="section-left section-title">Posts</h2>
+        <h2 className="section-left section-label">Posts</h2>
         <div className="section-right section-content space-y-6">
           <div className="flex flex-col">
             <Separator className="mt-0 mb-12" />

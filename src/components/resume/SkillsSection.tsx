@@ -1,14 +1,14 @@
 import SkillCategory from './SkillCategory'
-import type { SkillCategory as SkillCategoryType } from '@/types/resume'
+import type { SkillCategoryData } from '@/types/resume'
 
 interface SkillsSectionProps {
-  skills: SkillCategoryType[]
+  skills: SkillCategoryData[]
 }
 
 export default function SkillsSection({ skills }: SkillsSectionProps) {
   return (
     <div className="section-grid">
-      <h2 className="section-left text-muted-foreground">/ Skills</h2>
+      <h2 className="section-left section-label">/ Skills</h2>
       <div className="section-right section-content space-y-8">
         {skills.map((skillCategory) => (
           <SkillCategory

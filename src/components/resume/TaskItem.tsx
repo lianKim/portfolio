@@ -12,7 +12,7 @@ export default function TaskItem({ task }: TaskItemProps) {
   return (
     <li className="space-y-8 leading-relaxed">
       {/* 주요 업무 타이틀 */}
-      <h4 className="font-semibold text-[15px]">{task.title}</h4>
+      <h4 className="font-semibold text-subhead">{task.title}</h4>
 
       {/* 문제 상황 */}
       {task.problem && (

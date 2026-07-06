@@ -26,7 +26,7 @@ export interface Education {
   description?: string
 }
 
-export interface SkillCategory {
+export interface SkillCategoryData {
   category: string
   skills: string[]
 }
@@ -48,6 +48,6 @@ export interface Introduction {
 export interface ResumeData {
   introduction: Introduction
   experiences: Experience[]
-  skills: SkillCategory[]
+  skills: SkillCategoryData[]
   education: Education[]
 }

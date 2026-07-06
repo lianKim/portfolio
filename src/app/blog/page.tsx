@@ -24,7 +24,7 @@ export default function BlogPage() {
   return (
     <div className="relative w-full py-12">
       <div className="section-grid">
-        <h2 className="section-left section-title">Posts</h2>
+        <h2 className="section-left section-label">Posts</h2>
         <div className="section-right section-content space-y-6">
           <PostList posts={posts} />
         </div>
