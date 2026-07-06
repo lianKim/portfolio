@@ -10,23 +10,13 @@ export const resumeData: ResumeData = {
       phone: PERSONAL_INFO.phone,
       github: PERSONAL_INFO.github.display,
     },
-    description: [
-      {
-        title: '제품의 성장 주기를 함께한 프론트엔드 오너',
-        content:
-          '초기 1인 개발자로 시작해 아키텍처 설계부터 제품 배포까지 전 과정을 주도했습니다. 팀 확장기에는 개발 표준 및 온보딩 체계를 정립하여 팀 생산성을 개선했습니다.',
-      },
-      {
-        title: '유연한 시스템 설계로 비즈니스 가치 창출',
-        content:
-          'SDUI, 디자인 시스템, FSD 아키텍처를 도입하여 요구사항 대응 리드타임을 30% 단축했으며, 장기적인 확장성을 고려한 코드 설계를 지향합니다.',
-      },
-      {
-        title: '디자인 전공 기반의 시각적 인터랙션 구현',
-        content:
-          '디자인 전공을 바탕으로 사용자의 시선 흐름을 고려한 UI를 구현하며, 디자이너와 높은 수준의 기술적 소통이 가능합니다.',
-      },
-    ],
+    description: {
+      title: '만들고 팔아본 프론트엔드 개발자',
+      content: [
+        '빈티지 조명 브랜드를 직접 운영하며, 고객이 상품을 보고 결제하는 화면과 운영자가 주문·상품을 관리하는 관리자 페이지를 만들고, 배포까지 맡았습니다. 이후 패션 산업 플랫폼에서는 성격이 다른 서비스들이 한 코드베이스에 섞이며 생기는 문제를 줄이기 위해, 프론트엔드 구조를 재편하고 팀이 같은 기준으로 개발할 수 있도록 문서화했습니다.',
+        'React·TypeScript를 주로 사용하며, 화면을 만들 때 사용자가 보는 흐름과 운영자가 관리하는 흐름을 함께 확인합니다. 기능을 더하기 전에, 지금 구조에서 줄일 수 있는 복잡도가 있는지 먼저 봅니다.',
+      ],
+    },
   },
   experiences: [
     {
@@ -155,7 +145,7 @@ export const resumeData: ResumeData = {
     {
       company: 'arffy',
       period: '2023.06 - 2024.01',
-      position: 'Project Lead & Frontend Engineer',
+      position: 'Co-Founder & Frontend Engineer',
       description: '20세기 유럽 조명 및 소품 커머스 브랜드',
       tasks: [
         {

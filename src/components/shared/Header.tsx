@@ -18,7 +18,7 @@ export default function Header() {
           <Link className="mr-12 md:mr-16 flex items-center space-x-2" href="/">
             <span className="tracking-tight">LIAN KIM</span>
           </Link>
-          <nav
+          {/* <nav
             aria-label="메인 네비게이션"
             className="flex items-center gap-6 text-sm"
           >
@@ -42,7 +42,7 @@ export default function Header() {
             >
               Blog
             </Link>
-          </nav>
+          </nav> */}
         </div>
         <a
           href="https://github.com/lianKim"
