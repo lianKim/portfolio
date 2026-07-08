@@ -49,7 +49,7 @@ export function CategoryMenu({ className, posts }: CategoryMenuProps) {
                         'block pr-2 py-1 text-sm leading-normal',
                         isCurrentPost
                           ? 'text-accent-foreground'
-                          : 'text-muted-foreground hover:text-foreground/70',
+                          : 'text-muted-foreground hover:text-foreground/80',
                       )}
                     >
                       {post.title}
