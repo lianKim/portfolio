@@ -22,10 +22,10 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <div className="relative w-full py-12">
+    <div className="relative w-full pt-20 pb-12">
       <div className="section-grid">
-        <h2 className="section-left section-label">Posts</h2>
-        <div className="section-right section-content space-y-6">
+        <h2 className="section-left section-label">/ Posts</h2>
+        <div className="section-right section-content">
           <PostList posts={posts} />
         </div>
       </div>
