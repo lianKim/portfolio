@@ -1,6 +1,5 @@
 'use client'
 
-import { Github } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
@@ -15,10 +14,10 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-background">
       <div className="container mx-auto px-4 flex h-header max-w-container items-center justify-between">
         <div className="mr-4 flex">
-          <Link className="mr-12 md:mr-16 flex items-center space-x-2" href="/">
+          <Link className="mr-14 md:mr-20 flex items-center space-x-2" href="/">
             <span className="tracking-tight">LIAN KIM</span>
           </Link>
-          {/* <nav
+          <nav
             aria-label="메인 네비게이션"
             className="flex items-center gap-6 text-sm"
           >
@@ -42,16 +41,15 @@ export default function Header() {
             >
               Blog
             </Link>
-          </nav> */}
+          </nav>
         </div>
         <a
           href="https://github.com/lianKim"
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-colors hover:text-foreground/80 text-foreground/60"
-          aria-label="Github"
+          className="text-sm transition-colors hover:text-foreground/80 text-foreground/60"
         >
-          <Github className="h-5 w-5" />
+          GitHub
         </a>
       </div>
     </header>
