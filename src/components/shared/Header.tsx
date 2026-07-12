@@ -44,12 +44,17 @@ export default function Header() {
           </nav>
         </div>
         <a
-          href="https://github.com/lianKim"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm transition-colors hover:text-foreground/80 text-foreground/60"
+          href="/files/resume.pdf"
+          download="LianKim-Resume.pdf"
+          className="group inline-flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 text-foreground/60"
         >
-          GitHub
+          이력서 PDF
+          <span
+            aria-hidden="true"
+            className="transition-transform group-hover:translate-y-0.5"
+          >
+            ↓
+          </span>
         </a>
       </div>
     </header>
