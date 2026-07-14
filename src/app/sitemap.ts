@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/server/posts'
-import { getAllWorks } from '@/lib/server/works'
+import { getAllProjects } from '@/lib/server/projects'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: toAbsoluteUrl('/work'),
+      url: toAbsoluteUrl('/projects'),
       lastModified,
       priority: 0.9,
     },
@@ -41,13 +41,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }))
 
-  // 동적 기록(work) 페이지 (날짜 없음 → 배포 시각 사용)
-  const works = getAllWorks()
-  const workPages: MetadataRoute.Sitemap = works.map((work) => ({
-    url: toAbsoluteUrl(`/work/${work.slug}`),
+  // 동적 프로젝트 기록 페이지 (날짜 없음 → 배포 시각 사용)
+  const projects = getAllProjects()
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: toAbsoluteUrl(`/projects/${project.slug}`),
     lastModified,
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogPosts, ...workPages]
+  return [...staticPages, ...blogPosts, ...projectPages]
 }

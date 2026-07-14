@@ -8,7 +8,7 @@ export default function Header() {
   const pathname = usePathname()
 
   const isResumePage = pathname.startsWith('/resume')
-  const isWorkPage = pathname.startsWith('/work')
+  const isProjectsPage = pathname.startsWith('/projects')
   const isBlogPage = pathname.startsWith('/blog')
 
   return (
@@ -33,14 +33,14 @@ export default function Header() {
               Resume
             </Link>
             <Link
-              href="/work"
-              aria-current={isWorkPage ? 'page' : undefined}
+              href="/projects"
+              aria-current={isProjectsPage ? 'page' : undefined}
               className={cn(
                 'transition-colors hover:text-foreground/70',
-                isWorkPage ? 'text-foreground' : 'text-muted-foreground',
+                isProjectsPage ? 'text-foreground' : 'text-muted-foreground',
               )}
             >
-              Work
+              Projects
             </Link>
             <Link
               href="/blog"

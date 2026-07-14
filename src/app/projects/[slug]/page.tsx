@@ -1,35 +1,40 @@
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { WorkMenu } from '@/components/work/WorkMenu'
-import type { WorkFrontmatter } from '@/types/work'
-import { getAllWorks } from '@/lib/server/works'
+import { ProjectMenu } from '@/components/projects/ProjectMenu'
+import type { ProjectFrontmatter } from '@/types/project'
+import { getAllProjects } from '@/lib/server/projects'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/server/mdx'
 import path from 'path'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
-interface WorkPageProps {
+interface ProjectPageProps {
   params: Promise<{ slug: string }>
 }
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
   params,
-}: WorkPageProps): Promise<Metadata> {
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
-  const works = getAllWorks()
-  const work = works.find((w) => w.slug === slug)
+  const projects = getAllProjects()
+  const project = projects.find((p) => p.slug === slug)
 
-  if (!work) {
+  if (!project) {
     return {
-      title: 'Work Not Found',
+      title: 'Project Not Found',
     }
   }
 
-  // 기록 파일 경로 생성하고 파싱
-  const workPath = path.join(process.cwd(), 'src/content/works', `${slug}.md`)
-  const { frontmatter } = await parseMarkdownFile<WorkFrontmatter>(workPath)
+  // 프로젝트 기록 파일 경로 생성하고 파싱
+  const projectPath = path.join(
+    process.cwd(),
+    'src/content/projects',
+    `${slug}.md`,
+  )
+  const { frontmatter } =
+    await parseMarkdownFile<ProjectFrontmatter>(projectPath)
 
   const ogImage = SITE_CONFIG.images.ogImage
 
@@ -38,12 +43,12 @@ export async function generateMetadata({
     description: frontmatter.description || frontmatter.title,
     authors: [{ name: SITE_CONFIG.author.name }],
     alternates: {
-      canonical: toAbsoluteUrl(`/work/${slug}`),
+      canonical: toAbsoluteUrl(`/projects/${slug}`),
     },
     openGraph: {
       title: frontmatter.title,
       description: frontmatter.description || frontmatter.title,
-      url: `/work/${slug}`,
+      url: `/projects/${slug}`,
       siteName: SITE_CONFIG.name,
       type: 'article',
       authors: [SITE_CONFIG.author.name],
@@ -65,30 +70,34 @@ export async function generateMetadata({
   }
 }
 
-export default async function WorkDetailPage({ params }: WorkPageProps) {
+export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   // URL 파라미터에서 slug 가져오기
   const { slug } = await params
 
-  // 해당 slug의 기록이 존재하는지 확인
-  const works = getAllWorks()
-  const work = works.find((w) => w.slug === slug)
+  // 해당 slug의 프로젝트 기록이 존재하는지 확인
+  const projects = getAllProjects()
+  const project = projects.find((p) => p.slug === slug)
 
-  if (!work) {
+  if (!project) {
     notFound()
   }
 
-  // 기록 파일 경로 생성하고 파싱
-  const workPath = path.join(process.cwd(), 'src/content/works', `${slug}.md`)
+  // 프로젝트 기록 파일 경로 생성하고 파싱
+  const projectPath = path.join(
+    process.cwd(),
+    'src/content/projects',
+    `${slug}.md`,
+  )
   const { frontmatter, content, toc } =
-    await parseMarkdownFile<WorkFrontmatter>(workPath)
+    await parseMarkdownFile<ProjectFrontmatter>(projectPath)
 
   return (
     <div className="relative w-full pt-20 pb-12">
       <div className="section-grid">
-        {/* 왼쪽 기록 메뉴 */}
+        {/* 왼쪽 프로젝트 기록 메뉴 */}
         <aside className="section-left hidden md:block">
           <div className="sticky top-below-header max-w-aside">
-            <WorkMenu works={works} />
+            <ProjectMenu projects={projects} />
           </div>
         </aside>
 
@@ -114,11 +123,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   )
 }
 
-// 빌드 타임에 모든 기록을 정적으로 생성
+// 빌드 타임에 모든 프로젝트 기록을 정적으로 생성
 export async function generateStaticParams() {
-  const works = getAllWorks()
+  const projects = getAllProjects()
 
-  return works.map((work) => ({
-    slug: work.slug,
+  return projects.map((project) => ({
+    slug: project.slug,
   }))
 }

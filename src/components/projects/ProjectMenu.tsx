@@ -1,34 +1,34 @@
 'use client'
 
 import Link from 'next/link'
-import type { Work } from '@/types/work'
+import type { Project } from '@/types/project'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 
-interface WorkMenuProps {
+interface ProjectMenuProps {
   className?: string
-  works: Work[]
+  projects: Project[]
 }
 
-export function WorkMenu({ className, works }: WorkMenuProps) {
+export function ProjectMenu({ className, projects }: ProjectMenuProps) {
   const pathname = usePathname()
 
-  // /work/[slug] 패턴에서 현재 slug 추출
+  // /projects/[slug] 패턴에서 현재 slug 추출
   const currentSlug =
-    pathname.startsWith('/work/') && pathname !== '/work'
-      ? pathname.split('/work/')[1]
+    pathname.startsWith('/projects/') && pathname !== '/projects'
+      ? pathname.split('/projects/')[1]
       : undefined
 
   return (
     <nav aria-label="기록 메뉴" className={className}>
       <div className="space-y-1 pb-4 text-sm">
-        {works.map((work) => {
-          const isCurrent = currentSlug === work.slug
+        {projects.map((project) => {
+          const isCurrent = currentSlug === project.slug
 
           return (
             <Link
-              key={work.slug}
-              href={`/work/${work.slug}`}
+              key={project.slug}
+              href={`/projects/${project.slug}`}
               aria-current={isCurrent ? 'page' : undefined}
               className={cn(
                 'block pr-2 py-1 text-sm leading-normal',
@@ -37,7 +37,7 @@ export function WorkMenu({ className, works }: WorkMenuProps) {
                   : 'text-muted-foreground hover:text-foreground/80',
               )}
             >
-              {work.title}
+              {project.title}
             </Link>
           )
         })}
