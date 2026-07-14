@@ -19,10 +19,8 @@ export function PostCard({
 }: PostCardProps) {
   return (
     <article>
-      <Link href={`/blog/${id}`} className="block space-y-4">
-        <h3 className="text-lg font-light text-foreground line-clamp-2">
-          {title}
-        </h3>
+      <Link href={`/blog/${id}`} className="block space-y-2">
+        <h3 className="text-subhead text-foreground line-clamp-2">{title}</h3>
         <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
           {description}
         </p>

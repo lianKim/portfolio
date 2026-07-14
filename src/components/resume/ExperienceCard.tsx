@@ -1,5 +1,4 @@
 import type { Experience } from '@/types/resume'
-import { Separator } from '../ui/separator'
 import TaskItem from './TaskItem'
 
 interface ExperienceCardProps {
@@ -11,24 +10,20 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
     <div className="section-grid">
       <div className="section-left">
         <div className="md:sticky top-below-header">
-          <h3 className="mb-3 lg:mb-2 font-semibold">{experience.company}</h3>
+          <h3 className="mb-3 lg:mb-2 font-semibold text-subhead">
+            {experience.company}
+          </h3>
+          <p className="mb-3 lg:mb-2">{experience.description}</p>
           <div className="lg:h-5 flex flex-col lg:flex-row lg:items-center gap-x-2 gap-y-1.5 text-sm leading-tight text-muted-foreground">
             <p>{experience.period}</p>
-            <Separator
-              orientation="vertical"
-              className="hidden lg:inline-block"
-            />
+            <span className="hidden lg:inline-block">・</span>
             <p>{experience.position}</p>
           </div>
         </div>
       </div>
 
       <div className="section-right mt-4 md:mt-0">
-        <Separator />
-        <p className="text-sm my-3 md:my-5">{experience.description}</p>
-        <Separator />
-
-        <ol className="space-y-14 mt-10 md:mt-14">
+        <ol className="space-y-14">
           {experience.tasks.map((task) => (
             <TaskItem key={`${experience.company}-${task.title}`} task={task} />
           ))}

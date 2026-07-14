@@ -7,7 +7,7 @@ export interface Task {
   title: string
   problem?: string
   process: ProcessItem[]
-  results: string[]
+  results?: string[]
   technologies?: string[]
 }
 
@@ -26,14 +26,9 @@ export interface Education {
   description?: string
 }
 
-export interface SkillCategory {
+export interface SkillCategoryData {
   category: string
   skills: string[]
-}
-
-export interface DescriptionItem {
-  title: string
-  content: string
 }
 
 export interface Introduction {
@@ -44,12 +39,15 @@ export interface Introduction {
     phone: string
     github: string
   }
-  description: DescriptionItem[]
+  description: {
+    title: string
+    content: string[]
+  }
 }
 
 export interface ResumeData {
   introduction: Introduction
   experiences: Experience[]
-  skills: SkillCategory[]
+  skills: SkillCategoryData[]
   education: Education[]
 }

@@ -77,6 +77,9 @@
   --max-width-aside: 14rem;
   --inset-below-header: var(--top-below-header);
 
+  /* Typography */
+  --text-subhead: 15px;
+
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -112,6 +115,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 14px;
     font-family:
       'Pretendard Variable',
       Pretendard,
@@ -139,16 +143,16 @@
 
   /* 그리드 위치 */
   .section-left {
-    @apply col-span-1 md:col-span-5;
+    @apply col-span-1 pr-0 md:pr-30 md:col-span-5 lg:col-span-6;
   }
 
   .section-right {
-    @apply col-span-1 md:col-span-7;
+    @apply col-span-1 md:col-span-7 lg:col-span-6;
   }
 
   /* 스타일 모디파이어 */
-  .section-title {
-    @apply text-3xl font-thin md:sticky md:top-below-header;
+  .section-label {
+    @apply text-muted-foreground text-sm;
   }
 
   .section-content {

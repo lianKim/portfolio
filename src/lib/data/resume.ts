@@ -10,59 +10,86 @@ export const resumeData: ResumeData = {
       phone: PERSONAL_INFO.phone,
       github: PERSONAL_INFO.github.display,
     },
-    description: [
-      {
-        title: '제품의 성장 주기를 함께한 프론트엔드 오너',
-        content:
-          '초기 1인 개발자로 시작해 아키텍처 설계부터 제품 배포까지 전 과정을 주도했습니다. 팀 확장기에는 개발 표준 및 온보딩 체계를 정립하여 팀 생산성을 개선했습니다.',
-      },
-      {
-        title: '유연한 시스템 설계로 비즈니스 가치 창출',
-        content:
-          'SDUI, 디자인 시스템, FSD 아키텍처를 도입하여 요구사항 대응 리드타임을 30% 단축했으며, 장기적인 확장성을 고려한 코드 설계를 지향합니다.',
-      },
-      {
-        title: '디자인 전공 기반의 시각적 인터랙션 구현',
-        content:
-          '디자인 전공을 바탕으로 사용자의 시선 흐름을 고려한 UI를 구현하며, 디자이너와 높은 수준의 기술적 소통이 가능합니다.',
-      },
-    ],
+    description: {
+      title: '만들고 팔아본 프론트엔드 개발자',
+      content: [
+        '빈티지 조명 브랜드를 직접 운영하며, 고객이 상품을 보고 결제하는 화면과 운영자가 주문·상품을 관리하는 관리자 페이지를 만들고, 배포까지 맡았습니다. 이후 패션 산업 플랫폼에서는 성격이 다른 서비스들이 한 코드베이스에 섞이며 생기는 문제를 줄이기 위해, 프론트엔드 구조를 재편하고 팀이 같은 기준으로 개발할 수 있도록 문서화했습니다.',
+        'React·TypeScript를 주로 사용하며, 화면을 만들 때 사용자가 보는 흐름과 운영자가 관리하는 흐름을 함께 확인합니다. 기능을 더하기 전에, 지금 구조에서 줄일 수 있는 복잡도가 있는지 먼저 봅니다.',
+      ],
+    },
   },
   experiences: [
     {
       company: '윤회주식회사',
       period: '2024.07 - 2025.08',
-      position: 'Frontend Engineer',
+      position: 'Frontend Engineer ・ FE 1인 → 3인',
       description:
         '패션 제품 라이프사이클 추적 및 디지털 제품 여권(DPP) 발행 플랫폼',
       tasks: [
         {
-          title: 'Server-Driven UI(SDUI) 시스템 구축',
+          title: '프론트엔드 아키텍처 재구성',
           problem:
-            '파트너사별 상이한 UI 요구사항으로 인한 컴포넌트 코드 폭증 및 배포 의존도 심화',
+            '권한·사용자 유형이 다른 독립 도메인들이 단일 CRA 구조에 혼재해, 도메인 간 사이드 이펙트 위험이 큰 상태',
           process: [
             {
-              text: '**Role 중심 SDUI 스키마 설계** 및 JSON을 해석해 UI를 그리는 **재귀 렌더러 구현**으로 파트너사별 화면 동적 구성',
-              href: '/blog/sdui-architecture',
+              text: '표준 단일 스코프 FSD(Feature-Sliced Design)로는 도메인 격리가 부족하다고 판단해, 영역·권한 단위로 상위를 나눈 **멀티 스코프 구조**를 구성',
             },
             {
-              text: 'Zod + React Hook Form으로 **JSON 기반 동적 폼 검증 시스템**을 구축하여 하드코딩된 로직 제거',
+              text: '레이어 단방향 의존 원칙을 **ESLint 규칙으로 강제**하고, 아키텍처 위반을 PR 단계에서 자동 차단',
+              href: '/blog/fsd-with-eslint',
             },
             {
-              text: '제품 및 소유자 상태에 따른 **조건부 렌더링 로직을 서버 스키마로 관리**하여 프론트엔드 비즈니스 로직 단순화',
+              text: '반복적인 파일 이동·import 수정은 AI 도구로 자동화하고, 도메인 경계와 의존 방향은 직접 검증·교정',
             },
             {
-              text: '의사선택자(:hover, :focus)를 포함한 **확장 가능한 스타일 시스템 설계**',
-              href: '/blog/sdui-style-system',
+              text: 'Atomic Design 기반 공통 컴포넌트를 정리하고 Storybook으로 50+ 컴포넌트 문서화',
+            },
+            {
+              text: '팀이 같은 기준으로 구조를 판단할 수 있도록 FSD 개요·구조 가이드·체크리스트를 문서화',
             },
           ],
           results: [
-            '파트너사별 커스텀 컴포넌트 파일 **90% 감소**',
-            '배포 없는 UI 대응으로 리드타임 **30% 단축**',
+            '빌드 시간 **58% 단축** (81s → 34s, CRA → Vite 전환 포함)',
+            '아키텍처 위반을 리뷰어 판단이 아닌 CI에서 자동 검출',
           ],
           technologies: [
             'React',
             'TypeScript',
+            'Vite',
+            'ESLint',
+            'Storybook',
+            'Husky',
+            'lint-staged',
+          ],
+        },
+        {
+          title: 'Server-Driven UI(SDUI) 시스템 설계',
+          problem:
+            '브랜드마다 레이아웃·정보 구조·인터랙션 요구가 달라, 브랜드별 분기 컴포넌트가 늘며 번들과 유지보수 부담이 커지는 구조',
+          process: [
+            {
+              text: '테마 시스템·마이크로 프론트엔드를 검토했으나 확장 비용이 커, **UI 구조 자체를 JSON으로 표현**하는 SDUI를 설계',
+            },
+            {
+              text: 'JSON의 role을 React 컴포넌트로 매핑하는 재귀 렌더러를 설계, element를 union 타입으로 모델링해 role별 속성을 **컴파일 타임에 검증**',
+              href: '/blog/sdui-architecture',
+            },
+            {
+              text: 'element를 HTML 태그 수준의 최소 단위로 설계하고 변형은 새 컴포넌트가 아닌 prop으로 흡수해, 요구사항이 늘어도 컴포넌트 수가 늘지 않도록 유지',
+            },
+            {
+              text: '서버 JSON의 검증 규칙을 **런타임에 Zod 스키마로 변환**해 폼 검증을 동적으로 구성',
+            },
+            {
+              text: '상태·의사 선택자(hover 등)를 포함한 확장형 스타일 시스템을 설계해, 브랜드별 인터랙션·조건부 스타일을 JSON으로 제어',
+              href: '/blog/sdui-style-system',
+            },
+          ],
+          results: [
+            '신규 브랜드 화면 추가 시 기존 element를 JSON으로 조합해 대응',
+            '**배포 없이** 서버 JSON 수정만으로 UI 변경을 즉시 반영',
+          ],
+          technologies: [
             'React Query',
             'Jotai',
             'Emotion',
@@ -71,82 +98,57 @@ export const resumeData: ResumeData = {
           ],
         },
         {
-          title: '프론트엔드 아키텍처 재구성',
+          title: '어드민 백오피스 구축 및 고도화',
           problem:
-            'CRA 레거시 구조의 유지보수 한계 및 유저/어드민 코드 혼재로 인한 관리 효율 저하',
+            '라우트·사이드바·접근 권한을 따로 관리해, 페이지 하나를 추가할 때 세 곳을 모두 수정해야 하는 구조',
           process: [
             {
-              text: '**FSD(Feature-Sliced Design) 아키텍처 도입**으로 도메인 중심의 계층 분리 및 사이드 이펙트 최소화',
-              href: '/blog/fsd-with-eslint',
-            },
-            {
-              text: 'ESLint 규칙 기반의 **import 계층 제한**을 통해 아키텍처 위반을 PR 단계에서 차단하여 코드 품질 유지',
-            },
-            {
-              text: 'Atomic Design 기반 디자인 시스템 구축 및 **Storybook을 통한 50+ 공통 컴포넌트 문서화**',
-            },
-            {
-              text: 'CRA에서 Vite로 마이그레이션 진행 및 의존성 라이브러리 버전 최적화',
-            },
-          ],
-          results: [
-            '빌드 시간 **82% 감축** (192s → 33s)',
-            '번들 크기 **44% 축소** (1.46MB → 0.82MB)',
-            '신규 개발자 온보딩 기간 **40% 단축**',
-          ],
-          technologies: ['Vite', 'Storybook', 'ESLint', 'Husky', 'lint-staged'],
-        },
-        {
-          title: '어드민 백오피스 고도화',
-          problem:
-            '복잡한 권한별 메뉴 관리 비용 증가 및 70+ 필드 폼 관리의 어려움',
-          process: [
-            {
-              text: '**메뉴 메타데이터 중심의 라우트 설계**로 사이드바와 라우트를 동기화하여 관리 지점 단일화(SSOT)',
+              text: '라우트 정의에 메뉴 메타데이터를 함께 선언하는 구조를 만들어, 라우트·사이드바·접근 권한을 **단일 정의로 동기화(SSOT)**',
               href: '/blog/role-based-routing',
             },
             {
-              text: '**Role 기반 라우트 동적 등록 시스템 구현**으로 권한별 보안 강화 및 초기 로딩 성능 최적화',
+              text: '로그인 시점에 **권한별 라우트만 동적으로 등록**해, 허용되지 않은 경로를 라우터에서 제외',
             },
             {
-              text: '네이버 클로바 OCR 연동으로 사업자등록증 입력 자동화',
+              text: '라우트 단위 코드 스플리팅으로 초기 로드 JS 축소',
             },
             {
-              text: '글로벌 파트너사 대응을 위한 다국어(ko/en/ja/zh) 시스템 구축',
+              text: '70+ 필드 폼 검증, 4개 언어(ko/en/ja/zh) 입력, OCR 기반 사업자등록증 자동 입력 등 운영 기능 구축',
             },
           ],
           results: [
-            'Role 확장 유연성 확보',
-            '초기 라우트 로딩 성능 **42% 개선**',
-            '사업자등록증 입력 시간 **80% 단축**',
-          ],
-          technologies: ['React Router', 'i18n', '네이버 클로바 OCR API'],
-        },
-        {
-          title: '의류 케어라벨 WYSIWYG 에디터 개발 (SaaS)',
-          problem:
-            '외부 디자인 툴 의존으로 라이선스 비용 증가, 파트너사별 맞춤 라벨 요구 대응 한계',
-          process: [
-            {
-              text: 'React Grid Layout 및 Canvas API 기반의 **캔버스 에디터 아키텍처 설계**',
-            },
-            {
-              text: '드래그&드롭, 다중 선택, 바운딩 박스, 레이어 계층 관리 등 복잡한 인터랙션 구현',
-            },
-            {
-              text: '인쇄 옵션(흑백/금박/은박 등)별 실시간 프리뷰 시스템 구현',
-            },
-            {
-              text: '인쇄 업체 연동 가능한 PDF 출력 파이프라인 구축',
-            },
-          ],
-          results: [
-            '외부 디자인 툴 의존 제거',
-            '실제 출력물 미리보기로 샘플 제작 비용 및 시간 절감',
+            '페이지·권한 추가를 단일 정의 수정으로 처리',
+            '초기 로드 JS **48% 경량화** (gzip 713KB → 373KB)',
           ],
           technologies: [
-            'Canvas API',
-            'React-Grid-Layout',
+            'React Router',
+            'React Hook Form',
+            'Zod',
+            'react-i18next',
+            'CLOVA OCR API',
+          ],
+        },
+        {
+          title: '의류 케어라벨 WYSIWYG 에디터 (SaaS)',
+          problem:
+            '케어라벨 제작이 디자인 툴, 라벨 규격 지식, 라벨사와의 수기 소통으로 분절돼, 파일 관리와 커뮤니케이션 비용이 큰 상태',
+          process: [
+            {
+              text: '편집 좌표를 **실측 mm에 1:1**로 맞춘 그리드 기반 에디터 개발 (화면 px ↔ mm ↔ 그리드 단위를 300 DPI 기준 상호 변환)',
+            },
+            {
+              text: 'react-grid-layout이 지원하지 않는 다중 선택·바운딩 박스 그룹 변형과 배치 전 영역 검증을 **직접 구현**',
+            },
+            {
+              text: '디자인을 JSON으로 직렬화해 재편집 가능하게 저장하고, 폰트 깨짐 없는 출력을 위해 사용 폰트를 임베딩한 고해상도 이미지로 캡처',
+            },
+          ],
+          results: ['사내 검증 단계까지 개발'],
+          technologies: [
+            'react-grid-layout',
+            'Jotai',
+            'html-to-image',
+            'FontFace API',
             'styled-components',
           ],
         },
@@ -155,34 +157,34 @@ export const resumeData: ResumeData = {
     {
       company: 'arffy',
       period: '2023.06 - 2024.01',
-      position: 'Project Lead & Frontend Engineer',
-      description: '20세기 유럽 조명 및 소품 커머스 브랜드',
+      position: 'Co-Founder & Frontend Engineer',
+      description: '20세기 유럽 빈티지 조명·소품 커머스 브랜드',
       tasks: [
         {
           title: '커머스 웹사이트 구축',
           problem:
-            'SNS 기반 판매로 재고 관리 어려움, 주문 처리 수동화, 결제 프로세스 복잡으로 구매 전환 한계',
+            '기성 쇼핑몰 플랫폼은 브랜드 아이덴티티를 담기 어렵고, SNS 기반 판매는 구매 안내·주문 취합을 매번 수기로 처리해야 해 운영 부담이 큰 구조',
           process: [
             {
-              text: '브랜드 아이덴티티(BI) 설계부터 UI 디자인, 개발, 배포까지 End-to-End 프로젝트 리딩',
+              text: '기획·디자인·프론트엔드·배포·운영 전반을 맡아, **고객 스토어와 관리자 페이지**를 갖춘 커머스 서비스를 구축',
             },
             {
-              text: '커머스 핵심 기능 구현: 상품 카탈로그, 장바구니, 실시간 재고 관리, 주문 상태 추적 시스템',
+              text: '백엔드 개발자와 에러 케이스를 정의하고, API 영역과 전역의 2단 Error Boundary로 상태별 분기·복구 처리',
             },
             {
-              text: '**PortOne 통합 결제 시스템 구축** (토스페이/카카오페이/이니시스)',
+              text: 'PortOne 연동으로 카카오·토스·이니시스 **다중 PG 결제**를 구현해 실주문 결제 처리',
             },
             {
-              text: 'AWS EC2 + GitHub Actions **CI/CD 파이프라인 구축**',
+              text: 'AWS EC2 + GitHub Actions 배포 자동화',
             },
-          ],
-          results: [
-            'PortOne 연동을 통한 결제 자동화 및 수동 주문 처리 프로세스 개선',
           ],
           technologies: [
             'React',
             'TypeScript',
-            'PortOne API',
+            'React Query',
+            'Jotai',
+            'styled-components',
+            'PortOne',
             'AWS EC2',
             'GitHub Actions',
           ],
