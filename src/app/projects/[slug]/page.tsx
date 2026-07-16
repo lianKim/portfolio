@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
+import type { ProjectFrontmatter } from '@/types/project'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { ProjectMenu } from '@/components/projects/ProjectMenu'
-import type { ProjectFrontmatter } from '@/types/project'
 import { getAllProjects } from '@/lib/server/projects'
 import { notFound } from 'next/navigation'
 import { parseMarkdownFile } from '@/lib/server/mdx'
@@ -94,10 +93,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   return (
     <div className="relative w-full pt-20 pb-12">
       <div className="section-grid">
-        {/* 왼쪽 프로젝트 기록 메뉴 */}
+        {/* 왼쪽 목차 */}
         <aside className="section-left hidden md:block">
           <div className="sticky top-below-header max-w-aside">
-            <ProjectMenu projects={projects} />
+            <TableOfContents items={toc} />
           </div>
         </aside>
 
@@ -114,10 +113,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </header>
 
           {/* 본문 */}
-          <div className="mt-20 space-y-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
-            {/* 목차 */}
-            <TableOfContents items={toc} />
-            {/* 본문 */}
+          <div className="mt-18 prose prose-lg max-w-none prose-gray dark:prose-invert">
             <div>{content}</div>
           </div>
         </article>

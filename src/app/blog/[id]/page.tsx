@@ -6,7 +6,6 @@ import {
 } from '@/lib/utils/seo'
 
 import { CATEGORY_NAMES } from '@/lib/constants/blog'
-import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
@@ -90,8 +89,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
-  const { frontmatter, content, readingTime, toc } =
-    await parseMarkdownFile(postPath)
+  const { frontmatter, content, toc } = await parseMarkdownFile(postPath)
 
   // JSON-LD 구조화된 데이터 생성
   const jsonLd = {
@@ -112,10 +110,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       <div className="relative w-full pt-20 pb-12">
         <div className="section-grid">
-          {/* 왼쪽 카테고리 메뉴 */}
+          {/* 왼쪽 목차 */}
           <aside className="section-left hidden md:block">
             <div className="sticky top-below-header max-w-aside">
-              <CategoryMenu posts={allPosts} />
+              <TableOfContents items={toc} />
             </div>
           </aside>
 
@@ -136,17 +134,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 <span>・</span>
                 {/* 작성 날짜 */}
                 <span>{formatDate(frontmatter.date)}</span>
-                <span>・</span>
-                {/* 읽는 시간 */}
-                <span>{readingTime}분</span>
               </div>
             </header>
 
             {/* 포스트 본문 */}
-            <div className="mt-20 space-y-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
-              {/* 목차 */}
-              <TableOfContents items={toc} />
-              {/* 본문 */}
+            <div className="mt-18 prose prose-lg max-w-none prose-gray dark:prose-invert">
               <div>{content}</div>
             </div>
 
