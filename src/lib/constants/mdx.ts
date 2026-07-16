@@ -33,11 +33,13 @@ export const CALLOUT_CONFIGS = {
 } as const
 
 // Heading 컴포넌트 스타일
+// scroll-mt-*: 목차 클릭 시 착지 오프셋 = min(헤더높이 + 헤딩 상단여백, 목차 높이(104px))
+//   → 여백 큰 헤딩(h1·h2)은 목차 높이에 정렬, 작은 헤딩은 윗 요소가 헤더 뒤로 숨음
 export const HEADING_STYLES = {
-  1: 'text-3xl font-semibold tracking-tight text-balance mb-5 mt-18 text-foreground',
-  2: 'text-2xl font-semibold tracking-tight mb-4 mt-16 text-foreground',
-  3: 'text-lg font-semibold tracking-tight mb-3 mt-8 text-foreground',
-  4: 'text-base font-semibold tracking-tight mb-3 mt-4 text-foreground',
-  5: 'text-base font-medium tracking-tight mb-2 mt-4 text-foreground/80',
-  6: 'text-base font-medium tracking-tight mb-2 mt-3 text-foreground/70',
+  1: 'scroll-mt-26 text-3xl font-semibold tracking-tight text-balance mb-5 mt-18 text-foreground',
+  2: 'scroll-mt-26 text-2xl font-semibold tracking-tight mb-4 mt-16 text-foreground',
+  3: 'scroll-mt-22 text-lg font-semibold tracking-tight mb-3 mt-8 text-foreground',
+  4: 'scroll-mt-18 text-base font-semibold tracking-tight mb-3 mt-4 text-foreground',
+  5: 'scroll-mt-18 text-base font-medium tracking-tight mb-2 mt-4 text-foreground/80',
+  6: 'scroll-mt-17 text-base font-medium tracking-tight mb-2 mt-3 text-foreground/70',
 } as const
