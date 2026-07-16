@@ -4,12 +4,15 @@ import { TableOfContentsIcon } from 'lucide-react'
 import type { TocItem } from '@/types/blog'
 import { cn } from '@/lib/utils/cn'
 import { scrollToElement } from '@/lib/utils/scroll'
+import { useActiveSection } from '@/hooks/useActiveSection'
 
 interface TableOfContentsProps {
   items: TocItem[]
 }
 
 export function TableOfContents({ items }: TableOfContentsProps) {
+  const activeId = useActiveSection(items)
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
     scrollToElement(id)
@@ -36,10 +39,13 @@ export function TableOfContents({ items }: TableOfContentsProps) {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleClick(e, item.id)}
+              aria-current={item.id === activeId ? 'location' : undefined}
               className={cn(
                 'group flex w-full items-center pr-2 py-1 cursor-pointer leading-normal',
-                'text-muted-foreground hover:text-foreground/80',
                 INDENT[Math.min(item.level - minLevel, INDENT.length - 1)],
+                item.id === activeId
+                  ? 'text-accent-foreground'
+                  : 'text-muted-foreground hover:text-foreground/80',
               )}
             >
               {item.text}
