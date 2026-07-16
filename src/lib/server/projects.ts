@@ -27,6 +27,7 @@ export function getAllProjects(): Project[] {
 
       projects.push({
         slug,
+        label: data.label || '',
         title: data.title || '',
         description: data.description || '',
         order: data.order ?? 0,

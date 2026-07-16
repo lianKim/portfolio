@@ -105,6 +105,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <article className="section-right mt-3 md:mt-0 min-w-0">
           {/* 헤더 */}
           <header>
+            <p className="mb-2 text-sm text-muted-foreground">
+              {frontmatter.label}
+            </p>
             <h1 className="text-2xl font-semibold tracking-tight leading-tight">
               {frontmatter.title}
             </h1>

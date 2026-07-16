@@ -19,6 +19,7 @@ export default function Loading() {
         <article className="section-right mt-3 md:mt-0 min-w-0">
           {/* 헤더 스켈레톤 */}
           <header>
+            <Skeleton className="h-4 w-24 mb-2" />
             <Skeleton className="h-8 w-3/4" />
           </header>
 

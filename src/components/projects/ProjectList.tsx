@@ -18,6 +18,7 @@ export function ProjectList({ projects }: ProjectListProps) {
         <li key={project.slug}>
           <ProjectCard
             slug={project.slug}
+            label={project.label}
             title={project.title}
             description={project.description}
           />

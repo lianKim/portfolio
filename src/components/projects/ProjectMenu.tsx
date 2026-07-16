@@ -37,7 +37,7 @@ export function ProjectMenu({ className, projects }: ProjectMenuProps) {
                   : 'text-muted-foreground hover:text-foreground/80',
               )}
             >
-              {project.title}
+              {project.label}
             </Link>
           )
         })}
