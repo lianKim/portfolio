@@ -38,3 +38,5 @@ next-env.d.ts
 # local only
 **/*.local.*
 **/*.local
+# gstack(browse) 도구 로그
+.gstack/
