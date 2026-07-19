@@ -33,7 +33,7 @@ export interface ElementBase {
 
 기존의 단순한 `CSSProperties` 구조로는 이런 요구사항들을 충족할 수 없었다. 스타일 시스템 자체를 확장해야 했다.
 
-# 1차 확장: 상태별 스타일
+## 1차 확장: 상태별 스타일
 
 Part 1에서 만든 Container 컴포넌트는 단순히 자식 요소들을 렌더링하는 역할만 했다. 하지만 실제 제품을 개발하다 보면 이것만으로는 부족한 경우가 있다.
 
@@ -49,7 +49,7 @@ type ElementStyleStatus = 'default' | 'active';
 type ElementStyle = Partial<Record<ElementStyleStatus, CSSProperties>>;
 ```
 
-## 인증 컴포넌트
+### 인증 컴포넌트
 
 인증 코드가 전송되면 인증 코드 입력 필드와 타이머가 나타나고, 인증이 완료되면 완료 메시지가 표시된다.
 
@@ -88,7 +88,7 @@ function Verification({ data, style }: VerificationProps) {
 }
 ```
 
-## 서명 패드 컴포넌트
+### 서명 패드 컴포넌트
 
 서명이 완료되면 초기화 버튼이 나타난다.
 
@@ -123,7 +123,7 @@ function SignaturePad({ data }: SignaturePadProps) {
 
 `hasSignature`가 true가 되면 자식 요소들이 활성화되어 초기화 버튼이 보이게 된다.
 
-## ElementRenderer 수정
+### ElementRenderer 수정
 
 `isActive`를 전달받아 처리하도록 `ElementRenderer`도 수정했다.
 
@@ -150,7 +150,7 @@ function ElementRenderer({ element, isActive }: ElementRendererProps) {
 
 `isActive`가 props로 추가되었고, 자식 요소에도 동일하게 전달된다. children 생성 로직은 불필요한 재생성을 방지하기 위해 `useMemo`로 감쌌다.
 
-# 2차 확장: 의사선택자 지원
+## 2차 확장: 의사선택자 지원
 
 상태별 스타일로 복합 컴포넌트 문제는 해결했지만, 개발을 진행하면서 또 다른 요구사항들이 생겼다.
 
@@ -178,7 +178,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 1차 확장에서 `CSSProperties`를 직접 사용했던 부분이 `ElementStyleItem`으로 바뀌었다. 기존 스타일은 `base`에, 의사선택자 스타일은 `pseudo`에 정의한다.
 
-## 입력 필드
+### 입력 필드
 
 `:focus`로 포커스 시 테두리 색상을 변경하고, `::placeholder`로 힌트 텍스트 색상을 지정한다. `:-webkit-autofill` 관련 선택자로 브라우저 자동완성 시 적용되는 기본 스타일을 브랜드 스타일에 맞게 덮어썼다.
 
@@ -213,7 +213,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 }
 ```
 
-## 체크박스
+### 체크박스
 
 브라우저 기본 체크박스 스타일을 `appearance: none`으로 제거하고 직접 디자인한 스타일을 적용했다. `:checked`로 체크 시 테두리 색상을 변경하고, `:checked::after`로 체크 표시를 CSS로 그린다. 체크박스가 선택되지 않은 상태에서는 연한 테두리의 빈 사각형이 보이고, 선택하면 테두리가 진해지면서 사각형 안에 체크 표시가 나타난다.
 
@@ -258,7 +258,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 }
 ```
 
-## 단위 표시
+### 단위 표시
 
 `::after`로 수치 뒤에 '%' 단위를 붙인다. 서버 데이터 바인딩 요소는 값이 없으면 렌더링되지 않으므로, 단위도 함께 나타나지 않는다.
 
@@ -279,7 +279,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 }
 ```
 
-# 최종 구조와 병합 로직
+## 최종 구조와 병합 로직
 
 1차 확장에서 상태별 스타일을, 2차 확장에서 의사선택자 지원을 추가했다. 최종 스타일 구조는 다음과 같다.
 
@@ -304,7 +304,7 @@ type ElementStyleStatus = 'default' | 'active';
 type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 ```
 
-## 스타일 병합
+### 스타일 병합
 
 `isActive` 값에 따라 적절한 스타일을 병합하는 훅을 만들었다. `default` 스타일을 기본으로 적용하고, `isActive`가 true이면 `active` 스타일을 덮어쓴다.
 
@@ -340,7 +340,7 @@ function useElementCss(
 
 스프레드 연산자로 객체를 펼치면 뒤에 오는 속성이 앞의 속성을 덮어쓴다. 이 특성을 활용해 `default` 스타일 위에 `active` 스타일을 병합했다.
 
-# 마치며
+## 마치며
 
 단일 `CSSProperties`로 처리하던 스타일 시스템을 두 단계에 걸쳐 확장했다. 1차 확장에서는 복합 컴포넌트의 상태 제어를 위해 `default`/`active` 구조를 도입했고, 2차 확장에서는 의사선택자 지원을 위해 `base`/`pseudo` 구조를 추가했다. 이제 상태에 따른 조건부 스타일링부터 `:hover`, `:focus`, `::after` 같은 인터랙션 스타일까지 JSON으로 제어할 수 있게 되었다.
 
