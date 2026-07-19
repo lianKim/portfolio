@@ -262,7 +262,7 @@ export const DEFAULT_PATH_BY_ROLE = Object.fromEntries(
 ) as Record<AdminRole, string>;
 ```
 
-경로 세그먼트를 리네임해도 기본 경로가 자동으로 따라오고, 정의와 어긋나지 않는다. 실제로 `products`를 `catalog`로 바꿔봤을 때, 라우트 정의의 `path` 하나만 고쳤는데 기본 화면 이동과 사이드바 링크가 함께 갱신됐다.
+경로 세그먼트를 리네임해도 기본 경로가 자동으로 따라오고, 정의와 어긋나지 않는다. 실제로 products를 catalog로 바꿔봤을 때, 라우트 정의의 `path` 하나만 고쳤는데 기본 화면 이동과 사이드바 링크가 함께 갱신됐다.
 
 ## 순수 함수 테스트
 
