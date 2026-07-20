@@ -42,15 +42,13 @@ export default function ResumePage() {
       />
 
       <div className="pt-20 pb-40 whitespace-pre-line break-keep">
-        <div className="space-y-24">
+        <main className="space-y-32">
           <ResumeHeader data={resumeData.introduction} />
-          <main className="space-y-32">
-            <Introduction data={resumeData.introduction} />
-            <WorkExperienceSection experiences={resumeData.experiences} />
-            <SkillsSection skills={resumeData.skills} />
-            <EducationSection education={resumeData.education} />
-          </main>
-        </div>
+          <Introduction data={resumeData.introduction} />
+          <WorkExperienceSection experiences={resumeData.experiences} />
+          <SkillsSection skills={resumeData.skills} />
+          <EducationSection education={resumeData.education} />
+        </main>
       </div>
     </>
   )

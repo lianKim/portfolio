@@ -54,19 +54,6 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-        <a
-          href="/files/resume.pdf"
-          download="LianKim-Resume.pdf"
-          className="group inline-flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 text-foreground/60"
-        >
-          이력서 PDF
-          <span
-            aria-hidden="true"
-            className="transition-transform group-hover:translate-y-0.5"
-          >
-            ↓
-          </span>
-        </a>
       </div>
     </header>
   )

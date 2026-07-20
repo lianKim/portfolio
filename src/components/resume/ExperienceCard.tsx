@@ -22,7 +22,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         </div>
       </div>
 
-      <div className="section-right mt-4 md:mt-0">
+      <div className="section-right mt-10 md:mt-0">
         <ol className="space-y-14">
           {experience.tasks.map((task) => (
             <TaskItem key={`${experience.company}-${task.title}`} task={task} />
