@@ -9,6 +9,8 @@ export interface Task {
   process: ProcessItem[]
   results?: string[]
   technologies?: string[]
+  /** 연결된 프로젝트 기록(에세이)의 slug. 있으면 task 헤더에 링크로 노출 */
+  projectSlug?: string
 }
 
 export interface Experience {
