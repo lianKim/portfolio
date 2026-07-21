@@ -109,6 +109,6 @@ Claude Code는 두 가지를 제안했다. dev 모드에서 기본 경로가 실
 
 ## 더 읽기
 
-- [GitHub] [admin-nested-routing-poc](https://github.com/lianKim/admin-nested-routing-poc). 재설계 검증 코드, 검증 시나리오를 담은 README
-- [블로그] [React Router 기반 역할별 동적 라우팅 시스템 구축](https://www.liankim.kr/blog/role-based-routing). 실무 구현 과정의 기록
-- [블로그] [React Router 라우팅 재설계기](https://www.liankim.kr/blog/role-based-routing-redesign). 재설계 구현 과정의 기록
+- [GitHub] [admin-nested-routing-poc](https://github.com/lianKim/admin-nested-routing-poc) : 재설계 검증 코드, 검증 시나리오를 담은 README
+- [블로그] [React Router 기반 역할별 동적 라우팅 시스템 구축](https://www.liankim.kr/blog/role-based-routing) : 실무 구현 과정의 기록
+- [블로그] [React Router 라우팅 재설계기](https://www.liankim.kr/blog/role-based-routing-redesign) : 재설계 구현 과정의 기록

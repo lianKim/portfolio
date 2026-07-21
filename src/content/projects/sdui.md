@@ -84,5 +84,5 @@ element를 HTML 태그 수준의 최소 단위로 설계했다. 각 element는 �
 
 ## 더 읽기
 
-- [블로그] [SDUI 시스템 구축기 (1): JSON 기반 UI 렌더링 설계](https://www.liankim.kr/blog/sdui-architecture). ElementBase 인터페이스, role 매핑, 렌더링 파이프라인, 초기 시행착오의 기록
-- [블로그] [SDUI 시스템 구축기 (2): 스타일 시스템 확장](https://www.liankim.kr/blog/sdui-style-system). 상태별 스타일과 의사 선택자를 JSON으로 제어하기까지의 과정
+- [블로그] [SDUI 시스템 구축기 (1): JSON 기반 UI 렌더링 설계](https://www.liankim.kr/blog/sdui-architecture) : ElementBase 인터페이스, role 매핑, 렌더링 파이프라인, 초기 시행착오의 기록
+- [블로그] [SDUI 시스템 구축기 (2): 스타일 시스템 확장](https://www.liankim.kr/blog/sdui-style-system) : 상태별 스타일과 의사 선택자를 JSON으로 제어하기까지의 과정
