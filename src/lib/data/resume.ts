@@ -22,7 +22,8 @@ export const resumeData: ResumeData = {
     {
       company: '윤회주식회사',
       period: '2024.07 - 2025.08',
-      position: 'Frontend Engineer ・ FE 1인 → 3인',
+      position: 'Frontend Engineer',
+      note: 'FE 1인 → 3인',
       description:
         '패션 제품 라이프사이클 추적 및 디지털 제품 여권(DPP) 발행 플랫폼',
       tasks: [

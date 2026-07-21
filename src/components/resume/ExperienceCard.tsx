@@ -18,6 +18,12 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             <p>{experience.period}</p>
             <span className="hidden lg:inline-block">・</span>
             <p>{experience.position}</p>
+            {experience.note && (
+              <>
+                <span className="hidden lg:inline-block">・</span>
+                <p>{experience.note}</p>
+              </>
+            )}
           </div>
         </div>
       </div>

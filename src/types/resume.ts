@@ -17,6 +17,8 @@ export interface Experience {
   company: string
   period: string
   position: string
+  /** 직무 옆 비고 (ex. 'FE 1인 → 3인') */
+  note?: string
   description: string
   tasks: Task[]
 }
