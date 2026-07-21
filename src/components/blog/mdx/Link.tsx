@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import NextLink from 'next/link'
 import { cn } from '@/lib/utils/cn'
 
@@ -32,7 +32,7 @@ export function Link({ href, children, className }: LinkProps) {
       className={cn(baseStyles, 'inline-flex items-center', className)}
     >
       {children}
-      <ExternalLink className="w-3 h-3 mx-0.5" />
+      <ArrowUpRight className="size-3.5 ml-0.5" />
     </a>
   )
 }
