@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { Link as LinkIcon } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -20,14 +19,14 @@ export function ShareButton({ url }: ShareButtonProps) {
   }
 
   return (
-    <Button
-      variant="outline"
+    <button
+      type="button"
       onClick={handleCopyLink}
       aria-label="링크 복사"
-      className="flex items-center gap-2"
+      className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted cursor-pointer"
     >
-      <LinkIcon className="w-4 h-4" />
-      <span className="text-sm">공유</span>
-    </Button>
+      <LinkIcon className="size-3.5" />
+      공유
+    </button>
   )
 }

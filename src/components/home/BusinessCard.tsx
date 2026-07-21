@@ -12,9 +12,10 @@ import {
   TEXTURE_PATH,
 } from '@/lib/constants/businessCard'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { getCardScale } from '@/lib/utils/responsive'
 import { Html, OrbitControls } from '@react-three/drei'
 import { Suspense, useMemo, useRef } from 'react'
+
+import { getCardScale } from '@/lib/utils/responsive'
 
 export default function BusinessCardCanvas() {
   return (
@@ -91,12 +92,17 @@ function BusinessCard() {
           }}
         >
           <style>{`
+            .card-input {
+              box-sizing: border-box;
+              border: 0;
+              border-bottom: 1.5px solid transparent;
+            }
             .card-input:focus {
-              outline: 1.5px dashed #caa4cc;
-              outline-offset: 4px;
+              outline: none;
+              border-bottom-color: rgba(255, 255, 255, 0.7);
             }
             .card-input::placeholder {
-              color: #9ca3af;
+              color: #a3a3a3;
             }
           `}</style>
           <input
@@ -104,9 +110,8 @@ function BusinessCard() {
             placeholder="귀사의 이름을 입력해주세요"
             className="card-input"
             style={{
-              padding: 0,
+              padding: '0 0 4px',
               background: 'none',
-              border: 0,
               fontSize: 18,
               fontWeight: 300,
               letterSpacing: '0.05em',
@@ -128,7 +133,7 @@ function BusinessCard() {
                 style={{
                   marginTop: 8,
                   fontFamily: FONT_EN,
-                  color: '#9ca3af',
+                  color: '#a3a3a3',
                 }}
               >
                 {CONTACT_INFO.job}

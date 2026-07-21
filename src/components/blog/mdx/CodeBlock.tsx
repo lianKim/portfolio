@@ -40,10 +40,8 @@ export function CodeBlock({
   return (
     <div className="relative group my-6">
       {/* 언어 라벨과 복사 버튼 */}
-      <div className="flex items-center justify-between px-4 py-2 bg-muted border border-border/40 rounded-t-lg">
-        <span className="text-xs font-medium text-muted-foreground uppercase">
-          {lang}
-        </span>
+      <div className="flex items-center justify-between px-4 py-1 text-xs bg-muted border border-border/40 rounded-t-lg">
+        <span className="text-muted-foreground uppercase">{lang}</span>
         <Button
           onClick={handleCopy}
           variant="ghost"
@@ -51,20 +49,14 @@ export function CodeBlock({
           className={cn(
             'h-7 gap-1.5 text-xs cursor-pointer',
             copied
-              ? 'text-green-600 dark:text-green-400'
+              ? 'text-foreground'
               : 'text-muted-foreground hover:text-foreground',
           )}
         >
           {copied ? (
-            <>
-              <Check className="w-3 h-3" />
-              <span>복사됨</span>
-            </>
+            <Check className="size-3.5" />
           ) : (
-            <>
-              <Copy className="w-3 h-3" />
-              <span>복사</span>
-            </>
+            <Copy className="size-3.5" />
           )}
         </Button>
       </div>

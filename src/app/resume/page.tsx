@@ -7,6 +7,7 @@ import {
 import EducationSection from '@/components/resume/EducationSection'
 import Introduction from '@/components/resume/Introduction'
 import type { Metadata } from 'next'
+import ResumeHeader from '@/components/resume/ResumeHeader'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import SkillsSection from '@/components/resume/SkillsSection'
 import WorkExperienceSection from '@/components/resume/WorkExperienceSection'
@@ -41,14 +42,13 @@ export default function ResumePage() {
       />
 
       <div className="pt-20 pb-40 whitespace-pre-line break-keep">
-        <div className="space-y-24">
-          <main className="space-y-32">
-            <Introduction data={resumeData.introduction} />
-            <WorkExperienceSection experiences={resumeData.experiences} />
-            <SkillsSection skills={resumeData.skills} />
-            <EducationSection education={resumeData.education} />
-          </main>
-        </div>
+        <main className="space-y-32">
+          <ResumeHeader data={resumeData.introduction} />
+          <Introduction data={resumeData.introduction} />
+          <WorkExperienceSection experiences={resumeData.experiences} />
+          <SkillsSection skills={resumeData.skills} />
+          <EducationSection education={resumeData.education} />
+        </main>
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/server/posts'
+import { getAllProjects } from '@/lib/server/projects'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,6 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       priority: 0.9,
     },
+    {
+      url: toAbsoluteUrl('/projects'),
+      lastModified,
+      priority: 0.9,
+    },
   ]
 
   // 동적 블로그 포스트 페이지
@@ -35,5 +41,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }))
 
-  return [...staticPages, ...blogPosts]
+  // 동적 프로젝트 기록 페이지 (날짜 없음 → 배포 시각 사용)
+  const projects = getAllProjects()
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: toAbsoluteUrl(`/projects/${project.slug}`),
+    lastModified,
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...blogPosts, ...projectPages]
 }

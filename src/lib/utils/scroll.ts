@@ -1,26 +1,15 @@
 /**
  * 특정 요소로 부드럽게 스크롤하고 URL 해시를 업데이트합니다.
- * 헤더 높이를 고려하여 오프셋을 자동으로 계산합니다.
+ *
+ * 착지 오프셋은 각 헤딩에 지정된 CSS `scroll-margin-top`이 담당합니다.
+ * (레벨별 값은 HEADING_STYLES 참고 — 헤더/목차 높이와 헤딩 여백을 고려해 설정)
  *
  * @param id - 스크롤할 요소의 ID
- * @param additionalOffset - 헤더 외 추가 오프셋 (기본값: 24px)
  */
-export function scrollToElement(id: string, additionalOffset = 24): void {
+export function scrollToElement(id: string): void {
   const element = document.getElementById(id)
   if (!element) return
 
-  // URL 해시 업데이트
+  element.scrollIntoView({ behavior: 'smooth' })
   window.history.pushState(null, '', `#${id}`)
-
-  // CSS 변수에서 헤더 높이 가져오기
-  const headerHeight = parseInt(
-    getComputedStyle(document.documentElement)
-      .getPropertyValue('--header-height')
-      .replace('px', ''),
-  )
-
-  // 헤더 높이 + 여백만큼 오프셋
-  const offset = headerHeight + additionalOffset
-  const y = element.getBoundingClientRect().top + window.scrollY - offset
-  window.scrollTo({ top: y, behavior: 'smooth' })
 }

@@ -1,4 +1,3 @@
-import { Calendar, Clock } from 'lucide-react'
 import { formatDate, toAbsoluteUrl } from '@/lib/utils/format'
 import {
   generateBlogPostingSchema,
@@ -7,11 +6,9 @@ import {
 } from '@/lib/utils/seo'
 
 import { CATEGORY_NAMES } from '@/lib/constants/blog'
-import { CategoryMenu } from '@/components/blog/CategoryMenu'
 import Giscus from '@/components/blog/Giscus'
 import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
-import { Separator } from '@/components/ui/separator'
 import { ShareButton } from '@/components/blog/ShareButton'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { getAllPosts } from '@/lib/server/posts'
@@ -92,8 +89,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   // 포스트 파일 경로 생성하고 파싱
   const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
-  const { frontmatter, content, readingTime, toc } =
-    await parseMarkdownFile(postPath)
+  const { frontmatter, content, toc } = await parseMarkdownFile(postPath)
 
   // JSON-LD 구조화된 데이터 생성
   const jsonLd = {
@@ -112,71 +108,51 @@ export default async function BlogPage({ params }: BlogPageProps) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
-      <div className="relative w-full section-grid">
-        {/* 왼쪽 카테고리 메뉴 */}
-        <aside className="section-left hidden md:block">
-          <div className="sticky top-below-header max-w-aside">
-            <CategoryMenu posts={allPosts} />
-          </div>
-        </aside>
+      <div className="relative w-full pt-20 pb-12">
+        <div className="section-grid">
+          {/* 왼쪽 목차 */}
+          <aside className="section-left hidden md:block">
+            <div className="sticky top-below-header max-w-aside">
+              <TableOfContents items={toc} />
+            </div>
+          </aside>
 
-        {/* 메인 콘텐츠 */}
-        <article className="section-right mt-3 md:mt-0 py-12 min-w-0">
-          {/* 포스트 헤더 */}
-          <header>
-            {/* 포스트 제목 */}
-            <h1 className="text-3xl font-semibold tracking-tight leading-tight">
-              {frontmatter.title}
-            </h1>
+          {/* 메인 콘텐츠 */}
+          <article className="section-right mt-3 md:mt-0 min-w-0">
+            {/* 포스트 헤더 */}
+            <header>
+              {/* 포스트 제목 */}
+              <h1 className="text-2xl font-semibold tracking-tight leading-tight">
+                {frontmatter.title}
+              </h1>
 
-            <div className=" mt-6 h-4 flex flex-wrap items-center gap-4 text-sm text-foreground/60">
-              {/* 카테고리 */}
-              <span>
-                {CATEGORY_NAMES[frontmatter.category] || frontmatter.category}
-              </span>
-
-              <Separator orientation="vertical" />
-
-              {/* 작성 날짜 */}
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
+              <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                {/* 카테고리 */}
+                <span>
+                  {CATEGORY_NAMES[frontmatter.category] || frontmatter.category}
+                </span>
+                <span>・</span>
+                {/* 작성 날짜 */}
                 <span>{formatDate(frontmatter.date)}</span>
               </div>
+            </header>
 
-              <Separator orientation="vertical" />
-
-              {/* 읽는 시간 */}
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>{readingTime}분</span>
-              </div>
+            {/* 포스트 본문 */}
+            <div className="mt-18 prose prose-lg max-w-none prose-gray dark:prose-invert">
+              <div>{content}</div>
             </div>
-          </header>
 
-          <Separator className="mt-6 mb-16" />
+            {/* 공유 버튼 */}
+            <div className="mt-16">
+              <ShareButton url={toAbsoluteUrl(`/blog/${postId}`)} />
+            </div>
 
-          {/* 포스트 본문 */}
-          <div className="mb-16 prose prose-lg max-w-none prose-gray dark:prose-invert">
-            {/* 목차 */}
-            <TableOfContents items={toc} />
-            {/* 본문 */}
-            <div>{content}</div>
-          </div>
-
-          <Separator />
-
-          {/* 공유 버튼 */}
-          <div className="my-6">
-            <ShareButton url={toAbsoluteUrl(`/blog/${postId}`)} />
-          </div>
-
-          <Separator className="mb-16" />
-
-          {/* 포스트 푸터 */}
-          <footer className="space-y-6">
-            <Giscus />
-          </footer>
-        </article>
+            {/* 포스트 푸터 */}
+            <footer className="mt-16 space-y-6">
+              <Giscus />
+            </footer>
+          </article>
+        </div>
       </div>
     </>
   )

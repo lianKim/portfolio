@@ -39,7 +39,7 @@ export function Image({
       />
 
       {(caption || alt) && (
-        <figcaption className="text-center text-sm text-muted-foreground leading-relaxed">
+        <figcaption className="text-center text-xs text-muted-foreground leading-relaxed">
           {caption || alt}
         </figcaption>
       )}
