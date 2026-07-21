@@ -13,8 +13,8 @@ export const resumeData: ResumeData = {
     description: {
       title: '만들고 팔아본 프론트엔드 개발자',
       content: [
+        'React, TypeScript 기반의 2년차 프론트엔드 개발자입니다.',
         '빈티지 조명 브랜드를 직접 운영하며, 고객이 상품을 보고 결제하는 화면과 운영자가 주문·상품을 관리하는 관리자 페이지를 만들고, 배포까지 맡았습니다. 이후 패션 산업 플랫폼에서는 성격이 다른 서비스들이 한 코드베이스에 섞이며 생기는 문제를 줄이기 위해, 프론트엔드 구조를 재편하고 팀이 같은 기준으로 개발할 수 있도록 문서화했습니다.',
-        'React·TypeScript를 주로 사용하며, 화면을 만들 때 사용자가 보는 흐름과 운영자가 관리하는 흐름을 함께 확인합니다. 기능을 더하기 전에, 지금 구조에서 줄일 수 있는 복잡도가 있는지 먼저 봅니다.',
       ],
     },
   },
@@ -51,8 +51,8 @@ export const resumeData: ResumeData = {
             },
           ],
           results: [
-            '빌드 시간 **58% 단축** (81s → 34s, CRA → Vite 전환 포함)',
             '아키텍처 위반을 리뷰어 판단이 아닌 CI에서 자동 검출',
+            'CRA → Vite 전환으로 빌드 시간 **58%** 단축 (81s → 34s)',
           ],
           technologies: [
             'React',
@@ -71,14 +71,14 @@ export const resumeData: ResumeData = {
             '브랜드마다 레이아웃·정보 구조·인터랙션 요구가 달라, 브랜드별 분기 컴포넌트가 늘며 번들과 유지보수 부담이 커지는 구조',
           process: [
             {
-              text: '테마 시스템·마이크로 프론트엔드를 검토했으나 확장 비용이 커, **UI 구조 자체를 JSON으로 표현**하는 SDUI를 설계',
+              text: '테마 시스템을 검토했으나 브랜드마다 다른 레이아웃 구조를 감당할 수 없어, **UI 구조 자체를 JSON으로 표현**하는 SDUI를 설계',
             },
             {
-              text: 'JSON의 role을 React 컴포넌트로 매핑하는 재귀 렌더러를 설계, element를 union 타입으로 모델링해 role별 속성을 **컴파일 타임에 검증**',
+              text: 'JSON의 role을 React 컴포넌트로 매핑하는 재귀 렌더러를 설계, 오류는 요소 단위로 격리해 일부 데이터가 잘못돼도 나머지 화면은 그려지게 처리',
               href: '/blog/sdui-architecture',
             },
             {
-              text: 'element를 HTML 태그 수준의 최소 단위로 설계하고 변형은 새 컴포넌트가 아닌 prop으로 흡수해, 요구사항이 늘어도 컴포넌트 수가 늘지 않도록 유지',
+              text: 'element를 HTML 태그 수준의 최소 단위로 설계하고, 변형은 새 컴포넌트가 아닌 prop으로 흡수해 요구사항이 늘어도 컴포넌트 수가 늘지 않도록 유지',
             },
             {
               text: '서버 JSON의 검증 규칙을 **런타임에 Zod 스키마로 변환**해 폼 검증을 동적으로 구성',
@@ -122,7 +122,7 @@ export const resumeData: ResumeData = {
           ],
           results: [
             '페이지·권한 추가를 단일 정의 수정으로 처리',
-            '초기 로드 JS **48% 경량화** (gzip 713KB → 373KB)',
+            '초기 로드 JS **48%** 경량화 (gzip 713KB → 373KB)',
           ],
           technologies: [
             'React Router',
@@ -133,16 +133,16 @@ export const resumeData: ResumeData = {
           ],
         },
         {
-          title: '의류 케어라벨 WYSIWYG 에디터 (SaaS)',
+          title: '의류 케어라벨 WYSIWYG 에디터 개발',
           projectSlug: 'care-label-editor',
           problem:
             '케어라벨 제작이 디자인 툴, 라벨 규격 지식, 라벨사와의 수기 소통으로 분절돼, 파일 관리와 커뮤니케이션 비용이 큰 상태',
           process: [
             {
-              text: '편집 좌표를 **실측 mm에 1:1**로 맞춘 그리드 기반 에디터 개발 (화면 px ↔ mm ↔ 그리드 단위를 300 DPI 기준 상호 변환)',
+              text: '그리드 1칸을 실물 1mm에 대응시켜, **편집한 치수 그대로 인쇄**되는 에디터 개발 (px 변환은 인쇄 표준 300 DPI 기준)',
             },
             {
-              text: 'react-grid-layout이 지원하지 않는 다중 선택·바운딩 박스 그룹 변형과 배치 전 영역 검증을 **직접 구현**',
+              text: 'react-grid-layout이 지원하지 않는 다중 선택·바운딩 박스 그룹 변형과 배치 전 영역 검증을 직접 구현',
             },
             {
               text: '디자인을 JSON으로 직렬화해 재편집 가능하게 저장하고, 폰트 깨짐 없는 출력을 위해 사용 폰트를 임베딩한 고해상도 이미지로 캡처',
@@ -151,10 +151,9 @@ export const resumeData: ResumeData = {
           results: ['사내 검증 단계까지 개발'],
           technologies: [
             'react-grid-layout',
-            'Jotai',
             'html-to-image',
-            'FontFace API',
             'styled-components',
+            'FontFace API',
           ],
         },
       ],
@@ -169,7 +168,7 @@ export const resumeData: ResumeData = {
           title: '커머스 웹사이트 구축',
           projectSlug: 'arffy-commerce',
           problem:
-            '기성 쇼핑몰 플랫폼은 브랜드 아이덴티티를 담기 어렵고, SNS 기반 판매는 구매 안내·주문 취합을 매번 수기로 처리해야 해 운영 부담이 큰 구조',
+            'SNS 판매의 수기 주문 처리에 한계가 있어, 브랜드 아이덴티티를 담은 자체 커머스가 필요한 상태',
           process: [
             {
               text: '기획·디자인·프론트엔드·배포·운영 전반을 맡아, **고객 스토어와 관리자 페이지**를 갖춘 커머스 서비스를 구축',
@@ -178,7 +177,7 @@ export const resumeData: ResumeData = {
               text: '백엔드 개발자와 에러 케이스를 정의하고, API 영역과 전역의 2단 Error Boundary로 상태별 분기·복구 처리',
             },
             {
-              text: 'PortOne 연동으로 카카오·토스·이니시스 **다중 PG 결제**를 구현해 실주문 결제 처리',
+              text: 'PortOne 연동으로 카카오페이·토스페이·KG이니시스 **다중 PG 결제**를 구현해 실주문 결제 처리',
             },
             {
               text: 'AWS EC2 + GitHub Actions 배포 자동화',
@@ -205,21 +204,31 @@ export const resumeData: ResumeData = {
         'TypeScript',
         'React',
         'Next.js',
+        'Vite',
         'React Query',
         'Jotai',
-        'styled-components',
-        'Emotion',
-        'Tailwind CSS',
-        'Storybook',
+        'React Hook Form',
+        'Zod',
       ],
     },
     {
-      category: 'DevOps & Deployment',
-      skills: ['GitHub Actions', 'Vercel', 'AWS EC2'],
+      category: 'Styling & UI',
+      skills: ['styled-components', 'Emotion', 'Tailwind CSS', 'Storybook'],
     },
     {
-      category: 'Collaboration & Tools',
-      skills: ['Git', 'Figma', 'Slack', 'Notion', 'Swagger', 'Postman'],
+      category: 'DevOps & Quality',
+      skills: [
+        'GitHub Actions',
+        'Vercel',
+        'AWS EC2',
+        'ESLint',
+        'Husky',
+        'lint-staged',
+      ],
+    },
+    {
+      category: 'Tools',
+      skills: ['Git', 'Figma', 'Cursor', 'Claude Code'],
     },
   ],
   education: [
