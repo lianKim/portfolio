@@ -156,7 +156,7 @@
   }
 
   .section-content {
-    @apply mt-8 md:mt-0;
+    @apply mt-10 md:mt-0;
   }
 }
 

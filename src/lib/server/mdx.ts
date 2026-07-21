@@ -33,7 +33,9 @@ function extractToc(source: string): TocItem[] {
   return toc
 }
 
-export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
+export async function parseMarkdownFile<T = PostFrontmatter>(
+  filePath: string,
+): Promise<ParsedPost<T>> {
   // 파일 읽기
   let source: string
   try {
@@ -52,7 +54,7 @@ export async function parseMarkdownFile(filePath: string): Promise<ParsedPost> {
 
   // MDX 컴파일
   try {
-    const { content, frontmatter } = await compileMDX<PostFrontmatter>({
+    const { content, frontmatter } = await compileMDX<T>({
       source,
       components: mdxComponents,
       options: {

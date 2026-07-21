@@ -25,8 +25,8 @@ export interface TocItem {
   level: number
 }
 
-export interface ParsedPost {
-  frontmatter: PostFrontmatter
+export interface ParsedPost<T = PostFrontmatter> {
+  frontmatter: T
   content: React.ReactElement
   readingTime: number
   toc: TocItem[]

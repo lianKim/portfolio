@@ -11,7 +11,7 @@ export default function Introduction({ data }: IntroductionProps) {
         <h2 className="section-left section-label">/ About</h2>
 
         {/* 소개글 */}
-        <div className="section-right mt-10 md:mt-0">
+        <div className="section-right section-content">
           <div className="flex flex-col gap-5">
             <h4 className="font-semibold text-subhead">
               {data.description.title}

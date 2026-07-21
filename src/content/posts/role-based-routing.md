@@ -2,7 +2,7 @@
 title: 'React Router 기반 역할별 동적 라우팅 시스템 구축'
 description: '역할별로 다른 메뉴 구조를 가진 Admin 시스템에서 라우트 정의와 사이드바 메뉴를 일원화하고, 중첩 라우트 평탄화를 통해 유지보수가 용이한 동적 라우팅 시스템을 구축한 과정'
 date: '2025-04-20'
-lastModified: '2025-04-20'
+lastModified: '2026-07-19'
 category: 'development'
 tags: ['React', 'React Router', 'TypeScript', 'Admin', 'RBAC']
 ---
@@ -117,13 +117,13 @@ export const ROLE_ROUTE_MAP = {
 
 라우트를 중첩 구조로 정의하면 코드의 가독성도 좋아지고, 사이드바에서 관련 메뉴들을 그룹으로 묶어 표시할 수 있다. 예를 들어 `content` 하위의 메뉴들은 하나의 그룹으로 묶이고, 구분선 아래에 `order` 관련 메뉴들이 또 다른 그룹으로 표시되는 식이다.
 
-다만 React Router에 등록할 때는 평탄화된 경로가 필요하다. 이를 위한 유틸 함수를 만들었다.
+다만 지금의 정의 형태로는 중첩 그대로 등록할 수 없었다. 부모가 Outlet을 가진 레이아웃이 아니라 완결된 화면이어서, 중첩 등록하면 자식 라우트가 그려질 자리가 없기 때문이다. 그래서 React Router에 등록할 때는 평탄화한 경로를 사용했다. 이를 위한 유틸 함수를 만들었다.
 
 ```tsx
 /**
  * 중첩된 라우트 배열을 평탄화하여 단일 레벨 배열로 변환
  * @example
- * [{ path: 'a', children: [{ path: 'b' }] }] → [{ path: 'a' }, { path: 'a/b' }]
+ * [{ path: 'a', element, children: [{ path: 'b', element }] }] → [{ path: 'a' }, { path: 'a/b' }]
  */
 export const flattenNestedRoutes = (
   routes: Route[],
@@ -135,7 +135,7 @@ export const flattenNestedRoutes = (
     // 부모 경로가 있으면 결합하여 전체 경로 생성
     const fullPath = parentPath ? `${parentPath}/${route.path}` : route.path;
 
-// element가 있는 라우트만 결과에 포함 (카테고리용 래퍼 라우트 제외)
+    // element가 있는 라우트만 결과에 포함 (카테고리용 래퍼 라우트 제외)
     if (route.element) {
       result.push({
         ...route,
@@ -321,7 +321,7 @@ export default function SideBar() {
 }
 ```
 
-`react-rotuer-dom`의 `NavLink`를 사용하면 현재 활성화된 메뉴를 쉽게 구분할 수 있다. `isActive` 값에 따라 스타일을 다르게 적용하면 된다.
+`react-router-dom`의 `NavLink`를 사용하면 현재 활성화된 메뉴를 쉽게 구분할 수 있다. `isActive` 값에 따라 스타일을 다르게 적용하면 된다.
 
 ### 흐름 정리
 
@@ -336,3 +336,7 @@ export default function SideBar() {
 이 구조를 적용한 뒤 실제로 새로운 역할이 추가되는 상황이 있었다. 라우트 파일 하나를 만들고 `ROLE_ROUTE_MAP`에 한 줄 추가하는 것만으로 작업이 끝났다. 기존이라면 라우터 설정, 사이드바 메뉴 배열, 접근 권한 로직을 각각 수정해야 했을 텐데, 수정 포인트가 한 곳으로 모이니 작업 시간도 줄고 실수 여지도 줄었다.
 
 다만 현재 구조에서는 역할 간 공유되는 라우트가 각 파일에 중복 정의되어 있다. 지금은 공유 메뉴가 많지 않아 큰 문제가 없지만, 공유 라우트가 늘어나면 중복 코드가 부담이 될 수 있다. 그때는 공통 라우트를 별도 모듈로 분리하고 역할별로 조합하는 방식을 검토할 예정이다.
+
+> **2026. 07. 덧붙임.** 이후 이 구조는 한 번 더 바뀌었다. 중첩으로 작성한 정의를 평탄화해 등록하던 변환을 없애고, 중첩 정의를 그대로 등록하는 구조로 재설계해 별도 프로젝트로 검증했다.
+>
+> → [다음 글: React Router 라우팅 재설계기](https://www.liankim.kr/blog/role-based-routing-redesign)

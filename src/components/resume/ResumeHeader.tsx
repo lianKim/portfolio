@@ -6,10 +6,10 @@ interface ResumeHeaderProps {
 
 export default function ResumeHeader({ data }: ResumeHeaderProps) {
   return (
-    <header className="section-grid pb-40">
+    <header className="section-grid">
       <div className="section-left">
         <h1 className="mb-1 text-xl font-semibold">{data.name}</h1>
-        <p className="text-muted-foreground">{data.position}</p>
+        <p>{data.position}</p>
       </div>
 
       <address className="section-right section-content flex flex-col items-start gap-y-2 text-sm leading-tight text-muted-foreground not-italic md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-4">

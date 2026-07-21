@@ -18,11 +18,17 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             <p>{experience.period}</p>
             <span className="hidden lg:inline-block">・</span>
             <p>{experience.position}</p>
+            {experience.note && (
+              <>
+                <span className="hidden lg:inline-block">・</span>
+                <p>{experience.note}</p>
+              </>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="section-right mt-4 md:mt-0">
+      <div className="section-right mt-10 md:mt-0">
         <ol className="space-y-14">
           {experience.tasks.map((task) => (
             <TaskItem key={`${experience.company}-${task.title}`} task={task} />

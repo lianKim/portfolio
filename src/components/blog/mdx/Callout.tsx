@@ -21,9 +21,9 @@ export function Callout({
     <div
       className={cn('my-6 p-4 border rounded-lg', config.container, className)}
     >
-      <div className="flex gap-3">
+      <div className="flex gap-2.5">
         <Icon
-          className={cn('w-5 h-5 mt-0.5 flex-shrink-0', config.iconColor)}
+          className={cn('w-4.5 h-4.5 mt-0.5 flex-shrink-0', config.iconColor)}
         />
         <div className="flex-1 space-y-2">
           {title && (

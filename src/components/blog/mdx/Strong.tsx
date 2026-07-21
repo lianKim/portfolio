@@ -5,7 +5,5 @@ interface StrongProps {
 }
 
 export function Strong({ children }: StrongProps) {
-  return (
-    <strong className="font-medium text-accent-foreground">{children}</strong>
-  )
+  return <strong className="font-semibold text-foreground">{children}</strong>
 }

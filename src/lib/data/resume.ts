@@ -22,12 +22,14 @@ export const resumeData: ResumeData = {
     {
       company: '윤회주식회사',
       period: '2024.07 - 2025.08',
-      position: 'Frontend Engineer ・ FE 1인 → 3인',
+      position: 'Frontend Engineer',
+      note: 'FE 1인 → 3인',
       description:
         '패션 제품 라이프사이클 추적 및 디지털 제품 여권(DPP) 발행 플랫폼',
       tasks: [
         {
           title: '프론트엔드 아키텍처 재구성',
+          projectSlug: 'multi-scope-fsd',
           problem:
             '권한·사용자 유형이 다른 독립 도메인들이 단일 CRA 구조에 혼재해, 도메인 간 사이드 이펙트 위험이 큰 상태',
           process: [
@@ -64,6 +66,7 @@ export const resumeData: ResumeData = {
         },
         {
           title: 'Server-Driven UI(SDUI) 시스템 설계',
+          projectSlug: 'sdui',
           problem:
             '브랜드마다 레이아웃·정보 구조·인터랙션 요구가 달라, 브랜드별 분기 컴포넌트가 늘며 번들과 유지보수 부담이 커지는 구조',
           process: [
@@ -99,6 +102,7 @@ export const resumeData: ResumeData = {
         },
         {
           title: '어드민 백오피스 구축 및 고도화',
+          projectSlug: 'role-based-routing',
           problem:
             '라우트·사이드바·접근 권한을 따로 관리해, 페이지 하나를 추가할 때 세 곳을 모두 수정해야 하는 구조',
           process: [
@@ -130,6 +134,7 @@ export const resumeData: ResumeData = {
         },
         {
           title: '의류 케어라벨 WYSIWYG 에디터 (SaaS)',
+          projectSlug: 'care-label-editor',
           problem:
             '케어라벨 제작이 디자인 툴, 라벨 규격 지식, 라벨사와의 수기 소통으로 분절돼, 파일 관리와 커뮤니케이션 비용이 큰 상태',
           process: [
@@ -162,6 +167,7 @@ export const resumeData: ResumeData = {
       tasks: [
         {
           title: '커머스 웹사이트 구축',
+          projectSlug: 'arffy-commerce',
           problem:
             '기성 쇼핑몰 플랫폼은 브랜드 아이덴티티를 담기 어렵고, SNS 기반 판매는 구매 안내·주문 취합을 매번 수기로 처리해야 해 운영 부담이 큰 구조',
           process: [
