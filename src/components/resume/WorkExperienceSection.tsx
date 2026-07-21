@@ -11,7 +11,7 @@ export default function WorkExperienceSection({
   return (
     <div>
       <h2 className="section-label">/ Work Experience</h2>
-      <div className="space-y-20  mt-10 md:mt-6">
+      <div className="space-y-20 section-content md:mt-6">
         {experiences.map((experience) => (
           <ExperienceCard key={experience.company} experience={experience} />
         ))}
