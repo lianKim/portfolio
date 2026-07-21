@@ -1,7 +1,6 @@
-import type { Task } from '@/types/resume'
-
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import type { Task } from '@/types/resume'
 import { getProjectBySlug } from '@/lib/server/projects'
 import { parseRichText } from '@/lib/utils/richText'
 
@@ -27,7 +26,7 @@ export default function TaskItem({ task }: TaskItemProps) {
               href={`/projects/${project.slug}`}
               className="group inline-flex shrink-0 items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
             >
-              설계 기록
+              프로젝트 기록
               <svg
                 viewBox="0 0 12 12"
                 className="size-3 text-accent-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
