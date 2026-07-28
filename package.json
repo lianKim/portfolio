@@ -49,6 +49,7 @@
     "@types/react": "19",
     "@types/react-dom": "19",
     "@types/three": "^0.184.0",
+    "@vercel/blob": "^2.6.1",
     "eslint": "^8",
     "eslint-config-next": "15",
     "prettier": "^3.1.0",
