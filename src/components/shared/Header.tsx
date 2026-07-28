@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { RESUME_PDF_URL } from '@/lib/constants/resume'
 import { cn } from '@/lib/utils/cn'
 import { usePathname } from 'next/navigation'
 
@@ -55,8 +56,7 @@ export default function Header() {
           </nav>
         </div>
         <a
-          href="/files/resume.pdf"
-          download="LianKim-Resume.pdf"
+          href={RESUME_PDF_URL}
           aria-label="이력서 PDF 다운로드"
           className="group inline-flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 text-foreground/60"
         >
