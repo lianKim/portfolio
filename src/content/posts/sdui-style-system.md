@@ -2,7 +2,7 @@
 title: 'SDUI 시스템 구축기 (2): 스타일 시스템 확장'
 description: 'Server-Driven UI에서 상태별 스타일과 CSS 의사선택자를 JSON으로 제어하기 위한 스타일 시스템 설계 과정'
 date: '2025-06-11'
-lastModified: '2025-06-11'
+lastModified: '2026-07-28'
 category: 'development'
 tags: ['React', 'TypeScript', 'SDUI', 'CSS-in-JS', 'Emotion']
 ---
@@ -35,11 +35,11 @@ export interface ElementBase {
 
 ## 1차 확장: 상태별 스타일
 
-Part 1에서 만든 Container 컴포넌트는 단순히 자식 요소들을 렌더링하는 역할만 했다. 하지만 실제 제품을 개발하다 보면 이것만으로는 부족한 경우가 있다.
+이전 글에서 만든 `Container` 컴포넌트는 단순히 자식 요소들을 렌더링하는 역할만 했다. 하지만 실제 제품을 개발하다 보면 이것만으로는 부족한 경우가 있다.
 
 휴대폰 인증처럼 JSON만으로는 표현할 수 없는 별도의 로직이 필요하거나, 자식 요소마다 서로 다른 조건에 따라 렌더링되어야 하거나, 재사용이 많은데 매번 JSON으로 작성하기엔 길고 복잡해지는 경우가 그렇다. 이런 경우를 위해 별도의 복합 컴포넌트를 만들어 사용했다.
 
-복합 컴포넌트에서 마주한 문제는 자식 요소의 상태 제어였다. 예를 들어, 휴대폰 인증 컴포넌트에서는 인증 코드 전송 버튼을 누른 후에야 타이머가 나타나야 했다. 서명 패드 컴포넌트에서는 서명이 완료된 후에야 초기화 버튼이 보여야 했다. 기존의 단일 `style` 객체로는 이처럼 다른 요소와의 상호작용에 따라 달라지는 조건부 스타일을 표현할 수 없었다.
+복합 컴포넌트에서 마주한 문제는 자식 요소의 상태 제어였다. 예를 들어, 휴대폰 인증 컴포넌트에서는 인증 코드 전송 버튼을 누른 후에야 타이머가 나타나야 했다. 서명 패드 컴포넌트에서는 서명이 완료된 후에 초기화 버튼이 보여야 했다. 기존의 단일 `style` 객체로는 이처럼 다른 요소와의 상호작용에 따라 달라지는 조건부 스타일을 표현할 수 없었다.
 
 이를 해결하기 위해 `active`라는 상태 개념을 도입했다. 부모 컴포넌트가 자식 요소의 활성화 여부를 판단하고, 그 결과를 `isActive` 플래그로 전달한다. 자식 요소는 이 값에 따라 `default` 또는 `active` 스타일을 적용받는다.
 
@@ -121,7 +121,7 @@ function SignaturePad({ data }: SignaturePadProps) {
 }
 ```
 
-`hasSignature`가 true가 되면 자식 요소들이 활성화되어 초기화 버튼이 보이게 된다.
+`hasSignature`가 `true`가 되면 자식 요소들이 활성화되어 초기화 버튼이 보이게 된다.
 
 ### ElementRenderer 수정
 
@@ -148,7 +148,7 @@ function ElementRenderer({ element, isActive }: ElementRendererProps) {
 }
 ```
 
-`isActive`가 props로 추가되었고, 자식 요소에도 동일하게 전달된다. children 생성 로직은 불필요한 재생성을 방지하기 위해 `useMemo`로 감쌌다.
+`isActive`가 props로 추가되었고, 자식 요소에도 동일하게 전달된다. `children` 생성 로직은 불필요한 재생성을 방지하기 위해 `useMemo`로 감쌌다.
 
 ## 2차 확장: 의사선택자 지원
 
@@ -285,7 +285,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 ![ElementStyle 구조 다이어그램](/images/posts/sdui-style-system/diagram.webp)
 
-상태(`default`, `active`)와 적용 방식(`base`, `pseudo`)의 조합으로 구성된다. 타입 정의는 다음과 같다:
+상태(`default`, `active`)와 적용 방식(`base`, `pseudo`)의 조합으로 구성된다. 타입 정의는 다음과 같다.
 
 ```tsx
 // 의사선택자 스타일
@@ -306,7 +306,7 @@ type ElementStyle = Partial<Record<ElementStyleStatus, ElementStyleItem>>;
 
 ### 스타일 병합
 
-`isActive` 값에 따라 적절한 스타일을 병합하는 훅을 만들었다. `default` 스타일을 기본으로 적용하고, `isActive`가 true이면 `active` 스타일을 덮어쓴다.
+`isActive` 값에 따라 적절한 스타일을 병합하는 훅을 만들었다. `default` 스타일을 기본으로 적용하고, `isActive`가 `true`면 `active` 스타일을 덮어쓴다.
 
 ```tsx
 function useElementCss(
@@ -344,4 +344,9 @@ function useElementCss(
 
 단일 `CSSProperties`로 처리하던 스타일 시스템을 두 단계에 걸쳐 확장했다. 1차 확장에서는 복합 컴포넌트의 상태 제어를 위해 `default`/`active` 구조를 도입했고, 2차 확장에서는 의사선택자 지원을 위해 `base`/`pseudo` 구조를 추가했다. 이제 상태에 따른 조건부 스타일링부터 `:hover`, `:focus`, `::after` 같은 인터랙션 스타일까지 JSON으로 제어할 수 있게 되었다.
 
-처음 설계할 때 `base`와 `pseudo`를 분리한 건 타입 안전성과 가독성 때문이었다. 기본 스타일과 의사선택자 스타일을 명시적으로 구분하면 JSON이 길어져도 구조를 파악하기 쉬울 거라 생각했다. 하지만 실제로 사용해보니 한 단계 더 중첩해야 하는 게 번거롭게 느껴졌다. Emotion의 css 함수는 의사선택자를 기본 스타일과 같은 레벨에 작성해도 동일하게 처리하기 때문에, 다시 설계한다면 분리 없이 flat하게 작성하는 방식을 선택할 것 같다.
+처음 설계할 때 `base`와 `pseudo`를 분리한 건 타입 안전성과 가독성 때문이었다. 기본 스타일과 의사선택자 스타일을 명시적으로 구분하면 JSON이 길어져도 구조를 파악하기 쉬울 거라 생각했다. 하지만 실제로 사용해보니 한 단계 더 중첩해야 하는 게 번거롭게 느껴졌다. Emotion의 `css` 함수는 의사선택자를 기본 스타일과 같은 레벨에 작성해도 동일하게 처리하기 때문에, 다시 설계한다면 분리 없이 flat하게 작성하는 방식을 선택할 것 같다.
+
+왜 이 시스템을 만들게 됐는지에 대한 판단은 프로젝트 기록에 정리했다.
+ 
+→ [프로젝트 기록: 브랜드마다 컴포넌트를 만들지 않은 이유](https://www.liankim.kr/projects/sdui)
+ 
