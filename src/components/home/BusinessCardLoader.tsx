@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { CardLoadingMotion } from '@/components/home/CardLoadingMotion'
 import { Spinner } from '@/components/ui/spinner'
@@ -45,13 +45,15 @@ export default function BusinessCardLoader() {
     return () => clearTimeout(timer)
   }, [firstLoad])
 
+  const handleReady = useCallback(() => setReady(true), [])
+
   // 최초 로드에만, 최소 노출 시간과 3D 준비가 모두 끝날 때까지 모션을 유지한다.
   // (스피너가 드러날 틈이 없도록 오버레이가 준비 완료까지 덮음)
   const showMotion = firstLoad && !(minElapsed && ready)
 
   return (
     <>
-      <BusinessCardCanvas onReady={() => setReady(true)} />
+      <BusinessCardCanvas onReady={handleReady} />
       {showMotion && <CardLoadingMotion />}
     </>
   )
