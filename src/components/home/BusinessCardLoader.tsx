@@ -1,12 +1,60 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { useCallback, useEffect, useState } from 'react'
+
+import { CardLoadingMotion } from '@/components/home/CardLoadingMotion'
+import { Spinner } from '@/components/ui/spinner'
+
+/** 로딩 모션 최소 노출 시간(ms). 막대 그리기 + 원 팝업 완료 시점(템포 0.9s 기준 약 0.666s). */
+const MIN_VISIBLE_MS = 666
+
+/**
+ * 이 세션(페이지 로드)에서 홈을 이미 봤는지.
+ * 모듈 스코프라 SPA 네비게이션엔 유지되고, 하드 새로고침에만 리셋된다.
+ */
+let seenHome = false
 
 const BusinessCardCanvas = dynamic(
   () => import('@/components/home/BusinessCard'),
-  { ssr: false },
+  {
+    ssr: false,
+    // 번들 캐시 후(재방문)엔 거의 뜨지 않음. 명함 자리에 가벼운 스피너.
+    loading: () => (
+      <div className="flex h-[80vh] w-full items-center justify-center">
+        <Spinner className="size-6 text-muted-foreground" />
+      </div>
+    ),
+  },
 )
 
+/**
+ * 홈 3D 명함을 클라이언트에서만(dynamic, ssr:false) 로드한다.
+ * - 최초 로드: 풀스크린 로고 모션을 최소 노출 시간(약 0.666s)만큼 덮어, 무거운 번들 로딩/워밍업을 가림
+ * - 재방문(SPA): 번들이 캐시돼 즉시 렌더되므로 모션 없이 바로 표시(필요 시 명함 자리 스피너)
+ */
 export default function BusinessCardLoader() {
-  return <BusinessCardCanvas />
+  const [firstLoad] = useState(() => !seenHome)
+  const [minElapsed, setMinElapsed] = useState(false)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    seenHome = true
+    if (!firstLoad) return
+    const timer = setTimeout(() => setMinElapsed(true), MIN_VISIBLE_MS)
+    return () => clearTimeout(timer)
+  }, [firstLoad])
+
+  const handleReady = useCallback(() => setReady(true), [])
+
+  // 최초 로드에만, 최소 노출 시간과 3D 준비가 모두 끝날 때까지 모션을 유지한다.
+  // (스피너가 드러날 틈이 없도록 오버레이가 준비 완료까지 덮음)
+  const showMotion = firstLoad && !(minElapsed && ready)
+
+  return (
+    <>
+      <BusinessCardCanvas onReady={handleReady} />
+      {showMotion && <CardLoadingMotion />}
+    </>
+  )
 }
