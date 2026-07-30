@@ -23,6 +23,8 @@ cafe24 같은 기성 쇼핑몰 플랫폼 기반으로 계속 개발할 수 있�
 
 ![Figma 디자인 시스템](/images/projects/05-figma-design-system.webp)
 
+→ [Figma에서 디자인 시스템 보기](https://www.figma.com/design/rTmSZNrxw7EOCMjWD7LZff/arffy-design-system?node-id=1-2)
+
 분류에서 애매했던 것은 분자와 유기체의 경계다. 기준은 맥락의 유무로 뒀다. 그 자체로는 맥락이 없어 재사용 폭이 넓으면 분자로(`Modal`, `ButtonSet`), 이름만으로 역할과 정보가 드러나면 유기체로(`ProductCard`, `ImageCarousel`) 분류했다.
 
 ## 결제
