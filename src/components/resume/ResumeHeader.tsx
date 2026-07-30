@@ -1,4 +1,5 @@
 import type { Introduction } from '@/types/resume'
+import { RESUME_PDF_URL } from '@/lib/constants/resume'
 
 interface ResumeHeaderProps {
   data: Introduction
@@ -17,18 +18,9 @@ export default function ResumeHeader({ data }: ResumeHeaderProps) {
           <span>Email.</span>
           <a
             href={`mailto:${data.contact.email}`}
-            className="text-foreground underline"
+            className="text-foreground hover:underline focus-visible:underline"
           >
             {data.contact.email}
-          </a>
-        </div>
-        <div className="flex flex-row gap-2 md:flex-col">
-          <span>Phone.</span>
-          <a
-            href={`tel:${data.contact.phone}`}
-            className="text-foreground underline"
-          >
-            {data.contact.phone}
           </a>
         </div>
         <div className="flex flex-row gap-2 md:flex-col">
@@ -37,9 +29,30 @@ export default function ResumeHeader({ data }: ResumeHeaderProps) {
             href={`https://${data.contact.github}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground underline"
+            className="text-foreground hover:underline focus-visible:underline"
           >
             {data.contact.github}
+          </a>
+        </div>
+        <div className="flex flex-row gap-2 md:flex-col">
+          <span>Resume.</span>
+          <a
+            href={RESUME_PDF_URL}
+            className="group inline-flex items-center gap-1 text-foreground hover:underline focus-visible:underline"
+          >
+            PDF 다운로드
+            <svg
+              viewBox="0 0 14 14"
+              className="size-3 transition-transform group-hover:translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.4}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 1.8V9M7 9 4.2 6.2M7 9l2.8-2.8M2.6 11.6h8.8" />
+            </svg>
           </a>
         </div>
       </address>
