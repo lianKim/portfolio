@@ -88,6 +88,8 @@ function BusinessCard({ onReady }: { onReady?: () => void }) {
           distanceFactor={1}
           position={[0, 0, 0.51]}
           transform
+          // 기본 z-index가 매우 높아(최대 16777271) 로딩 오버레이(z-60) 위로 새어 나옴 → 범위를 낮춤
+          zIndexRange={[40, 0]}
           style={{
             width: 372,
             height: 356,
