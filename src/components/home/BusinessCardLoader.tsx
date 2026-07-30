@@ -6,8 +6,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { CardLoadingMotion } from '@/components/home/CardLoadingMotion'
 import { Spinner } from '@/components/ui/spinner'
 
-/** 로딩 모션 최소 노출 시간(ms). 막대 그리기 + 원 팝업 완료 시점(템포 0.9s 기준 약 0.666s). */
-const MIN_VISIBLE_MS = 666
+/**
+ * 로딩 모션 최소 노출 시간(ms).
+ * 인트로(막대+원 팝업, ~0.666s) 완성 후 펄스 1회 여운까지 보여주기 위해 여유를 둔다.
+ */
+const MIN_VISIBLE_MS = 1700
 
 /**
  * 이 세션(페이지 로드)에서 홈을 이미 봤는지.
@@ -47,14 +50,12 @@ export default function BusinessCardLoader() {
 
   const handleReady = useCallback(() => setReady(true), [])
 
-  // 최초 로드에만, 최소 노출 시간과 3D 준비가 모두 끝날 때까지 모션을 유지한다.
-  // (스피너가 드러날 틈이 없도록 오버레이가 준비 완료까지 덮음)
-  const showMotion = firstLoad && !(minElapsed && ready)
-
+  // 최초 로드에만 표시. 최소 노출 시간과 3D 준비가 모두 끝나면 페이드아웃한다.
+  // (오버레이는 준비 완료까지 덮어 스피너가 드러날 틈을 없앤다)
   return (
     <>
       <BusinessCardCanvas onReady={handleReady} />
-      {showMotion && <CardLoadingMotion />}
+      {firstLoad && <CardLoadingMotion hidden={minElapsed && ready} />}
     </>
   )
 }

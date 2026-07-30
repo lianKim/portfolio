@@ -1,13 +1,21 @@
+import { cn } from '@/lib/utils/cn'
+
 /**
  * 홈 3D 명함(BusinessCard) 번들 로딩 동안 표시되는 로고 모션.
  * favicon 로고(세로 막대·가로 막대·빨간 점)를 순차로 그리고 점을 펄스시킨다.
  * 모션 정의는 globals.css의 `.bc-loader` 참고.
+ *
+ * hidden=true가 되면 opacity로 페이드아웃한다(클릭 통과·스크린리더 숨김).
  */
-export function CardLoadingMotion() {
+export function CardLoadingMotion({ hidden = false }: { hidden?: boolean }) {
   return (
     <div
       role="status"
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-background"
+      aria-hidden={hidden}
+      className={cn(
+        'fixed inset-0 z-[60] flex items-center justify-center bg-background transition-opacity duration-300',
+        hidden && 'pointer-events-none opacity-0',
+      )}
     >
       <svg
         className="bc-loader size-24"
