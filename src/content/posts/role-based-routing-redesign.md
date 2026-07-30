@@ -37,7 +37,7 @@ const routes = [
 
 `/products`는 잘 나온다. 그런데 `/products/1`로 이동하면 화면에는 여전히 목록이 있다. 상세는 어디에도 그려지지 않는다.
 
-React Router에서 자식 라우트의 `element`는 부모 컴포넌트가 렌더링하는 `Outlet` 안에 그려진다. `ProductListPage`는 `Outlet`을 가진 레이아웃이 아니라 완결된 화면이라, 상세가 그려질 자리 자체가 없는 것이다. 즉 React Router의 중첩은 URL의 계층만 뜻하지 않는다. 레이아웃의 중첩을 함께 뜻한다.
+React Router에서 자식 라우트의 `element`는 부모 컴포넌트가 렌더링하는 `Outlet` 안에 그려진다. `ProductListPage`는 `Outlet`을 가진 레이아웃이 아니라 일반 페이지 컴포넌트이기 때문에 상세가 그려질 자리 자체가 없는 것이다. 즉 React Router의 중첩은 URL의 계층만 뜻하지 않는다. 레이아웃의 중첩을 함께 뜻한다.
 
 이전 구현의 평탄화는 이 결합을 우회하는 방법이었다. 중첩 정의를 순회해 전체 경로 문자열을 만들고, 모든 페이지를 형제로 등록한다.
 

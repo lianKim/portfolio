@@ -48,7 +48,7 @@ order: 1
 
 다만 규칙이 모든 경계를 커버한 것은 아니다. 레이어 간 의존은 ESLint로 강제했지만, 스코프 사이의 경계는 디렉토리 구조와 팀 규약으로 유지했다.
 
-FSD 기초 적용(features와 entities 구분 등)과 Atomic Design 조합, ESLint 자동화의 구체적인 과정은 블로그에 정리했다 → [FSD 도입기: 아키텍처 설계부터 ESLint 자동화까지](https://www.liankim.kr/blog/fsd-with-eslint)
+FSD 기초 적용(features와 entities 구분 등)과 Atomic Design 조합, ESLint 자동화의 구체적인 과정은 블로그에 정리했다 → [FSD 도입기: features/entities 구분부터 ESLint 자동화까지](https://www.liankim.kr/blog/fsd-with-eslint)
 
 ## 마이그레이션
 
@@ -64,4 +64,4 @@ FSD 기초 적용(features와 entities 구분 등)과 Atomic Design 조합, ESLi
 
 ## 더 읽기
 
-- [블로그] [FSD 도입기: 아키텍처 설계부터 ESLint 자동화까지](https://www.liankim.kr/blog/fsd-with-eslint) : FSD 기초 적용, Atomic Design 조합, ESLint 자동화를 어떻게 했는지에 대한 기록
+- [블로그] [FSD 도입기: features/entities 구분부터 ESLint 자동화까지](https://www.liankim.kr/blog/fsd-with-eslint). FSD 기초 적용, Atomic Design 조합, ESLint 자동화를 어떻게 했는지에 대한 기록
