@@ -1,16 +1,16 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useState } from 'react'
 
 import { CardLoadingMotion } from '@/components/home/CardLoadingMotion'
 import { Spinner } from '@/components/ui/spinner'
+import dynamic from 'next/dynamic'
 
 /**
  * 로딩 모션 최소 노출 시간(ms).
  * 인트로(막대+원 팝업, ~0.666s) 완성 후 펄스 1회 여운까지 보여주기 위해 여유를 둔다.
  */
-const MIN_VISIBLE_MS = 1700
+const MIN_VISIBLE_MS = 1400
 
 /**
  * 이 세션(페이지 로드)에서 홈을 이미 봤는지.
