@@ -13,26 +13,35 @@ import {
 } from '@/lib/constants/businessCard'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { Html, OrbitControls } from '@react-three/drei'
-import { Suspense, useMemo, useRef } from 'react'
+import { Suspense, useEffect, useMemo, useRef } from 'react'
 
 import { getCardScale } from '@/lib/utils/responsive'
 
-export default function BusinessCardCanvas() {
+export default function BusinessCardCanvas({
+  onReady,
+}: {
+  onReady?: () => void
+}) {
   return (
     <div className="h-[80vh] w-full">
       <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
         <ambientLight />
-        <BusinessCard />
+        <BusinessCard onReady={onReady} />
         <OrbitControls enableZoom={false} />
       </Canvas>
     </div>
   )
 }
 
-function BusinessCard() {
+function BusinessCard({ onReady }: { onReady?: () => void }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const texture = useLoader(THREE.TextureLoader, TEXTURE_PATH)
   const { viewport } = useThree()
+
+  // 텍스처 로드가 끝나 이 컴포넌트가 렌더되면(=3D 준비 완료) 부모에 알림
+  useEffect(() => {
+    onReady?.()
+  }, [onReady])
 
   const responsiveScale = useMemo((): [number, number, 0.01] => {
     const deviceWidth =
