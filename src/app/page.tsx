@@ -20,6 +20,18 @@ export default function HomePage() {
           </span>
         </Link>
         <Link
+          href="/projects"
+          className="group inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Projects
+          <span
+            aria-hidden="true"
+            className="transition-transform group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </Link>
+        <Link
           href="/blog"
           className="group inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
         >
