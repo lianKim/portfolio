@@ -5,13 +5,15 @@
  */
 export function CardLoadingMotion() {
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background">
+    <div
+      role="status"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-background"
+    >
       <svg
         className="bc-loader size-24"
         viewBox="0 0 512 512"
         fill="none"
-        role="img"
-        aria-label="로딩 중"
+        aria-hidden="true"
       >
         <rect className="bar-v" x="90" y="90" width="68" height="200" rx="12" />
         <rect
@@ -24,6 +26,7 @@ export function CardLoadingMotion() {
         />
         <circle className="dot" cx="124" cy="386" r="34" />
       </svg>
+      <span className="sr-only">로딩 중</span>
     </div>
   )
 }
