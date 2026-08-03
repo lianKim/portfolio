@@ -20,9 +20,6 @@ export function PostList({ posts }: PostListProps) {
             id={post.id}
             title={post.title}
             description={post.description}
-            date={post.date}
-            tags={post.tags}
-            thumbnail={post.thumbnail}
           />
         </li>
       ))}
