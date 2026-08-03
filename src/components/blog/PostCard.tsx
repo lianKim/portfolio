@@ -4,19 +4,9 @@ interface PostCardProps {
   id: string
   title: string
   description: string
-  date: string
-  tags: string[]
-  thumbnail?: string
 }
 
-export function PostCard({
-  id,
-  title,
-  description,
-  // date,
-  // tags,
-  // thumbnail,
-}: PostCardProps) {
+export function PostCard({ id, title, description }: PostCardProps) {
   return (
     <article>
       <Link href={`/blog/${id}`} className="block space-y-2">
