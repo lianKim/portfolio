@@ -12,7 +12,6 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton'
-import { Toaster } from 'sonner'
 
 interface RootLayoutProps {
   children: ReactNode
@@ -105,13 +104,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </main>
           {/* 스크롤 탑 버튼 */}
           <ScrollToTopButton />
-          {/* 토스트 알림 */}
-          <Toaster
-            position="top-right"
-            offset={{
-              top: 'var(--header-height)',
-            }}
-          />
         </div>
       </body>
     </html>
