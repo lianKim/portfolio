@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -6,7 +7,7 @@ import { formatDate } from '@/lib/utils/format'
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts')
 
-export function getAllPosts(): Post[] {
+export const getAllPosts = cache(function getAllPosts(): Post[] {
   // 디렉토리 존재 여부 확인
   if (!fs.existsSync(postsDirectory)) {
     console.warn(`Posts directory not found: ${postsDirectory}`)
@@ -44,4 +45,4 @@ export function getAllPosts(): Post[] {
 
   // 날짜 기준 내림차순 정렬
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
-}
+})

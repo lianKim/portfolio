@@ -1,5 +1,6 @@
 import type { ParsedPost, PostFrontmatter, TocItem } from '@/types/blog'
 
+import { cache } from 'react'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'fs'
 import { mdxComponents } from '@/components/blog/mdx'
@@ -33,9 +34,10 @@ function extractToc(source: string): TocItem[] {
   return toc
 }
 
-export async function parseMarkdownFile<T = PostFrontmatter>(
-  filePath: string,
-): Promise<ParsedPost<T>> {
+// 같은 파일에 대한 generateMetadata + 페이지 렌더의 중복 컴파일을 요청 단위로 제거
+export const parseMarkdownFile = cache(async function parseMarkdownFile<
+  T = PostFrontmatter,
+>(filePath: string): Promise<ParsedPost<T>> {
   // 파일 읽기
   let source: string
   try {
@@ -86,4 +88,4 @@ export async function parseMarkdownFile<T = PostFrontmatter>(
     const message = error instanceof Error ? error.message : 'Unknown error'
     throw new Error(`MDX 컴파일 실패: ${filePath}\n${message}`)
   }
-}
+})
