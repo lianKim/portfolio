@@ -3,6 +3,7 @@ import type { ParsedPost, PostFrontmatter, TocItem } from '@/types/blog'
 import { cache } from 'react'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'fs'
+import GithubSlugger from 'github-slugger'
 import { mdxComponents } from '@/components/blog/mdx'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
@@ -12,21 +13,21 @@ import remarkGfm from 'remark-gfm'
 import getReadingTime from 'reading-time'
 
 /**
- * 마크다운 소스에서 heading을 추출하여 목차 생성
+ * 마크다운 소스에서 heading을 추출하여 목차 생성.
+ * 실제 헤딩 id는 rehype-slug가 부여하므로, 동일한 github-slugger로 id를 만들어
+ * 목차 링크(href)와 헤딩 id가 어긋나지 않게 한다.
  */
 function extractToc(source: string): TocItem[] {
   const headingRegex = /^(#{1,6})\s+(.+)$/gm
+  // rehype-slug와 동일하게 문서 단위 인스턴스로 slug 생성 (중복 heading은 -1 접미)
+  const slugger = new GithubSlugger()
   const toc: TocItem[] = []
 
   let match
   while ((match = headingRegex.exec(source)) !== null) {
     const level = match[1].length
     const text = match[2].trim()
-    // rehype-slug와 동일한 방식으로 id 생성
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9가-힣\s-]/g, '')
-      .replace(/\s+/g, '-')
+    const id = slugger.slug(text)
 
     toc.push({ id, text, level })
   }
