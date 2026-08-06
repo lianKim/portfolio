@@ -1,16 +1,15 @@
 import { ReactNode, isValidElement } from 'react'
+import GithubSlugger from 'github-slugger'
 
 /**
  * 텍스트에서 heading ID를 생성합니다.
+ * 실제 헤딩 id를 부여하는 rehype-slug와 동일한 github-slugger를 사용해,
+ * rehype-slug가 id를 채우지 못한 경우의 폴백으로도 일관된 값을 만듭니다.
  * @param text - 변환할 텍스트
- * @returns kebab-case 형식의 ID
+ * @returns slug 형식의 ID
  */
 export function generateHeadingId(text: string): string {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w\-가-힣]/g, '')
+  return new GithubSlugger().slug(text)
 }
 
 /**

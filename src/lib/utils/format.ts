@@ -8,14 +8,11 @@ export function formatDate(dateString: string): string {
 
   try {
     const date = new Date(dateString)
-    return date
-      .toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })
-      .replace(/\./g, '.')
-      .replace(/\s/g, ' ')
+    return date.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
   } catch {
     return dateString
   }
@@ -24,7 +21,7 @@ export function formatDate(dateString: string): string {
 /**
  * 날짜 문자열을 ISO8601 형식으로 변환
  * @param dateString - YYYY-MM-DD 형식의 날짜 문자열 또는 이미 ISO8601 형식인 문자열
- * @returns ISO8601 형식의 날짜 문자열 (YYYY-MM-DDTHH:mm:ss.sssZ)
+ * @returns ISO8601 형식의 날짜 문자열, 유효하지 않으면 빈 문자열
  */
 export function toISO8601(dateString: string): string {
   if (!dateString) return ''
@@ -37,10 +34,10 @@ export function toISO8601(dateString: string): string {
   // YYYY-MM-DD 형식을 ISO8601로 변환
   const date = new Date(dateString)
 
-  // 유효하지 않은 날짜 체크
+  // 유효하지 않은 날짜는 구조화 데이터(JSON-LD) 오염을 막기 위해 빈 문자열 반환
   if (isNaN(date.getTime())) {
     console.error(`Invalid date string: ${dateString}`)
-    return dateString
+    return ''
   }
 
   return date.toISOString()

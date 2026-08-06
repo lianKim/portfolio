@@ -82,7 +82,7 @@ function BusinessCard({ onReady }: { onReady?: () => void }) {
     <mesh ref={meshRef} scale={responsiveScale}>
       <boxGeometry />
       <meshBasicMaterial map={texture} toneMapped={false} />
-      <Suspense fallback="명함 컴포넌트">
+      <Suspense fallback={null}>
         <Html
           occlude
           distanceFactor={1}
