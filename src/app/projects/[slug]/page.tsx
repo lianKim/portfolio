@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import type { ProjectFrontmatter } from '@/types/project'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllProjects } from '@/lib/server/projects'
+import {
+  getAllProjects,
+  getProjectBySlug,
+  getProjectContent,
+} from '@/lib/server/projects'
 import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/server/mdx'
-import path from 'path'
 import { toAbsoluteUrl } from '@/lib/utils/format'
 
 interface ProjectPageProps {
@@ -17,8 +18,7 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
-  const projects = getAllProjects()
-  const project = projects.find((p) => p.slug === slug)
+  const project = getProjectBySlug(slug)
 
   if (!project) {
     return {
@@ -26,14 +26,7 @@ export async function generateMetadata({
     }
   }
 
-  // 프로젝트 기록 파일 경로 생성하고 파싱
-  const projectPath = path.join(
-    process.cwd(),
-    'src/content/projects',
-    `${slug}.md`,
-  )
-  const { frontmatter } =
-    await parseMarkdownFile<ProjectFrontmatter>(projectPath)
+  const { frontmatter } = await getProjectContent(slug)
 
   const ogImage = SITE_CONFIG.images.ogImage
 
@@ -74,21 +67,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params
 
   // 해당 slug의 프로젝트 기록이 존재하는지 확인
-  const projects = getAllProjects()
-  const project = projects.find((p) => p.slug === slug)
+  const project = getProjectBySlug(slug)
 
   if (!project) {
     notFound()
   }
 
-  // 프로젝트 기록 파일 경로 생성하고 파싱
-  const projectPath = path.join(
-    process.cwd(),
-    'src/content/projects',
-    `${slug}.md`,
-  )
-  const { frontmatter, content, toc } =
-    await parseMarkdownFile<ProjectFrontmatter>(projectPath)
+  const { frontmatter, content, toc } = await getProjectContent(slug)
 
   return (
     <div className="relative w-full pt-20 pb-12">

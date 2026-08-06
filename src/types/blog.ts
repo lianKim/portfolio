@@ -5,7 +5,6 @@ export interface Post {
   date: string
   category?: string
   tags: string[]
-  readingTime?: number
   thumbnail?: string
 }
 
@@ -28,6 +27,5 @@ export interface TocItem {
 export interface ParsedPost<T = PostFrontmatter> {
   frontmatter: T
   content: React.ReactElement
-  readingTime: number
   toc: TocItem[]
 }
