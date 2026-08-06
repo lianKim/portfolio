@@ -25,6 +25,7 @@ export const SITE_CONFIG = {
   images: {
     ogImage: '/images/opengraph-image.webp',
     logo: '/images/logo.png',
+    ogSize: { width: 1200, height: 630 },
   },
 
   // 키워드
