@@ -1,48 +1,36 @@
 import { cache } from 'react'
-import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
 import type { Post } from '@/types/blog'
 import { formatDate } from '@/lib/utils/format'
+import { parseMarkdownFile } from '@/lib/server/mdx'
+import { loadMarkdownCollection } from '@/lib/server/collection'
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts')
 
-export const getAllPosts = cache(function getAllPosts(): Post[] {
-  // 디렉토리 존재 여부 확인
-  if (!fs.existsSync(postsDirectory)) {
-    console.warn(`Posts directory not found: ${postsDirectory}`)
-    return []
-  }
+// 전체 포스트 목록 (날짜 내림차순)
+export const getAllPosts = cache(() =>
+  loadMarkdownCollection<Post>(
+    postsDirectory,
+    (id, data) => ({
+      id,
+      title: data.title || '',
+      description: data.description || '',
+      date: formatDate(data.date) || '',
+      category: data.category || 'uncategorized',
+      tags: data.tags || [],
+      thumbnail: data.thumbnail,
+    }),
+    (a, b) => (a.date < b.date ? 1 : -1),
+  ),
+)
 
-  // posts 디렉토리의 모든 .md 파일 읽기
-  const fileNames = fs.readdirSync(postsDirectory)
-  const mdFiles = fileNames.filter((name) => name.endsWith('.md'))
+// id로 단일 포스트 조회 (없으면 undefined)
+export const getPostById = cache((id: string) =>
+  getAllPosts().find((post) => post.id === id),
+)
 
-  const posts: Post[] = []
-
-  for (const fileName of mdFiles) {
-    try {
-      const id = fileName.replace(/\.md$/, '')
-      const fullPath = path.join(postsDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data } = matter(fileContents)
-
-      posts.push({
-        id,
-        title: data.title || '',
-        description: data.description || '',
-        date: formatDate(data.date) || '',
-        category: data.category || 'uncategorized',
-        tags: data.tags || [],
-        readingTime: data.readingTime,
-        thumbnail: data.thumbnail,
-      } as Post)
-    } catch (error) {
-      // 개별 파일 에러는 로깅 후 건너뛰기
-      console.error(`Failed to parse post: ${fileName}`, error)
-    }
-  }
-
-  // 날짜 기준 내림차순 정렬
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
-})
+// 상세 페이지용: id로 콘텐츠(frontmatter/content/toc) 파싱
+// parseMarkdownFile이 요청 단위로 캐시되므로 별도 cache 불필요
+export function getPostContent(id: string) {
+  return parseMarkdownFile(path.join(postsDirectory, `${id}.md`))
+}

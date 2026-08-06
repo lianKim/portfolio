@@ -11,10 +11,8 @@ import type { Metadata } from 'next'
 import { SITE_CONFIG } from '@/lib/constants/site'
 import { ShareButton } from '@/components/blog/ShareButton'
 import { TableOfContents } from '@/components/blog/TableOfContents'
-import { getAllPosts } from '@/lib/server/posts'
+import { getAllPosts, getPostById, getPostContent } from '@/lib/server/posts'
 import { notFound } from 'next/navigation'
-import { parseMarkdownFile } from '@/lib/server/mdx'
-import path from 'path'
 
 interface BlogPageProps {
   params: Promise<{ id: string }>
@@ -25,8 +23,7 @@ export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
   const { id: postId } = await params
-  const allPosts = getAllPosts()
-  const post = allPosts.find((p) => p.id === postId)
+  const post = getPostById(postId)
 
   if (!post) {
     return {
@@ -34,9 +31,7 @@ export async function generateMetadata({
     }
   }
 
-  // 포스트 파일 경로 생성하고 파싱
-  const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
-  const { frontmatter } = await parseMarkdownFile(postPath)
+  const { frontmatter } = await getPostContent(postId)
 
   const ogImage = frontmatter.thumbnail || SITE_CONFIG.images.ogImage
 
@@ -80,16 +75,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { id: postId } = await params
 
   // 해당 ID의 포스트가 존재하는지 확인
-  const allPosts = getAllPosts()
-  const post = allPosts.find((p) => p.id === postId)
+  const post = getPostById(postId)
 
   if (!post) {
     notFound()
   }
 
-  // 포스트 파일 경로 생성하고 파싱
-  const postPath = path.join(process.cwd(), 'src/content/posts', `${postId}.md`)
-  const { frontmatter, content, toc } = await parseMarkdownFile(postPath)
+  const { frontmatter, content, toc } = await getPostContent(postId)
 
   // JSON-LD 구조화된 데이터 생성
   const jsonLd = {
