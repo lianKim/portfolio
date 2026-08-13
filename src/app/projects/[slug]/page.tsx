@@ -1,13 +1,19 @@
-import type { Metadata } from 'next'
-import { SITE_CONFIG } from '@/lib/constants/site'
-import { TableOfContents } from '@/components/blog/TableOfContents'
+import {
+  buildDetailMetadata,
+  generateBreadcrumbSchema,
+  generateProjectSchema,
+  serializeJsonLd,
+} from '@/lib/utils/seo'
 import {
   getAllProjects,
   getProjectBySlug,
   getProjectContent,
 } from '@/lib/server/projects'
+
+import { DetailLayout } from '@/components/shared/DetailLayout'
+import type { Metadata } from 'next'
+import { SITE_CONFIG } from '@/lib/constants/site'
 import { notFound } from 'next/navigation'
-import { toAbsoluteUrl } from '@/lib/utils/format'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -28,45 +34,16 @@ export async function generateMetadata({
 
   const { frontmatter } = await getProjectContent(slug)
 
-  const ogImage = SITE_CONFIG.images.ogImage
-
-  return {
+  return buildDetailMetadata({
     title: frontmatter.title,
-    description: frontmatter.description || frontmatter.title,
-    authors: [{ name: SITE_CONFIG.author.name }],
-    alternates: {
-      canonical: toAbsoluteUrl(`/projects/${slug}`),
-    },
-    openGraph: {
-      title: frontmatter.title,
-      description: frontmatter.description || frontmatter.title,
-      url: `/projects/${slug}`,
-      siteName: SITE_CONFIG.name,
-      type: 'article',
-      authors: [SITE_CONFIG.author.name],
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: frontmatter.title,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: frontmatter.title,
-      description: frontmatter.description || frontmatter.title,
-      images: [ogImage],
-    },
-  }
+    description: frontmatter.description,
+    path: `/projects/${slug}`,
+    ogImage: SITE_CONFIG.images.ogImage,
+  })
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
-  // URL 파라미터에서 slug 가져오기
   const { slug } = await params
-
-  // 해당 slug의 프로젝트 기록이 존재하는지 확인
   const project = getProjectBySlug(slug)
 
   if (!project) {
@@ -75,19 +52,30 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   const { frontmatter, content, toc } = await getProjectContent(slug)
 
-  return (
-    <div className="relative w-full pt-20 pb-12">
-      <div className="section-grid">
-        {/* 왼쪽 목차 */}
-        <aside className="section-left hidden md:block">
-          <div className="sticky top-below-header max-w-aside">
-            <TableOfContents items={toc} />
-          </div>
-        </aside>
+  // JSON-LD 구조화된 데이터 생성
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateProjectSchema(slug, frontmatter),
+      generateBreadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Projects', path: '/projects' },
+        { name: frontmatter.title, path: `/projects/${slug}` },
+      ]),
+    ],
+  }
 
-        {/* 메인 콘텐츠 */}
-        <article className="section-right mt-3 md:mt-0 min-w-0">
-          {/* 헤더 */}
+  return (
+    <>
+      {/* JSON-LD 스크립트 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+
+      <DetailLayout
+        toc={toc}
+        header={
           <header>
             <p className="mb-2 text-sm text-muted-foreground">
               {frontmatter.label}
@@ -96,14 +84,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {frontmatter.title}
             </h1>
           </header>
-
-          {/* 본문 */}
-          <div className="mt-18 prose prose-lg max-w-none prose-gray dark:prose-invert">
-            <div>{content}</div>
-          </div>
-        </article>
-      </div>
-    </div>
+        }
+      >
+        {content}
+      </DetailLayout>
+    </>
   )
 }
 
